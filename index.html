@@ -7,35 +7,57 @@
   <base href="/linkincrease-pages/">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
-    :root { --bg:#f6f7f9; --panel:#fff; --text:#1f2933; --muted:#667085; --line:#d9dee7; --accent:#2563eb; }
+    :root {
+      --bg:#fbfaf8; --panel:#fff; --soft:#f7f6f3; --hover:#f1f0ee;
+      --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+      --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+      --accent-soft:#eee9df; --code:#f3f0eb; --focus:#9b8b72;
+      --shadow:0 18px 50px rgba(47,52,55,.08);
+    }
     * { box-sizing:border-box; }
-    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; color:var(--text); background:var(--bg); }
-    header { height:56px; display:flex; align-items:center; gap:16px; padding:0 20px; background:var(--panel); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:2; }
-    header h1 { font-size:18px; margin:0; white-space:nowrap; }
-    #search { width:min(520px,45vw); padding:9px 12px; border:1px solid var(--line); border-radius:8px; font-size:14px; }
-    main { display:grid; grid-template-columns:320px minmax(0,1fr); min-height:calc(100vh - 56px); }
-    nav { border-right:1px solid var(--line); background:var(--panel); overflow:auto; padding:14px; }
-    nav a { display:block; padding:8px 10px; color:var(--text); text-decoration:none; border-radius:6px; font-size:14px; line-height:1.35; }
-    nav a:hover, nav a.active { background:#eef4ff; color:var(--accent); }
-    nav .folder { display:block; color:var(--muted); font-size:12px; margin-top:2px; }
-    article { max-width:980px; width:100%; margin:0 auto; padding:32px 36px 64px; background:var(--panel); min-height:calc(100vh - 56px); }
-    article h1, article h2, article h3 { line-height:1.25; }
-    article h1 { font-size:30px; margin-top:0; }
-    article h2 { margin-top:34px; border-bottom:1px solid var(--line); padding-bottom:8px; }
-    article p, article li { line-height:1.75; }
-    article table { border-collapse:collapse; width:100%; margin:16px 0; }
-    article th, article td { border:1px solid var(--line); padding:8px 10px; vertical-align:top; }
-    article th { background:#f3f5f8; }
-    article code { background:#f3f5f8; padding:2px 4px; border-radius:4px; }
-    article pre { background:#111827; color:#f9fafb; padding:14px; overflow:auto; border-radius:8px; }
-    article pre code { background:transparent; padding:0; }
-    .meta { color:var(--muted); font-size:13px; margin-bottom:18px; }
-    @media (max-width:800px) {
-      header { height:auto; align-items:stretch; flex-direction:column; padding:12px; }
-      #search { width:100%; }
-      main { grid-template-columns:1fr; }
-      nav { max-height:36vh; border-right:0; border-bottom:1px solid var(--line); }
-      article { padding:22px 18px 48px; }
+    html { min-height:100%; }
+    body { min-height:100%; margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; letter-spacing:0; }
+    header { position:fixed; inset:0 auto 0 0; z-index:3; width:292px; height:100vh; display:flex; flex-direction:column; gap:14px; padding:14px 12px; background:var(--soft); border-right:1px solid var(--line); }
+    header h1 { display:flex; align-items:center; gap:10px; min-height:38px; margin:0; padding:4px 8px; font-size:15px; line-height:1.2; font-weight:650; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    header h1::before { content:"L"; width:24px; height:24px; display:grid; place-items:center; flex:0 0 auto; border:1px solid var(--line-strong); border-radius:6px; background:var(--panel); color:var(--accent); font-family:Georgia,"Times New Roman",serif; font-weight:700; font-size:15px; }
+    #search { width:100%; height:34px; padding:7px 10px; border:1px solid transparent; border-radius:6px; color:var(--text); background:var(--hover); outline:none; font-size:14px; }
+    #search:focus { background:var(--panel); border-color:var(--focus); box-shadow:0 0 0 3px rgba(155,139,114,.14); }
+    main { display:grid; grid-template-columns:292px minmax(0,1fr); min-height:100vh; }
+    nav { position:fixed; inset:100px auto 0 0; z-index:4; width:292px; overflow:auto; padding:0 14px 18px; scrollbar-width:thin; scrollbar-color:var(--line-strong) transparent; }
+    nav::before { content:"页面目录"; display:block; padding:4px 8px 8px; color:var(--muted); font-size:12px; font-weight:650; }
+    nav a { display:grid; gap:2px; padding:6px 8px; margin:1px 0; color:var(--text); text-decoration:none; border-radius:6px; font-size:14px; line-height:1.35; }
+    nav a:hover { background:var(--hover); }
+    nav a.active { background:var(--accent-soft); color:#3d392f; font-weight:620; }
+    nav .doc-title, nav .folder { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    nav .folder { display:block; color:var(--muted); font-size:12px; margin-top:1px; }
+    .meta { position:sticky; top:0; z-index:2; grid-column:2; height:48px; display:flex; align-items:center; padding:0 52px; color:var(--muted); font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; background:rgba(251,250,248,.86); border-bottom:1px solid rgba(231,226,220,.72); backdrop-filter:blur(14px); }
+    article { grid-column:2; width:min(100%, 940px); margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+    article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; scroll-margin-top:72px; }
+    article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+    article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+    article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+    article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+    article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+    article p { margin:10px 0; }
+    article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+    article li + li { margin-top:4px; }
+    article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+    article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+    article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+    article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+    article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+    article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+    article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+    article pre code { padding:0; background:transparent; color:inherit; }
+    .empty-state { margin:10px 8px; padding:12px; color:var(--muted); border:1px dashed var(--line-strong); border-radius:8px; font-size:13px; line-height:1.5; }
+    @media (max-width:900px) {
+      header { position:sticky; top:0; width:100%; height:auto; padding:12px 14px; border-right:0; border-bottom:1px solid var(--line); }
+      main { display:block; min-height:auto; }
+      nav { position:relative; inset:auto; width:100%; max-height:36vh; padding:8px 14px 12px; border-bottom:1px solid var(--line); background:var(--soft); }
+      .meta { height:auto; padding:10px 20px; }
+      article { padding:30px 20px 72px; }
+      article h1 { font-size:31px; }
+      article h2 { font-size:21px; }
     }
   </style>
 </head>
@@ -46,8 +68,8 @@
   </header>
   <main>
     <nav id="nav"></nav>
+    <div class="meta" id="currentPath"></div>
     <article>
-      <div class="meta" id="currentPath"></div>
       <div id="content">加载中...</div>
     </article>
   </main>
@@ -61,11 +83,18 @@
     function escapeHtml(value) { return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
     function renderNav(items) {
       nav.innerHTML = '';
+      if (!items.length) {
+        const empty = document.createElement('div');
+        empty.className = 'empty-state';
+        empty.textContent = '没有找到匹配页面';
+        nav.appendChild(empty);
+        return;
+      }
       items.forEach(doc => {
         const a = document.createElement('a');
         a.href = '#' + encodeURIComponent(doc.path);
         a.dataset.path = doc.path;
-        a.innerHTML = `${escapeHtml(doc.title)}<span class="folder">${escapeHtml(doc.path)}</span>`;
+        a.innerHTML = `<span class="doc-title">${escapeHtml(doc.title)}</span><span class="folder">${escapeHtml(doc.path)}</span>`;
         nav.appendChild(a);
       });
     }
@@ -73,7 +102,8 @@
       const doc = docs.find(item => item.path === path) || docs.find(item => item.path === 'README.md') || docs[0];
       if (!doc) return;
       [...nav.querySelectorAll('a')].forEach(a => a.classList.toggle('active', a.dataset.path === doc.path));
-      currentPath.textContent = doc.path;
+      const folder = doc.path.split('/').slice(0, -1).join(' / ');
+      currentPath.textContent = folder ? `Linkincrease / ${folder} / ${doc.title}` : `Linkincrease / ${doc.title}`;
       const response = await fetch('content/' + doc.path);
       const markdown = await response.text();
       content.innerHTML = window.marked ? marked.parse(markdown) : '<pre>' + escapeHtml(markdown) + '</pre>';
@@ -89,6 +119,7 @@
     search.addEventListener('input', () => {
       const keyword = normalize(search.value.trim());
       renderNav(keyword ? docs.filter(doc => normalize(doc.title + ' ' + doc.path + ' ' + doc.text).includes(keyword)) : docs);
+      loadDoc(decodeURIComponent(location.hash.slice(1)) || 'README.md');
     });
     window.addEventListener('hashchange', () => loadDoc(decodeURIComponent(location.hash.slice(1)) || 'README.md'));
     renderNav(docs);
