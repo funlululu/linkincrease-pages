@@ -8,8 +8,8 @@ Knowledge base root resolution:
 
 ```text
 1. LINKINCREASE_KB_PATH
-2. D:\work\daren\Linkincrease-knowledge-base
-3. 知识库私有 Git 仓库本地工作区 (legacy fallback)
+2. Current workspace if it contains metadata/source-roots.csv and docs/README.md
+3. Nearby workspace/repository roots containing those marker files
 4. User-provided local path, shared drive path, or repository clone
 ```
 
@@ -17,7 +17,7 @@ Latest raw requirement source:
 
 ```text
 source:thoughts-v2-current
-Local path: LINKINCREASE_SOURCE_PATH, usually 最新需求源（source:thoughts-v2-current）
+Local path: LINKINCREASE_SOURCE_PATH
 ```
 
 Historical product document source:
@@ -36,8 +36,9 @@ Use as secondary reference unless a product owner confirms promotion to current 
 4. From the knowledge base root, run:
 
 ```powershell
-$env:LINKINCREASE_SOURCE_PATH="最新需求源（source:thoughts-v2-current）"
-$env:LINKINCREASE_PRODUCT_DOCS_PATH="D:\work\daren\项目文档\产品文档"
+# Optional: set these only when the source roots are outside the knowledge base repository.
+# $env:LINKINCREASE_SOURCE_PATH="<local latest requirement source path>"
+# $env:LINKINCREASE_PRODUCT_DOCS_PATH="<local historical product docs path>"
 python scripts\scan_source_manifest.py
 ```
 

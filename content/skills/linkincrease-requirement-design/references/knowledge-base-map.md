@@ -4,8 +4,8 @@ Knowledge base root resolution:
 
 ```text
 1. LINKINCREASE_KB_PATH
-2. D:\work\daren\Linkincrease-knowledge-base
-3. 知识库私有 Git 仓库本地工作区 (legacy fallback)
+2. Current workspace if it contains metadata/source-roots.csv and docs/README.md
+3. Nearby workspace/repository roots containing those marker files
 4. User-provided local path, shared drive path, or repository clone
 ```
 

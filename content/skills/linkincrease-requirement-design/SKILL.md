@@ -9,8 +9,8 @@ Knowledge base path resolution:
 
 ```text
 1. If LINKINCREASE_KB_PATH is set and exists, use it.
-2. Else if D:\work\daren\Linkincrease-knowledge-base exists, use it.
-3. Else if 知识库私有 Git 仓库本地工作区 exists, use it as a legacy fallback.
+2. Else if the current workspace contains Linkincrease knowledge base files such as metadata/source-roots.csv and docs/README.md, use the current workspace.
+3. Else search nearby workspace/repository roots for those marker files.
 4. Else ask the user for the knowledge base path or read-only site/repository location.
 ```
 
@@ -18,7 +18,7 @@ Canonical latest requirement source:
 
 ```text
 source:thoughts-v2-current
-Local path is provided by LINKINCREASE_SOURCE_PATH, usually 最新需求源（source:thoughts-v2-current）
+Local path is provided by LINKINCREASE_SOURCE_PATH.
 ```
 
 Historical product reference source:
@@ -35,16 +35,16 @@ Use this only for product strategy, user roles, metrics, roadmap, or historical 
 2. Treat `source:thoughts-v2-current` as the primary latest raw requirement source.
 3. Treat `source:product-docs-legacy` as secondary historical context only; do not use it to overwrite current rules unless the user confirms the rule is still valid.
 4. Use `FlowSpace（流空间）` as the standard product term. Historical source filenames may still contain `SCCS`; preserve them in source references.
-4. Do not copy the whole knowledge base into the answer. Search and read only the relevant pages.
-5. For strategic or early-stage product work, read the entry pages for product strategy, user roles, and metrics/roadmap before proposing scope.
-6. For every requirement, check object, flow, permission, state, data, notification, log, import/export, exception, and multi-end impact.
-7. If a rule is unclear or conflicting, record it as a question instead of turning it into a final conclusion.
+5. Do not copy the whole knowledge base into the answer. Search and read only the relevant pages.
+6. For strategic or early-stage product work, read the entry pages for product strategy, user roles, and metrics/roadmap before proposing scope.
+7. For every requirement, check object, flow, permission, state, data, notification, log, import/export, exception, and multi-end impact.
+8. If a rule is unclear or conflicting, record it as a question instead of turning it into a final conclusion.
 
 ## When Starting a Requirement
 
 1. Identify the target product end: 运营端, 贸易端, 采集端, or public capability.
 2. Identify impacted objects: FlowSpace, 订单, 里程碑, 工单, 资源库, 模板, 自动化, 仪表盘, 报告, 权限, 日志.
-3. Resolve the knowledge base path using `LINKINCREASE_KB_PATH` first, then the default path.
+3. Resolve the knowledge base path using the path resolution rules above.
 4. Search the knowledge base with `rg` before reading files.
 5. For product positioning, user, roadmap, or priority questions, read:
    - `docs/00-入门/产品战略与定位.md`
@@ -82,17 +82,18 @@ references/requirement-checklist.md
    - keep it as `source:product-docs-legacy` reference,
    - promote it into the latest requirement source after confirmation,
    - or record it as a question.
-3. Run from the knowledge base root:
+4. Run from the knowledge base root:
 
 ```powershell
-$env:LINKINCREASE_SOURCE_PATH="最新需求源（source:thoughts-v2-current）"
-$env:LINKINCREASE_PRODUCT_DOCS_PATH="D:\work\daren\项目文档\产品文档"
+# Optional: set these only when the source roots are outside the knowledge base repository.
+# $env:LINKINCREASE_SOURCE_PATH="<local latest requirement source path>"
+# $env:LINKINCREASE_PRODUCT_DOCS_PATH="<local historical product docs path>"
 python scripts\scan_source_manifest.py
 ```
 
-4. Update source ledger, relevant knowledge pages, metadata, questions, and version records.
-5. Keep source filenames and `source:` references faithful to the original source files.
-6. Validate metadata files and search index after edits.
+5. Update source ledger, relevant knowledge pages, metadata, questions, and version records.
+6. Keep source filenames and `source:` references faithful to the original source files.
+7. Validate metadata files and search index after edits.
 
 Read the ingestion workflow when syncing:
 
