@@ -1,33 +1,3 @@
-﻿---
-title: 从模板到FlowSpace
-type: knowledge
-domain: 公共能力
-module: 业务流程
-submodule: 模板创建FlowSpace
-status: authoritative
-version: v0.1
-owner: 产品
-maintainer: Daren
-updated_at: 2026-05-25
-permission: internal
-tags:
-  - 业务模板
-  - FlowSpace
-  - 模板发布
-  - 模板同步
-source_files:
-  - source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md
-  - source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【工作台】工作台、创建SCCS、SCCS分组.md
-  - source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md
-related_docs:
-  - ../20-业务对象/业务模板.md
-  - ../20-业务对象/FlowSpace.md
-search_keywords:
-  - 创建FlowSpace
-  - 业务模板
-  - 模板发布
-  - 同步至FlowSpace
----
 
 # 从模板到 FlowSpace
 
@@ -118,4 +88,3 @@ flowchart TD
 - `source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md`
 - `source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【工作台】工作台、创建SCCS、SCCS分组.md`
 - `source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md`
-

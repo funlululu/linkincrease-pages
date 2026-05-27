@@ -1,35 +1,3 @@
-﻿---
-title: 协作FlowSpace权限
-type: knowledge
-domain: 贸易端
-module: 权限
-submodule: 协作FlowSpace
-status: authoritative
-version: v0.1
-owner: 产品
-maintainer: Daren
-updated_at: 2026-05-25
-permission: internal
-tags:
-  - 权限
-  - 协作FlowSpace
-  - 协作方角色
-  - 对接人
-source_files:
-  - source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md
-  - source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【协作SCCS设置】.md
-  - source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【操作日志】所有设置类功能.md
-related_docs:
-  - ../20-业务对象/团队与协作团队.md
-  - ../30-业务流程/跨团队协作.md
-  - ./权限体系总表.md
-search_keywords:
-  - 协作FlowSpace
-  - 协作方角色
-  - 对接人
-  - 工单采集指派
-  - 里程碑批复指派
----
 
 # 协作FlowSpace权限
 
@@ -110,5 +78,4 @@ search_keywords:
 
 - “对接人”“有指派权限成员”“任务实际处理人”在所有通知和任务列表中的边界需要继续校验。
 - 链主方删除协作里程碑权限时，协作团队历史任务和历史记录是否保留完整可见，需要补规则。
-
 

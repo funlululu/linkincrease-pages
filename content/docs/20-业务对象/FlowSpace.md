@@ -1,35 +1,3 @@
-﻿---
-title: FlowSpace
-type: knowledge
-domain: 贸易端
-module: FlowSpace
-submodule: 核心业务空间
-status: authoritative
-version: v0.1
-owner: 产品
-maintainer: Daren
-updated_at: 2026-05-26
-permission: internal
-tags:
-  - FlowSpace
-  - 业务空间
-  - 订单
-  - 权限
-source_files:
-  - source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md
-  - source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【协作SCCS设置】.md
-  - source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【工作台】工作台、创建SCCS、SCCS分组.md
-  - source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md
-related_docs:
-  - ../../02-核心概念词典.md
-  - ../../03-功能地图.md
-  - ../40-权限与安全/权限体系总表.md
-search_keywords:
-  - FlowSpace
-  - 业务空间
-  - FlowSpace设置
-  - 协作FlowSpace
----
 
 # FlowSpace
 
@@ -142,4 +110,3 @@ FlowSpace 设置类操作需要进入操作日志。涉及成员、协作团队�
 - FlowSpace 与 FlowSpace 是否完全同义，还是存在历史命名与产品边界差异。
 - FlowSpace 删除、停用、归档等生命周期状态是否已有完整规则。
 - 模板同步至已创建 FlowSpace 时的冲突处理和历史数据影响。
-

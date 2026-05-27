@@ -1,37 +1,3 @@
-﻿---
-title: PDF与批量导入导出
-type: knowledge
-domain: 贸易端
-module: 模板表单与数据
-submodule: 导入导出
-status: authoritative
-version: v0.1
-owner: 产品
-maintainer: Daren
-updated_at: 2026-05-25
-permission: internal
-tags:
-  - 导入
-  - 导出
-  - PDF
-  - Excel
-source_files:
-  - source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md
-  - source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单列表】订单导入、订单导出.md
-  - source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单列表】工单导入、导出.md
-  - source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【资源库】第一阶段.md
-related_docs:
-  - ../20-业务对象/订单.md
-  - ../20-业务对象/工单与批复.md
-  - ../20-业务对象/资源库.md
-  - ./表单设计组件.md
-search_keywords:
-  - Excel导入
-  - PDF导入
-  - 订单导入
-  - 工单导入
-  - 资源库导入
----
 
 # PDF与批量导入导出
 
@@ -126,5 +92,4 @@ PDF 导入与 Excel 导入主要差异：
 - PDF 字段整理目前仍引用外部资料，建议导出成本地来源。
 - 订单、工单、资源库导入的字段类型支持范围需要沉淀为统一矩阵。
 - 数据围栏对导入、导出、记录下载的影响需要继续验证。
-
 

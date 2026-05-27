@@ -1,37 +1,3 @@
-﻿---
-title: FlowSpace业务角色权限
-type: knowledge
-domain: 贸易端
-module: 权限
-submodule: FlowSpace业务角色
-status: authoritative
-version: v0.1
-owner: 产品
-maintainer: Daren
-updated_at: 2026-05-25
-permission: internal
-tags:
-  - 权限
-  - FlowSpace
-  - 业务角色
-  - 订单权限
-source_files:
-  - source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md
-  - source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【仪表盘】权限管理.md
-  - source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单列表】工单导入、导出.md
-  - source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【操作日志】所有设置类功能.md
-related_docs:
-  - ../20-业务对象/FlowSpace.md
-  - ../20-业务对象/订单.md
-  - ../20-业务对象/工单与批复.md
-  - ./权限体系总表.md
-search_keywords:
-  - FlowSpace业务角色
-  - 业务管理员
-  - 订单权限范围
-  - 里程碑权限
-  - 导入工单
----
 
 # FlowSpace业务角色权限
 
@@ -122,5 +88,4 @@ FlowSpace 设置操作日志需要覆盖业务角色新增、编辑、删除。�
 - 完整业务角色权限矩阵仍依赖外部表格，建议导出为本地来源。
 - 状态限制与权限点之间的优先级需要在订单、里程碑、工单细页继续补全。
 - 批量交接为后期规划，需要补成员删除后的任务交接规则。
-
 
