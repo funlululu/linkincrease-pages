@@ -47,9 +47,9 @@ Use this only for product strategy, user roles, metrics, roadmap, or historical 
 3. Resolve the knowledge base path using the path resolution rules above.
 4. Search the knowledge base with `rg` before reading files.
 5. For product positioning, user, roadmap, or priority questions, read:
-   - `docs/00-入门/产品战略与定位.md`
-   - `docs/00-入门/用户角色与场景.md`
-   - `docs/00-入门/产品指标与路线图.md`
+   - `docs/00-产品总览与规划/产品战略与定位.md`
+   - `docs/00-产品总览与规划/用户角色与场景.md`
+   - `docs/00-产品总览与规划/产品指标与路线图.md`
 6. Read only the relevant documents.
 7. Produce background, existing rules, likely impact scope, risks, and suggested PRD structure.
 
@@ -63,7 +63,7 @@ references/knowledge-base-map.md
 
 1. Read the user's draft or referenced file.
 2. Search the knowledge base for matching terms, objects, and source files.
-3. If the draft appears to come from historical product documents, compare it against `docs/90-来源与待办/历史产品文档评估.md` and treat it as reference until confirmed.
+3. If the draft appears to come from historical product documents, compare it against `docs/90-版本历史与来源治理/历史产品文档评估.md` and treat it as reference until confirmed.
 4. Check the draft against the design checklist.
 5. Return concrete gaps, conflicts, missing decisions, and suggested additions.
 6. Prefer actionable PRD edits or section-level suggestions over broad advice.

@@ -54,8 +54,8 @@ python scripts\scan_source_manifest.py
 | `metadata/tags.csv` | Add tags when new modules or terms appear |
 | `metadata/search-index.json` | Add or update searchable entries |
 
-9. Add unresolved decisions to `99-待办与问题池.md` and `docs/90-来源与待办/待确认问题.md`.
-10. For meaningful KB changes, update `docs/90-来源与待办/版本变更记录.md`.
+9. Add unresolved decisions to `99-待办与问题池.md` and `docs/90-版本历史与来源治理/待确认问题.md`.
+10. For meaningful KB changes, update `docs/90-版本历史与来源治理/版本变更记录.md`.
 11. Validate:
 
 ```powershell
