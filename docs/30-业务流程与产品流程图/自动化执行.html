@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>自动化执行 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">自动化执行</h1>
+<h2 id="1">1. 流程定位</h2>
+<p>自动化用于在 FlowSpace 内基于触发条件执行机械性业务动作。自动化由触发条件和执行操作组成，启用后才会执行。执行失败时可通知指定对象，并记录执行日志。</p>
+<h2 id="2">2. 流程图</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;创建或编辑自动化&quot;] --&gt; B[&quot;配置触发条件&quot;]
+    B --&gt; C[&quot;配置最多多个执行操作&quot;]
+    C --&gt; D[&quot;校验设置完整性&quot;]
+    D --&gt; E{&quot;保存并启用&quot;}
+    E --&gt;|未启用| F[&quot;仅保存，不执行&quot;]
+    E --&gt;|启用| G[&quot;等待触发&quot;]
+    G --&gt; H{&quot;满足触发条件&quot;}
+    H --&gt;|否| G
+    H --&gt;|是| I[&quot;按顺序执行操作&quot;]
+    I --&gt; J{&quot;某一步失败&quot;}
+    J --&gt;|是| K[&quot;后续操作不执行，发送失败通知&quot;]
+    J --&gt;|否| L[&quot;执行成功&quot;]
+    K --&gt; M[&quot;写入执行日志&quot;]
+    L --&gt; M
+</code></pre>
+<h2 id="3">3. 触发条件</h2>
+<table>
+<thead>
+<tr>
+<th>触发条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据新增时</td>
+<td>当订单基本信息、里程碑批复、里程碑工单等数据新增并满足条件时触发</td>
+</tr>
+<tr>
+<td>数据内容变更时</td>
+<td>当指定数据源字段发生变更并满足条件时触发</td>
+</tr>
+<tr>
+<td>到达记录中的时间时</td>
+<td>当到达某数据源内日期字段的指定时间点时触发</td>
+</tr>
+<tr>
+<td>定时任务</td>
+<td>按不重复、每天、每周、每月、每月第 xx 个周 xx 等周期触发</td>
+</tr>
+</tbody>
+</table>
+<p>自动化触发条件和执行操作在同一订单内发生，不跨订单执行。</p>
+<h2 id="4">4. 执行操作</h2>
+<table>
+<thead>
+<tr>
+<th>执行动作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发送通知</td>
+<td>向 FlowSpace 成员、协作团队、业务角色、协作方角色、系统角色、模板控件等对象发送站内或邮件通知</td>
+</tr>
+<tr>
+<td>新增数据</td>
+<td>主要用于自动新增工单，并设置处理人和默认值</td>
+</tr>
+<tr>
+<td>更新数据</td>
+<td>更新订单基本信息、里程碑批复、工单等数据源字段</td>
+</tr>
+</tbody>
+</table>
+<p>定时任务下的执行操作有特殊限制：</p>
+<ul>
+<li>发送通知时，通知对象仅保留 FlowSpace 成员、协作团队、业务角色、协作方角色 4 个分组。</li>
+<li>新增数据时需增加订单筛选条件，筛选符合条件的订单再创建工单。</li>
+<li>更新数据时需增加记录范围设置，过滤符合条件的订单、里程碑批复或工单。</li>
+<li>设置的时间不存在时不执行，且不属于执行失败。</li>
+</ul>
+<h2 id="5">5. 权限与状态限制</h2>
+<table>
+<thead>
+<tr>
+<th>限制</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动化配置权限</td>
+<td>需要有 FlowSpace 自动化配置权限</td>
+</tr>
+<tr>
+<td>启用校验</td>
+<td>条件和操作都至少有一个节点，且设置完整</td>
+</tr>
+<tr>
+<td>顺序执行</td>
+<td>任一步失败，后续操作不执行</td>
+</tr>
+<tr>
+<td>订单状态</td>
+<td>订单已完成或已取消时，新增或更新数据通常不执行</td>
+</tr>
+<tr>
+<td>里程碑状态</td>
+<td>里程碑已完成或已取消时，里程碑批复或工单相关动作不执行</td>
+</tr>
+<tr>
+<td>互用限制</td>
+<td>里程碑互用自其他订单、工单互用自其他订单时，部分动作不执行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 通知规则</h2>
+<p>自动化通知对象包括：</p>
+<ul>
+<li>FlowSpace 成员。</li>
+<li>FlowSpace 协作团队。</li>
+<li>业务角色和协作方角色。</li>
+<li>订单模板控件。</li>
+<li>步骤一数据源角色。</li>
+<li>系统角色，如订单创建人、订单更新人、里程碑负责人、工单采集人、工单批复人等。</li>
+</ul>
+<p>通知渠道：</p>
+<ul>
+<li>Linkincrease 消息。</li>
+<li>邮件。</li>
+<li>失败通知可配置站内、邮件、短信。</li>
+</ul>
+<h2 id="7">7. 日志与审计</h2>
+<p>执行日志需记录：</p>
+<ul>
+<li>执行数据。</li>
+<li>执行时间。</li>
+<li>执行状态：成功、失败、部分成功。</li>
+<li>满足的条件。</li>
+<li>每个执行节点的配置和执行结果。</li>
+<li>操作人：团队成员、协作方成员或机器人。</li>
+<li>新增或变更的数据内容。</li>
+</ul>
+<p>系统自动执行日志中，自动化操作人应标识为机器人或具体自动程序。</p>
+<h2 id="8">8. 待确认问题</h2>
+<ul>
+<li>部分成功的完整处理规则。</li>
+<li>自动化与资源库同步同时更新同一字段时的优先级。</li>
+<li>定时任务的时区、夏令时和不存在日期处理是否需要额外规则。</li>
+</ul>
+<h2 id="9">9. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【自动化】一期.md</code></li>
+<li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【自动化】二期：定时任务.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/系统自动执行的相关操作日志.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

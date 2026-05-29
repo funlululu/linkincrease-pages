@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>验货组件流程 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">验货组件流程</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>验货组件流程基于 Linkincrease 低代码平台实现 AQL 抽样检验、尺寸检验和瑕疵检验。它复用资源库、关联 FlowSpace、公式、子表等能力，支持按件判定、多端数据流转与自动判定。</p>
+<h2 id="2">2. 依赖资源库</h2>
+<table>
+<thead>
+<tr>
+<th>资源库</th>
+<th>用途</th>
+<th>关键字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>部位库</td>
+<td>定义检验部位和公差标准</td>
+<td>部位名称、测量方式、上偏差、下偏差、适用产品类型</td>
+</tr>
+<tr>
+<td>公差库</td>
+<td>基于标准的尺寸公差参考</td>
+<td>标准来源、类型、等级、尺寸段、上偏差、下偏差</td>
+</tr>
+<tr>
+<td>AQL 字码表</td>
+<td>按批量范围和检验水平确定抽样字码</td>
+<td>批量范围、检验水平、字码</td>
+</tr>
+<tr>
+<td>AQL 样本量</td>
+<td>按字码确定样本量</td>
+<td>字码、样本量</td>
+</tr>
+<tr>
+<td>AQL Ac/Re</td>
+<td>按 AQL 等级和字码确定接收/拒收数</td>
+<td>字码、AQL 等级、Ac、Re</td>
+</tr>
+<tr>
+<td>瑕疵库</td>
+<td>标准化瑕疵类型和等级</td>
+<td>瑕疵名称、默认严重等级、描述、参考图片</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 运营端配置</h2>
+<p>尺寸检验组件是行业组件，拖入表单后自动生成多表结构。</p>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组合明细</td>
+<td>灵活 1-2 维组合，例如颜色、尺码，记录数量和分配样本</td>
+</tr>
+<tr>
+<td>部位</td>
+<td>记录检验部位、上偏差、下偏差</td>
+</tr>
+<tr>
+<td>尺码尺寸</td>
+<td>按部位和尺码记录基本尺寸</td>
+</tr>
+<tr>
+<td>样本测量记录</td>
+<td>贸易端生成并录入测量结果</td>
+</tr>
+</tbody>
+</table>
+<p>运营端可配置各表标题、维度名称、列名、计划样本量、关联数据和国际化内容。尺寸检验组件不可拖入布局，逻辑上相当于多个子表。</p>
+<h2 id="4">4. 贸易端应用流程</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;填写组合明细&quot;] --&gt; B[&quot;填写部位与偏差&quot;]
+    B --&gt; C[&quot;填写尺码尺寸&quot;]
+    C --&gt; D[&quot;点击生成样本任务&quot;]
+    D --&gt; E[&quot;生成样本测量记录&quot;]
+    E --&gt; F[&quot;录入实测值&quot;]
+    F --&gt; G[&quot;自动判定合格/不合格/待录入&quot;]
+    G --&gt; H[&quot;统计记录数和件数&quot;]
+</code></pre>
+<p>生成样本任务前，前三张表必须填写完整；未填写完整时，未填输入框标红。生成后，如果前三张表被修改，需要提示配置已修改并重新生成；重新生成会清空已录入数据。</p>
+<h2 id="5">5. 组合明细规则</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>维度一</td>
+<td>默认颜色，可自定义</td>
+</tr>
+<tr>
+<td>维度二</td>
+<td>默认尺码，可自定义；一维模式下隐藏</td>
+</tr>
+<tr>
+<td>数量</td>
+<td>可填写数字</td>
+</tr>
+<tr>
+<td>占比</td>
+<td>数量 / 总数量，精确到 1 位小数</td>
+</tr>
+<tr>
+<td>分配样本</td>
+<td>计划样本量乘以数量占比，四舍五入取整，可手动修改</td>
+</tr>
+</tbody>
+</table>
+<p>若组合明细关联其他组合明细或尺寸检验组件，则维度、添加行、维度值和数量不可填写，数据来自被关联组件；样本量仍按自身配置计算。</p>
+<h2 id="6">6. 样本测量记录</h2>
+<p>样本测量记录按“分配样本总和 × 部位数量”生成。</p>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组合</td>
+<td>根据维度自动带出</td>
+</tr>
+<tr>
+<td>件号</td>
+<td>同一件不同部位使用同一件号</td>
+</tr>
+<tr>
+<td>颜色/尺码</td>
+<td>根据组合明细自动带出</td>
+</tr>
+<tr>
+<td>部位</td>
+<td>来自部位表</td>
+</tr>
+<tr>
+<td>实测值</td>
+<td>用户填写</td>
+</tr>
+<tr>
+<td>合格范围</td>
+<td>基本尺寸 + 下偏差 到 基本尺寸 + 上偏差</td>
+</tr>
+<tr>
+<td>判定</td>
+<td>实测值在范围内为合格，不在范围内为不合格，未输入为待录入</td>
+</tr>
+</tbody>
+</table>
+<p>记录表需要支持模糊搜索和组合筛选。统计包括已录入、合格、不合格，以及合格件数、不合格件数、待录入件数。</p>
+<h2 id="7">7. 采集端应用</h2>
+<p>采集端只展示样本采集部分，并按照组合明细聚合为任务卡片。</p>
+<p>任务卡片包括：</p>
+<ul>
+<li>组合信息，如颜色/尺码。</li>
+<li>样本数量。</li>
+<li>已录入进度。</li>
+</ul>
+<p>任务详情以矩阵方式录入，每个部位一行，每行显示部位名称、合格范围和每件样本输入框。</p>
+<h2 id="8">8. 统计表设计</h2>
+<table>
+<thead>
+<tr>
+<th>表</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>measure_specs</code></td>
+<td>整合组合明细、部位、尺码尺寸，作为规格统计表</td>
+</tr>
+<tr>
+<td><code>measure_records</code></td>
+<td>存储每件样本每个部位的实测值和判定</td>
+</tr>
+</tbody>
+</table>
+<p>这两类表可支持后续帆软统计或其他外部分析。</p>
+<h2 id="9">9. 待确认问题</h2>
+<ul>
+<li>AQL Ac/Re 判定与尺寸检验判定之间的最终汇总规则需要继续补充。</li>
+<li>样本任务生成后，采集端与贸易端同时编辑的冲突处理需要明确。</li>
+<li>行业组件导入模板、统计报表和移动端离线能力仍需后续拆页。</li>
+</ul>
+  </article>
+</body>
+</html>

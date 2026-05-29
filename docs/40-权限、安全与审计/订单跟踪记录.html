@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>订单跟踪记录 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">订单跟踪记录</h1>
+<h2 id="_2">定位</h2>
+<p>订单跟踪记录是订单级业务过程日志，用于追踪订单、里程碑、工单、翻单、订单关联、FlowSpace 关联等关键业务节点。它回答“这个订单经历了哪些关键事件”。</p>
+<h2 id="_3">查看权限</h2>
+<p>只有拥有当前订单“查看跟踪记录”权限的成员，才能在订单详情中看到跟踪记录入口并查看内容。</p>
+<h2 id="_4">记录字段</h2>
+<p>每条跟踪记录至少包含：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作人</td>
+<td>头像、姓名；系统执行时可为系统、自动化或第三方来源</td>
+</tr>
+<tr>
+<td>操作时间</td>
+<td>事件发生时间</td>
+</tr>
+<tr>
+<td>事件</td>
+<td>按操作类型生成的记录文案</td>
+</tr>
+</tbody>
+</table>
+<p>排序按操作时间正序。</p>
+<h2 id="_5">订单操作</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>触发页面</th>
+<th>记录文案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建订单</td>
+<td>订单列表创建订单、导入订单</td>
+<td><code>$操作人 创建订单</code></td>
+</tr>
+<tr>
+<td>编辑订单</td>
+<td>订单列表、订单详情、批量编辑、导入更新</td>
+<td><code>$操作人 编辑订单</code></td>
+</tr>
+<tr>
+<td>删除订单</td>
+<td>订单详情、订单列表</td>
+<td><code>$操作人 删除订单</code></td>
+</tr>
+<tr>
+<td>完成订单</td>
+<td>订单详情、订单列表批量修改状态</td>
+<td><code>$操作人 完成订单</code></td>
+</tr>
+<tr>
+<td>取消订单</td>
+<td>订单详情、订单列表批量修改状态</td>
+<td><code>$操作人 取消订单</code></td>
+</tr>
+<tr>
+<td>重启订单</td>
+<td>订单详情、订单列表批量修改状态</td>
+<td><code>$操作人 重启订单</code></td>
+</tr>
+</tbody>
+</table>
+<p>订单完成、取消、重启后，均增加跟踪记录。</p>
+<h2 id="_6">里程碑与工单操作</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>触发页面</th>
+<th>记录文案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>里程碑开始</td>
+<td>首次创建工单、批量创建工单、导入工单</td>
+<td><code>$操作人 创建工单 $工单名称，$里程碑名称 开始</code></td>
+</tr>
+<tr>
+<td>创建工单</td>
+<td>订单详情、批量创建工单、导入工单</td>
+<td><code>$操作人 在 $里程碑名称 创建工单 $工单名称</code></td>
+</tr>
+<tr>
+<td>删除工单</td>
+<td>订单详情</td>
+<td><code>$操作人 删除 $里程碑名称 的工单 $工单名称</code></td>
+</tr>
+<tr>
+<td>完成里程碑</td>
+<td>订单详情、批量修改里程碑状态</td>
+<td><code>$操作人 完成里程碑 $里程碑名称</code></td>
+</tr>
+<tr>
+<td>取消里程碑</td>
+<td>订单详情、批量修改里程碑状态</td>
+<td><code>$操作人 取消里程碑 $里程碑名称</code></td>
+</tr>
+<tr>
+<td>重启里程碑</td>
+<td>订单详情、批量修改里程碑状态</td>
+<td><code>$操作人 重启里程碑 $里程碑名称</code></td>
+</tr>
+</tbody>
+</table>
+<p>首次创建工单时，如果里程碑从未开始进入进行中，需要同时记录里程碑开始。</p>
+<h2 id="_7">订单复用关系</h2>
+<h3 id="_8">里程碑互用</h3>
+<p>里程碑互用会在原单和被互用单分别增加跟踪记录。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>记录口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原单</td>
+<td><code>$操作人 将 $里程碑名称 互用于 $被互用的订单标识...</code></td>
+</tr>
+<tr>
+<td>被互用单</td>
+<td><code>$操作人 将 $原单订单标识 中的 $里程碑名称 互用于此订单</code></td>
+</tr>
+<tr>
+<td>原单取消互用</td>
+<td><code>$操作人 将 $里程碑名称 取消互用于 $被互用的订单标识</code></td>
+</tr>
+<tr>
+<td>被互用单取消互用并保留数据</td>
+<td><code>$操作人 取消 $原单订单标识 中的 $里程碑名称 互用于此订单，并保留了数据</code></td>
+</tr>
+<tr>
+<td>被互用单取消互用并清空数据</td>
+<td><code>$操作人 取消 $原单订单标识 中的 $里程碑名称 互用于此订单，并清空了数据</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">翻单</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>原单记录</th>
+<th>翻单记录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建新订单为翻单</td>
+<td><code>$操作人 创建 $翻单订单标识 为此订单的翻单</code></td>
+<td><code>$操作人 创建此订单为 $原单订单标识 的翻单</code></td>
+</tr>
+<tr>
+<td>设置已有订单为翻单</td>
+<td><code>$操作人 设置 $翻单订单标识 为此订单的翻单</code></td>
+<td><code>$操作人 设置此订单为 $原单订单标识 的翻单</code></td>
+</tr>
+<tr>
+<td>取消翻单</td>
+<td><code>$操作人 取消 $翻单订单标识 作为此单的翻单</code></td>
+<td><code>$操作人 取消此订单作为 $原单订单标识 的翻单</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="flowspace">订单关联与FlowSpace关联</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>记录文案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单关联</td>
+<td><code>$操作人 建立与 $订单标识 关联</code></td>
+</tr>
+<tr>
+<td>取消订单关联</td>
+<td><code>$操作人 取消与 $订单标识 关联</code></td>
+</tr>
+<tr>
+<td>FlowSpace关联</td>
+<td><code>$操作人 建立与 $FlowSpace名称 中的 $订单标识 关联</code></td>
+</tr>
+<tr>
+<td>取消FlowSpace关联</td>
+<td><code>$操作人 取消与 $FlowSpace名称 中的 $订单标识 关联</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">系统来源记录</h2>
+<p>系统、自动化、第三方 API 也可能写入订单跟踪记录。系统来源需要在操作人位置清晰标识，常见来源包括：</p>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>记录场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公式自动更新</td>
+<td>主表单公式字段更新时记录</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>主表单更新、首次创建工单、创建工单、订单状态变更、里程碑状态变更</td>
+</tr>
+<tr>
+<td>外部API</td>
+<td>外部系统创建或更新订单、创建或删除工单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">关联页面</h2>
+<ul>
+<li><a href="../30-业务流程与产品流程图/订单生命周期.md">订单生命周期</a></li>
+<li><a href="../30-业务流程与产品流程图/订单复用关系.md">订单复用关系</a></li>
+<li><a href="./系统与集成执行日志.md">系统与集成执行日志</a></li>
+</ul>
+<h2 id="_12">来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单管理】订单翻单功能.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单管理】订单关联功能.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单管理】里程碑互用功能.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/系统自动执行的相关操作日志.md</code></li>
+<li><code>source:thoughts-v2-current/V2.5.x/运营端/【运营端】【SCCS管理】SCCS列表增加外部api集成配置.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

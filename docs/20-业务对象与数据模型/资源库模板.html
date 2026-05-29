@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>资源库模板 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">资源库模板</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>资源库模板是运营端配置的资源库创建模板，用于定义团队资源库的分组、表单、字段、预览数据和发布版本。贸易端团队基于可见且已发布的资源库模板创建资源库。</p>
+<h2 id="2">2. 使用对象与入口</h2>
+<table>
+<thead>
+<tr>
+<th>使用对象</th>
+<th>入口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运营人员</td>
+<td>运营端 &gt; 模板中心 &gt; 资源库模板</td>
+<td>创建、编辑、设计、发布、复制和同步资源库模板</td>
+</tr>
+<tr>
+<td>贸易端团队</td>
+<td>贸易端资源库模板中心</td>
+<td>基于模板创建资源库</td>
+</tr>
+<tr>
+<td>实施人员</td>
+<td>预览数据</td>
+<td>模拟资源库数据结构和展示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 核心对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模板基础信息</td>
+<td>名称、图标、创建类型、所属行业、描述、备注</td>
+</tr>
+<tr>
+<td>分组</td>
+<td>资源库模板中的结构节点</td>
+</tr>
+<tr>
+<td>表单</td>
+<td>分组下的数据表结构</td>
+</tr>
+<tr>
+<td>表单字段</td>
+<td>资源库数据字段</td>
+</tr>
+<tr>
+<td>预览数据</td>
+<td>用于模板中心模拟资源库使用效果</td>
+</tr>
+<tr>
+<td>发布态模板</td>
+<td>贸易端可见和可用于创建资源库的模板版本</td>
+</tr>
+<tr>
+<td>同步至团队资源库</td>
+<td>将模板变更同步到已创建的团队资源库</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 业务流程</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;添加资源库模板&quot;] --&gt; B[&quot;配置基础信息&quot;]
+    B --&gt; C[&quot;添加分组&quot;]
+    C --&gt; D[&quot;添加表单并设计字段&quot;]
+    D --&gt; E[&quot;录入预览数据&quot;]
+    E --&gt; F[&quot;发布模板&quot;]
+    F --&gt; G[&quot;贸易端资源库模板中心可见&quot;]
+    G --&gt; H[&quot;团队创建资源库&quot;]
+    D --&gt; I[&quot;复制模板&quot;]
+    D --&gt; J[&quot;同步至团队资源库&quot;]
+</code></pre>
+<h2 id="5">5. 权限规则</h2>
+<p>当前需求主要描述运营端模板管理能力。已确认：</p>
+<ul>
+<li>只有运营端有模板管理权限的人员可管理资源库模板。</li>
+<li>系统模板可设置可见团队。</li>
+<li>模板启用且已发布后，贸易端才可见。</li>
+</ul>
+<h2 id="6">6. 状态与限制</h2>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+<th>限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未发布</td>
+<td>创建后尚未发布</td>
+<td>即使启用，贸易端仍不可见</td>
+</tr>
+<tr>
+<td>已发布</td>
+<td>形成可用版本</td>
+<td>贸易端可使用</td>
+</tr>
+<tr>
+<td>只读模式</td>
+<td>默认查看设计</td>
+<td>需开启编辑才能修改</td>
+</tr>
+<tr>
+<td>启用/未启用</td>
+<td>模板启用状态</td>
+<td>需结合发布状态判断贸易端可见性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 字段、表单与校验</h2>
+<p>基础信息：</p>
+<ul>
+<li>模板名称必填，限制 100 字符。</li>
+<li>模板图标必填。</li>
+<li>创建类型必填。</li>
+<li>所属行业必填。</li>
+<li>模板描述、备注限制 200 字符。</li>
+</ul>
+<p>设计规则：</p>
+<ul>
+<li>创建资源库模板后默认无分组、无表单。</li>
+<li>分组名称必填，限制 100 字符，需支持国际化。</li>
+<li>表单名称必填，限制 100 字符，需支持国际化。</li>
+<li>分组下可创建多个表单。</li>
+<li>表单设计组件规则引用资源库模板表单设计组件。</li>
+<li>预览数据按贸易端资源库数据操作逻辑录入。</li>
+</ul>
+<h2 id="8">8. 通知、日志与审计</h2>
+<p>需要记录：</p>
+<ul>
+<li>资源库模板新增、编辑、删除。</li>
+<li>可见范围设置。</li>
+<li>分组和表单设计变更。</li>
+<li>发布记录。</li>
+<li>复制记录。</li>
+<li>同步至团队资源库记录。</li>
+</ul>
+<h2 id="9">9. 异常与提示</h2>
+<p>已知提示：</p>
+<ul>
+<li>选择部分可见团队时，至少选择一个团队。</li>
+<li>同步至团队资源库需谨慎，以免影响资源库数据展示。</li>
+<li>与模板有关联的控件更新后，对应业务数据不可被清空。</li>
+</ul>
+<h2 id="10">10. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.3.x/运营端/【运营端】【模板中心】资源库模版管理.md</code></li>
+<li><code>missing-current-source/【运营端】【资源库模版】表单设计组件.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【资源库】第一阶段.md</code></li>
+</ul>
+<h2 id="11">11. 待确认问题</h2>
+<ul>
+<li>模板同步至团队资源库时字段删除、字段新增和历史数据保留规则。</li>
+<li>资源库模板与业务模板的表单组件差异清单。</li>
+<li>定制模板、用户自建模板是否纳入近期范围。</li>
+</ul>
+  </article>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>客户问题处理 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">客户问题处理</h1>
+<p>本页用于帮助运营人员排查外贸供应链客户在配置和使用 Linkincrease 时的常见问题。</p>
+<h2 id="_2">排查总路径</h2>
+<ol>
+<li>先判断问题发生在哪个层级：资源库、FlowSpace、订单、里程碑、工单、批复、自动化、仪表盘。</li>
+<li>再判断数据来源：用户手填、资源库引用、流程审批、自动化写入、系统同步、导入数据。</li>
+<li>检查权限：用户是否属于正确团队、协作团队、FlowSpace 角色、数据围栏范围。</li>
+<li>检查状态：供应商、工厂、订单、工单、验厂、CAP 是否处于可操作状态。</li>
+<li>检查日志和历史：确认谁在什么时间改了什么数据。</li>
+</ol>
+<h2 id="_3">常见问题</h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>可能原因</th>
+<th>处理建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商看不到工厂申报入口</td>
+<td>未加入协作团队，或未配置创建/提交工单权限</td>
+<td>检查协作 FlowSpace 权限和数据围栏</td>
+</tr>
+<tr>
+<td>订单里选不到某个工厂</td>
+<td>工厂未进入资源库、未关联该供应商、准入状态不可用</td>
+<td>检查工厂资源库和订单字段过滤规则</td>
+</tr>
+<tr>
+<td>工厂已申报但订单仍不能使用</td>
+<td>FlowSpace1 审批结论未同步资源库，或工厂状态未更新为可用</td>
+<td>检查准入批复字段和资源库同步动作</td>
+</tr>
+<tr>
+<td>品牌方看不到供应商提交的资料</td>
+<td>数据围栏、字段可见性或协作角色配置不正确</td>
+<td>检查 FlowSpace 业务角色、协作方角色和字段权限</td>
+</tr>
+<tr>
+<td>验厂报告无法形成 CAP</td>
+<td>报告字段未结构化，或未配置 CAP 创建流程</td>
+<td>建议把报告问题项拆成 CAP 工单字段</td>
+</tr>
+<tr>
+<td>CAP 已关闭但订单仍提示高风险</td>
+<td>CAP 状态未回写工厂资源库，或风险公式未更新</td>
+<td>检查资源库字段和公式/自动化执行日志</td>
+</tr>
+<tr>
+<td>仪表盘数据和订单列表不一致</td>
+<td>指标口径、权限范围、刷新频率或数据源不同</td>
+<td>对照核心指标口径和数据来源说明</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">必查文档</h2>
+<ul>
+<li><a href="../../20-业务对象与数据模型/FlowSpace数据层级.md">FlowSpace 数据层级</a></li>
+<li><a href="../03-业务场景案例库/外贸供应商治理/品牌方供应商与工厂准入协同方案.md">品牌方供应商与工厂准入协同方案</a></li>
+<li><a href="../../40-权限、安全与审计/权限体系总表.md">权限体系总表</a></li>
+<li><a href="../../40-权限、安全与审计/历史记录与快照.md">历史记录与快照</a></li>
+<li><a href="../../40-权限、安全与审计/系统与集成执行日志.md">系统与集成执行日志</a></li>
+</ul>
+  </article>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>账号与个人中心 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">账号与个人中心</h1>
+<h2 id="1">1. 定位</h2>
+<p>账号与个人中心是 Linkincrease 用户进入平台和管理个人身份信息的基础能力，覆盖贸易端和采集端。</p>
+<p>贸易端承担完整账号链路，包括注册、密码登录、验证码登录、忘记密码、个人信息、语言切换、团队切换和退出账号。采集端复用贸易端注册后的账号体系，支持邮箱密码登录、忘记密码、我的、修改密码、语言设置、检查更新和退出账号。</p>
+<h2 id="2">2. 端侧边界</h2>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>贸易端</th>
+<th>采集端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>注册</td>
+<td>支持邮箱验证和个人信息填写</td>
+<td>不支持注册，引导用户到 Linkincrease 电脑端注册</td>
+</tr>
+<tr>
+<td>密码登录</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>验证码登录</td>
+<td>支持</td>
+<td>当前来源仅说明邮箱密码登录</td>
+</tr>
+<tr>
+<td>忘记密码</td>
+<td>支持验证邮箱和重设密码</td>
+<td>支持验证邮箱和重设密码</td>
+</tr>
+<tr>
+<td>个人信息</td>
+<td>支持头像、姓名、性别、邮箱、手机号、重置密码</td>
+<td>支持头像、姓名、邮箱、联系方式、个人信息编辑</td>
+</tr>
+<tr>
+<td>团队切换</td>
+<td>支持我的团队、拥有者标识、团队码复制、创建团队</td>
+<td>通过采集端首页团队切换查看对应任务</td>
+</tr>
+<tr>
+<td>多语言</td>
+<td>支持跟随系统、简体中文、English</td>
+<td>同贸易端</td>
+</tr>
+<tr>
+<td>检查更新</td>
+<td>不适用</td>
+<td>支持 APP 版本检查、强制更新和可选更新</td>
+</tr>
+<tr>
+<td>退出账号</td>
+<td>退出后回到登录页</td>
+<td>需确认，确认后回到登录页</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 贸易端注册</h2>
+<p>贸易端注册分为两个步骤。</p>
+<h3 id="31">3.1 邮箱验证</h3>
+<p>字段与规则：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>邮箱</td>
+<td>必填；格式需包含且仅包含一个 <code>@</code>，并至少包含一个 <code>.</code></td>
+</tr>
+<tr>
+<td>验证码</td>
+<td>必填；发送到邮箱的 6 位数字验证码，最多输入 6 位</td>
+</tr>
+</tbody>
+</table>
+<p>获取验证码规则：</p>
+<ul>
+<li>点击前校验邮箱格式，无效提示 <code>请输入正确的邮箱地址</code>。</li>
+<li>校验邮箱是否已注册，已注册提示 <code>您的邮箱已注册，请返回登录</code>。</li>
+<li>点击后进入 60 秒倒计时，倒计时结束后才可再次获取。</li>
+<li>注册验证码邮件模板来自“邮件、短信、通知规则及模板”中的注册验证码模板。</li>
+</ul>
+<p>验证邮箱规则：</p>
+<ul>
+<li>必填项为空时提示 <code>请输入xxx</code>。</li>
+<li>验证码有效期为 5 分钟，超时提示 <code>验证码错误或已过期</code>。</li>
+<li>邮箱与验证码不匹配时提示 <code>验证码错误或已过期</code>。</li>
+<li>同一账号验证邮箱 6 次仍未成功时，限制 2 小时内再次验证，并提示 <code>验证失败次数已达上限，请2小时后重试。如遇问题，请邮件联系我们：support@Linkincrease.com</code>。</li>
+<li>校验通过后进入个人信息填写。</li>
+</ul>
+<h3 id="32">3.2 个人信息填写</h3>
+<p>字段与规则：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姓名</td>
+<td>必填，限制 20 字符</td>
+</tr>
+<tr>
+<td>性别</td>
+<td>单选：男、女</td>
+</tr>
+<tr>
+<td>手机号</td>
+<td>数字输入，最多 15 字符</td>
+</tr>
+<tr>
+<td>设置密码</td>
+<td>必填；6 到 16 位；必须同时包含字母和数字；可兼容特殊符号；不能包含空格</td>
+</tr>
+<tr>
+<td>确认密码</td>
+<td>必填；必须与设置密码一致</td>
+</tr>
+</tbody>
+</table>
+<p>提交校验顺序：</p>
+<ol>
+<li>必填校验。</li>
+<li>设置密码包含空格时提示 <code>密码请勿包含空格</code>。</li>
+<li>密码不符合规则时提示 <code>密码长度为6-16位，且必须同时包含字母与数字，兼容特殊符号</code>。</li>
+<li>两次密码不一致时提示 <code>两次输入的密码不一致，请重新输入</code>。</li>
+<li>校验通过后完成注册，提示 <code>注册成功</code>，并自动登录。</li>
+</ol>
+<h2 id="4">4. 贸易端登录</h2>
+<h3 id="41">4.1 密码登录</h3>
+<p>字段与规则：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>邮箱</td>
+<td>必填</td>
+</tr>
+<tr>
+<td>密码</td>
+<td>必填；默认密码输入框，可通过眼睛图标切换明文</td>
+</tr>
+<tr>
+<td>记住我</td>
+<td>勾选后浏览器记住本次登录账号和密码，下次打开登录页默认填入</td>
+</tr>
+</tbody>
+</table>
+<p>登录校验顺序：</p>
+<ol>
+<li>必填项未填时提示 <code>请输入xxx</code>。</li>
+<li>邮箱未注册时提示 <code>该邮箱尚未注册，请先注册账号</code>，可跳转注册页。</li>
+<li>密码错误时提示 <code>您的密码错误，请重新输入。或 重置密码</code>，可跳转忘记密码页。</li>
+<li>密码登录和验证码登录累计验证失败 6 次仍未成功时，限制 2 小时内再次登录。</li>
+<li>校验通过后，若用户已加入团队，进入上一次登录的团队工作台；若未加入团队，进入创建团队页面。</li>
+</ol>
+<p>登录状态补充规则：</p>
+<ul>
+<li>登录后 2 小时无任何操作，再次操作时退回密码登录页，并提示 <code>登录信息已失效，请重新登录</code>。</li>
+<li>登录状态下多处登录时，当前账号被踢出并回到密码登录页，提示 <code>账号在异地登录，如非本人操作，建议修改密码</code>。</li>
+</ul>
+<h3 id="42">4.2 验证码登录</h3>
+<p>字段与规则：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>邮箱</td>
+<td>必填</td>
+</tr>
+<tr>
+<td>验证码</td>
+<td>必填；发送到邮箱的 6 位数字验证码</td>
+</tr>
+</tbody>
+</table>
+<p>获取验证码规则：</p>
+<ul>
+<li>邮箱未注册时提示 <code>该邮箱尚未注册，请先注册</code>，可跳转注册页。</li>
+<li>点击后进入 60 秒倒计时。</li>
+<li>当前浏览器获取验证码 6 次仍未进入下一步时，限制 2 小时内再次获取，并提示 <code>获取验证码次数已达上限，请稍后重试</code>。</li>
+<li>连续输入 3 次错误密码后出现图形验证码，成功进入下一步后消失。</li>
+</ul>
+<p>登录校验规则与密码登录共享失败次数限制。验证码有效期为 5 分钟，超时或不匹配提示 <code>验证码错误或已过期</code>。</p>
+<h2 id="5">5. 忘记密码与修改密码</h2>
+<p>贸易端忘记密码分为验证邮箱和重设密码。</p>
+<p>验证邮箱规则：</p>
+<ul>
+<li>邮箱和验证码必填。</li>
+<li>邮箱未注册时提示 <code>该邮箱尚未注册，请先注册</code>。</li>
+<li>获取验证码后进入 60 秒倒计时。</li>
+<li>验证码有效期为 5 分钟。</li>
+<li>邮箱与验证码不匹配时提示 <code>验证码错误或已过期</code>。</li>
+<li>验证失败 6 次后限制 2 小时内再次验证。</li>
+<li>重置成功后，登录的验证失败次数清零。</li>
+</ul>
+<p>重设密码规则：</p>
+<ul>
+<li>密码规则同注册密码。</li>
+<li>必填项为空提示 <code>请输入xxx</code>。</li>
+<li>密码不符合规则提示 <code>密码长度为6-16位,且必须同时包含字母与数字,兼容特殊符号</code>。</li>
+<li>两次密码不一致提示 <code>两次输入的密码不一致，请重新输入</code>。</li>
+<li>校验通过后提示 <code>密码重置成功</code>，并自动登录。</li>
+</ul>
+<p>采集端修改密码逻辑同忘记密码，但邮箱账号框不可编辑，并带入当前登录邮箱。修改成功后需要重新登录。</p>
+<h2 id="6">6. 个人中心</h2>
+<h3 id="61">6.1 贸易端个人中心</h3>
+<p>个人信息包括：</p>
+<ul>
+<li>头像：默认取姓名第一个字作为头像；点击可更换本地图片；若未上传自定义头像，修改姓名会同步修改默认头像。</li>
+<li>姓名：可编辑。</li>
+<li>性别：可编辑。</li>
+<li>邮箱：当前账号，不可修改。</li>
+<li>手机号：可编辑。</li>
+<li>重置密码：修改当前账号密码。</li>
+</ul>
+<p>我的团队包括：</p>
+<ul>
+<li>展示当前用户加入的所有团队。</li>
+<li>用户是拥有者时展示拥有者标识。</li>
+<li>支持切换到对应团队。</li>
+<li>团队码支持复制，成功后提示 <code>复制成功</code>。</li>
+<li>支持创建新团队。</li>
+</ul>
+<h3 id="62">6.2 采集端我的</h3>
+<p>采集端“我的”包括：</p>
+<ul>
+<li>个人信息：头像、姓名、邮箱、联系方式。</li>
+<li>个人信息编辑：姓名、性别、联系方式。</li>
+<li>多语言设置：同贸易端。</li>
+<li>修改密码：成功后重新登录。</li>
+<li>帮助中心：跳转平台帮助中心。</li>
+<li>联系成功经理：弹出企业微信二维码。</li>
+<li>检查更新。</li>
+<li>退出账号。</li>
+</ul>
+<h2 id="7">7. 多语言</h2>
+<p>语言选项包括：</p>
+<ul>
+<li>跟随系统。</li>
+<li>简体中文。</li>
+<li>English。</li>
+</ul>
+<p>默认选项为跟随系统。跟随系统表示跟随浏览器或系统语言设置。</p>
+<p>语言设置有两个入口：</p>
+<ul>
+<li>登录页面。</li>
+<li>登录后的个人中心或采集端“我的”。</li>
+</ul>
+<p>切换语言后，需要后端保存到账号，同时更新当前浏览器或 App 语言。简体中文和英文选项文案固定为 <code>简体中文</code> 和 <code>English</code>。</p>
+<h2 id="8">8. 采集端登录与版本更新</h2>
+<p>采集端登录使用贸易端已注册邮箱和密码。</p>
+<p>登录校验顺序：</p>
+<ol>
+<li>必填项未填提示 <code>请输入xxx</code>。</li>
+<li>邮箱未注册提示 <code>该邮箱尚未注册，请至Linkincrease电脑端注册</code>。</li>
+<li>校验码输入错误或失效提示 <code>校验码不正确或已失效</code>。</li>
+<li>密码错误提示 <code>您的密码错误，请重新输入。或 重置密码</code>。</li>
+</ol>
+<p>采集端忘记密码通过后，进入密码重置页面。重置成功后提示 <code>密码重置成功</code>，返回密码登录页或 3 秒自动进入首页，具体行为需要后续产品确认统一。</p>
+<p>采集端检查更新规则：</p>
+<ul>
+<li>显示后台管理的最新 APP 版本号。</li>
+<li>当前 APP 版本号小于最小支持版本号时，展示强制更新界面，更新包来自后台上传路径。</li>
+<li>当前 APP 版本号大于等于最小支持版本号时，展示可选更新界面。</li>
+<li>点击稍后更新关闭弹窗，24 小时后再提示。</li>
+<li>点击马上更新下载后台最新安装包。</li>
+</ul>
+<h2 id="9">9. 待确认问题</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>问题</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A001</td>
+<td>采集端忘记密码成功后是返回登录页，还是 3 秒自动进入首页，来源中存在两个描述</td>
+<td>采集端账号体验和验收口径</td>
+</tr>
+<tr>
+<td>A002</td>
+<td>采集端是否未来支持验证码登录</td>
+<td>采集端登录方式和安全策略</td>
+</tr>
+<tr>
+<td>A003</td>
+<td>登录页语言设置与登录后个人中心语言设置的优先级是否已有完整流程图本地化来源</td>
+<td>多语言持久化逻辑</td>
+</tr>
+<tr>
+<td>A004</td>
+<td>邮件、短信、通知规则及模板未独立入库</td>
+<td>注册、登录、重置密码邮件模板追溯</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【账号】注册登录、忘记密码.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【个人中心】个人信息、切换语言、退出账号.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【登录】邮箱_密码登录、忘记密码.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【我的】个人中心页.md</code></li>
+<li><code>docs/10-功能模块详情/贸易端.md</code></li>
+<li><code>docs/10-功能模块详情/采集端.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>工单与批复 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">工单与批复</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>工单是里程碑下的具体执行任务，用于收集、处理和确认业务数据。批复分为工单批复和里程碑批复，是否存在取决于运营端业务模板配置。</p>
+<h2 id="2">2. 使用对象与入口</h2>
+<table>
+<thead>
+<tr>
+<th>使用对象</th>
+<th>入口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主团队 FlowSpace 成员</td>
+<td>订单详情</td>
+<td>创建工单、设置处理人、查看动态、执行批复或管理操作</td>
+</tr>
+<tr>
+<td>协作团队成员</td>
+<td>订单详情、采集端任务</td>
+<td>指派、采集、批复其权限范围内的任务</td>
+</tr>
+<tr>
+<td>采集端用户</td>
+<td>任务列表、任务详情</td>
+<td>移动端处理工单采集、工单批复、里程碑批复</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 核心对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工单</td>
+<td>里程碑下的一次具体任务</td>
+</tr>
+<tr>
+<td>工单采集表单</td>
+<td>处理人填写执行数据的表单</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>对工单采集结果进行确认</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>对里程碑阶段结果进行确认</td>
+</tr>
+<tr>
+<td>采集人</td>
+<td>负责填写工单采集表单的人或协作团队</td>
+</tr>
+<tr>
+<td>工单批复人</td>
+<td>负责确认工单采集结果的人或协作团队</td>
+</tr>
+<tr>
+<td>里程碑批复人</td>
+<td>负责确认里程碑结果的人或协作团队</td>
+</tr>
+<tr>
+<td>指派人</td>
+<td>协作团队中有权限将任务指派给具体成员的人</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 业务流程</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;创建工单&quot;] --&gt; B[&quot;设置采集人、工单批复人、里程碑批复人&quot;]
+    B --&gt; C{&quot;处理人为协作团队负责人?&quot;}
+    C --&gt;|是| D[&quot;协作方指派具体成员&quot;]
+    C --&gt;|否| E[&quot;处理人直接处理&quot;]
+    D --&gt; E
+    E --&gt; F[&quot;提交工单采集&quot;]
+    F --&gt; G{&quot;需要工单批复?&quot;}
+    G --&gt;|是| H[&quot;提交工单批复&quot;]
+    G --&gt;|否| I[&quot;工单完成采集链路&quot;]
+    H --&gt; I
+    I --&gt; J{&quot;需要里程碑批复?&quot;}
+    J --&gt;|是| K[&quot;提交里程碑批复&quot;]
+    J --&gt;|否| L[&quot;推进里程碑&quot;]
+    K --&gt; L
+</code></pre>
+<h2 id="5">5. 权限规则</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>权限要求</th>
+<th>状态限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建工单</td>
+<td>有当前里程碑创建工单权限</td>
+<td>订单进行中；里程碑未开始或进行中</td>
+</tr>
+<tr>
+<td>采集指派</td>
+<td>协作方有对应里程碑工单指派权限</td>
+<td>工单未终止、未批复；里程碑未完成/取消</td>
+</tr>
+<tr>
+<td>工单采集</td>
+<td>当前工单采集人或协作方未指派前负责人/对接人</td>
+<td>工单未终止、未批复；里程碑未完成/取消</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>当前工单批复人或对应协作方有权限成员</td>
+<td>依模板配置和状态限制</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>当前里程碑批复人或对应协作方有权限成员</td>
+<td>依模板配置和状态限制</td>
+</tr>
+<tr>
+<td>修改处理人</td>
+<td>主团队或协作团队有对应权限成员</td>
+<td>对象状态允许处理</td>
+</tr>
+<tr>
+<td>终止采集</td>
+<td>有终止采集权限</td>
+<td>工单未批复、未终止</td>
+</tr>
+<tr>
+<td>删除工单</td>
+<td>有删除工单权限</td>
+<td>对象状态允许删除</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 状态与限制</h2>
+<p>工单采集、批复、指派操作在以下场景通常不可执行：</p>
+<ul>
+<li>订单已删除。</li>
+<li>订单已完成。</li>
+<li>订单已取消。</li>
+<li>里程碑已完成。</li>
+<li>里程碑已取消。</li>
+<li>工单已终止采集。</li>
+<li>工单已批复。</li>
+<li>工单已删除。</li>
+<li>当前处理人或可编辑表单权限已变化。</li>
+<li>多人并发提交后当前页面未刷新。</li>
+</ul>
+<h2 id="7">7. 字段、表单与校验</h2>
+<p>创建工单时：</p>
+<ul>
+<li>一次最多创建 10 条工单。</li>
+<li>工单名称限制 50 字符，默认按创建顺序编号。</li>
+<li>至少保留一个非隐藏表单。</li>
+<li>采集人、工单批复人、里程碑批复人按模板配置校验。</li>
+<li>未设置采集人的表单需校验必填项。</li>
+<li>表单字段按运营端配置进行类型、必填、格式校验。</li>
+</ul>
+<p>采集时：</p>
+<ul>
+<li>当前采集人可编辑自己负责的表单，其余表单只读。</li>
+<li>多人并发时，如其他人已提交，需要提示刷新后再提交。</li>
+<li>提交后更新头像提交标识、动态、历史记录和完成度。</li>
+</ul>
+<h2 id="8">8. 通知、日志与审计</h2>
+<p>需要记录和通知的事件包括：</p>
+<ul>
+<li>创建工单。</li>
+<li>采集指派。</li>
+<li>工单采集提交。</li>
+<li>工单批复指派与提交。</li>
+<li>里程碑批复指派与提交。</li>
+<li>修改处理人。</li>
+<li>终止采集。</li>
+<li>删除工单。</li>
+<li>自动化创建或更新工单。</li>
+</ul>
+<p>通知渠道包括站内消息、邮件，部分资料中也提到短信模板，需要补充来源。</p>
+<h2 id="9">9. 异常与提示</h2>
+<p>需统一沉淀的提示：</p>
+<ul>
+<li>暂无权限，请联系管理员。</li>
+<li>订单已删除，无法操作，请刷新页面。</li>
+<li>订单已完成/已取消，无法操作，请刷新页面。</li>
+<li>里程碑已完成/已取消，无法操作，请刷新页面。</li>
+<li>工单已终止采集/已批复/已删除，无法操作，请刷新页面。</li>
+<li>工单编辑权限已变更，请刷新页面。</li>
+<li>某成员已修改数据，请刷新。</li>
+<li>至少保留一个模块。</li>
+<li>请设置处理人。</li>
+<li>请输入指定字段。</li>
+</ul>
+<h2 id="10">10. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】工单&amp;里程碑批复操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【工单视图】批量操作：批量发邮件协作、批量采集.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务详情页】工单、工单批复、里程碑批复详情页.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务列表】工单、工单批复、里程碑批复任务列表.md</code></li>
+</ul>
+<h2 id="11">11. 待确认问题</h2>
+<ul>
+<li>工单批复后是否允许部分字段继续被自动化或资源库同步更新。</li>
+<li>终止采集后是否允许重启采集。</li>
+<li>采集端与贸易端在所有状态限制上的提示是否完全一致。</li>
+</ul>
+  </article>
+</body>
+</html>

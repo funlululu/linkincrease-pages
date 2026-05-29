@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>异常场景与边界值库 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">异常场景与边界值库</h1>
+<p>本页用于长期沉淀测试中高价值的异常场景、边界值和容易遗漏的业务组合。</p>
+<h2 id="_2">资源库与引用异常</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>测试关注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单引用的工厂被停用</td>
+<td>订单历史展示、再次编辑、统计口径是否明确</td>
+</tr>
+<tr>
+<td>工厂准入状态从已准入改为暂停</td>
+<td>新订单是否禁止选择，旧订单是否保留历史</td>
+</tr>
+<tr>
+<td>供应商与工厂解除关联</td>
+<td>供应商订单是否还能选择该工厂</td>
+</tr>
+<tr>
+<td>资源库记录重复</td>
+<td>搜索、选择、同步、报表是否可识别重复风险</td>
+</tr>
+<tr>
+<td>资源库字段类型变更</td>
+<td>已有订单引用字段是否兼容</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">流程与状态异常</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>测试关注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工厂申报被退回后再次提交</td>
+<td>历史记录、附件、审批意见是否保留</td>
+</tr>
+<tr>
+<td>工单批复前订单被取消</td>
+<td>工单和批复状态是否同步受控</td>
+</tr>
+<tr>
+<td>CAP 复核退回后再次提交</td>
+<td>证据版本、复核记录、通知是否正确</td>
+</tr>
+<tr>
+<td>里程碑批复已存在时再次创建工单</td>
+<td>里程碑批复唯一性是否保持</td>
+</tr>
+<tr>
+<td>自动化重复触发</td>
+<td>是否产生重复通知、重复写入或重复日志</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">权限边界异常</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>测试关注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商被移出协作团队</td>
+<td>历史订单、待处理工单、通知链接是否受控</td>
+</tr>
+<tr>
+<td>用户角色被降级</td>
+<td>已打开页面、导出、接口数据是否同步受限</td>
+</tr>
+<tr>
+<td>邮件协作链接过期或转发</td>
+<td>外部填写权限是否可控</td>
+</tr>
+<tr>
+<td>数据围栏调整后</td>
+<td>列表、详情、搜索、仪表盘、导出是否一致</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">边界值</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本</td>
+<td>空值、超长、特殊符号、重复名称、中英文混合</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>0、负数、小数、超大值、百分比边界</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>过去日期、当天、跨年、有效期过期、开始晚于结束</td>
+</tr>
+<tr>
+<td>附件</td>
+<td>空附件、超大附件、多附件、重复文件名、不支持格式</td>
+</tr>
+<tr>
+<td>子表</td>
+<td>0 行、1 行、多行、删除全部、批量导入重复行</td>
+</tr>
+</tbody>
+</table>
+  </article>
+</body>
+</html>

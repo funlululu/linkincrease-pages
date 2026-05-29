@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>订单 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">订单</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>订单是 FlowSpace 中的业务主实体，承载订单基本信息、里程碑、工单、批复、历史记录、动态和跟踪记录。订单由运营端模板定义结构，由贸易端团队在 FlowSpace 中创建和流转。</p>
+<h2 id="2">2. 使用对象与入口</h2>
+<table>
+<thead>
+<tr>
+<th>使用对象</th>
+<th>入口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace 成员</td>
+<td>订单列表</td>
+<td>查看、创建、编辑、删除、导入导出订单</td>
+</tr>
+<tr>
+<td>FlowSpace 成员</td>
+<td>订单详情</td>
+<td>查看订单基本信息、里程碑、工单、批复和跟踪记录</td>
+</tr>
+<tr>
+<td>协作成员</td>
+<td>订单详情或任务入口</td>
+<td>在授权范围内查看和处理相关任务</td>
+</tr>
+<tr>
+<td>采集端用户</td>
+<td>任务详情</td>
+<td>查看与任务相关的订单信息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 核心对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单基本信息</td>
+<td>订单主表单数据</td>
+</tr>
+<tr>
+<td>订单标识</td>
+<td>用于在列表、详情、面包屑中展示订单身份的字段</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>订单流程阶段</td>
+</tr>
+<tr>
+<td>工单</td>
+<td>里程碑下的执行任务</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>对里程碑阶段结果进行确认</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>对工单采集结果进行确认</td>
+</tr>
+<tr>
+<td>跟踪记录</td>
+<td>订单级关键节点记录</td>
+</tr>
+<tr>
+<td>历史记录</td>
+<td>表单数据编辑历史</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 业务流程</h2>
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; 进行中: 创建订单
+    进行中 --&gt; 已完成: 完成订单
+    进行中 --&gt; 已取消: 取消订单
+    已完成 --&gt; 进行中: 重启订单
+    已取消 --&gt; 进行中: 重启订单
+</code></pre>
+<p>订单执行主线：</p>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;创建订单&quot;] --&gt; B[&quot;生成订单基本信息和里程碑&quot;]
+    B --&gt; C[&quot;创建工单或处理里程碑批复&quot;]
+    C --&gt; D[&quot;工单采集、工单批复&quot;]
+    D --&gt; E[&quot;里程碑推进&quot;]
+    E --&gt; F{&quot;订单是否结束&quot;}
+    F --&gt;|否| C
+    F --&gt;|是| G[&quot;完成或取消订单&quot;]
+    G --&gt; H[&quot;保留历史、动态、跟踪记录&quot;]
+</code></pre>
+<h2 id="5">5. 权限规则</h2>
+<p>订单相关入口和操作受 FlowSpace 业务角色、协作方角色、数据围栏、订单状态共同影响。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>权限要求</th>
+<th>额外限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看订单</td>
+<td>有订单查看权限且满足数据围栏</td>
+<td>隐藏不可见字段和标签</td>
+</tr>
+<tr>
+<td>创建订单</td>
+<td>有创建订单权限</td>
+<td>需满足表单必填和字段校验</td>
+</tr>
+<tr>
+<td>编辑订单</td>
+<td>有编辑订单权限</td>
+<td>已完成、已取消时受限</td>
+</tr>
+<tr>
+<td>删除订单</td>
+<td>有删除订单权限</td>
+<td>需处理关联工单和历史记录展示</td>
+</tr>
+<tr>
+<td>完成/取消/重启订单</td>
+<td>有修改订单状态权限</td>
+<td>仅特定状态可执行</td>
+</tr>
+<tr>
+<td>查看跟踪记录</td>
+<td>有查看跟踪记录权限</td>
+<td>按订单维度展示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 状态与限制</h2>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+<th>关键限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进行中</td>
+<td>订单正常流转</td>
+<td>可编辑、可取消、可完成，可推进里程碑和工单</td>
+</tr>
+<tr>
+<td>已完成</td>
+<td>订单结束</td>
+<td>订单不可编辑和取消；里程碑与工单处理动作受限</td>
+</tr>
+<tr>
+<td>已取消</td>
+<td>订单取消</td>
+<td>保存取消时的取消原因文本；业务处理动作受限</td>
+</tr>
+</tbody>
+</table>
+<p>完成订单后：</p>
+<ul>
+<li>订单状态变更为已完成。</li>
+<li>进行中的里程碑变更为已完成，其余里程碑状态按需求规则保持。</li>
+<li>里程碑不可创建工单、不可修改状态、不可互用。</li>
+<li>工单不可采集、批复、指派、修改处理人、发邮件协作、终止采集、删除。</li>
+<li>跟踪记录增加操作记录。</li>
+</ul>
+<p>取消订单后：</p>
+<ul>
+<li>需要选择取消原因。</li>
+<li>取消原因来自 FlowSpace 设置中的订单取消原因预设。</li>
+<li>历史订单展示取消时保存的文本，不随后续预设变更而改变。</li>
+</ul>
+<h2 id="7">7. 字段、表单与校验</h2>
+<p>订单基本信息由业务模板主表单决定。展示和编辑时需要同时考虑：</p>
+<ul>
+<li>字段类型和必填校验。</li>
+<li>数据围栏对字段可见性的控制。</li>
+<li>订单标识字段。</li>
+<li>子表模式展示。</li>
+<li>资源库引用字段。</li>
+<li>公式字段自动更新。</li>
+</ul>
+<h2 id="8">8. 通知、日志与审计</h2>
+<p>订单相关审计包括：</p>
+<ul>
+<li>创建、编辑、删除订单。</li>
+<li>完成、取消、重启订单。</li>
+<li>订单导入导出记录。</li>
+<li>跟踪记录。</li>
+<li>历史记录。</li>
+<li>自动化对订单基本信息的更新记录。</li>
+</ul>
+<h2 id="9">9. 异常与提示</h2>
+<p>需要统一沉淀的异常包括：</p>
+<ul>
+<li>无权限。</li>
+<li>订单已删除。</li>
+<li>订单状态已变更。</li>
+<li>订单已完成或已取消导致无法操作。</li>
+<li>字段必填或格式错误。</li>
+<li>数据围栏变化导致字段不可见。</li>
+</ul>
+<h2 id="10">10. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单列表】订单列表查看：概览、详情.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单列表】订单增删改.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单列表】订单导入、订单导出.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】视图模式：看板、表格.md</code></li>
+</ul>
+<h2 id="11">11. 待确认问题</h2>
+<ul>
+<li>订单完成、取消、重启后，对邮件协作、互用、自动化是否存在例外场景。</li>
+<li>删除订单后，采集端已打开任务页面如何实时提示。</li>
+<li>订单关联和 FlowSpace 关联是否需要进入订单核心页，还是拆为复用关系页。</li>
+</ul>
+  </article>
+</body>
+</html>

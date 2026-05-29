@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>跨 FlowSpace 数据整合实例 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="flowspace">跨 FlowSpace 数据整合实例</h1>
+<p>外贸供应链场景中，一个业务问题往往跨越多个 FlowSpace：订单、工厂申报、验厂审核、CAP 整改。运营需要把这些数据通过资源库和引用关系串起来。</p>
+<h2 id="_1">示例：订单工厂风险视图</h2>
+<table>
+<thead>
+<tr>
+<th>数据来源</th>
+<th>关键字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单管理 FlowSpace</td>
+<td>订单号、供应商、生产工厂、交期、订单状态</td>
+</tr>
+<tr>
+<td>工厂资源库</td>
+<td>准入状态、风险等级、最近验厂日期、CAP 未关闭数量</td>
+</tr>
+<tr>
+<td>验厂审核 FlowSpace</td>
+<td>审核类型、报告结论、审核日期、服务商</td>
+</tr>
+<tr>
+<td>CAP FlowSpace</td>
+<td>问题项、风险等级、关闭状态、截止日期</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">整合逻辑</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;订单&quot;] --&gt; B[&quot;引用生产工厂&quot;]
+    B --&gt; C[&quot;工厂资源库&quot;]
+    C --&gt; D[&quot;关联验厂记录&quot;]
+    C --&gt; E[&quot;关联 CAP 记录&quot;]
+    D --&gt; F[&quot;订单风险提示&quot;]
+    E --&gt; F
+</code></pre>
+<h2 id="_3">运营价值</h2>
+<ul>
+<li>品牌方查看订单时可以同时看到工厂风险。</li>
+<li>供应商选择工厂时可以被准入状态限制。</li>
+<li>运营可以发现订单集中在哪些高风险工厂。</li>
+<li>CAP 未关闭时可以触发订单侧提醒或审批。</li>
+</ul>
+<h2 id="_4">注意事项</h2>
+<ul>
+<li>资源库字段应作为主数据入口，不要让每个 FlowSpace 各自维护一套工厂状态。</li>
+<li>跨 FlowSpace 统计前，要先统一字段命名和状态枚举。</li>
+<li>对外展示视图要剔除内部审核意见和敏感评分。</li>
+</ul>
+  </article>
+</body>
+</html>

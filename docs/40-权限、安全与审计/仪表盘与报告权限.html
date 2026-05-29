@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>仪表盘与报告权限 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">仪表盘与报告权限</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>仪表盘与报告权限控制分析类内容的查看、授权和入口展示。仪表盘偏向 FlowSpace 内统计分析页面，报告偏向订单、里程碑、工单报告页面。</p>
+<h2 id="2">2. 仪表盘管理权限</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>权限效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队角色：内部 FlowSpace 管理</td>
+<td>可查看本团队创建的所有内部 FlowSpace 仪表盘数据，并可对这些仪表盘授权</td>
+</tr>
+<tr>
+<td>FlowSpace 业务角色：仪表盘管理</td>
+<td>可查看当前 FlowSpace 所有仪表盘数据，并可对这些仪表盘授权</td>
+</tr>
+</tbody>
+</table>
+<p>有团队角色“内部 FlowSpace 管理”或当前 FlowSpace 业务角色“仪表盘管理”的用户，可以配置当前 FlowSpace 仪表盘权限。</p>
+<h2 id="3">3. 单个仪表盘权限配置</h2>
+<p>配置弹窗列出已添加到当前 FlowSpace 的内部成员和协作团队成员。</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模糊搜索</td>
+<td>同时搜索内部成员姓名、协作团队名称、协作成员姓名</td>
+</tr>
+<tr>
+<td>内部成员</td>
+<td>未注册成员也可以授权</td>
+</tr>
+<tr>
+<td>协作团队成员</td>
+<td>两级下钻选择成员，未注册成员也可以授权</td>
+</tr>
+<tr>
+<td>已选</td>
+<td>显示已选计数；左右列表选中状态需要同步</td>
+</tr>
+<tr>
+<td>协作标识</td>
+<td>协作成员头像需要增加协作标识</td>
+</tr>
+<tr>
+<td>权限校验</td>
+<td>当前用户无仪表盘管理权限时，提示暂无权限</td>
+</tr>
+</tbody>
+</table>
+<p>当某个成员在授权后被移出 FlowSpace，对应仪表盘权限列表也需要删除该成员；重新加入后需重新授权。</p>
+<h2 id="4">4. 仪表盘权限汇总</h2>
+<p>仪表盘分组下可查看当前 FlowSpace 所有仪表盘权限分布。有仪表盘管理权限的成员可见。</p>
+<p>汇总展示：</p>
+<ul>
+<li>可管理成员：当前 FlowSpace 拥有仪表盘配置权限的成员，包括团队角色和 FlowSpace 角色有权限成员。</li>
+<li>各仪表盘内部可见成员。</li>
+<li>各仪表盘协作团队可见成员。</li>
+<li>协作团队成员按协作团队名称分组展示。</li>
+</ul>
+<h2 id="5">5. 仪表盘查看</h2>
+<ul>
+<li>可以管理当前 FlowSpace 仪表盘的用户，可查看当前 FlowSpace 所有仪表盘数据。</li>
+<li>被授权部分仪表盘查看权限的成员、协作团队成员，只能查看被授权仪表盘数据。</li>
+<li>可查看仪表盘均可星标，星标后在工作台常用视图展示。</li>
+<li>仪表盘权限被取消后，常用视图同步隐藏；重新授权后如需展示，需要重新星标。</li>
+</ul>
+<h2 id="6">6. 报告类型</h2>
+<table>
+<thead>
+<tr>
+<th>报告</th>
+<th>入口规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单报告</td>
+<td>有一个报告时展示“查看报告”；多个报告时下拉多个报告名称</td>
+</tr>
+<tr>
+<td>里程碑报告</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>工单报告</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<p>报告查看页支持打印。前端有相关报告权限才展示按钮，点击按钮后仍需再次判断权限；无权限提示暂无权限。</p>
+<h2 id="7">7. 报告权限矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>角色或身份</th>
+<th>订单报告</th>
+<th>里程碑报告</th>
+<th>工单报告</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队角色：内部 FlowSpace 管理</td>
+<td>可看</td>
+<td>可看</td>
+<td>可看</td>
+</tr>
+<tr>
+<td>FlowSpace 角色：查看订单报告</td>
+<td>FlowSpace 内可看</td>
+<td>不适用</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>FlowSpace 角色：查看里程碑报告</td>
+<td>不适用</td>
+<td>FlowSpace 内可看</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>FlowSpace 角色：查看工单报告</td>
+<td>不适用</td>
+<td>不适用</td>
+<td>FlowSpace 内可看</td>
+</tr>
+<tr>
+<td>里程碑批复人</td>
+<td>不适用</td>
+<td>参与里程碑批复的里程碑可看</td>
+<td>参与里程碑批复的工单可看</td>
+</tr>
+<tr>
+<td>工单批复人</td>
+<td>不适用</td>
+<td>不适用</td>
+<td>参与批复工单可看</td>
+</tr>
+<tr>
+<td>工单采集人</td>
+<td>不适用</td>
+<td>不适用</td>
+<td>参与采集工单可看</td>
+</tr>
+<tr>
+<td>协作团队：里程碑批复指派</td>
+<td>不适用</td>
+<td>本团队参与里程碑批复的里程碑可看</td>
+<td>本团队参与里程碑批复的工单可看</td>
+</tr>
+<tr>
+<td>协作团队：工单批复指派</td>
+<td>不适用</td>
+<td>不适用</td>
+<td>本团队参与工单批复的工单可看</td>
+</tr>
+<tr>
+<td>协作团队：工单采集指派</td>
+<td>不适用</td>
+<td>不适用</td>
+<td>本团队参与工单采集的工单可看</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 待确认问题</h2>
+<ul>
+<li>报告权限中的“查看订单报告/里程碑报告/工单报告”是否已在当前 FlowSpace 业务角色和协作方角色页面完整配置，需要补来源。</li>
+<li>仪表盘查看是否受数据围栏影响，需要与实际统计口径核对。</li>
+<li>仪表盘和报告的操作日志是否有独立记录需求，当前资料未完整覆盖。</li>
+</ul>
+  </article>
+</body>
+</html>

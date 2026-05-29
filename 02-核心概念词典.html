@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>02-核心概念词典 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<p>﻿# 核心概念词典</p>
+<p>本词典用于统一 Linkincrease 内部术语。除非已有新评审结论覆盖，否则需求文档、原型、研发沟通优先沿用本页定义。</p>
+<h2 id="1">1. 产品与组织</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>定义</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linkincrease</td>
+<td>面向供应链协作的业务平台总称</td>
+<td>包含运营端、贸易端、采集端</td>
+</tr>
+<tr>
+<td>运营端</td>
+<td>平台管理和配置后台</td>
+<td>管理用户、团队、FlowSpace、模板、资源库模板、软件记录等</td>
+</tr>
+<tr>
+<td>贸易端</td>
+<td>客户团队进行业务协同的主平台</td>
+<td>承载团队、FlowSpace、订单、资源库、自动化、消息等</td>
+</tr>
+<tr>
+<td>采集端</td>
+<td>移动端任务处理入口</td>
+<td>面向工单采集、工单批复、里程碑批复和消息查看</td>
+</tr>
+<tr>
+<td>团队</td>
+<td>贸易端客户创建的组织单位</td>
+<td>一个账号可加入多个团队；团队拥有 FlowSpace 和资源库</td>
+</tr>
+<tr>
+<td>团队成员</td>
+<td>加入团队的用户</td>
+<td>可拥有一个或多个团队角色</td>
+</tr>
+<tr>
+<td>团队角色</td>
+<td>团队级权限集合</td>
+<td>控制团队设置、资源库、创建 FlowSpace 等能力</td>
+</tr>
+<tr>
+<td>协作团队</td>
+<td>与主团队建立协作关系的外部团队</td>
+<td>可被邀请加入团队协作或 FlowSpace 协作</td>
+</tr>
+<tr>
+<td>对接人/负责人</td>
+<td>协作团队内承担接收、指派、处理任务的成员角色</td>
+<td>在工单和批复指派中用于承接协作方任务</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-flowspace">2. FlowSpace 与订单流程</h2>
+<blockquote>
+<p>命名口径：FlowSpace 中文可理解为“流空间”，是 SCCS 的新名称。知识库正文统一使用 FlowSpace；历史需求、来源文件名和 <code>source:</code> 引用中保留 SCCS 原名，用于追溯。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>定义</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace</td>
+<td>供应链协作空间，是订单流程运行的业务容器</td>
+<td>由业务模板创建；包含成员、角色、协作团队、订单、仪表盘、自动化等</td>
+</tr>
+<tr>
+<td>FlowSpace 分组</td>
+<td>工作台中对 FlowSpace 的组织方式</td>
+<td>用于团队内管理多个 FlowSpace</td>
+</tr>
+<tr>
+<td>FlowSpace 业务角色</td>
+<td>FlowSpace 内控制业务操作范围的角色</td>
+<td>控制订单、里程碑、工单、仪表盘等业务权限</td>
+</tr>
+<tr>
+<td>协作 FlowSpace 角色</td>
+<td>协作团队在 FlowSpace 中的权限角色</td>
+<td>分为协作方自建角色和主团队授权角色等场景</td>
+</tr>
+<tr>
+<td>数据围栏</td>
+<td>控制成员可见数据范围和字段范围的机制</td>
+<td>影响订单、里程碑、工单、标签、表单字段等展示</td>
+</tr>
+<tr>
+<td>订单</td>
+<td>FlowSpace 中的业务主实体</td>
+<td>包含订单基本信息、多个里程碑、工单、批复和跟踪记录</td>
+</tr>
+<tr>
+<td>订单主表单</td>
+<td>订单级主数据表单</td>
+<td>由运营端业务模板定义；用于订单基本信息</td>
+</tr>
+<tr>
+<td>订单标识</td>
+<td>用于替代默认订单 ID 的展示字段</td>
+<td>可由模板设置默认值，也可在 FlowSpace 设置中调整</td>
+</tr>
+<tr>
+<td>订单状态</td>
+<td>订单生命周期状态</td>
+<td>通常包括进行中、已完成、已取消</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>订单流程节点</td>
+<td>承载阶段计划、负责人、状态、批复和工单</td>
+</tr>
+<tr>
+<td>里程碑状态</td>
+<td>里程碑生命周期状态</td>
+<td>通常包括未开始、进行中、已完成、已取消</td>
+</tr>
+<tr>
+<td>工单</td>
+<td>里程碑下的具体执行任务</td>
+<td>包含采集表单、工单批复、处理人、状态和动态</td>
+</tr>
+<tr>
+<td>工单采集</td>
+<td>处理人填写工单采集表单的过程</td>
+<td>可在贸易端和采集端处理</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>对工单采集结果进行确认或审核</td>
+<td>仅在模板配置需要工单批复时存在</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>对里程碑阶段结果进行确认或审核</td>
+<td>每个里程碑最多一份里程碑批复数据</td>
+</tr>
+<tr>
+<td>处理人</td>
+<td>被指定执行采集、工单批复或里程碑批复的人</td>
+<td>可为团队成员、协作成员或协作团队负责人</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 复用与关联</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>定义</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单翻单</td>
+<td>基于历史订单复制或复用内容创建新订单</td>
+<td>强调从旧订单快速生成新订单</td>
+</tr>
+<tr>
+<td>订单关联</td>
+<td>建立订单之间的关系</td>
+<td>默认只建立关系，不自动同步字段</td>
+</tr>
+<tr>
+<td>FlowSpace 关联</td>
+<td>FlowSpace 之间建立业务关联</td>
+<td>用于跨 FlowSpace 数据和流程协作，具体规则以后续需求为准</td>
+</tr>
+<tr>
+<td>里程碑互用</td>
+<td>将某个订单的里程碑复用到其他订单</td>
+<td>需要保留来源、目标和取消互用规则</td>
+</tr>
+<tr>
+<td>工单互用</td>
+<td>将某个工单复用于其他订单或里程碑</td>
+<td>需要处理互用来源、目标、权限和状态限制</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 资源库</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>定义</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源库</td>
+<td>团队级标准化数据池</td>
+<td>用于管理物料、供应商、客户等基础数据</td>
+</tr>
+<tr>
+<td>资源库模板</td>
+<td>创建资源库的数据结构模板</td>
+<td>由运营端配置，贸易端基于模板创建资源库</td>
+</tr>
+<tr>
+<td>资源库表</td>
+<td>资源库下的结构化数据表</td>
+<td>每个资源库可包含多张表</td>
+</tr>
+<tr>
+<td>资源库数据</td>
+<td>资源库表中的单条业务记录</td>
+<td>支持增删改查、导入、导出、批量操作</td>
+</tr>
+<tr>
+<td>资源库角色</td>
+<td>资源库内权限集合</td>
+<td>控制查看、创建、编辑、删除、导入、导出、数据范围等</td>
+</tr>
+<tr>
+<td>资源库引用</td>
+<td>FlowSpace 订单字段引用资源库数据</td>
+<td>历史已引用数据需要保留快照或文本</td>
+</tr>
+<tr>
+<td>资源库同步</td>
+<td>资源库数据变化后同步到已引用字段</td>
+<td>需要处理手动修改、权限变化和来源冲突</td>
+</tr>
+<tr>
+<td>资源库分享</td>
+<td>通过外链或授权方式共享资源库数据</td>
+<td>涉及只读、可编辑、密码、失效等规则</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 模板与表单</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>定义</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务模板</td>
+<td>可创建 FlowSpace 的模板</td>
+<td>包含主表单、里程碑、工单表单、批复表单、订单标识等</td>
+</tr>
+<tr>
+<td>模板中心</td>
+<td>运营端管理业务模板和资源库模板的模块</td>
+<td>控制模板列表、可见范围、发布、复制、同步</td>
+</tr>
+<tr>
+<td>表单设计器</td>
+<td>配置表单布局、字段和显隐规则的工具</td>
+<td>运营端业务模板、资源库模板、仪表盘等多处复用</td>
+</tr>
+<tr>
+<td>表单组件</td>
+<td>构成表单的控件</td>
+<td>包含布局、基础、高级、成员、协作方、公式、关联引用等组件</td>
+</tr>
+<tr>
+<td>公式函数</td>
+<td>表单公式字段使用的函数体系</td>
+<td>影响模板配置、字段计算和系统自动更新日志</td>
+</tr>
+<tr>
+<td>显隐设置</td>
+<td>表单字段或组件的条件展示规则</td>
+<td>需要与权限、数据围栏、必填校验共同判断</td>
+</tr>
+<tr>
+<td>验货组件</td>
+<td>面向尺寸检验、组合明细等验货场景的专用组件</td>
+<td>覆盖运营端配置、贸易端应用和采集端应用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 自动化、通知与日志</h2>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>定义</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动化</td>
+<td>在 FlowSpace 内基于触发条件执行机械性操作的配置</td>
+<td>包含触发条件、最多多个执行动作、启用状态和执行日志</td>
+</tr>
+<tr>
+<td>定时任务</td>
+<td>按记录中的时间或周期触发自动化操作</td>
+<td>自动化二期能力</td>
+</tr>
+<tr>
+<td>触发条件</td>
+<td>自动化开始执行的判断条件</td>
+<td>包含新增数据、数据变更、到达记录时间等</td>
+</tr>
+<tr>
+<td>执行动作</td>
+<td>自动化满足条件后执行的动作</td>
+<td>包含发送通知、新增数据、更新数据等</td>
+</tr>
+<tr>
+<td>消息中心</td>
+<td>站内消息和实时消息展示入口</td>
+<td>覆盖任务、团队、账号、资源库、自动化、导入导出等事件</td>
+</tr>
+<tr>
+<td>邮件协作</td>
+<td>在订单详情或工单场景中通过邮件推进协作</td>
+<td>支持单个和批量发邮件协作</td>
+</tr>
+<tr>
+<td>操作日志</td>
+<td>设置类、资源库、系统自动执行等行为的审计记录</td>
+<td>用于追踪谁在何时做了什么</td>
+</tr>
+<tr>
+<td>动态</td>
+<td>订单、里程碑、工单或批复内部的过程记录</td>
+<td>面向业务执行过程查看</td>
+</tr>
+<tr>
+<td>历史记录</td>
+<td>表单数据编辑历史</td>
+<td>面向字段级或数据级变更追踪</td>
+</tr>
+<tr>
+<td>跟踪记录</td>
+<td>订单级关键节点记录</td>
+<td>记录订单状态、里程碑、工单、自动化等关键业务动作</td>
+</tr>
+</tbody>
+</table>
+  </article>
+</body>
+</html>

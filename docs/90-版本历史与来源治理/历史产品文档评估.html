@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>历史产品文档评估 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">历史产品文档评估</h1>
+<h2 id="1">1. 页面定位</h2>
+<p>本页用于评估 <code>source:product-docs-legacy</code> 来源层中的历史产品文档，明确哪些内容已经整理为正式知识页，哪些只能作为背景参考，哪些不应直接进入当前知识库口径。</p>
+<p>这批文档整体成文时间早于当前最新需求源，内容偏战略、画像、路线图和三端 PRD 草案。它们有助于补齐产品背景，但不能直接覆盖 <code>source:thoughts-v2-current</code> 和现有 <code>docs/</code> 标准知识页。</p>
+<h2 id="2">2. 总体结论</h2>
+<table>
+<thead>
+<tr>
+<th>结论</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可以补齐战略层信息</td>
+<td>愿景、定位、问题、用户、指标、路线图可整理为入门层知识页</td>
+</tr>
+<tr>
+<td>不适合逐篇原样入库</td>
+<td>多数文档重复度高，且混合了假设、目标值、商业模式和功能草案</td>
+</tr>
+<tr>
+<td>不能直接覆盖功能规则</td>
+<td>三端 PRD 中的功能描述需要与最新需求源逐项核对</td>
+</tr>
+<tr>
+<td>旧称需要统一</td>
+<td>原文中的 SCCS 在正式知识页中统一为 FlowSpace，来源引用保留原文件名</td>
+</tr>
+<tr>
+<td>数据和目标值需确认</td>
+<td>例如效率提升、活跃率、增长目标、时间规划等，缺少当前证据时只作假设</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 文档处置清单</h2>
+<table>
+<thead>
+<tr>
+<th>来源文档</th>
+<th>内容类型</th>
+<th>评估结论</th>
+<th>入库动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10-产品介绍.md</code></td>
+<td>三端架构与模块介绍</td>
+<td>与现有产品总览、功能地图、三端页面高度重叠</td>
+<td>作为补充校验来源，不单独入库</td>
+</tr>
+<tr>
+<td><code>产品愿景与定位文档.md</code></td>
+<td>愿景、定位、价值主张、产品矩阵</td>
+<td>可提炼战略层口径</td>
+<td>已抽取到 <a href="../00-产品总览与规划/产品战略与定位.md">产品战略与定位</a></td>
+</tr>
+<tr>
+<td><code>问题陈述-ProblemStatement.md</code></td>
+<td>用户问题、痛点、指标、约束</td>
+<td>可保留问题框架，量化数据待确认</td>
+<td>已抽取到产品战略和用户角色页</td>
+</tr>
+<tr>
+<td><code>精益UX画布-LeanUXCanvas.md</code></td>
+<td>Lean UX、假设、用户收益、实验</td>
+<td>可保留假设框架，实验和目标值待确认</td>
+<td>已抽取到产品战略与指标页</td>
+</tr>
+<tr>
+<td><code>用户角色与画像.md</code></td>
+<td>用户角色、画像、权限体系</td>
+<td>可整理为角色框架，个体画像细节不作为规则</td>
+<td>已抽取到 <a href="../00-产品总览与规划/用户角色与场景.md">用户角色与场景</a></td>
+</tr>
+<tr>
+<td><code>用户访谈综合报告-InterviewSynthesis.md</code></td>
+<td>访谈主题和洞察</td>
+<td>可作为问题背景，样本和结论需标注为研究材料</td>
+<td>已抽取到用户角色页</td>
+</tr>
+<tr>
+<td><code>产品指标体系-OKR.md</code></td>
+<td>OKR 和指标体系</td>
+<td>指标框架有价值，具体数值需确认</td>
+<td>已抽取到 <a href="../00-产品总览与规划/产品指标与路线图.md">产品指标与路线图</a></td>
+</tr>
+<tr>
+<td><code>产品路线图-0到100.md</code></td>
+<td>阶段规划和版本路线</td>
+<td>阶段框架有价值，时间和版本承诺待确认</td>
+<td>已抽取到产品指标与路线图页</td>
+</tr>
+<tr>
+<td><code>功能优先级规划-RICE框架.md</code></td>
+<td>RICE 评估与功能优先级</td>
+<td>方法可复用，历史分数需重新评估</td>
+<td>已抽取 RICE 口径</td>
+</tr>
+<tr>
+<td><code>产品综合定义文档.md</code></td>
+<td>综合性产品定义</td>
+<td>与多份文档重复，可作为聚合参考</td>
+<td>只抽取不单独入库</td>
+</tr>
+<tr>
+<td><code>PRD产品需求文档-贸易端.md</code></td>
+<td>贸易端 PRD 草案</td>
+<td>功能描述需与最新需求源核对</td>
+<td>作为历史参考，不直接覆盖贸易端规则</td>
+</tr>
+<tr>
+<td><code>PRD产品需求文档-运营端.md</code></td>
+<td>运营端 PRD 草案</td>
+<td>功能描述需与最新需求源核对</td>
+<td>作为历史参考，不直接覆盖运营端规则</td>
+</tr>
+<tr>
+<td><code>PRD产品需求文档-采集端.md</code></td>
+<td>采集端 PRD 草案</td>
+<td>功能描述需与最新需求源核对</td>
+<td>作为历史参考，不直接覆盖采集端规则</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 已新增正式知识页</h2>
+<table>
+<thead>
+<tr>
+<th>知识页</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../00-产品总览与规划/产品战略与定位.md">产品战略与定位</a></td>
+<td>将愿景、定位、问题、价值主张整理为稳定入门口径</td>
+</tr>
+<tr>
+<td><a href="../00-产品总览与规划/用户角色与场景.md">用户角色与场景</a></td>
+<td>将角色、场景、需求设计检查项整理为可用框架</td>
+</tr>
+<tr>
+<td><a href="../00-产品总览与规划/产品指标与路线图.md">产品指标与路线图</a></td>
+<td>将指标、阶段目标、RICE 优先级方法整理为评估框架</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 后续处理建议</h2>
+<ol>
+<li>三端 PRD 草案不建议全文搬入正式知识库，应逐项与 <code>source:thoughts-v2-current</code> 比对。</li>
+<li>如果发现历史 PRD 中有最新需求源缺失但仍有效的能力，应补回最新需求源或登记到待确认问题。</li>
+<li>市场、商业模式、定价、增长目标如需保留，建议建立独立“商业策略/增长策略”页面，并标注确认状态。</li>
+<li>若后续继续维护这批产品文档，应先在原目录中去重、统一术语，再从中抽取到标准知识页。</li>
+</ol>
+<h2 id="6">6. 来源层</h2>
+<ul>
+<li><a href="../../sources/external/product-docs-legacy.md">历史产品文档来源层说明</a></li>
+<li><code>metadata/source-roots.csv</code></li>
+<li><code>metadata/source-manifest.csv</code></li>
+</ul>
+  </article>
+</body>
+</html>

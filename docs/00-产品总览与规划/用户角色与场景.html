@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>用户角色与场景 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">用户角色与场景</h1>
+<h2 id="1">1. 页面定位</h2>
+<p>本页用于沉淀 Linkincrease 的用户角色、使用场景和核心诉求，作为需求设计、页面优先级判断、权限边界分析和产品介绍的入口。</p>
+<p>历史产品文档中存在较多画像、访谈和假设性描述。本页只保留与当前产品结构相容的角色框架；年龄、职位、目标值、访谈样本等未确认信息只作为背景参考，不作为功能规则。</p>
+<h2 id="2">2. 用户角色总览</h2>
+<table>
+<thead>
+<tr>
+<th>角色类型</th>
+<th>典型身份</th>
+<th>主要使用端</th>
+<th>核心目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台运营/实施人员</td>
+<td>内部运营、实施、客服、管理员</td>
+<td>运营端</td>
+<td>配置模板、监管团队与 FlowSpace、处理平台级管理事项</td>
+</tr>
+<tr>
+<td>客户团队管理者</td>
+<td>团队 Owner、业务负责人、项目负责人</td>
+<td>贸易端</td>
+<td>搭建团队、创建 FlowSpace、配置角色与协作关系、查看业务进展</td>
+</tr>
+<tr>
+<td>业务执行人员</td>
+<td>跟单员、项目经理、订单负责人</td>
+<td>贸易端</td>
+<td>创建和维护订单、推进里程碑、创建工单、处理批复和异常</td>
+</tr>
+<tr>
+<td>协作团队成员</td>
+<td>供应商、工厂、物流商、外部协作方</td>
+<td>贸易端/采集端</td>
+<td>接收指派任务、提交数据、参与工单或批复</td>
+</tr>
+<tr>
+<td>移动执行人员</td>
+<td>外勤、仓库、验货、采集人员</td>
+<td>采集端</td>
+<td>查看任务、填写采集表单、上传附件、处理工单和批复</td>
+</tr>
+<tr>
+<td>数据/管理观察者</td>
+<td>管理层、运营负责人、分析人员</td>
+<td>贸易端/运营端</td>
+<td>查看订单进度、仪表盘、报告、异常和追踪记录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 角色与产品能力关系</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>常用能力</th>
+<th>需要重点关注的规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台运营/实施人员</td>
+<td>用户管理、团队管理、FlowSpace 管理、模板中心、资源库模板、表单组件、报告管理、外部 API</td>
+<td>配置态与运行态边界、模板发布与同步、平台级日志</td>
+</tr>
+<tr>
+<td>客户团队管理者</td>
+<td>创建团队、团队设置、成员管理、协作团队、创建 FlowSpace、FlowSpace 设置</td>
+<td>团队角色、FlowSpace 角色、协作团队权限、数据围栏</td>
+</tr>
+<tr>
+<td>业务执行人员</td>
+<td>订单列表、订单详情、里程碑、工单、批复、订单复用、资源库引用</td>
+<td>订单状态、工单状态、批复状态、字段权限、动态和跟踪记录</td>
+</tr>
+<tr>
+<td>协作团队成员</td>
+<td>协作 FlowSpace、指派任务、工单采集、工单批复、里程碑批复</td>
+<td>协作方角色、可见数据范围、可操作任务范围</td>
+</tr>
+<tr>
+<td>移动执行人员</td>
+<td>首页任务、任务列表、任务搜索、任务详情、消息中心、我的</td>
+<td>移动端任务分类、处理状态、附件/签名/表单填写边界</td>
+</tr>
+<tr>
+<td>数据/管理观察者</td>
+<td>工作台、订单日程、常用视图、仪表盘、报告、日志</td>
+<td>查看权限、报告权限、仪表盘权限、数据范围</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 核心场景</h2>
+<h3 id="41">4.1 从模板搭建业务空间</h3>
+<p>运营端配置业务模板和资源库模板，客户团队在贸易端基于模板创建 FlowSpace，再在 FlowSpace 中配置成员、角色、协作团队、数据围栏、里程碑计划和标签。</p>
+<p>关联页面：</p>
+<ul>
+<li><a href="../30-业务流程与产品流程图/从模板到FlowSpace.md">从模板到FlowSpace</a></li>
+<li><a href="../20-业务对象与数据模型/业务模板.md">业务模板</a></li>
+<li><a href="../20-业务对象与数据模型/FlowSpace.md">FlowSpace</a></li>
+</ul>
+<h3 id="42">4.2 订单执行与任务协作</h3>
+<p>业务执行人员在 FlowSpace 中创建订单，订单下包含里程碑和工单。工单可由团队成员、协作成员或协作团队负责人处理，过程产生动态、历史记录和跟踪记录。</p>
+<p>关联页面：</p>
+<ul>
+<li><a href="../30-业务流程与产品流程图/订单生命周期.md">订单生命周期</a></li>
+<li><a href="../30-业务流程与产品流程图/工单采集与批复.md">工单采集与批复</a></li>
+<li><a href="../20-业务对象与数据模型/订单.md">订单</a></li>
+<li><a href="../20-业务对象与数据模型/工单与批复.md">工单与批复</a></li>
+</ul>
+<h3 id="43">4.3 跨团队协作</h3>
+<p>主团队可以邀请协作团队，协作团队成员根据协作 FlowSpace 角色和数据范围参与任务。协作关系需要同时关注团队级协作、FlowSpace 级协作、任务指派和数据围栏。</p>
+<p>关联页面：</p>
+<ul>
+<li><a href="../30-业务流程与产品流程图/跨团队协作.md">跨团队协作</a></li>
+<li><a href="../20-业务对象与数据模型/团队与协作团队.md">团队与协作团队</a></li>
+<li><a href="../40-权限、安全与审计/协作FlowSpace权限.md">协作FlowSpace权限</a></li>
+</ul>
+<h3 id="44">4.4 移动任务采集</h3>
+<p>移动执行人员通过采集端查看待办任务、搜索任务、进入任务详情、填写工单采集表单、提交工单批复或里程碑批复，并接收消息通知。</p>
+<p>关联页面：</p>
+<ul>
+<li><a href="../30-业务流程与产品流程图/移动端采集.md">移动端采集</a></li>
+<li><a href="../10-功能模块详情/采集端.md">采集端</a></li>
+<li><a href="../10-功能模块详情/消息中心与实时通知.md">消息中心与实时通知</a></li>
+</ul>
+<h3 id="45">4.5 数据复用与分析观察</h3>
+<p>团队通过资源库沉淀标准数据，通过订单复用能力减少重复操作，通过仪表盘、报告、工作台和订单日程观察业务进展。</p>
+<p>关联页面：</p>
+<ul>
+<li><a href="../30-业务流程与产品流程图/资源库引用与同步.md">资源库引用与同步</a></li>
+<li><a href="../30-业务流程与产品流程图/订单复用关系.md">订单复用关系</a></li>
+<li><a href="../60-数据分析支持/仪表盘配置说明.md">仪表盘管理与设计器</a></li>
+<li><a href="../60-数据分析支持/报表权限.md">报告管理与权限</a></li>
+</ul>
+<h2 id="5">5. 需求设计检查</h2>
+<p>新增或变更需求时，至少判断这些角色影响：</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>谁发起</td>
+<td>哪类角色可以创建、编辑、提交、取消或删除</td>
+</tr>
+<tr>
+<td>谁处理</td>
+<td>任务、批复、采集、审核由谁承接</td>
+</tr>
+<tr>
+<td>谁可见</td>
+<td>不同团队、角色、协作方的数据可见范围</td>
+</tr>
+<tr>
+<td>谁收到通知</td>
+<td>消息中心、实时消息、邮件协作、移动通知是否受影响</td>
+</tr>
+<tr>
+<td>谁留下日志</td>
+<td>配置变更、业务动作、自动化执行和字段变更如何追踪</td>
+</tr>
+<tr>
+<td>谁受限制</td>
+<td>状态、权限、数据围栏、字段显隐、导入导出限制</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 来源</h2>
+<ul>
+<li><code>source:product-docs-legacy/用户角色与画像.md</code></li>
+<li><code>source:product-docs-legacy/用户访谈综合报告-InterviewSynthesis.md</code></li>
+<li><code>source:product-docs-legacy/问题陈述-ProblemStatement.md</code></li>
+<li><code>source:product-docs-legacy/PRD产品需求文档-贸易端.md</code></li>
+<li><code>source:product-docs-legacy/PRD产品需求文档-运营端.md</code></li>
+<li><code>source:product-docs-legacy/PRD产品需求文档-采集端.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

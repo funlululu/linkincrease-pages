@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>公式函数 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">公式函数</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>公式函数用于表单字段的自动计算，可服务于订单、工单、批复、资源库、验货组件和统计分析。公式组件可输出数字、百分比、文本或日期等类型，并在相关因子变化后自动更新。</p>
+<h2 id="2">2. 基础规则</h2>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空值定义</td>
+<td><code>null</code>、<code>undefined</code>、空字符串统一视为空值</td>
+</tr>
+<tr>
+<td>布尔值</td>
+<td>条件判断目前仅支持小写 <code>true</code>、<code>false</code></td>
+</tr>
+<tr>
+<td>变量来源</td>
+<td>通常来自当前表单或允许引用的数据源字段</td>
+</tr>
+<tr>
+<td>子表计算</td>
+<td>支持对子表数组字段进行求和、计数、条件统计和去重</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 函数分类</h2>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本函数</td>
+<td>CONCATENATE、TEXTJOIN、LEFT、RIGHT、SEARCH</td>
+</tr>
+<tr>
+<td>数学函数</td>
+<td>SUM、AVERAGE、MAX、MIN、CEILING、FLOOR、INT、SUMIF、SUMIFS、COUNTIF、COUNTIFS、COUNTA、UNIQUE</td>
+</tr>
+<tr>
+<td>逻辑函数</td>
+<td>IF、IFS、AND、OR</td>
+</tr>
+<tr>
+<td>时间函数</td>
+<td>DAYS、WORKDAY、DATEDIF、NETWORKDAYS、YEAR、MONTH、DAY、HOUR、TODAY、NOW、MINUTE、SECOND</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 常用函数规则</h2>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>用途</th>
+<th>空值处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CONCATENATE</td>
+<td>合并多个文本</td>
+<td>空值视为空字符串</td>
+</tr>
+<tr>
+<td>TEXTJOIN</td>
+<td>按分隔符合并文本</td>
+<td>可设置是否忽略空值</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>求和</td>
+<td>忽略空值</td>
+</tr>
+<tr>
+<td>AVERAGE</td>
+<td>平均值</td>
+<td>忽略空值</td>
+</tr>
+<tr>
+<td>MAX/MIN</td>
+<td>最大/最小值</td>
+<td>忽略空值</td>
+</tr>
+<tr>
+<td>SUMIF/SUMIFS</td>
+<td>按一个或多个条件求和</td>
+<td>条件区域空值忽略，求和区域空值按 0</td>
+</tr>
+<tr>
+<td>COUNTIF/COUNTIFS</td>
+<td>条件计数</td>
+<td>可专门计算空值</td>
+</tr>
+<tr>
+<td>IF/IFS</td>
+<td>条件判断</td>
+<td>条件空值按 false</td>
+</tr>
+<tr>
+<td>AND/OR</td>
+<td>逻辑判断</td>
+<td>空值按 false</td>
+</tr>
+<tr>
+<td>DAYS/DATEDIF</td>
+<td>日期差</td>
+<td>日期参数为空时返回错误</td>
+</tr>
+<tr>
+<td>TODAY</td>
+<td>返回当天日期</td>
+<td>用于自动更新“今天”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-today">5. TODAY 自动更新</h2>
+<p>当公式组件内含 TODAY 函数时，贸易端展示需要每天自动更新到当天。</p>
+<p>不更新场景：</p>
+<ul>
+<li>订单已完成。</li>
+<li>订单已取消。</li>
+<li>里程碑已完成。</li>
+<li>里程碑已取消。</li>
+</ul>
+<h2 id="6">6. 自动更新与日志</h2>
+<p>公式因子发生变更后，相关公式字段需要同步更新。系统自动执行日志中需要记录公式自动更新，并在对应业务模块留下可追溯记录，例如订单跟踪记录、工单/里程碑批复动态、主表单或批复历史记录。</p>
+<h2 id="7">7. 与组件的关系</h2>
+<ul>
+<li>文本、数字、百分比、日期等组件可通过公式计算默认值。</li>
+<li>公式组件可被其他组件作为关联数据源。</li>
+<li>公式显示类型影响显隐设置、导入校验、导出和展示格式。</li>
+<li>API 写入触发字段后，也会触发相关公式字段自动计算。</li>
+</ul>
+<h2 id="8">8. 待确认问题</h2>
+<ul>
+<li>NOW、MINUTE、SECOND 是否已正式上线，原始资料中部分标注为后期考虑。</li>
+<li>公式错误值如何在贸易端、导出、报告中展示，需要补统一规则。</li>
+<li>公式自动更新失败是否需要重试、告警或单独日志页。</li>
+</ul>
+  </article>
+</body>
+</html>

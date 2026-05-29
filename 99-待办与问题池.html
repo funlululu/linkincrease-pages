@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>待办与问题池 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">待办与问题池</h1>
+<p>本页记录尚未确认、需要拆页、需要补充来源或存在跨文档冲突的事项。</p>
+<h2 id="1">1. 待拆知识页</h2>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>页面</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>FlowSpace-设置与成员权限</td>
+<td>已创建首版：<a href="./docs/20-业务对象与数据模型/FlowSpace.md">docs/20-业务对象与数据模型/FlowSpace.md</a>，后续继续拆设置与成员权限细页</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>订单-生命周期与状态规则</td>
+<td>已创建首版：<a href="./docs/20-业务对象与数据模型/订单.md">docs/20-业务对象与数据模型/订单.md</a>，后续补批量操作和导入导出细节</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>工单与批复-采集指派批复流程</td>
+<td>已创建首版：<a href="./docs/20-业务对象与数据模型/工单与批复.md">docs/20-业务对象与数据模型/工单与批复.md</a>，后续补完整按钮、异常和移动端差异</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>资源库-数据管理与 FlowSpace 应用</td>
+<td>已创建首版：<a href="./docs/20-业务对象与数据模型/资源库.md">docs/20-业务对象与数据模型/资源库.md</a>，后续补分享、视图、同步细则</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>权限体系总表</td>
+<td>已创建总表和 6 个首版细页：团队权限、FlowSpace业务角色权限、协作FlowSpace权限、数据围栏、资源库权限、仪表盘与报告权限；后续补完整字段级权限矩阵</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>自动化-触发条件、执行动作与日志</td>
+<td>已创建流程页和配置页：<a href="./docs/30-业务流程与产品流程图/自动化执行.md">docs/30-业务流程与产品流程图/自动化执行.md</a>、<a href="./docs/10-功能模块详情/自动化配置.md">docs/10-功能模块详情/自动化配置.md</a>、<a href="./docs/40-权限、安全与审计/自动化与系统执行日志.md">docs/40-权限、安全与审计/自动化与系统执行日志.md</a>，后续补字段级配置矩阵</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>消息通知与邮件协作</td>
+<td>已创建消息中心、邮件协作、批量邮件协作首版；后续补消息模板、短信模板和邮件模板本地化来源</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>表单设计器与组件</td>
+<td>已创建业务模板、资源库模板对象页，并拆出表单组件、显隐设置、公式函数、导入导出、第三方数据、验货组件流程；后续补组件级字段矩阵</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>工作台、视图、仪表盘与报告</td>
+<td>已创建展示分析首批 5 页：工作台与FlowSpace入口、订单日程与任务中心、常用视图与视图设置、仪表盘管理与设计器、报告管理与权限；后续补截图资产和组件级字段矩阵</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>日志审计与历史记录</td>
+<td>已创建日志审计首批 5 页：设置操作日志、订单跟踪记录、动态与评论、历史记录与快照、系统与集成执行日志；后续补完整文案矩阵和字段级快照样例</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>来源追溯与知识库管理</td>
+<td>已创建来源入库状态、待确认问题、外部链接快照清单、版本变更记录；后续可新增 external-links.csv 并批量快照远程资源</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>产品端总纲</td>
+<td>已创建运营端、贸易端、采集端、三端数据关系、账号与个人中心；后续继续拆单端菜单细页和端侧字段矩阵</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>核心业务流程</td>
+<td>已创建 8 个首版流程页；后续补字段级异常、截图和线上版本校验</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>最新来源接入</td>
+<td>已接入 <code>最新需求源（source:thoughts-v2-current）</code> 并建立 manifest/diff；后续需按 diff 将新增或变更内容映射到知识页</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>运营端平台管理细页</td>
+<td>已创建总纲：<a href="./docs/10-功能模块详情/运营端.md">docs/10-功能模块详情/运营端.md</a>，后续拆用户、团队、FlowSpace、资源库、软件管理</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>采集端移动任务细页</td>
+<td>已创建总纲、账号页和流程页：<a href="./docs/10-功能模块详情/采集端.md">docs/10-功能模块详情/采集端.md</a>、<a href="./docs/10-功能模块详情/账号与个人中心.md">docs/10-功能模块详情/账号与个人中心.md</a>、<a href="./docs/30-业务流程与产品流程图/移动端采集.md">docs/30-业务流程与产品流程图/移动端采集.md</a>，后续补消息、任务详情细页</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 待确认问题</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>问题</th>
+<th>影响范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q001</td>
+<td>SCCS 已更名为 FlowSpace（流空间），旧名仅作为历史来源名保留</td>
+<td>全库术语、历史需求追溯</td>
+<td>已处理</td>
+</tr>
+<tr>
+<td>Q002</td>
+<td>订单完成、取消、重启后，对互用、邮件协作、自动化是否存在例外场景</td>
+<td>订单、工单、自动化、邮件协作</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>Q003</td>
+<td>资源库同步与自动化更新同一字段时的优先级和冲突处理</td>
+<td>资源库、自动化、系统日志</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>Q004</td>
+<td>协作团队负责人、对接人、有指派权限成员三者在所有场景中的定义是否完全一致</td>
+<td>协作 FlowSpace、工单指派、消息通知</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>Q005</td>
+<td>报告权限的完整权限点和页面入口是否已有更多需求文档</td>
+<td>仪表盘、报告</td>
+<td>待补充</td>
+</tr>
+<tr>
+<td>Q006</td>
+<td>采集端是否完整覆盖贸易端全部工单/批复状态限制</td>
+<td>采集端、工单与批复</td>
+<td>待校验</td>
+</tr>
+<tr>
+<td>Q007</td>
+<td>运营端“业务模版/业务模板”历史文件命名不一致，是否需要统一迁移文件名</td>
+<td>文档维护</td>
+<td>待处理</td>
+</tr>
+<tr>
+<td>Q008</td>
+<td>采集端忘记密码成功后是返回登录页，还是 3 秒自动进入首页，来源中存在两个描述</td>
+<td>采集端账号体验</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>Q009</td>
+<td>旧 <code>需求文档/</code> 中存在但最新源未包含的 <code>公式函数.md</code>、<code>【运营端】【资源库模版】表单设计组件.md</code>、<code>【运营端】【仪表盘】表单设计组件.md</code> 是否需要补回最新源</td>
+<td>表单、公式、仪表盘、资源库模板</td>
+<td>待确认</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 待补充来源</h2>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>需要补充</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>邮件、短信、通知规则及模板</td>
+<td>多份需求引用了该材料，但最新源中未见独立完整文档</td>
+</tr>
+<tr>
+<td>权限矩阵表</td>
+<td>多处引用钉钉表格，需要导出并入库为可追溯材料</td>
+</tr>
+<tr>
+<td>第三方 API / PDF 导入字段整理</td>
+<td>需求中有外部链接和嵌入说明，建议整理为本地文档</td>
+</tr>
+<tr>
+<td>线上实际菜单结构</td>
+<td>需要与当前产品版本核对，确认知识库功能地图是否与线上一致</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 处理建议</h2>
+<ol>
+<li>先处理 P0 页面，形成稳定业务骨架。</li>
+<li>每拆一页，回填来源台账中的“入库状态”。</li>
+<li>对 Q002、Q003 先开产品确认，因为它们会影响大量页面口径；Q001 已按 FlowSpace 更名口径处理。</li>
+<li>外部表格和外部链接材料建议批量导出到 <code>最新需求源补充资料目录</code> 或 <code>sources/exported/</code>，避免后续链接失效。</li>
+</ol>
+  </article>
+</body>
+</html>

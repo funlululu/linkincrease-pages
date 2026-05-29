@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>版本变更记录 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<p>﻿# 版本变更记录</p>
+<h2 id="_1">定位</h2>
+<p>本页记录 Linkincrease 知识库本身的建设版本，而不是产品线上版本。它用于追踪每一轮知识库新增了哪些模块、补了哪些索引、还留下哪些下一步工作。</p>
+<h2 id="_2">当前版本</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前知识库版本</td>
+<td>v0.1</td>
+</tr>
+<tr>
+<td>当前阶段</td>
+<td>标准知识库首轮搭建</td>
+</tr>
+<tr>
+<td>最近更新日期</td>
+<td>2026-05-26</td>
+</tr>
+<tr>
+<td>当前状态</td>
+<td>已完成主体目录、核心对象、流程、权限、配置、协作通知、展示分析、日志审计和来源管理首版</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">变更记录</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>版本</th>
+<th>变更</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-05-25</td>
+<td>v0.1-init</td>
+<td>建立根目录总览、维护规范、产品总览、术语、功能地图、知识库架构、来源台账、工程架构、待办池</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>v0.1-objects</td>
+<td>建立业务对象首批页面：FlowSpace、订单、工单与批复、资源库、团队与协作团队、里程碑、业务模板、资源库模板</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>v0.1-flows</td>
+<td>建立业务流程首批页面：从模板到 FlowSpace、订单生命周期、工单采集与批复、跨团队协作、资源库引用与同步、自动化执行、移动端采集、订单复用关系</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>v0.1-permission</td>
+<td>建立权限体系总表及团队、FlowSpace、协作方、数据围栏、资源库、仪表盘与报告权限页面</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>v0.1-config</td>
+<td>建立模板表单与数据页面：表单组件、显隐设置、公式函数、导入导出、第三方数据、验货组件流程</td>
+</tr>
+<tr>
+<td>2026-05-25</td>
+<td>v0.1-collab</td>
+<td>建立协作通知与自动化页面：消息中心、邮件协作、批量邮件协作、自动化配置、系统执行日志</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>v0.1-display</td>
+<td>建立展示分析页面：工作台与 FlowSpace 入口、订单日程与任务中心、常用视图与视图设置、仪表盘管理与设计器、报告管理与权限</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>v0.1-audit</td>
+<td>建立日志审计页面：设置操作日志、订单跟踪记录、动态与评论、历史记录与快照、系统与集成执行日志</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>v0.1-source</td>
+<td>建立来源与待办管理页：来源入库状态、待确认问题、外部链接快照清单、版本变更记录</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>v0.1-rename-flowspace</td>
+<td>将知识库正文标准术语由 SCCS 更名为 FlowSpace（流空间）；历史来源文件名和 <code>source:</code> 引用保留 SCCS 原名用于追溯</td>
+</tr>
+<tr>
+<td>2026-05-26</td>
+<td>v0.1-share-site</td>
+<td>初始化本地 Git 管理底座，新增只读静态站点生成脚本和团队共享发布方案，并将 Skill 调整为可配置知识库路径</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">后续版本建议</h2>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v0.2</td>
+<td>补运营端平台管理：用户、团队、FlowSpace、资源库、软件管理</td>
+</tr>
+<tr>
+<td>v0.3</td>
+<td>补采集端完整产品端：登录、首页、任务列表、任务搜索、任务详情、消息中心、我的</td>
+</tr>
+<tr>
+<td>v0.4</td>
+<td>补账号与个人中心、资源库分享、订单列表细则、工单视图细则</td>
+</tr>
+<tr>
+<td>v0.5</td>
+<td>建立字段级矩阵：权限矩阵、日志文案矩阵、表单组件属性矩阵、异常提示矩阵</td>
+</tr>
+<tr>
+<td>v0.6</td>
+<td>批量导出外部链接与截图，建立 <code>metadata/external-links.csv</code></td>
+</tr>
+<tr>
+<td>v1.0</td>
+<td>完成原始需求全量抽取、来源可追溯、检索索引稳定，可作为团队正式知识库</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">发布检查清单</h2>
+<p>每次知识库版本更新前，至少检查：</p>
+<ol>
+<li>新增知识页是否加入对应目录 README。</li>
+<li>根 README 阅读路径是否需要更新。</li>
+<li><code>metadata/documents.csv</code> 是否有对应记录。</li>
+<li><code>metadata/sources.csv</code> 是否补充来源。</li>
+<li><code>metadata/search-index.json</code> 是否能解析。</li>
+<li>ID 是否唯一。</li>
+<li>待确认问题是否有新增或状态变化。</li>
+</ol>
+<h2 id="_6">关联页面</h2>
+<ul>
+<li><a href="./来源入库状态.md">来源入库状态</a></li>
+<li><a href="./待确认问题.md">待确认问题</a></li>
+<li><a href="./外部链接快照清单.md">外部链接快照清单</a></li>
+</ul>
+  </article>
+</body>
+</html>

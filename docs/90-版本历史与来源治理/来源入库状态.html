@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>来源入库状态 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">来源入库状态</h1>
+<h2 id="_2">定位</h2>
+<p>本页用于追踪 <code>最新需求源（source:thoughts-v2-current）</code> 原始材料与标准知识页之间的入库关系，回答三个问题：</p>
+<ol>
+<li>哪些原始需求已经被归类。</li>
+<li>哪些原始需求已经抽取进标准知识页。</li>
+<li>哪些模块还需要继续拆页、补来源或校验。</li>
+</ol>
+<h2 id="_3">当前总览</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原始需求文档数量</td>
+<td>63 份</td>
+</tr>
+<tr>
+<td>已归类状态</td>
+<td>已完成一级归类</td>
+</tr>
+<tr>
+<td>已建立来源元数据</td>
+<td><code>metadata/sources.csv</code></td>
+</tr>
+<tr>
+<td>已接入最新来源层</td>
+<td><code>最新需求源（source:thoughts-v2-current）</code></td>
+</tr>
+<tr>
+<td>已建立最新来源清单</td>
+<td><code>metadata/source-manifest.csv</code></td>
+</tr>
+<tr>
+<td>已建立来源差异清单</td>
+<td><code>metadata/source-diff.csv</code></td>
+</tr>
+<tr>
+<td>已建立知识页元数据</td>
+<td><code>metadata/documents.csv</code></td>
+</tr>
+<tr>
+<td>已建立检索索引</td>
+<td><code>metadata/search-index.json</code></td>
+</tr>
+<tr>
+<td>原始资料处理方式</td>
+<td><code>最新需求源（source:thoughts-v2-current）</code> 作为唯一最新来源层；旧 <code>需求文档/</code> 不再保留</td>
+</tr>
+<tr>
+<td>历史产品文档处理方式</td>
+<td><code>source:product-docs-legacy</code> 作为低权威参考来源，只抽取战略、角色、指标和路线图框架</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">已建知识页模块</h2>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>当前沉淀结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品端</td>
+<td>运营端、贸易端、采集端、三端数据关系、账号与个人中心</td>
+</tr>
+<tr>
+<td>入门与战略</td>
+<td>产品战略与定位、用户角色与场景、产品指标与路线图</td>
+</tr>
+<tr>
+<td>业务对象</td>
+<td>FlowSpace、订单、工单与批复、资源库、团队与协作团队、里程碑、业务模板、资源库模板</td>
+</tr>
+<tr>
+<td>业务流程</td>
+<td>从模板到 FlowSpace、订单生命周期、工单采集与批复、跨团队协作、资源库引用与同步、自动化执行、移动端采集、订单复用关系</td>
+</tr>
+<tr>
+<td>权限与安全</td>
+<td>权限体系总表、团队权限、FlowSpace 业务角色权限、协作 FlowSpace 权限、数据围栏、资源库权限、仪表盘与报告权限</td>
+</tr>
+<tr>
+<td>模板表单与数据</td>
+<td>表单设计组件、表单属性与显隐设置、公式函数、PDF 与批量导入导出、第三方数据对接、验货组件流程</td>
+</tr>
+<tr>
+<td>协作通知与自动化</td>
+<td>消息中心与实时通知、邮件协作、批量邮件协作、自动化配置、自动化与系统执行日志</td>
+</tr>
+<tr>
+<td>展示分析</td>
+<td>工作台与 FlowSpace 入口、订单日程与任务中心、常用视图与视图设置、仪表盘管理与设计器、报告管理与权限</td>
+</tr>
+<tr>
+<td>日志审计</td>
+<td>设置操作日志、订单跟踪记录、动态与评论、历史记录与快照、系统与集成执行日志</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">待继续建设模块</h2>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>说明</th>
+<th>建议优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运营端平台管理细页</td>
+<td>已有总纲，后续拆用户、团队、FlowSpace、资源库、软件管理等平台监管后台细页</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>采集端任务细页</td>
+<td>已有总纲，后续拆登录、首页、任务列表、任务搜索、任务详情、消息中心、我的</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>账号与个人中心细则</td>
+<td>已创建账号与个人中心页，后续补邮件模板、语言持久化流程图和截图资产</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>资源库分享与细则</td>
+<td>分享链接、游客操作、FlowSpace 应用数据范围、视图细则</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>字段级矩阵</td>
+<td>权限矩阵、组件属性矩阵、日志文案矩阵、异常提示矩阵</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>历史 PRD 差异校验</td>
+<td>将 <code>source:product-docs-legacy</code> 中三端 PRD 草案逐项与最新需求源比对，确认是否存在仍有效但未入库内容</td>
+<td>P2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">入库状态定义</h2>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已归类</td>
+<td>已确定原始需求所属模块，但未必完整抽取</td>
+</tr>
+<tr>
+<td>imported</td>
+<td>已进入 <code>metadata/sources.csv</code> 来源台账</td>
+</tr>
+<tr>
+<td>authoritative</td>
+<td>已形成标准知识页，可作为当前知识库口径</td>
+</tr>
+<tr>
+<td>draft</td>
+<td>仍作为问题池或过程文档，需要后续确认</td>
+</tr>
+<tr>
+<td>待校验</td>
+<td>需求之间存在冲突，或需要与线上版本、产品负责人确认</td>
+</tr>
+<tr>
+<td>待补充来源</td>
+<td>需求中引用了外部表格、外部链接或未入库材料</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">维护动作</h2>
+<p>新增或更新需求文档时，按以下顺序处理：</p>
+<ol>
+<li>将所思在线内容同步到 <code>最新需求源（source:thoughts-v2-current）</code>。</li>
+<li>运行 <code>python scripts\scan_source_manifest.py</code>，更新 <code>metadata/source-manifest.csv</code> 和 <code>metadata/source-diff.csv</code>。</li>
+<li>更新 <a href="../../05-需求文档来源台账.md">需求文档来源台账</a>。</li>
+<li>更新 <code>metadata/sources.csv</code>。</li>
+<li>抽取或更新对应 <code>docs/</code> 知识页。</li>
+<li>更新 <code>metadata/documents.csv</code> 和 <code>metadata/search-index.json</code>。</li>
+<li>如果存在冲突或缺口，更新 <a href="./待确认问题.md">待确认问题</a>。</li>
+</ol>
+<h2 id="_8">关联文件</h2>
+<ul>
+<li><a href="../../05-需求文档来源台账.md">需求文档来源台账</a></li>
+<li><a href="../../99-待办与问题池.md">待办与问题池</a></li>
+<li><a href="../../metadata/documents.csv">documents.csv</a></li>
+<li><a href="../../metadata/sources.csv">sources.csv</a></li>
+<li><a href="../../metadata/source-roots.csv">source-roots.csv</a></li>
+<li><a href="../../metadata/source-manifest.csv">source-manifest.csv</a></li>
+<li><a href="../../metadata/source-diff.csv">source-diff.csv</a></li>
+<li><a href="../../metadata/search-index.json">search-index.json</a></li>
+</ul>
+  </article>
+</body>
+</html>

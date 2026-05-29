@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowSpace数据层级 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="flowspace">FlowSpace 数据层级</h1>
+<h2 id="1">1. 页面定位</h2>
+<p>本页用于说明 FlowSpace 从“运营端业务模板配置态”到“贸易端业务运行态”的数据层级关系，并明确订单、里程碑、工单、批复、子表、资源库引用、自动化、仪表盘和日志追溯之间的数据边界。</p>
+<p>当前知识库已在业务模板、FlowSpace、订单、工单与批复、资源库等页面分别描述相关对象。本页将这些对象统一成权威数据层级，用于后续判断新增功能影响范围、字段归属、数据写入位置、资源库同步边界、仪表盘数据源、自动化更新和日志追溯。</p>
+<blockquote>
+<p>重要：任何涉及 FlowSpace 数据新增、字段写入、批量导入、资源库引用、自动化更新、统计分析、权限控制或审计追溯的需求，都必须先判断目标数据处于本页定义的哪一层级。</p>
+</blockquote>
+<h2 id="2">2. 总体层级</h2>
+<p>FlowSpace 数据可以分为两层：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>说明</th>
+<th>典型对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配置态</td>
+<td>运营端业务模板定义业务结构，决定未来 FlowSpace 中能创建什么数据、有哪些表单、字段和批复规则</td>
+<td>业务模板、主表单、里程碑、工单表单、工单批复表单、里程碑批复表单、表单组件</td>
+</tr>
+<tr>
+<td>运行态</td>
+<td>贸易端团队基于已发布模板创建 FlowSpace 后，围绕订单执行产生真实业务数据</td>
+<td>FlowSpace、订单、订单主表单数据、里程碑、工单、工单采集数据、工单批复数据、里程碑批复数据、动态、历史、跟踪记录</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;运营端业务模板&quot;] --&gt; B[&quot;主表单：订单基本信息结构&quot;]
+    A --&gt; C[&quot;里程碑结构&quot;]
+    C --&gt; D[&quot;里程碑下的工单表单结构&quot;]
+    D --&gt; E[&quot;工单采集字段与子表&quot;]
+    D --&gt; F[&quot;工单批复表单：可选&quot;]
+    C --&gt; G[&quot;里程碑批复表单：可选&quot;]
+    A --&gt; H[&quot;发布模板&quot;]
+    H --&gt; I[&quot;贸易端基于模板创建 FlowSpace&quot;]
+    I --&gt; J[&quot;FlowSpace 内创建订单&quot;]
+    J --&gt; K[&quot;填写订单主表单数据&quot;]
+    J --&gt; L[&quot;按里程碑创建工单&quot;]
+    L --&gt; M[&quot;填写工单采集数据&quot;]
+    M --&gt; N[&quot;工单批复数据：可选&quot;]
+    L --&gt; O[&quot;里程碑批复数据：当前里程碑唯一，可选&quot;]
+</code></pre>
+<h2 id="3">3. 业务模板配置态</h2>
+<p>业务模板是 FlowSpace 的结构来源。模板创建和设计过程决定运行态的数据容器。</p>
+<table>
+<thead>
+<tr>
+<th>配置对象</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务模板</td>
+<td>可创建 FlowSpace 的模板，发布且对团队可见后，贸易端才能使用</td>
+</tr>
+<tr>
+<td>主表单</td>
+<td>默认存在且有且仅有一个，用于定义订单基本信息</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>一个模板可配置多个里程碑，用于定义订单流程阶段</td>
+</tr>
+<tr>
+<td>工单表单</td>
+<td>挂载在里程碑下；一个里程碑下可包含多个表单，用于定义工单采集数据</td>
+</tr>
+<tr>
+<td>工单批复表单</td>
+<td>开启工单批复后存在，是独立批复表单</td>
+</tr>
+<tr>
+<td>里程碑批复表单</td>
+<td>开启里程碑批复后存在，是独立批复表单</td>
+</tr>
+<tr>
+<td>表单组件</td>
+<td>构成字段、布局、子表、引用、公式和成员/协作方选择能力</td>
+</tr>
+</tbody>
+</table>
+<h3 id="31">3.1 模板设计流程</h3>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;创建业务模板&quot;] --&gt; B[&quot;添加主表单&quot;]
+    B --&gt; C[&quot;创建若干里程碑&quot;]
+    C --&gt; D[&quot;里程碑下挂载工单表单&quot;]
+    D --&gt; E[&quot;拖拽组件并设计字段&quot;]
+    E --&gt; F{&quot;是否开启工单批复&quot;}
+    F --&gt;|是| G[&quot;设计工单批复表单&quot;]
+    F --&gt;|否| H[&quot;跳过工单批复表单&quot;]
+    G --&gt; I{&quot;是否开启里程碑批复&quot;}
+    H --&gt; I
+    I --&gt;|是| J[&quot;设计里程碑批复表单&quot;]
+    I --&gt;|否| K[&quot;跳过里程碑批复表单&quot;]
+    J --&gt; L[&quot;发布模板&quot;]
+    K --&gt; L
+</code></pre>
+<h3 id="32">3.2 组件与字段类型</h3>
+<table>
+<thead>
+<tr>
+<th>组件类型</th>
+<th>组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>布局组件</td>
+<td>模块分组、分割线、标签页、子表</td>
+</tr>
+<tr>
+<td>基础组件</td>
+<td>单行文本、多行文本、数字、百分比、单选、多选、日期时间、图片、附件、定位、地址、富文本、评级、空白占位</td>
+</tr>
+<tr>
+<td>高级组件</td>
+<td>关联引用、公式组件、FlowSpace 成员单选、FlowSpace 成员多选、FlowSpace 协作单选、FlowSpace 协作多选、签名、汇率</td>
+</tr>
+</tbody>
+</table>
+<p>子表是数据层级中的特殊容器：一个主表单、工单表单、工单批复表单或里程碑批复表单可以包含子表组件；子表内部有自己的列字段和多行数据。</p>
+<blockquote>
+<p>重要：设计字段映射、批量导入、自动化更新、仪表盘数据源、报告数据源或历史记录时，必须区分“表单字段”和“子表行字段”。子表字段不能简单等同于父表单字段。</p>
+</blockquote>
+<h2 id="4-flowspace">4. FlowSpace 运行态</h2>
+<p>团队使用业务模板创建 FlowSpace 后，模板结构被应用为运行态业务结构。</p>
+<table>
+<thead>
+<tr>
+<th>运行态对象</th>
+<th>来源</th>
+<th>数据含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace</td>
+<td>已发布业务模板</td>
+<td>某类业务协作空间</td>
+</tr>
+<tr>
+<td>订单</td>
+<td>FlowSpace 内创建</td>
+<td>业务主实体</td>
+</tr>
+<tr>
+<td>订单主表单数据</td>
+<td>业务模板主表单</td>
+<td>订单基本信息</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>业务模板里程碑配置</td>
+<td>订单流程阶段</td>
+</tr>
+<tr>
+<td>工单</td>
+<td>订单某个里程碑下创建</td>
+<td>一次具体执行任务</td>
+</tr>
+<tr>
+<td>工单采集数据</td>
+<td>当前里程碑下的工单表单</td>
+<td>处理人填写的执行数据</td>
+</tr>
+<tr>
+<td>工单批复数据</td>
+<td>工单批复表单</td>
+<td>对单个工单采集结果的审核或确认</td>
+</tr>
+<tr>
+<td>里程碑批复数据</td>
+<td>里程碑批复表单</td>
+<td>对当前里程碑阶段结果的审核或确认</td>
+</tr>
+</tbody>
+</table>
+<h3 id="41">4.1 订单与主表单</h3>
+<p>FlowSpace 内新建订单时，用户填写主表单内容，形成订单基本信息。主表单字段受以下规则影响：</p>
+<ul>
+<li>字段类型、必填、格式和默认值。</li>
+<li>订单标识设置。</li>
+<li>数据围栏的字段可见范围。</li>
+<li>资源库引用字段。</li>
+<li>公式字段自动更新。</li>
+<li>自动化或后续同步对字段的更新限制。</li>
+</ul>
+<h3 id="42">4.2 里程碑与工单</h3>
+<p>订单创建后，会按照模板中的里程碑结构进入业务执行。用户可在不同里程碑下按需创建工单。</p>
+<table>
+<thead>
+<tr>
+<th>关系</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一个订单</td>
+<td>包含多个里程碑</td>
+</tr>
+<tr>
+<td>一个里程碑</td>
+<td>可创建多个工单</td>
+</tr>
+<tr>
+<td>一个工单</td>
+<td>对应一次工单采集数据</td>
+</tr>
+<tr>
+<td>一个工单</td>
+<td>若模板开启工单批复，则对应一个工单批复</td>
+</tr>
+<tr>
+<td>一个里程碑</td>
+<td>若模板开启里程碑批复，则当前里程碑仅有一个里程碑批复</td>
+</tr>
+</tbody>
+</table>
+<p>创建工单时，如果模板开启工单批复，需要设置工单批复处理人。若模板开启里程碑批复，通常在创建当前里程碑下第一个工单时设置里程碑批复处理人；当前里程碑下仅存在一份里程碑批复数据。</p>
+<h2 id="5">5. 数据基数与身份</h2>
+<p>设计任何数据写入、同步、导入导出、统计分析或审计能力时，必须明确每类数据的身份粒度。</p>
+<table>
+<thead>
+<tr>
+<th>数据对象</th>
+<th>基数</th>
+<th>建议身份粒度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace</td>
+<td>团队内多个</td>
+<td>FlowSpace ID</td>
+</tr>
+<tr>
+<td>订单</td>
+<td>FlowSpace 内多个</td>
+<td>订单 ID</td>
+</tr>
+<tr>
+<td>订单主表单字段</td>
+<td>每个订单一组</td>
+<td>订单 ID + 字段 ID</td>
+</tr>
+<tr>
+<td>订单主表单子表行</td>
+<td>每个订单可多行</td>
+<td>订单 ID + 子表 ID + 行 ID</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>每个订单多个</td>
+<td>订单 ID + 里程碑 ID</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>每个里程碑最多一份</td>
+<td>订单 ID + 里程碑 ID + 批复 ID</td>
+</tr>
+<tr>
+<td>里程碑批复子表行</td>
+<td>每份批复可多行</td>
+<td>批复 ID + 子表 ID + 行 ID</td>
+</tr>
+<tr>
+<td>工单</td>
+<td>每个里程碑多个</td>
+<td>工单 ID</td>
+</tr>
+<tr>
+<td>工单采集字段</td>
+<td>每个工单一组或多表单</td>
+<td>工单 ID + 表单 ID + 字段 ID</td>
+</tr>
+<tr>
+<td>工单子表行</td>
+<td>每个工单可多行</td>
+<td>工单 ID + 子表 ID + 行 ID</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>每个工单最多一份</td>
+<td>工单 ID + 批复 ID</td>
+</tr>
+<tr>
+<td>工单批复子表行</td>
+<td>每份批复可多行</td>
+<td>批复 ID + 子表 ID + 行 ID</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 资源库数据层级</h2>
+<p>资源库是团队级标准化数据池，与 FlowSpace 运行态数据不同。</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源库配置态</td>
+<td>资源库模板</td>
+<td>运营端定义资源库表结构和字段</td>
+</tr>
+<tr>
+<td>团队主数据态</td>
+<td>资源库</td>
+<td>贸易端团队基于资源库模板创建</td>
+</tr>
+<tr>
+<td>表结构</td>
+<td>资源库表</td>
+<td>一个资源库可包含多张表</td>
+</tr>
+<tr>
+<td>记录数据</td>
+<td>资源库数据</td>
+<td>表中的单条记录</td>
+</tr>
+<tr>
+<td>应用关系</td>
+<td>FlowSpace 应用资源库</td>
+<td>FlowSpace 允许引用哪些资源库表和字段</td>
+</tr>
+<tr>
+<td>业务快照</td>
+<td>订单/工单/批复字段引用结果</td>
+<td>引用后在业务数据中展示、保存或同步</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;运营端资源库模板&quot;] --&gt; B[&quot;贸易端创建资源库&quot;]
+    B --&gt; C[&quot;资源库表&quot;]
+    C --&gt; D[&quot;资源库数据&quot;]
+    D --&gt; E[&quot;FlowSpace 应用资源库&quot;]
+    E --&gt; F[&quot;订单 / 工单 / 批复字段引用&quot;]
+    D --&gt; G{&quot;资源库数据变更&quot;}
+    G --&gt; H[&quot;按策略同步到已引用字段&quot;]
+    G --&gt; I[&quot;历史业务数据保留文本或快照&quot;]
+</code></pre>
+<p>资源库引用、自动化、公式和人工编辑都可能写入订单、工单、批复或子表字段。后续设计新增功能时，应明确字段来源类型：</p>
+<table>
+<thead>
+<tr>
+<th>字段来源</th>
+<th>说明</th>
+<th>对新增功能的影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>手动录入</td>
+<td>用户直接填写</td>
+<td>可被人工修改冲突规则保护</td>
+</tr>
+<tr>
+<td>资源库引用但不同步</td>
+<td>引用后保存文本或快照</td>
+<td>可作为普通业务数据使用，但需提示来源</td>
+</tr>
+<tr>
+<td>资源库同步中</td>
+<td>资源库变化会持续写入字段</td>
+<td>不应被其他自动写入机制随意覆盖</td>
+</tr>
+<tr>
+<td>禁止手动修改</td>
+<td>字段只能通过资源库或系统机制更新</td>
+<td>不应被人工、导入或自动化绕过写入</td>
+</tr>
+<tr>
+<td>自动化写入</td>
+<td>自动化更新数据字段</td>
+<td>需与自动化执行日志和字段冲突规则关联</td>
+</tr>
+<tr>
+<td>公式计算</td>
+<td>由公式组件根据因子自动计算</td>
+<td>不应被普通编辑直接覆盖</td>
+</tr>
+<tr>
+<td>系统同步写入</td>
+<td>由系统同步、批量操作或后续数据类能力写入</td>
+<td>必须记录来源、目标、操作人或系统程序、写入时间和日志</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 数据层级对产品能力的影响</h2>
+<p>FlowSpace 数据层级是多个产品能力的前置判断依据。新增能力不能只说“更新字段”或“同步数据”，必须明确写入的是哪一类对象、哪一层表单、哪一个字段或哪一行子表。</p>
+<h3 id="71">7.1 常见产品能力与数据层级</h3>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>必须识别的数据层级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新建订单</td>
+<td>订单主表单、订单主表单子表、订单标识字段、资源库引用字段</td>
+</tr>
+<tr>
+<td>创建工单</td>
+<td>目标订单、目标里程碑、工单表单、工单处理人、工单批复处理人、里程碑批复处理人</td>
+</tr>
+<tr>
+<td>工单采集</td>
+<td>工单表单字段、工单子表行、处理人、采集状态、动态和历史</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>工单批复表单、工单批复子表、批复人、批复状态、动态和历史</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>里程碑批复表单、里程碑批复子表、里程碑状态、批复人</td>
+</tr>
+<tr>
+<td>资源库引用</td>
+<td>资源库、资源库表、资源库数据、FlowSpace 应用资源库、目标业务字段</td>
+</tr>
+<tr>
+<td>资源库同步</td>
+<td>已引用字段、同步策略、历史快照、系统执行日志</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>触发数据源、目标数据源、执行动作、字段可写性、执行日志</td>
+</tr>
+<tr>
+<td>导入导出</td>
+<td>导入模板字段、目标表单字段、子表行、失败原因、导入记录</td>
+</tr>
+<tr>
+<td>仪表盘和报告</td>
+<td>数据源类型、字段范围、子表展开方式、权限和数据围栏</td>
+</tr>
+<tr>
+<td>日志审计</td>
+<td>操作对象、字段层级、变更前后值、操作人或系统程序</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72">7.2 数据写入位置</h3>
+<p>| 写入位置 | 说明 | 关键限制 |
+| --- | --- |
+| 订单主表单字段 | 订单级主数据 | 受订单状态、订单权限、数据围栏、资源库引用、公式字段影响 |
+| 订单主表单子表行 | 订单级明细数据 | 需区分新增行、更新行、删除行和行级历史 |
+| 工单表单字段 | 一次工单采集数据 | 受工单状态、采集人、表单权限和里程碑状态影响 |
+| 工单子表行 | 工单采集明细 | 需记录行级变化和来源 |
+| 工单批复字段 | 单个工单审核结论 | 受工单批复状态、批复人和批复表单配置影响 |
+| 工单批复子表行 | 工单审核明细 | 需记录行级历史和批复状态 |
+| 里程碑批复字段 | 当前里程碑阶段结论 | 每个里程碑最多一份，需要结合里程碑状态 |
+| 里程碑批复子表行 | 阶段结论明细 | 需记录行级历史和里程碑批复状态 |</p>
+<blockquote>
+<p>重要：写入工单、工单批复、里程碑批复时，不得绕过处理人、状态和权限校验；写入子表时，不得只记录父对象 ID，还应记录子表 ID 和行 ID。</p>
+</blockquote>
+<h2 id="8">8. 设计新增功能时的必查清单</h2>
+<p>凡是新增功能涉及 FlowSpace 数据、字段映射、数据同步、资源库引用、自动化、仪表盘、导入导出或日志追溯，都应检查：</p>
+<ol>
+<li>目标字段属于订单主表单、工单表单、工单批复、里程碑批复还是子表行。</li>
+<li>目标对象当前状态是否允许写入。</li>
+<li>当前用户是否具备来源查看权限和目标写入权限。</li>
+<li>数据围栏是否隐藏了来源字段或目标字段。</li>
+<li>字段是否来自资源库引用、资源库同步、公式、自动化、系统同步或人工录入。</li>
+<li>子表行是否需要记录行级来源和目标关系。</li>
+<li>写入后是否需要历史记录、动态、跟踪记录、系统执行日志或同步日志。</li>
+<li>模板字段被删除、类型变化、必填变化时，历史数据如何保留。</li>
+<li>是否可能形成多源覆盖、重复写入或系统自动更新冲突。</li>
+<li>是否需要异常中心、同步日志、历史记录、动态或人工确认流程。</li>
+</ol>
+<h2 id="9">9. 待确认问题</h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建第一个工单时设置里程碑批复处理人的完整规则是否已覆盖所有场景</td>
+<td>影响里程碑批复生成和指派</td>
+</tr>
+<tr>
+<td>工单批复后是否允许字段被资源库同步、自动化或其他系统同步继续更新</td>
+<td>影响字段锁定和冲突处理</td>
+</tr>
+<tr>
+<td>资源库同步、自动化、公式和系统同步同时作用于同一字段时的最终优先级</td>
+<td>影响数据一致性和日志解释</td>
+</tr>
+<tr>
+<td>模板同步至已创建 FlowSpace 后，字段新增、删除、类型变化如何处理</td>
+<td>影响历史数据、表单展示和自动化配置</td>
+</tr>
+<tr>
+<td>子表行删除、来源数据删除时，目标子表行是否删除、失效标记还是保留快照</td>
+<td>影响追溯和历史展示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md</code></li>
+<li><code>source:thoughts-v2-current/v2.1.x/运营端/【运营端】【业务模板】表单设计组件.md</code></li>
+<li><code>source:thoughts-v2-current/v2.1.x/运营端/【运营端】【业务模版】表单属性与显隐设置.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】工单&amp;里程碑批复操作.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【资源库】第一阶段.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

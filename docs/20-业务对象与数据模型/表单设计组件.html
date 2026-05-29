@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>表单设计组件 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">表单设计组件</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>表单设计组件是 Linkincrease 低代码配置能力的基础。运营端通过布局组件、基础组件、高级组件和行业组件配置业务模板、资源库模板、工单、批复、里程碑批复等表单结构，贸易端和采集端按配置展示、校验和保存数据。</p>
+<h2 id="2">2. 组件分类</h2>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>布局组件</td>
+<td>模块分组、分割线、子表</td>
+</tr>
+<tr>
+<td>基础组件</td>
+<td>单行文本、多行文本、数字、百分比、单选、多选、图片、附件、日期、评级、定位、地址、富文本、空白占位</td>
+</tr>
+<tr>
+<td>高级组件</td>
+<td>关联引用、公式、成员单选、成员多选、协作方单选、协作方多选、签名、汇率</td>
+</tr>
+<tr>
+<td>行业组件</td>
+<td>尺寸检验、组合明细等</td>
+</tr>
+</tbody>
+</table>
+<p>资源库模板组件与业务模板组件整体相似，但资源库模板中的成员/协作方组件面向团队内成员和团队协作方；业务模板中的成员/协作方组件面向 FlowSpace 内参与成员和协作方。</p>
+<h2 id="3">3. 通用属性</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标题</td>
+<td>多数组件必填，限制 100 字符</td>
+</tr>
+<tr>
+<td>提示描述</td>
+<td>非必填，通常限制 100 字符</td>
+</tr>
+<tr>
+<td>输入框提示</td>
+<td>文本、数字、日期等输入型组件可配置</td>
+</tr>
+<tr>
+<td>必填项</td>
+<td>默认不勾选；提交时按组件规则校验</td>
+</tr>
+<tr>
+<td>国际化</td>
+<td>可配置标题、提示描述、输入框提示、单位、按钮名称等</td>
+</tr>
+<tr>
+<td>布局</td>
+<td>影响贸易端展示宽度和排列</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 布局组件</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模块分组</td>
+<td>基础组件和高级组件可拖入分组；修改分组布局时，需要提示是否同步修改分组内组件宽度</td>
+</tr>
+<tr>
+<td>分割线</td>
+<td>用于表单视觉分隔，支持标题、提示描述和国际化</td>
+</tr>
+<tr>
+<td>子表</td>
+<td>可拖入基础组件和高级组件，但排除关联引用；子表必填时，贸易端至少需要一行数据</td>
+</tr>
+</tbody>
+</table>
+<p>子表内字段必填时，对应表单提交也需要校验。子表支持单元格编辑、新增行、复制组件、关联字段管理等能力。</p>
+<h2 id="5">5. 基础组件要点</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单行文本/多行文本</td>
+<td>可配置默认值，支持关联已有数据或通过公式计算</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>支持单位、小数位数、千分符等展示规则</td>
+</tr>
+<tr>
+<td>百分比</td>
+<td>支持单位和小数位数，数字与百分比互相关联时需换算</td>
+</tr>
+<tr>
+<td>单选/多选</td>
+<td>选项需要支持贸易端显示和导入校验</td>
+</tr>
+<tr>
+<td>图片</td>
+<td>可限制最大上传数量和单图最大大小</td>
+</tr>
+<tr>
+<td>附件</td>
+<td>可限制最大数量、单文件大小和文件类型</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>支持多种手动输入和粘贴格式，按控件展示格式截取或补全</td>
+</tr>
+<tr>
+<td>定位</td>
+<td>调取设备定位并记录位置</td>
+</tr>
+<tr>
+<td>地址</td>
+<td>运营端精度变更后，贸易端已有数据按格式截取或补空</td>
+</tr>
+<tr>
+<td>富文本</td>
+<td>支持富文本内容录入，导入时通常只处理文字部分</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 高级组件要点</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>关键规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关联引用</td>
+<td>可引用组件和子表；可设置引用按钮名称、关联字段、布局和国际化</td>
+</tr>
+<tr>
+<td>公式</td>
+<td>设置函数与变量，自动计算并展示值</td>
+</tr>
+<tr>
+<td>成员单选/多选</td>
+<td>业务模板中选择 FlowSpace 内成员；资源库模板中选择团队内成员</td>
+</tr>
+<tr>
+<td>协作方单选/多选</td>
+<td>业务模板中选择 FlowSpace 内协作方；资源库模板中选择团队协作方</td>
+</tr>
+<tr>
+<td>签名</td>
+<td>支持 Web 和移动端绘制，账号维度可保存一个签名供下次使用</td>
+</tr>
+<tr>
+<td>汇率</td>
+<td>支持固定汇率或实时汇率，用户填写金额和币种，基准汇率不可改</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 资源库双向关联</h2>
+<p>资源库模板的关联引用组件支持双向关联：</p>
+<ul>
+<li>表单 A 的关联引用设置双向关联后，表单 B 末尾新增双向关联组件。</li>
+<li>双向关联开启后，允许关联多条自动开启且不可关闭。</li>
+<li>表单 B 的双向关联组件可修改位置、标题、提示、自定义按钮、显示字段、布局和国际化。</li>
+<li>删除表单 B 的双向关联组件，会关闭表单 A 对应关联引用的双向关联。</li>
+<li>双向关联数据也支持贸易端资源库被订单详情使用。</li>
+</ul>
+<h2 id="8">8. 默认值与数据源</h2>
+<p>文本、数字、百分比、日期等组件可通过“关联已有数据”或“公式计算”设置默认值。不同表单可选数据源不同：</p>
+<ul>
+<li>主表单变量来自主表单。</li>
+<li>里程碑批复变量来自所有里程碑批复表单和主表单。</li>
+<li>工单表单变量来自同一里程碑所有表单、主表单、所有里程碑批复表单。</li>
+<li>工单批复表单变量来自同一里程碑所有表单、主表单、所有里程碑批复表单。</li>
+<li>子表内组件可额外关联当前子表其他字段。</li>
+</ul>
+<h2 id="9">9. 贸易端应用原则</h2>
+<ul>
+<li>按运营端配置展示、校验和保存。</li>
+<li>组件默认值应用于创建或导入订单、工单、批复等场景。</li>
+<li>运营端组件显示格式变更后，贸易端已有数据按新格式截取或补全展示。</li>
+<li>导入、导出、资源库引用、第三方 API 写入都必须遵循组件类型和校验规则。</li>
+</ul>
+<h2 id="10">10. 待确认问题</h2>
+<ul>
+<li>业务模板与资源库模板组件差异需要继续沉淀成字段级清单。</li>
+<li>各组件在导入、导出、报告、仪表盘中的展示和可用性需要补完整矩阵。</li>
+<li>行业组件当前以尺寸检验为主，后续如扩展更多行业组件，应单独拆页。</li>
+</ul>
+  </article>
+</body>
+</html>

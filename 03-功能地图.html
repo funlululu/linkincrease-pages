@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>03-功能地图 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<p>﻿# 功能地图</p>
+<h2 id="1">1. 运营端</h2>
+<table>
+<thead>
+<tr>
+<th>一级模块</th>
+<th>二级能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户管理</td>
+<td>用户列表、用户详情</td>
+<td>查看平台用户基础信息、拥有团队、加入团队、关联 FlowSpace</td>
+</tr>
+<tr>
+<td>团队管理</td>
+<td>团队列表、团队详情、成员信息、角色列表、协作邀请记录</td>
+<td>平台视角管理团队数据和邀请记录</td>
+</tr>
+<tr>
+<td>FlowSpace 管理</td>
+<td>FlowSpace 列表、FlowSpace 数据详情、成员记录、邮件协作列表、自动化记录</td>
+<td>平台视角查看和管理团队 FlowSpace 数据</td>
+</tr>
+<tr>
+<td>FlowSpace 仪表盘</td>
+<td>仪表盘列表、仪表盘管理</td>
+<td>运营端管理 FlowSpace 仪表盘</td>
+</tr>
+<tr>
+<td>模板中心</td>
+<td>业务模板管理、资源库模板管理</td>
+<td>创建、编辑、复制、发布、分配、同步模板</td>
+</tr>
+<tr>
+<td>模板设计</td>
+<td>表单设计组件、表单属性、显隐设置、里程碑第三方数据对接</td>
+<td>定义业务模板和资源库模板的结构</td>
+</tr>
+<tr>
+<td>资源库管理</td>
+<td>团队资源库列表、资源库数据明细</td>
+<td>平台视角查看团队资源库数据</td>
+</tr>
+<tr>
+<td>设置</td>
+<td>软件更新管理、软件更新记录</td>
+<td>管理软件版本信息和记录</td>
+</tr>
+<tr>
+<td>集成与报告</td>
+<td>外部 API 集成配置、报告管理</td>
+<td>支撑外部系统对接和报告能力</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 贸易端</h2>
+<table>
+<thead>
+<tr>
+<th>一级模块</th>
+<th>二级能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>账号与个人</td>
+<td>注册登录、忘记密码、个人信息、语言切换、退出账号</td>
+<td>用户身份与个人设置</td>
+</tr>
+<tr>
+<td>团队</td>
+<td>创建团队、团队信息、团队角色、成员管理、协作团队管理、邀请流程</td>
+<td>团队级组织和协作关系管理</td>
+</tr>
+<tr>
+<td>工作台</td>
+<td>FlowSpace 列表、创建 FlowSpace、FlowSpace 分组、订单日程、任务中心、常用视图</td>
+<td>团队用户进入业务的首页</td>
+</tr>
+<tr>
+<td>FlowSpace 设置</td>
+<td>基本信息、业务角色、协作方角色、数据围栏、成员、协作团队、里程碑计划、标签、更多设置</td>
+<td>FlowSpace 级业务配置</td>
+</tr>
+<tr>
+<td>协作 FlowSpace 设置</td>
+<td>协作方角色、主团队角色、协作成员、权限设置</td>
+<td>协作团队参与 FlowSpace 时的权限与成员管理</td>
+</tr>
+<tr>
+<td>订单列表</td>
+<td>订单查看、增删改、导入导出、视图设置、子表视图、工单视图、批量操作</td>
+<td>订单级数据管理入口</td>
+</tr>
+<tr>
+<td>订单详情</td>
+<td>详情查看、看板/表格模式、工单创建、采集、批复、里程碑批复、邮件协作、历史、动态、跟踪记录</td>
+<td>订单执行主场景</td>
+</tr>
+<tr>
+<td>订单管理</td>
+<td>订单翻单、订单关联、里程碑互用、工单互用</td>
+<td>业务复用和关系管理</td>
+</tr>
+<tr>
+<td>资源库</td>
+<td>创建资源库、资源库设置、资源库数据、视图管理、分享、FlowSpace 应用数据范围、数据编辑历史</td>
+<td>团队主数据管理</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>自动化列表、触发条件、执行动作、执行日志、定时任务</td>
+<td>FlowSpace 内自动执行业务动作</td>
+</tr>
+<tr>
+<td>消息与协作</td>
+<td>消息中心、实时消息、邮件协作、批量邮件协作</td>
+<td>业务通知和跨团队沟通</td>
+</tr>
+<tr>
+<td>日志与审计</td>
+<td>设置类操作日志、资源库日志、系统自动执行日志</td>
+<td>追踪配置和系统动作</td>
+</tr>
+<tr>
+<td>仪表盘与报告</td>
+<td>仪表盘权限、报告权限</td>
+<td>数据展示和权限控制</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 采集端</h2>
+<table>
+<thead>
+<tr>
+<th>一级模块</th>
+<th>二级能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录</td>
+<td>邮箱密码登录、忘记密码</td>
+<td>移动端账号入口</td>
+</tr>
+<tr>
+<td>首页</td>
+<td>我的任务、团队待指派、我关注、FlowSpace 入口、任务数据展示</td>
+<td>移动端任务聚合</td>
+</tr>
+<tr>
+<td>任务列表</td>
+<td>进行中、已完成、我发起、团队指派、我关注、操作入口</td>
+<td>工单、工单批复、里程碑批复任务列表</td>
+</tr>
+<tr>
+<td>任务搜索</td>
+<td>从任务列表进入搜索页</td>
+<td>搜索工单和批复任务</td>
+</tr>
+<tr>
+<td>任务详情</td>
+<td>工单详情、工单批复详情、里程碑批复详情、订单信息</td>
+<td>移动端处理和查看任务</td>
+</tr>
+<tr>
+<td>消息中心</td>
+<td>首页消息入口、消息列表</td>
+<td>查看移动端通知</td>
+</tr>
+<tr>
+<td>我的</td>
+<td>个人信息、多语言、修改密码、帮助中心、联系成功经理、检查更新、退出账号</td>
+<td>个人设置和支持入口</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 公共横向能力</h2>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>覆盖范围</th>
+<th>需要沉淀的规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>权限体系</td>
+<td>团队、FlowSpace、协作 FlowSpace、资源库、仪表盘、报告</td>
+<td>权限点、角色叠加、成员范围、协作方边界</td>
+</tr>
+<tr>
+<td>状态机</td>
+<td>订单、里程碑、工单、批复、自动化、导入导出</td>
+<td>状态枚举、状态变更入口、状态限制和异常提示</td>
+</tr>
+<tr>
+<td>表单体系</td>
+<td>业务模板、资源库模板、订单、工单、批复、采集端</td>
+<td>组件、校验、显隐、公式、默认值、移动端展示</td>
+</tr>
+<tr>
+<td>数据导入导出</td>
+<td>订单、工单、资源库</td>
+<td>模板下载、上传校验、记录、失败原因、权限</td>
+</tr>
+<tr>
+<td>消息通知</td>
+<td>站内、实时、邮件、短信</td>
+<td>触发事件、接收对象、模板、免打扰或屏蔽规则</td>
+</tr>
+<tr>
+<td>日志审计</td>
+<td>操作日志、动态、历史记录、跟踪记录、系统日志</td>
+<td>操作人、操作对象、快照、自动程序标识</td>
+</tr>
+<tr>
+<td>复用关系</td>
+<td>订单翻单、订单关联、里程碑互用、工单互用、资源库引用</td>
+<td>来源、目标、同步、取消、历史保留</td>
+</tr>
+</tbody>
+</table>
+  </article>
+</body>
+</html>

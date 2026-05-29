@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>报告管理与权限 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">报告管理与权限</h1>
+<h2 id="_2">定位</h2>
+<p>报告能力用于将订单、里程碑、工单等业务对象与第三方报告链接关联，并按角色和参与关系控制查看权限。报告本身以外部链接形式打开，Linkincrease 负责入口、配置、权限判断和数据表同步。</p>
+<h2 id="_3">报告类型</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单报告</td>
+<td>挂在订单信息层级</td>
+</tr>
+<tr>
+<td>里程碑报告</td>
+<td>挂在里程碑层级</td>
+</tr>
+<tr>
+<td>工单报告</td>
+<td>挂在里程碑下的工单层级</td>
+</tr>
+</tbody>
+</table>
+<p>贸易端有权限时才展示对应报告按钮。点击按钮后仍需再次判断权限。</p>
+<h2 id="_4">贸易端查看</h2>
+<p>报告入口展示规则：</p>
+<ol>
+<li>当某类报告只有一个时，仅展示“查看报告”。</li>
+<li>点击“查看报告”后，在浏览器新页签打开报告。</li>
+<li>当某类报告有多个时，点击“查看报告”后下拉展示多个报告名称。</li>
+<li>点击对应报告名称后，在新页签打开报告。</li>
+<li>报告查看页面支持打印。</li>
+<li>无权限时提示“暂无权限，请联系管理员”。</li>
+</ol>
+<h2 id="_5">运营端报告管理</h2>
+<p>运营端 FlowSpace 列表增加报告管理入口，用于维护第三方报告链接。</p>
+<p>报告列表默认按模板结构展示：</p>
+<ol>
+<li>订单信息。</li>
+<li>里程碑名称分组。</li>
+</ol>
+<p>可在对应分组下新增、编辑、删除报告。里程碑分组下新增报告时，需要选择报告类型：里程碑报告或工单报告，其中里程碑报告为默认类型。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>报告名称</td>
+<td>必填，限制 100 字符</td>
+</tr>
+<tr>
+<td>报告名称国际化</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>报告地址</td>
+<td>必填</td>
+</tr>
+<tr>
+<td>数据表列表</td>
+<td>功能同仪表盘，数据同步</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">权限矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>角色或关系</th>
+<th style="text-align: right;">订单报告</th>
+<th style="text-align: right;">里程碑报告</th>
+<th style="text-align: right;">工单报告</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队角色-内部FlowSpace管理</td>
+<td style="text-align: right;">可看</td>
+<td style="text-align: right;">可看</td>
+<td style="text-align: right;">可看</td>
+</tr>
+<tr>
+<td>FlowSpace角色-查看订单报告</td>
+<td style="text-align: right;">可看</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>FlowSpace角色-查看里程碑报告</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">可看</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>FlowSpace角色-查看工单报告</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">可看</td>
+</tr>
+<tr>
+<td>里程碑批复人</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">可看参与批复的里程碑</td>
+<td style="text-align: right;">可看参与里程碑批复的工单</td>
+</tr>
+<tr>
+<td>工单批复人</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">可看参与批复的工单</td>
+</tr>
+<tr>
+<td>工单采集人</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">可看参与采集的工单</td>
+</tr>
+<tr>
+<td>协作团队-里程碑批复指派</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">可看本团队参与批复的里程碑</td>
+<td style="text-align: right;">可看本团队参与里程碑批复的工单</td>
+</tr>
+<tr>
+<td>协作团队-工单批复指派</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">可看本团队参与批复的工单</td>
+</tr>
+<tr>
+<td>协作团队-工单采集指派</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">可看本团队参与采集的工单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">权限判断</h2>
+<p>报告权限分为前端展示判断和点击后的实际权限判断。</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>页面展示</td>
+<td>有相关报告权限时才展示对应按钮</td>
+</tr>
+<tr>
+<td>点击报告</td>
+<td>再次判断权限</td>
+</tr>
+<tr>
+<td>有权限</td>
+<td>新页签打开报告</td>
+</tr>
+<tr>
+<td>无权限</td>
+<td>提示暂无权限，请联系管理员</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">与仪表盘的关系</h2>
+<p>报告管理的数据表列表功能同仪表盘，并与仪表盘数据同步。也就是说，报告配置侧可以复用仪表盘的数据表结构、字段范围和数据源组织方式。</p>
+<p>报告偏向“外部链接查看和打印”，仪表盘偏向“平台内配置化数据分析”。两者共享 FlowSpace 数据结构，但权限、入口和展示方式不同。</p>
+<h2 id="_9">关联页面</h2>
+<ul>
+<li><a href="./仪表盘配置说明.md">仪表盘管理与设计器</a></li>
+<li><a href="../40-权限、安全与审计/仪表盘与报告权限.md">仪表盘与报告权限</a></li>
+<li><a href="../20-业务对象与数据模型/订单.md">订单</a></li>
+<li><a href="../20-业务对象与数据模型/工单与批复.md">工单与批复</a></li>
+</ul>
+<h2 id="_10">来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】报告权限.md</code></li>
+<li><code>source:thoughts-v2-current/V2.6.x/运营端/【运营端】【SCCS管理】SCCS列表增加报告管理.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

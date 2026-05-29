@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>数据围栏 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">数据围栏</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>数据围栏用于限制 FlowSpace 内成员或协作团队不可查看部分订单主表单字段、订单标签或里程碑标签。它控制“看得见什么”，不直接等同于“能不能操作”。</p>
+<h2 id="2">2. 适用对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace 成员</td>
+<td>可作为限制成员加入数据围栏</td>
+</tr>
+<tr>
+<td>协作团队</td>
+<td>可作为限制协作团队加入数据围栏，限制作用于该团队下所有成员</td>
+</tr>
+<tr>
+<td>未注册成员</td>
+<td>如果已在成员列表或相关权限列表中出现，需要展示未注册标识</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 可限制内容</h2>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单标签</td>
+<td>FlowSpace 标签设置中配置的订单标签字段</td>
+</tr>
+<tr>
+<td>里程碑标签</td>
+<td>FlowSpace 标签设置中配置的里程碑标签字段</td>
+</tr>
+<tr>
+<td>主表单字段</td>
+<td>按实际查看订单的布局展示主表单所有字段，可按模块分组全选</td>
+</tr>
+</tbody>
+</table>
+<p>勾选“不可查看”的字段后，相关成员和协作团队成员在查看主表单数据时需要隐藏对应字段。</p>
+<h2 id="4">4. 管理规则</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建/编辑数据围栏</td>
+<td>名称必填，限制 100 字符；可选择限制成员、限制协作团队，并设置不可查看字段</td>
+</tr>
+<tr>
+<td>查询数据围栏</td>
+<td>支持按名称、限制成员、限制协作团队筛选</td>
+</tr>
+<tr>
+<td>删除数据围栏</td>
+<td>对应成员和协作团队取消字段查看限制</td>
+</tr>
+<tr>
+<td>数据双向同步</td>
+<td>成员或协作团队中的数据围栏设置，与数据围栏列表同步</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 与业务角色的关系</h2>
+<ul>
+<li>业务角色决定是否有查看订单、工单、里程碑等对象的权限。</li>
+<li>数据围栏在对象可见基础上进一步隐藏字段或标签。</li>
+<li>如果成员没有对象查看权限，数据围栏不会让其获得查看权限。</li>
+<li>如果成员有对象查看权限，但命中数据围栏，则对应字段仍不可见。</li>
+</ul>
+<h2 id="6">6. 与标签设置的关系</h2>
+<p>删除标签后：</p>
+<ul>
+<li>订单列表和工单列表不再展示该标签字段，包括字段和查询条件。</li>
+<li>订单详情不再展示该标签字段。</li>
+<li>数据围栏中不再展示该标签字段。</li>
+</ul>
+<h2 id="7">7. 审计要求</h2>
+<p>FlowSpace 设置操作日志需要记录数据围栏新增、编辑、删除。运营端模板修改不记录在 FlowSpace 设置操作日志中。</p>
+<h2 id="8">8. 待确认问题</h2>
+<ul>
+<li>数据围栏是否影响历史记录、动态、跟踪记录中的字段展示。</li>
+<li>数据围栏命中时，导出、报告、仪表盘是否同样隐藏字段。</li>
+<li>多个数据围栏同时作用于同一成员时，是否按不可见字段并集处理，需与线上规则核对。</li>
+</ul>
+  </article>
+</body>
+</html>

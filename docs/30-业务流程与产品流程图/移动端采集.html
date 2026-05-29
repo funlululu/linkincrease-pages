@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>移动端采集 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">移动端采集</h1>
+<h2 id="1">1. 流程定位</h2>
+<p>移动端采集是采集端承接贸易端任务的执行流程，主要用于查看和处理工单、工单批复、里程碑批复任务，并支持首页统计、任务列表、搜索、详情、消息和个人中心。</p>
+<h2 id="2">2. 流程图</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;登录采集端&quot;] --&gt; B[&quot;进入首页&quot;]
+    B --&gt; C[&quot;查看我的任务、团队待指派、我关注、FlowSpace待办&quot;]
+    C --&gt; D[&quot;进入任务列表&quot;]
+    D --&gt; E{&quot;任务类型&quot;}
+    E --&gt;|工单| F[&quot;进入工单详情并采集&quot;]
+    E --&gt;|工单批复| G[&quot;进入工单批复详情并批复&quot;]
+    E --&gt;|里程碑批复| H[&quot;进入里程碑批复详情并批复&quot;]
+    F --&gt; I[&quot;提交或关注任务&quot;]
+    G --&gt; I
+    H --&gt; I
+    I --&gt; J[&quot;同步贸易端任务状态和数据&quot;]
+</code></pre>
+<h2 id="3">3. 首页</h2>
+<p>首页展示：</p>
+<ul>
+<li>我的任务。</li>
+<li>团队待指派任务。</li>
+<li>我关注任务。</li>
+<li>FlowSpace 任务数据。</li>
+<li>团队切换列表中的待办数量。</li>
+<li>底部导航任务待办数。</li>
+</ul>
+<p>FlowSpace 数据：</p>
+<ul>
+<li>订单：该团队下需要我处理的任务对应订单数。</li>
+<li>任务：该团队下需要我处理的任务数。</li>
+<li>里程碑数字：对应里程碑需要我处理的任务数。</li>
+<li>待办数：进行中的待办工单、里程碑批复、工单批复。</li>
+<li>外部协作标识：非本团队 FlowSpace 需展示协作标识和所属团队信息。</li>
+</ul>
+<h2 id="4">4. 任务列表</h2>
+<table>
+<thead>
+<tr>
+<th>列表</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进行中任务</td>
+<td>包含待办和已处理任务</td>
+</tr>
+<tr>
+<td>已完成任务</td>
+<td>里程碑完成/取消、工单已批复、工单终止采集等</td>
+</tr>
+<tr>
+<td>我发起任务</td>
+<td>发起人为本人的工单或批复</td>
+</tr>
+<tr>
+<td>团队指派任务</td>
+<td>有指派权限的待指派、已指派、已完成任务</td>
+</tr>
+<tr>
+<td>我关注任务</td>
+<td>本人关注的任务</td>
+</tr>
+</tbody>
+</table>
+<p>任务需排除互用自的工单，仅展示正常创建的工单。</p>
+<h2 id="5">5. 待办与已处理判断</h2>
+<p>进行中待办：</p>
+<ul>
+<li>里程碑批复：里程碑进行中且处理人未提交。</li>
+<li>工单批复：里程碑进行中且处理人未提交。</li>
+<li>工单：里程碑进行中、无工单批复、未终止，且处理人未提交。</li>
+<li>协作工单/批复指派：可编辑、未提交、未指派、且有指派权限。</li>
+</ul>
+<p>进行中已处理：</p>
+<ul>
+<li>里程碑批复：里程碑进行中且处理人已提交。</li>
+<li>工单批复：里程碑进行中且处理人已提交。</li>
+<li>工单：里程碑进行中、无工单批复、未终止，且处理人已提交。</li>
+<li>协作工单/批复指派：可编辑、有指派权限，且已提交或已指派。</li>
+</ul>
+<h2 id="6">6. 操作规则</h2>
+<ul>
+<li>支持下拉刷新、上拉加载更多。</li>
+<li>多 Tab 点击切换。</li>
+<li>超过两屏高度出现返回顶部按钮。</li>
+<li>搜索跳转任务搜索页。</li>
+<li>点击任务进入对应详情页。</li>
+<li>点击关注后进入我关注列表。</li>
+<li>点击团队名称可切换团队，切换后任务列表同步切换。</li>
+</ul>
+<h2 id="7">7. 与贸易端同步</h2>
+<p>采集端处理的工单、工单批复、里程碑批复数据需与贸易端实时同步。采集端状态限制应与贸易端保持一致：</p>
+<ul>
+<li>订单已完成/取消时不可继续处理。</li>
+<li>里程碑已完成/取消时不可继续处理。</li>
+<li>工单已终止或已批复时不可继续采集。</li>
+<li>权限变化后跳转或提交需提示暂无权限或刷新。</li>
+</ul>
+<h2 id="8">8. 待确认问题</h2>
+<ul>
+<li>采集端是否完整覆盖贸易端所有状态限制和提示文案。</li>
+<li>离线或弱网场景是否支持草稿或重试。</li>
+<li>采集端任务关注、搜索、消息之间的数据同步频率。</li>
+</ul>
+<h2 id="9">9. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【首页】任务相关数据展示.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务列表】工单、工单批复、里程碑批复任务列表.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务详情页】工单、工单批复、里程碑批复详情页.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务搜索页】工单、工单批复、里程碑批复任务搜索.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

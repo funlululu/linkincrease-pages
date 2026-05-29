@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="faq">FAQ</h1>
+<p>本页用于沉淀运营对内和对客户解释 Linkincrease 外贸供应链方案时的常见问答。</p>
+<h2 id="_1">场景问答</h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>回答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linkincrease 是不是只做订单管理？</td>
+<td>不是。订单管理是核心入口之一，但平台还支持供应商协同、工厂资源库、工厂准入、验厂审核、CAP 整改、自动化提醒、仪表盘分析和审计追溯。</td>
+</tr>
+<tr>
+<td>品牌方的一线供应商和实际生产工厂如何管理？</td>
+<td>建议用供应商资源库管理一级供应商，用工厂资源库管理实际生产工厂，并通过关联字段建立供应商与工厂关系。</td>
+</tr>
+<tr>
+<td>供应商可以自己申报工厂吗？</td>
+<td>可以。可以在工厂申报 FlowSpace 中开放供应商提交权限，品牌方进行资料审核和准入确认。</td>
+</tr>
+<tr>
+<td>订单里如何选择生产工厂？</td>
+<td>推荐在订单字段或生产报备工单中引用工厂资源库，并按供应商、准入状态、风险状态过滤可选工厂。</td>
+</tr>
+<tr>
+<td>如果供应商要使用未准入工厂怎么办？</td>
+<td>不建议直接在订单中手填。应先进入工厂申报与准入流程，品牌方确认后同步到工厂资源库，再回到订单中选择。</td>
+</tr>
+<tr>
+<td>社会责任验厂适合放在哪里？</td>
+<td>建议作为独立 FlowSpace 承载。它可以引用工厂资源库，执行验厂计划、现场审核、报告提交和品牌方确认。</td>
+</tr>
+<tr>
+<td>CAP 整改如何和验厂报告关联？</td>
+<td>验厂报告产生的问题项可以进入 CAP 跟进 FlowSpace，每个整改项都有责任人、截止日期、证据和复核结论。</td>
+</tr>
+<tr>
+<td>DAREN 服务商需要看到品牌方全部数据吗？</td>
+<td>不需要。建议通过协作团队、任务指派和数据围栏，只开放验厂或 CAP 所需的数据。</td>
+</tr>
+<tr>
+<td>运营如何向客户解释资源库价值？</td>
+<td>资源库不是普通表格，而是订单、工厂申报、验厂、CAP 和仪表盘都可以复用的主数据底座。</td>
+</tr>
+<tr>
+<td>为什么要拆多个 FlowSpace，而不是一个大流程？</td>
+<td>工厂准入、订单管理、验厂审核、CAP 整改的生命周期、角色、权限和数据结果不同。拆开后更清晰，也更便于复用和分析。</td>
+</tr>
+</tbody>
+</table>
+  </article>
+</body>
+</html>

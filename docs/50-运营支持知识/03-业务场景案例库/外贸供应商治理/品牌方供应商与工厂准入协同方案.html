@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>品牌方供应商与工厂准入协同方案 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">品牌方供应商与工厂准入协同方案</h1>
+<p>本方案面向品牌方管理一级供应商、工厂准入、订单工厂报备、社会责任验厂和 CAP 整改闭环的业务场景。它的目标是把供应商和工厂管理从分散表格升级为可配置、可协作、可追溯、可分析的低代码供应链管理模式。</p>
+<h2 id="_2">一句话方案</h2>
+<p>品牌方用资源库维护供应商与工厂主数据，用多个 FlowSpace 承载不同业务流程：工厂申报准入、订单工厂报备、社会责任验厂、CAP 整改跟进。流程中确认有效的数据可以同步回资源库，后续订单、验厂和整改继续引用同一套主数据。</p>
+<h2 id="_3">业务对象分层</h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>对象</th>
+<th>建议承载方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主数据</td>
+<td>一级供应商清单</td>
+<td>资源库</td>
+<td>品牌方长期维护，作为供应商身份、准入、评级、联系人、关联工厂的基础资料</td>
+</tr>
+<tr>
+<td>主数据</td>
+<td>工厂清单</td>
+<td>资源库</td>
+<td>记录工厂基础信息、工厂资质、社会责任状态、准入状态、有效期、关联供应商</td>
+</tr>
+<tr>
+<td>主数据</td>
+<td>工厂资质/证书</td>
+<td>资源库或工厂资源库子表/附件字段</td>
+<td>用于记录营业执照、认证、审计报告、有效期和附件</td>
+</tr>
+<tr>
+<td>流程数据</td>
+<td>工厂申报流程</td>
+<td>FlowSpace1</td>
+<td>供应商提交工厂申请，品牌方审批，确认后同步到工厂资源库</td>
+</tr>
+<tr>
+<td>流程数据</td>
+<td>订单管理流程</td>
+<td>FlowSpace2</td>
+<td>供应商在订单中选择关联工厂进行生产工厂报备，品牌方查看订单工厂生产情况</td>
+</tr>
+<tr>
+<td>流程数据</td>
+<td>社会责任验厂审核</td>
+<td>FlowSpace3</td>
+<td>品牌方发起给 DAREN 服务商或验厂团队，围绕工厂完成社会责任审核工单</td>
+</tr>
+<tr>
+<td>流程数据</td>
+<td>CAP 跟进</td>
+<td>FlowSpace4</td>
+<td>根据资质报告或验厂报告中的改进项进行整改、提交证据、复核和关闭</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">推荐资源库设计</h2>
+<h3 id="_5">供应商资源库</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型建议</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商名称</td>
+<td>单行文本</td>
+<td>供应商主标识</td>
+</tr>
+<tr>
+<td>供应商编码</td>
+<td>单行文本</td>
+<td>与客户内部系统或历史数据对齐</td>
+</tr>
+<tr>
+<td>供应商等级</td>
+<td>单选</td>
+<td>A/B/C 或客户自定义等级</td>
+</tr>
+<tr>
+<td>准入状态</td>
+<td>单选</td>
+<td>待准入、已准入、暂停、黑名单、退出</td>
+</tr>
+<tr>
+<td>供应商联系人</td>
+<td>文本/成员/附件</td>
+<td>业务联系人和协作联系人</td>
+</tr>
+<tr>
+<td>关联工厂</td>
+<td>关联引用</td>
+<td>关联工厂资源库中的工厂记录</td>
+</tr>
+<tr>
+<td>资质有效性</td>
+<td>单选/公式</td>
+<td>根据证书有效期、审核结论、CAP 状态辅助判断</td>
+</tr>
+<tr>
+<td>最近审核日期</td>
+<td>日期</td>
+<td>支持后续提醒和复审</td>
+</tr>
+<tr>
+<td>风险等级</td>
+<td>单选</td>
+<td>低、中、高或客户自定义</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">工厂资源库</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型建议</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工厂名称</td>
+<td>单行文本</td>
+<td>工厂主标识</td>
+</tr>
+<tr>
+<td>工厂编码</td>
+<td>单行文本</td>
+<td>对接客户内部编号</td>
+</tr>
+<tr>
+<td>所属供应商</td>
+<td>关联引用</td>
+<td>关联供应商资源库</td>
+</tr>
+<tr>
+<td>工厂地址</td>
+<td>地址/定位/文本</td>
+<td>支持验厂、物流和区域分析</td>
+</tr>
+<tr>
+<td>工厂类型</td>
+<td>多选</td>
+<td>自有、外协、分包、指定工厂等</td>
+</tr>
+<tr>
+<td>准入状态</td>
+<td>单选</td>
+<td>申报中、已准入、待整改、暂停使用、禁用</td>
+</tr>
+<tr>
+<td>资质附件</td>
+<td>附件</td>
+<td>营业执照、认证证书、资质文件</td>
+</tr>
+<tr>
+<td>社会责任审核状态</td>
+<td>单选</td>
+<td>未审核、审核中、通过、待整改、不通过</td>
+</tr>
+<tr>
+<td>最近验厂日期</td>
+<td>日期</td>
+<td>支持复审提醒</td>
+</tr>
+<tr>
+<td>CAP 未关闭数量</td>
+<td>数字/公式</td>
+<td>支持风险看板</td>
+</tr>
+<tr>
+<td>可用于订单</td>
+<td>单选/布尔</td>
+<td>控制订单报备时是否可选</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flowspace1">FlowSpace1：工厂申报与准入流程</h2>
+<h3 id="_7">目标</h3>
+<p>让供应商可以按品牌方要求提交工厂资料，品牌方完成资料审核、补充要求、准入确认，并将通过的数据沉淀到工厂资源库。</p>
+<h3 id="_8">角色</h3>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>权限建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方管理员</td>
+<td>查看全部申报、审批、退回、准入确认、同步资源库</td>
+</tr>
+<tr>
+<td>品牌方审核人</td>
+<td>查看分配给自己的申报和审核工单，填写审核结论</td>
+</tr>
+<tr>
+<td>一级供应商</td>
+<td>创建或提交自己名下工厂申请，只查看自己相关数据</td>
+</tr>
+<tr>
+<td>工厂联系人</td>
+<td>可通过协作或邮件补充资料，不应看到品牌方内部审核意见</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">推荐流程</h3>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;供应商提交工厂申报&quot;] --&gt; B[&quot;品牌方资料初审&quot;]
+    B --&gt; C{&quot;资料是否完整&quot;}
+    C --&gt;|&quot;否&quot;| D[&quot;退回补充资料&quot;]
+    D --&gt; A
+    C --&gt;|&quot;是&quot;| E[&quot;资质审核/风险评估&quot;]
+    E --&gt; F{&quot;是否需要验厂&quot;}
+    F --&gt;|&quot;是&quot;| G[&quot;发起社会责任验厂 FlowSpace3&quot;]
+    F --&gt;|&quot;否&quot;| H[&quot;品牌方准入确认&quot;]
+    G --&gt; H
+    H --&gt; I{&quot;是否准入&quot;}
+    I --&gt;|&quot;通过&quot;| J[&quot;同步至工厂资源库&quot;]
+    I --&gt;|&quot;不通过&quot;| K[&quot;记录不通过原因&quot;]
+</code></pre>
+<h3 id="_10">数据流转</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>数据写入位置</th>
+<th>后续去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商提交申请</td>
+<td>FlowSpace1 订单主表单或申报工单</td>
+<td>用于品牌方审批</td>
+</tr>
+<tr>
+<td>补充资质附件</td>
+<td>FlowSpace1 工单附件字段</td>
+<td>审核通过后同步到工厂资源库</td>
+</tr>
+<tr>
+<td>品牌方审核意见</td>
+<td>FlowSpace1 工单批复或里程碑批复</td>
+<td>作为准入审计依据</td>
+</tr>
+<tr>
+<td>准入结论</td>
+<td>FlowSpace1 批复字段</td>
+<td>同步为工厂资源库的准入状态</td>
+</tr>
+<tr>
+<td>工厂基础信息</td>
+<td>工厂资源库</td>
+<td>后续订单管理 FlowSpace2 选择引用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flowspace2">FlowSpace2：订单管理与生产工厂报备</h2>
+<h3 id="_11">目标</h3>
+<p>供应商在订单执行中按权限选择自己名下、已准入或允许申报中的工厂进行生产报备，品牌方能够按订单查看工厂使用情况和生产风险。</p>
+<h3 id="_12">推荐设计</h3>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>字段/工单</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单主表单</td>
+<td>供应商、采购订单号、产品、交期、订单状态</td>
+<td>订单主数据</td>
+</tr>
+<tr>
+<td>订单主表单或里程碑工单</td>
+<td>生产工厂</td>
+<td>关联引用工厂资源库，按供应商和准入状态过滤</td>
+</tr>
+<tr>
+<td>订单主表单或里程碑工单</td>
+<td>是否使用未准入工厂</td>
+<td>用于触发申报提醒或自动化</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>工厂报备确认</td>
+<td>品牌方确认供应商选择的生产工厂</td>
+</tr>
+<tr>
+<td>工单</td>
+<td>生产进度、现场照片、异常说明</td>
+<td>供应商或工厂按权限提交</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_13">数据流转</h3>
+<ol>
+<li>品牌方或供应商创建订单，订单进入 FlowSpace2。</li>
+<li>供应商在订单中选择自己名下关联工厂。</li>
+<li>系统通过资源库引用带出工厂准入状态、资质有效期、社会责任审核状态、CAP 未关闭数量。</li>
+<li>如果工厂已准入，订单继续推进，品牌方可在订单详情、视图或仪表盘查看工厂使用情况。</li>
+<li>如果工厂未在资源库或未准入，供应商需进入 FlowSpace1 发起工厂申报。</li>
+<li>FlowSpace1 准入通过后，工厂同步进资源库，FlowSpace2 订单再选择该工厂。</li>
+</ol>
+<h3 id="_14">订单内数据建议</h3>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>存放层级</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单号、产品、交期</td>
+<td>订单主表单</td>
+<td>订单级主数据</td>
+</tr>
+<tr>
+<td>生产工厂</td>
+<td>订单字段或指定里程碑工单字段</td>
+<td>如果整笔订单只有一个生产工厂，放订单主表单；如果不同批次/阶段可不同工厂，放里程碑工单</td>
+</tr>
+<tr>
+<td>工厂资质状态</td>
+<td>资源库引用字段</td>
+<td>避免在每个订单中重复维护</td>
+</tr>
+<tr>
+<td>生产进度</td>
+<td>工单字段</td>
+<td>属于过程数据，需要多次采集</td>
+</tr>
+<tr>
+<td>品牌方确认意见</td>
+<td>工单批复或里程碑批复</td>
+<td>需要保留审批结论和责任人</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flowspace3">FlowSpace3：社会责任验厂审核</h2>
+<h3 id="_15">目标</h3>
+<p>当工厂准入、复审、订单风险或品牌方要求触发社会责任审核时，品牌方可以把验厂需求发给 DAREN 服务商或验厂团队，形成可追踪的审核协同流程。</p>
+<h3 id="_16">推荐流程</h3>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;品牌方发起验厂需求&quot;] --&gt; B[&quot;DAREN服务商接收任务&quot;]
+    B --&gt; C[&quot;安排验厂计划&quot;]
+    C --&gt; D[&quot;现场审核工单&quot;]
+    D --&gt; E[&quot;上传报告和证据&quot;]
+    E --&gt; F[&quot;品牌方审核报告&quot;]
+    F --&gt; G{&quot;是否产生CAP&quot;}
+    G --&gt;|&quot;是&quot;| H[&quot;创建CAP跟进 FlowSpace4&quot;]
+    G --&gt;|&quot;否&quot;| I[&quot;更新工厂审核状态&quot;]
+</code></pre>
+<h3 id="_17">数据流转</h3>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>存放层级</th>
+<th>后续去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验厂需求</td>
+<td>FlowSpace3 订单主表单</td>
+<td>作为一次验厂项目</td>
+</tr>
+<tr>
+<td>工厂信息</td>
+<td>关联引用工厂资源库</td>
+<td>保持与主数据一致</td>
+</tr>
+<tr>
+<td>审核计划</td>
+<td>里程碑或工单字段</td>
+<td>支持日程提醒</td>
+</tr>
+<tr>
+<td>现场审核记录</td>
+<td>工单字段、图片、附件、签名</td>
+<td>形成报告依据</td>
+</tr>
+<tr>
+<td>审核报告</td>
+<td>工单附件或批复附件</td>
+<td>同步或回填到工厂资源库</td>
+</tr>
+<tr>
+<td>审核结论</td>
+<td>批复字段</td>
+<td>更新工厂社会责任审核状态</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flowspace4cap">FlowSpace4：CAP 整改跟进</h2>
+<h3 id="_18">目标</h3>
+<p>将审核报告中的改进项拆成可跟踪、可提交证据、可复核关闭的整改任务。</p>
+<h3 id="_19">推荐数据结构</h3>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>字段建议</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CAP 订单主表单</td>
+<td>工厂、来源报告、审核日期、责任供应商、总状态</td>
+<td>一次 CAP 跟进项目</td>
+</tr>
+<tr>
+<td>CAP 工单</td>
+<td>问题项、风险等级、整改要求、责任人、截止日期</td>
+<td>每个改进项一条或一组工单</td>
+</tr>
+<tr>
+<td>整改提交工单</td>
+<td>整改说明、图片、附件、完成日期</td>
+<td>供应商或工厂提交</td>
+</tr>
+<tr>
+<td>复核批复</td>
+<td>复核结论、复核人、是否关闭、退回原因</td>
+<td>品牌方或 DAREN 服务商确认</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_20">数据流转</h3>
+<ol>
+<li>FlowSpace3 验厂报告形成 CAP 项。</li>
+<li>CAP 项进入 FlowSpace4，可按问题项创建多个工单。</li>
+<li>供应商或工厂按权限提交整改证据。</li>
+<li>品牌方或 DAREN 服务商复核。</li>
+<li>CAP 关闭后，工厂资源库更新 CAP 未关闭数量、风险等级、审核状态。</li>
+<li>未关闭 CAP 可在 FlowSpace2 订单报备时作为风险提示。</li>
+</ol>
+<h2 id="flowspace">跨 FlowSpace 数据关系</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>目标</th>
+<th>关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace1 工厂申报</td>
+<td>工厂资源库</td>
+<td>准入通过后同步工厂基础信息和资质</td>
+</tr>
+<tr>
+<td>工厂资源库</td>
+<td>FlowSpace2 订单管理</td>
+<td>订单选择生产工厂时引用</td>
+</tr>
+<tr>
+<td>工厂资源库</td>
+<td>FlowSpace3 验厂审核</td>
+<td>发起验厂时引用工厂资料</td>
+</tr>
+<tr>
+<td>FlowSpace3 验厂审核</td>
+<td>工厂资源库</td>
+<td>审核结论和报告回写</td>
+</tr>
+<tr>
+<td>FlowSpace3 验厂审核</td>
+<td>FlowSpace4 CAP 跟进</td>
+<td>审核报告产生改进项</td>
+</tr>
+<tr>
+<td>FlowSpace4 CAP 跟进</td>
+<td>工厂资源库</td>
+<td>CAP 状态、未关闭数量、风险等级回写</td>
+</tr>
+<tr>
+<td>工厂资源库</td>
+<td>FlowSpace2 订单管理</td>
+<td>订单执行中展示工厂风险和可用状态</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_21">运营配置建议</h2>
+<ol>
+<li>先建供应商资源库和工厂资源库，再设计准入、订单、验厂、CAP 四类 FlowSpace。</li>
+<li>工厂是否可用于订单，不应只靠人工判断，建议由准入状态、审核状态、CAP 状态共同决定。</li>
+<li>订单中选择工厂时，优先使用资源库关联引用，避免供应商手填工厂名称造成重复和错别字。</li>
+<li>未准入工厂不要直接进入订单生产，应该通过工厂申报流程形成准入记录。</li>
+<li>DAREN 服务商参与验厂时，应作为协作团队或指定任务处理人进入 FlowSpace，而不是共享品牌方全部数据。</li>
+<li>CAP 跟进要按问题项拆分责任和截止日期，避免整份报告只有一个总状态。</li>
+</ol>
+<h2 id="_22">可分析指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>业务意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已准入供应商数/工厂数</td>
+<td>评估供应链基础资源规模</td>
+</tr>
+<tr>
+<td>待审核工厂数</td>
+<td>评估品牌方准入处理压力</td>
+</tr>
+<tr>
+<td>订单使用未准入工厂次数</td>
+<td>识别合规风险</td>
+</tr>
+<tr>
+<td>工厂社会责任审核通过率</td>
+<td>评估供应链合规水平</td>
+</tr>
+<tr>
+<td>CAP 未关闭数量</td>
+<td>识别整改风险和供应商管理重点</td>
+</tr>
+<tr>
+<td>CAP 平均关闭周期</td>
+<td>评估整改效率</td>
+</tr>
+<tr>
+<td>高风险工厂关联订单数</td>
+<td>支持品牌方优先干预</td>
+</tr>
+</tbody>
+</table>
+  </article>
+</body>
+</html>

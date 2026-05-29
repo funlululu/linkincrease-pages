@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>里程碑 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">里程碑</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>里程碑是订单流程中的阶段节点，用于承载阶段计划、负责人、标签、里程碑批复和工单。里程碑结构来自业务模板，运行态计划和状态在 FlowSpace 与订单中生效。</p>
+<h2 id="2">2. 使用对象与入口</h2>
+<table>
+<thead>
+<tr>
+<th>使用对象</th>
+<th>入口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运营人员</td>
+<td>业务模板设计</td>
+<td>配置里程碑名称、批复设置、表单、按钮文案等</td>
+</tr>
+<tr>
+<td>FlowSpace 管理员</td>
+<td>FlowSpace 设置 &gt; 里程碑计划</td>
+<td>配置计划起止时间计算规则</td>
+</tr>
+<tr>
+<td>FlowSpace 成员</td>
+<td>订单详情</td>
+<td>查看里程碑、创建工单、完成/取消/重启里程碑</td>
+</tr>
+<tr>
+<td>协作成员</td>
+<td>订单详情或采集端任务</td>
+<td>在授权范围内处理里程碑相关批复或工单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 核心对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>里程碑模板</td>
+<td>业务模板中定义的流程节点</td>
+</tr>
+<tr>
+<td>里程碑实例</td>
+<td>某个订单中的具体里程碑</td>
+</tr>
+<tr>
+<td>里程碑计划</td>
+<td>计划开始、计划结束、计划耗时及其计算规则</td>
+</tr>
+<tr>
+<td>里程碑状态</td>
+<td>未开始、进行中、已完成、已取消</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>对阶段结果进行确认的批复数据</td>
+</tr>
+<tr>
+<td>里程碑标签</td>
+<td>根据条件展示在里程碑上的业务标记</td>
+</tr>
+<tr>
+<td>里程碑互用</td>
+<td>将里程碑数据复用于其他订单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 业务流程</h2>
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; 未开始: 创建订单
+    未开始 --&gt; 进行中: 创建首个工单或状态推进
+    进行中 --&gt; 已完成: 完成里程碑
+    未开始 --&gt; 已取消: 取消里程碑
+    进行中 --&gt; 已取消: 取消里程碑
+    已完成 --&gt; 进行中: 重启里程碑
+    已取消 --&gt; 进行中: 重启里程碑
+</code></pre>
+<h2 id="5">5. 权限规则</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>权限要求</th>
+<th>状态限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看里程碑</td>
+<td>有里程碑下任意工单查看权限或里程碑批复查看权限</td>
+<td>受数据围栏影响</td>
+</tr>
+<tr>
+<td>创建工单</td>
+<td>有当前里程碑创建工单权限</td>
+<td>里程碑未开始或进行中，订单进行中</td>
+</tr>
+<tr>
+<td>修改里程碑状态</td>
+<td>有当前里程碑修改状态权限</td>
+<td>按状态机限制</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>当前批复人或有对应权限成员</td>
+<td>依模板配置和状态限制</td>
+</tr>
+<tr>
+<td>修改处理人</td>
+<td>有修改处理人权限</td>
+<td>仅进行中相关对象</td>
+</tr>
+<tr>
+<td>里程碑互用</td>
+<td>有里程碑互用权限</td>
+<td>已完成/已取消等状态下受限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 状态与限制</h2>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+<th>关键限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未开始</td>
+<td>订单创建后尚未推进</td>
+<td>可创建工单，可取消</td>
+</tr>
+<tr>
+<td>进行中</td>
+<td>已开始执行</td>
+<td>可创建工单、采集、批复、完成或取消</td>
+</tr>
+<tr>
+<td>已完成</td>
+<td>阶段结束</td>
+<td>不可创建工单、采集、批复、指派；可按权限重启</td>
+</tr>
+<tr>
+<td>已取消</td>
+<td>阶段取消</td>
+<td>不可创建工单、采集、批复、指派；可按权限重启</td>
+</tr>
+</tbody>
+</table>
+<p>计划标签：</p>
+<ul>
+<li>实际开始与计划开始对比可展示延迟或提前。</li>
+<li>实际完成与计划结束对比可展示延迟或提前。</li>
+<li>数据围栏会影响里程碑标签和字段展示。</li>
+</ul>
+<h2 id="7">7. 字段、表单与校验</h2>
+<p>里程碑计划设置：</p>
+<ul>
+<li>计划开始或计划结束可基于主表单日期字段、其他里程碑实际开始/结束时间计算。</li>
+<li>可设置当天、之前、之后和正整数天数。</li>
+<li>计划耗时只允许正整数。</li>
+<li>计划开始和计划结束互推公式：</li>
+<li>计划结束时间 = 计划开始时间 + 计划耗时 - 1</li>
+<li>计划开始时间 = 计划结束时间 - 计划耗时 + 1</li>
+<li>任一时间设置不为空时，其余字段需完整，否则提示请完善时间设置。</li>
+</ul>
+<p>模板属性：</p>
+<ul>
+<li>里程碑名称必填，限制 100 字符。</li>
+<li>可配置是否需要里程碑批复、工单批复。</li>
+<li>可配置默认批复人。</li>
+<li>可配置创建工单按钮、工单采集按钮文案。</li>
+<li>支持部分内容国际化。</li>
+</ul>
+<h2 id="8">8. 通知、日志与审计</h2>
+<p>需要记录：</p>
+<ul>
+<li>里程碑状态变更。</li>
+<li>里程碑批复创建、指派、提交、修改处理人。</li>
+<li>里程碑互用和取消互用。</li>
+<li>里程碑计划配置变更。</li>
+<li>自动化更新里程碑相关数据。</li>
+</ul>
+<h2 id="9">9. 异常与提示</h2>
+<p>已知提示方向：</p>
+<ul>
+<li>里程碑已完成，不可创建/编辑/处理工单。</li>
+<li>里程碑已取消，不可创建/编辑/处理工单。</li>
+<li>里程碑已重启，可继续创建或编辑。</li>
+<li>请完善时间设置。</li>
+<li>暂无权限，请联系管理员。</li>
+</ul>
+<h2 id="10">10. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】工单&amp;里程碑批复操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单管理】里程碑互用功能.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md</code></li>
+</ul>
+<h2 id="11">11. 待确认问题</h2>
+<ul>
+<li>重启里程碑后状态应还原为进行中还是完成/取消前状态。</li>
+<li>订单完成时，未开始和已取消里程碑是否保持原状态的完整规则。</li>
+<li>里程碑互用状态限制需要从互用需求继续细化。</li>
+</ul>
+  </article>
+</body>
+</html>

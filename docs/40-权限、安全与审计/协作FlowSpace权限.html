@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>协作FlowSpace权限 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="flowspace">协作FlowSpace权限</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>协作 FlowSpace 权限控制外部协作团队成员在链主方 FlowSpace 中能看什么、能处理什么、能否指派协作任务。它由链主方在 FlowSpace 设置中授予协作团队角色和协作里程碑，再由协作团队在协作 FlowSpace 设置中分配具体成员。</p>
+<h2 id="2">2. 权限来源</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链主方 FlowSpace 协作方角色</td>
+<td>链主方创建，选择协作团队并配置订单、里程碑、工单相关权限</td>
+</tr>
+<tr>
+<td>协作团队自建角色</td>
+<td>协作团队在协作 FlowSpace 设置中自建，控制本团队成员对协作任务的查看和指派</td>
+</tr>
+<tr>
+<td>对接人角色</td>
+<td>协作团队固定角色，可管理角色和成员，并可指派所有协作任务</td>
+</tr>
+<tr>
+<td>主团队角色</td>
+<td>链主方创建并开放给当前协作团队的角色，协作团队只能编辑成员，不能改权限点</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 链主方配置规则</h2>
+<p>链主方在 FlowSpace 设置中添加协作团队时，可配置：</p>
+<ul>
+<li>协作方角色。</li>
+<li>数据围栏。</li>
+<li>协作的里程碑。</li>
+</ul>
+<p>添加协作团队到 FlowSpace 时，协作团队拥有者默认成为该 FlowSpace 的对接人。链主方删除协作团队后，该协作团队所有成员在当前 FlowSpace 相关业务数据不可查看，任务中心相关工单隐藏，相关邮件和消息跳转提示暂无权限。</p>
+<h2 id="4">4. 协作团队角色权限点</h2>
+<table>
+<thead>
+<tr>
+<th>权限分类</th>
+<th>权限名称</th>
+<th>控制功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace 工具权限</td>
+<td>FlowSpace 设置</td>
+<td>当前协作 FlowSpace 的设置权限</td>
+</tr>
+<tr>
+<td>订单权限</td>
+<td>查看订单基本信息</td>
+<td>订单列表查看订单、订单详情主表单</td>
+</tr>
+<tr>
+<td>里程碑权限</td>
+<td>查看工单</td>
+<td>工单视图和订单详情查看工单</td>
+</tr>
+<tr>
+<td>里程碑权限</td>
+<td>查看里程碑批复</td>
+<td>里程碑批复视图和订单详情查看里程碑批复</td>
+</tr>
+<tr>
+<td>里程碑权限</td>
+<td>工单采集/指派</td>
+<td>指派或修改本团队工单采集成员，也可处理相关采集任务</td>
+</tr>
+<tr>
+<td>里程碑权限</td>
+<td>工单批复/指派</td>
+<td>指派或修改本团队工单批复成员，也可处理相关批复任务</td>
+</tr>
+<tr>
+<td>里程碑权限</td>
+<td>里程碑批复/指派</td>
+<td>指派或修改本团队里程碑批复成员，也可处理相关批复任务</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 订单范围</h2>
+<table>
+<thead>
+<tr>
+<th>范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所有参与协作的订单</td>
+<td>当前协作团队作为工单采集人、工单批复人、里程碑批复人的订单</td>
+</tr>
+<tr>
+<td>自定义</td>
+<td>在本团队参与的所有订单基础上，再按主表单字段设置限制条件</td>
+</tr>
+</tbody>
+</table>
+<p>协作方自定义订单范围是在“参与协作订单”的基础上收窄，不是跨越链主方授权范围的扩权。</p>
+<h2 id="6">6. 勾选联动规则</h2>
+<ul>
+<li>勾选工单采集/指派、工单批复/指派时，需要同时勾选查看工单。</li>
+<li>勾选里程碑批复/指派时，需要同时勾选查看里程碑批复。</li>
+<li>勾选查看里程碑批复时，需要同时勾选查看工单。</li>
+<li>勾选任意里程碑权限时，需要同时勾选查看订单基本信息。</li>
+<li>自定义订单范围权限跟随查看订单基本信息。</li>
+</ul>
+<h2 id="7">7. 消息通知设置</h2>
+<p>协作团队自建角色中，里程碑任务指派权限旁可设置“对接人不再接收此类消息通知”。打开时，如果当前里程碑对应权限尚无其他角色勾选，需要提醒：暂未设置其他成员接收该类消息，打开后可能无法及时通知。</p>
+<h2 id="8">8. 成员管理规则</h2>
+<ul>
+<li>协作 FlowSpace 成员来自已成功加入本团队的成员。</li>
+<li>添加成员时可设置角色，多选且非必填。</li>
+<li>删除最后一名对接人时不可删除，提示至少保留一名对接人。</li>
+<li>删除成员后，该成员当前 FlowSpace 相关业务数据不可查看；任务中心相关工单隐藏；相关邮件、消息跳转提示暂无权限。</li>
+</ul>
+<h2 id="9">9. 审计要求</h2>
+<p>协作 FlowSpace 设置操作日志需要记录：</p>
+<ul>
+<li>自建角色新增、编辑、删除。</li>
+<li>主团队角色编辑，仅记录成员编辑。</li>
+<li>成员管理新增、删除、设置权限。</li>
+</ul>
+<p>主团队修改或删除协作方角色，不记录在协作方 FlowSpace 的操作日志中。</p>
+<h2 id="10">10. 待确认问题</h2>
+<ul>
+<li>“对接人”“有指派权限成员”“任务实际处理人”在所有通知和任务列表中的边界需要继续校验。</li>
+<li>链主方删除协作里程碑权限时，协作团队历史任务和历史记录是否保留完整可见，需要补规则。</li>
+</ul>
+  </article>
+</body>
+</html>

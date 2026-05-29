@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>权限测试矩阵 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">权限测试矩阵</h1>
+<p>本页用于把权限规则转化为测试用例矩阵。权威规则以权限目录为准，本页负责测试覆盖。</p>
+<h2 id="_2">通用权限维度</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>测试点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队角色</td>
+<td>拥有者、管理员、普通成员、外部协作者的入口和操作差异</td>
+</tr>
+<tr>
+<td>FlowSpace 业务角色</td>
+<td>FlowSpace 内订单、里程碑、工单、设置和数据范围</td>
+</tr>
+<tr>
+<td>协作 FlowSpace 角色</td>
+<td>协作团队只看到被授权的数据和任务</td>
+</tr>
+<tr>
+<td>数据围栏</td>
+<td>字段、标签、订单、资源库记录的可见性</td>
+</tr>
+<tr>
+<td>资源库权限</td>
+<td>创建、编辑、删除、分享、引用、同步、历史记录</td>
+</tr>
+<tr>
+<td>仪表盘与报告权限</td>
+<td>图表、报表、数据源和结果是否按权限过滤</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">品牌方供应商工厂场景权限矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>应能操作</th>
+<th>不应能操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方管理员</td>
+<td>查看全部供应商、工厂、订单、验厂、CAP，配置模板和权限</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td>品牌方审核人</td>
+<td>审核被分配的工厂申报、验厂报告、CAP 复核</td>
+<td>修改无关模板和全局权限</td>
+</tr>
+<tr>
+<td>供应商管理员</td>
+<td>提交自己名下工厂申报，查看自己相关订单，提交生产工厂报备</td>
+<td>查看其他供应商订单、工厂和品牌方内部审核意见</td>
+</tr>
+<tr>
+<td>工厂联系人</td>
+<td>补充本工厂资料，提交被分配的整改证据</td>
+<td>查看供应商全量订单、其他工厂资料</td>
+</tr>
+<tr>
+<td>DAREN 服务商</td>
+<td>查看被分配的验厂和 CAP 任务，提交审核报告或复核意见</td>
+<td>查看品牌方全部订单和供应商资源库</td>
+</tr>
+<tr>
+<td>现场审核员/QC</td>
+<td>在采集端完成现场工单、上传图片附件、签名</td>
+<td>修改品牌方审批结论和资源库主数据</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">测试用例转化规则</h2>
+<p>每条权限规则至少转化为三类用例：</p>
+<ol>
+<li>有权限用户可以完成操作。</li>
+<li>无权限用户看不到入口或无法提交。</li>
+<li>数据范围变化后，已有页面、搜索、导出、仪表盘同步受控。</li>
+</ol>
+  </article>
+</body>
+</html>

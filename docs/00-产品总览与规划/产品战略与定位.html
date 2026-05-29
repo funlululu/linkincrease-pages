@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>产品战略与定位 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">产品战略与定位</h1>
+<h2 id="1">1. 页面定位</h2>
+<p>本页用于沉淀 Linkincrease 的产品战略层口径，帮助产品、设计、研发和业务成员理解产品为什么存在、服务谁、解决什么问题，以及当前知识库中哪些内容属于稳定事实，哪些仍属于历史假设。</p>
+<p>本页综合历史产品文档中的愿景、定位、问题陈述、精益 UX 画布和综合定义内容，并以当前知识库口径重新整理。历史文档中的 <code>SCCS</code> 在本页统一表述为 FlowSpace；如需追溯原文，保留 <code>source:product-docs-legacy/...</code> 来源标识。</p>
+<h2 id="2">2. 产品愿景</h2>
+<p>Linkincrease 面向供应链协作场景，目标是让跨团队、跨企业、跨角色的订单执行过程从“分散沟通、人工追踪、重复录入”转向“统一空间、结构化协作、过程留痕、数据复用”。</p>
+<p>战略表达可以归纳为：</p>
+<blockquote>
+<p>建立一个以 FlowSpace 为业务协作空间、以订单流程为执行主线、以模板和资源库为配置底座的供应链协作平台，帮助企业更快搭建可执行、可追踪、可复用的业务流程。</p>
+</blockquote>
+<h2 id="3">3. 核心定位</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>定位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品类别</td>
+<td>供应链业务协同平台</td>
+</tr>
+<tr>
+<td>核心对象</td>
+<td>FlowSpace、订单、里程碑、工单、资源库、业务模板</td>
+</tr>
+<tr>
+<td>核心价值</td>
+<td>让业务流程可配置、执行过程可协作、数据变化可追溯、标准数据可复用</td>
+</tr>
+<tr>
+<td>主要使用者</td>
+<td>客户团队成员、协作团队、移动执行人员、平台运营/实施人员</td>
+</tr>
+<tr>
+<td>主要场景</td>
+<td>订单执行、任务采集、跨团队协作、模板配置、资源库管理、过程追踪、数据展示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 主要问题</h2>
+<p>历史产品资料中的问题可以保留为产品背景，但不能直接当作已验证数据。当前可沉淀的问题框架如下：</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>业务表现</th>
+<th>Linkincrease 的对应能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信息分散</td>
+<td>订单、任务、文件和沟通分布在不同工具中</td>
+<td>FlowSpace 统一承载订单、里程碑、工单、动态和跟踪记录</td>
+</tr>
+<tr>
+<td>协作边界不清</td>
+<td>内部团队和外部协作团队的职责、权限、数据范围难管理</td>
+<td>团队角色、FlowSpace 业务角色、协作 FlowSpace 角色、数据围栏</td>
+</tr>
+<tr>
+<td>状态不透明</td>
+<td>订单和任务进展依赖人工同步</td>
+<td>订单状态、里程碑状态、工单状态、消息通知、仪表盘和报告</td>
+</tr>
+<tr>
+<td>重复录入</td>
+<td>同类物料、供应商、客户等数据反复维护</td>
+<td>资源库、资源库模板、资源库引用与同步</td>
+</tr>
+<tr>
+<td>过程不可追溯</td>
+<td>谁改了什么、何时触发、自动化做了什么难复盘</td>
+<td>操作日志、动态、历史记录、跟踪记录、系统执行日志</td>
+</tr>
+<tr>
+<td>移动处理不便</td>
+<td>外勤、仓库、验货、物流等场景难以及时处理任务</td>
+<td>采集端任务列表、任务详情、工单采集、批复和消息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 产品价值主张</h2>
+<table>
+<thead>
+<tr>
+<th>价值主张</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可配置</td>
+<td>通过业务模板、资源库模板、表单组件和显隐规则适配不同业务流程</td>
+</tr>
+<tr>
+<td>可协作</td>
+<td>通过团队、协作团队、角色、指派、消息和邮件协作支持多方参与</td>
+</tr>
+<tr>
+<td>可追踪</td>
+<td>通过订单跟踪记录、动态、日志、历史记录沉淀过程证据</td>
+</tr>
+<tr>
+<td>可复用</td>
+<td>通过资源库、订单翻单、订单关联、里程碑互用、工单互用减少重复劳动</td>
+</tr>
+<tr>
+<td>可分析</td>
+<td>通过工作台、订单日程、常用视图、仪表盘和报告进行过程观察</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 三端战略分工</h2>
+<table>
+<thead>
+<tr>
+<th>产品端</th>
+<th>战略角色</th>
+<th>不应混淆的边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运营端</td>
+<td>平台配置与监管后台，负责模板、用户、团队、FlowSpace、资源库、集成和报告等平台级管理</td>
+<td>不承担客户团队的日常订单执行</td>
+</tr>
+<tr>
+<td>贸易端</td>
+<td>客户业务协同主平台，负责团队、FlowSpace、订单、工单、资源库、自动化、消息、仪表盘和报告</td>
+<td>不直接替代采集端移动执行体验</td>
+</tr>
+<tr>
+<td>采集端</td>
+<td>移动任务处理入口，负责外勤/仓库/验货等场景下的任务查看、采集、批复和消息处理</td>
+<td>不承担完整后台配置能力</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 使用边界</h2>
+<ol>
+<li>本页可用于产品介绍、团队共识、知识库入门和需求背景说明。</li>
+<li>本页不替代具体功能规则；权限、状态、字段、日志、通知、导入导出规则必须以对应专题页为准。</li>
+<li>历史文档中的市场规模、目标数值、阶段时间、版本规划和商业模式仍需产品负责人确认后，才能作为正式策略或 OKR 使用。</li>
+<li>当历史文档与 <code>source:thoughts-v2-current</code> 最新需求源冲突时，以最新需求源和已确认知识页为准。</li>
+</ol>
+<h2 id="8">8. 关联页面</h2>
+<ul>
+<li><a href="../../01-产品总览.md">产品总览</a></li>
+<li><a href="../../02-核心概念词典.md">核心概念词典</a></li>
+<li><a href="../../03-功能地图.md">功能地图</a></li>
+<li><a href="./用户角色与场景.md">用户角色与场景</a></li>
+<li><a href="./产品指标与路线图.md">产品指标与路线图</a></li>
+<li><a href="../90-版本历史与来源治理/历史产品文档评估.md">历史产品文档评估</a></li>
+</ul>
+<h2 id="9">9. 来源</h2>
+<ul>
+<li><code>source:product-docs-legacy/产品愿景与定位文档.md</code></li>
+<li><code>source:product-docs-legacy/问题陈述-ProblemStatement.md</code></li>
+<li><code>source:product-docs-legacy/精益UX画布-LeanUXCanvas.md</code></li>
+<li><code>source:product-docs-legacy/产品综合定义文档.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

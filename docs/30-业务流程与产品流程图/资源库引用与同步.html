@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>资源库引用与同步 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">资源库引用与同步</h1>
+<h2 id="1">1. 流程定位</h2>
+<p>资源库引用与同步描述团队资源库如何被 FlowSpace 订单字段引用，以及资源库数据变化后如何影响订单中的已引用数据和历史记录。</p>
+<h2 id="2">2. 流程图</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;运营端配置资源库模板&quot;] --&gt; B[&quot;贸易端创建资源库&quot;]
+    B --&gt; C[&quot;维护资源库表数据&quot;]
+    C --&gt; D[&quot;FlowSpace 关联资源库&quot;]
+    D --&gt; E[&quot;订单字段引用资源库数据&quot;]
+    C --&gt; F[&quot;资源库数据变更&quot;]
+    F --&gt; G{&quot;是否影响已引用数据&quot;}
+    G --&gt;|按策略同步| H[&quot;系统自动更新订单引用字段&quot;]
+    G --&gt;|不同步| I[&quot;历史订单保留引用快照或文本&quot;]
+    H --&gt; J[&quot;写入系统自动执行日志&quot;]
+    I --&gt; K[&quot;可通过历史记录追溯&quot;]
+</code></pre>
+<h2 id="3-flowspace">3. FlowSpace 应用数据范围</h2>
+<p>资源库可按表设置 FlowSpace 应用权限：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所有数据</td>
+<td>FlowSpace 关联资源库后，所有用户在订单中引用资源库数据时，可引用所有数据</td>
+</tr>
+<tr>
+<td>根据用户权限</td>
+<td>用户在 FlowSpace 订单中引用资源库数据时，只可引用本人可查看的资源库数据</td>
+</tr>
+</tbody>
+</table>
+<p>规则：</p>
+<ul>
+<li>此处 FlowSpace 指与资源库所属同一团队下的 FlowSpace。</li>
+<li>暂不考虑协作团队 FlowSpace 引用协作资源库的复杂场景。</li>
+<li>修改配置后，不影响 FlowSpace 已引用的数据。</li>
+<li>再次编辑订单数据时，可引用数据范围按最新配置生效。</li>
+</ul>
+<h2 id="4">4. 引用与删除规则</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>删除资源库</td>
+<td>新订单不可再引用；历史订单保留已引用文本</td>
+</tr>
+<tr>
+<td>删除资源库数据</td>
+<td>新订单不可继续引用该数据；历史引用保留</td>
+</tr>
+<tr>
+<td>修改资源库数据</td>
+<td>按同步策略影响已引用字段</td>
+</tr>
+<tr>
+<td>修改 FlowSpace 应用范围</td>
+<td>不影响已引用数据；影响后续编辑引用范围</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 历史记录</h2>
+<ul>
+<li>资源库数据列表每条数据增加历史记录查看按钮。</li>
+<li>可见该条数据的人可以查看历史记录。</li>
+<li>历史记录按操作时间正序排序。</li>
+<li>默认查看最新一条记录。</li>
+<li>游客操作需增加分享人信息。</li>
+</ul>
+<h2 id="6">6. 日志与审计</h2>
+<p>需要记录：</p>
+<ul>
+<li>资源库数据创建、编辑、删除。</li>
+<li>资源库数据导入、导出。</li>
+<li>FlowSpace 应用数据范围配置变更。</li>
+<li>资源库同步触发的系统自动执行日志。</li>
+<li>资源库历史记录。</li>
+</ul>
+<h2 id="7">7. 待确认问题</h2>
+<ul>
+<li>资源库同步与自动化更新同一字段时的优先级。</li>
+<li>资源库引用字段被手动修改后的冲突处理。</li>
+<li>协作资源库和协作团队 FlowSpace 引用场景是否纳入近期范围。</li>
+</ul>
+<h2 id="8">8. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【资源库】第一阶段.md</code></li>
+<li><code>source:thoughts-v2-current/v2.7/贸易端/【贸易端】【资源库】SCCS应用数据范围、数据编辑历史记录.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/系统自动执行的相关操作日志.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

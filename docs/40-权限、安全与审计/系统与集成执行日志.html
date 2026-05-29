@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>系统与集成执行日志 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">系统与集成执行日志</h1>
+<h2 id="_2">定位</h2>
+<p>系统与集成执行日志用于追溯非普通用户手动操作产生的数据变化，包括公式自动更新、自动化执行、资源库数据同步、SCMPro API 数据变更、外部 API 集成同步和运营端自动化记录。</p>
+<p>这类记录需要同时进入业务审计链路，避免系统写入的数据无法解释来源。</p>
+<h2 id="_3">系统执行来源</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公式自动更新</td>
+<td>公式字段根据依赖字段自动重新计算</td>
+</tr>
+<tr>
+<td>自动化更新</td>
+<td>FlowSpace 自动化程序根据触发条件执行动作</td>
+</tr>
+<tr>
+<td>关联资源库同步</td>
+<td>资源库数据或引用字段配置变化后，同步更新订单数据</td>
+</tr>
+<tr>
+<td>SCMPro API 数据变更</td>
+<td>第三方系统数据变化后自动更新 Linkincrease</td>
+</tr>
+<tr>
+<td>外部 API 集成</td>
+<td>运营端配置外部 API 后，外部数据创建或更新订单、工单等</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">公式自动更新</h2>
+<p>公式自动更新仅增加订单跟踪记录、动态和历史记录，不更新数据创建人或更新人。</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>记录规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单跟踪记录</td>
+<td>主表单公式字段更新时增加记录</td>
+</tr>
+<tr>
+<td>动态</td>
+<td>里程碑批复、工单批复、工单采集中的公式字段更新时增加动态，归类为修改记录</td>
+</tr>
+<tr>
+<td>历史记录</td>
+<td>里程碑批复、工单批复、工单采集中的公式字段更新时增加历史记录</td>
+</tr>
+</tbody>
+</table>
+<p>操作人显示为系统，操作时间为自动更新时间，历史快照展示公式字段更新前后的值。</p>
+<h2 id="_5">自动化更新</h2>
+<p>自动化更新同普通用户操作逻辑，增加订单跟踪记录、动态、历史记录，并更新数据更新时间和更新人。</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>记录规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单跟踪记录</td>
+<td>主表单内容更新、里程碑首次创建工单、订单状态变更、里程碑状态变更时记录</td>
+</tr>
+<tr>
+<td>动态</td>
+<td>创建里程碑批复、更新里程碑批复、创建工单、更新工单、更新工单批复时记录</td>
+</tr>
+<tr>
+<td>历史记录</td>
+<td>主表单更新、创建工单、更新工单、更新工单批复、创建或更新里程碑批复时记录</td>
+</tr>
+<tr>
+<td>数据更新时间/更新人</td>
+<td>更新时间为自动化执行时间，更新人为自动化</td>
+</tr>
+</tbody>
+</table>
+<p>操作人显示为自动化，头像为系统。</p>
+<h2 id="_6">自动化执行日志</h2>
+<p>贸易端自动化配置中可查看自动化执行日志。运营端也提供 FlowSpace 自动化记录列表，用于平台级追踪。</p>
+<h3 id="_7">贸易端执行日志</h3>
+<p>每条自动化执行日志可以查看执行记录。详情中每个节点都可以查看配置流程和具体执行数据。</p>
+<p>执行记录按自动化配置的数据源展示：</p>
+<table>
+<thead>
+<tr>
+<th>数据源</th>
+<th>执行记录展示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单基本信息</td>
+<td>被执行 <code>$订单ID</code></td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>被执行 <code>$订单ID_$里程碑名称 里程碑批复</code></td>
+</tr>
+<tr>
+<td>工单</td>
+<td>被执行 <code>$订单ID_$里程碑名称_$工单名称</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">运营端自动化记录</h3>
+<p>运营端自动化记录列表支持按 FlowSpace、团队、自动化、触发类型、执行状态、触发时间、执行时间筛选。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace名称、CODE</td>
+<td>对应 FlowSpace 基础信息</td>
+</tr>
+<tr>
+<td>所属团队、团队码</td>
+<td>对应团队基础信息</td>
+</tr>
+<tr>
+<td>订单ID、订单码</td>
+<td>自动化涉及的订单信息</td>
+</tr>
+<tr>
+<td>自动化名称、自动化ID</td>
+<td>自动化基础信息</td>
+</tr>
+<tr>
+<td>触发类型</td>
+<td>新增数据、数据变更、到达时间、定时任务</td>
+</tr>
+<tr>
+<td>触发数据</td>
+<td>订单信息、工单信息、里程碑批复</td>
+</tr>
+<tr>
+<td>执行动作</td>
+<td>自动化执行的动作</td>
+</tr>
+<tr>
+<td>执行状态</td>
+<td>成功、失败、已失效、待执行</td>
+</tr>
+<tr>
+<td>执行结果摘要</td>
+<td>成功或失败摘要</td>
+</tr>
+<tr>
+<td>执行时间</td>
+<td>自动化实际执行时间</td>
+</tr>
+</tbody>
+</table>
+<p>列表按创建时间倒序。详情展示规则同贸易端。</p>
+<h2 id="_9">关联资源库同步</h2>
+<p>因关联的是资源库数据 ID，订单侧不增加记录。资源库自身数据历史记录仍需保留资源库数据被编辑、导入、分享编辑等操作来源。</p>
+<h2 id="api">外部API集成日志</h2>
+<p>外部 API 集成日志展示一定时间范围内的同步日志。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间</td>
+<td>触发同步的时间</td>
+</tr>
+<tr>
+<td>事件类型</td>
+<td>创建、更新</td>
+</tr>
+<tr>
+<td>同步方向</td>
+<td>正向、反向</td>
+</tr>
+<tr>
+<td>数据标识</td>
+<td>外部或 Linkincrease 数据标识</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>成功、失败</td>
+</tr>
+<tr>
+<td>详情</td>
+<td>记录成功或失败说明</td>
+</tr>
+</tbody>
+</table>
+<p>外部系统同步到贸易端业务数据后，还需要写入订单跟踪记录、工单动态和历史记录。</p>
+<p>典型记录：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>文案口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单跟踪记录-创建订单</td>
+<td><code>$操作人 在 $来源标识 操作了数据，同步创建了订单</code></td>
+</tr>
+<tr>
+<td>订单跟踪记录-更新订单</td>
+<td><code>$操作人 在 $来源标识 操作了数据，同步更新了订单</code></td>
+</tr>
+<tr>
+<td>订单跟踪记录-里程碑开始</td>
+<td><code>$操作人 在 $来源标识 操作了数据，同步在 $里程碑名称 创建了工单，里程碑开始</code></td>
+</tr>
+<tr>
+<td>工单动态-创建工单</td>
+<td><code>$操作人 在 $来源标识 操作了数据，同步创建了工单</code></td>
+</tr>
+<tr>
+<td>工单动态-更新工单采集</td>
+<td><code>$操作人 在 $来源标识 操作了数据，同步更新了工单</code></td>
+</tr>
+<tr>
+<td>工单动态-更新工单批复</td>
+<td><code>$操作人 在 $来源标识 操作了数据，同步更新了工单批复，工单无法继续编辑</code></td>
+</tr>
+<tr>
+<td>动态-更新里程碑批复</td>
+<td><code>$操作人 在 $来源标识 操作了数据，同步更新了里程碑批复</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">软件更新记录</h2>
+<p>运营端软件管理包含软件更新管理和软件更新记录。当前用于采集端 APP、Android 平台。</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软件更新管理</td>
+<td>相同产品类型、软件类型只展示最近更新的一条记录</td>
+</tr>
+<tr>
+<td>软件更新记录</td>
+<td>记录每一次更新</td>
+</tr>
+<tr>
+<td>查看详情</td>
+<td>可查看更新详情并下载安装包</td>
+</tr>
+<tr>
+<td>更新日志</td>
+<td>文字，可换行，暂不需要富文本</td>
+</tr>
+</tbody>
+</table>
+<p>记录字段包括产品、平台、发布时间、支持最小版本、当前版本、更新人、更新时间。</p>
+<h2 id="_11">关联页面</h2>
+<ul>
+<li><a href="../10-功能模块详情/自动化配置.md">自动化配置</a></li>
+<li><a href="../40-权限、安全与审计/自动化与系统执行日志.md">自动化与系统执行日志</a></li>
+<li><a href="../80-架构与技术方案/集成方案.md">第三方数据对接</a></li>
+<li><a href="./历史记录与快照.md">历史记录与快照</a></li>
+<li><a href="./订单跟踪记录.md">订单跟踪记录</a></li>
+</ul>
+<h2 id="_12">来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/系统自动执行的相关操作日志.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【自动化】一期.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/运营端/【运营端】【SCCS管理】SCCS自动化记录.md</code></li>
+<li><code>source:thoughts-v2-current/V2.5.x/运营端/【运营端】【SCCS管理】SCCS列表增加外部api集成配置.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/运营端/【运营端】【设置-软件管理】软件相关信息与记录管理.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

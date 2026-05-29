@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>从模板到FlowSpace - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="flowspace">从模板到 FlowSpace</h1>
+<h2 id="1">1. 流程定位</h2>
+<p>本流程描述运营端业务模板如何成为贸易端可使用的 FlowSpace，并在 FlowSpace 运行态中继续配置成员、角色、数据围栏、里程碑计划、标签和更多业务设置。</p>
+<h2 id="2">2. 流程图</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;运营端创建业务模板&quot;] --&gt; B[&quot;配置基础信息&quot;]
+    B --&gt; C[&quot;设计主表单、里程碑、工单表单、批复表单&quot;]
+    C --&gt; D[&quot;配置订单标识、PDF导入、第三方配置、预览数据&quot;]
+    D --&gt; E[&quot;发布模板&quot;]
+    E --&gt; F{&quot;模板是否启用且已发布&quot;}
+    F --&gt;|是| G[&quot;贸易端模板中心可见&quot;]
+    F --&gt;|否| H[&quot;贸易端不可见&quot;]
+    G --&gt; I[&quot;团队使用模板创建 FlowSpace&quot;]
+    I --&gt; J[&quot;FlowSpace 设置成员、角色、协作团队、数据围栏&quot;]
+    J --&gt; K[&quot;配置里程碑计划、标签、订单标识、取消原因&quot;]
+    K --&gt; L[&quot;进入订单业务执行&quot;]
+</code></pre>
+<h2 id="3">3. 阶段说明</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>关键动作</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模板创建</td>
+<td>添加业务模板，配置名称、图标、创建类型、行业、描述、备注</td>
+<td>生成未发布模板</td>
+</tr>
+<tr>
+<td>模板设计</td>
+<td>设计主表单、里程碑、工单表单、批复表单</td>
+<td>确定 FlowSpace 的业务结构</td>
+</tr>
+<tr>
+<td>模板发布</td>
+<td>发布模板并设置可见范围</td>
+<td>贸易端可见的前置条件</td>
+</tr>
+<tr>
+<td>FlowSpace 创建</td>
+<td>贸易端团队选择模板创建 FlowSpace</td>
+<td>生成业务空间</td>
+</tr>
+<tr>
+<td>FlowSpace 运行态设置</td>
+<td>设置角色、成员、数据围栏、计划、标签、更多设置</td>
+<td>形成可执行业务环境</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 权限规则</h2>
+<ul>
+<li>运营端模板管理权限决定谁可创建、编辑、发布、复制和同步业务模板。</li>
+<li>模板可见范围决定哪些团队可在贸易端模板中心看到模板。</li>
+<li>贸易端团队角色中的“创建 FlowSpace”权限决定谁可创建 FlowSpace。</li>
+<li>FlowSpace 创建后，FlowSpace 内业务权限由 FlowSpace 业务角色和协作方角色控制。</li>
+</ul>
+<h2 id="5">5. 状态与限制</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>状态</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务模板</td>
+<td>未发布</td>
+<td>即使启用，贸易端也不可见</td>
+</tr>
+<tr>
+<td>业务模板</td>
+<td>已发布</td>
+<td>可按可见范围在贸易端展示</td>
+</tr>
+<tr>
+<td>业务模板</td>
+<td>已编辑</td>
+<td>与已发布版本不一致，需要提示发布</td>
+</tr>
+<tr>
+<td>FlowSpace</td>
+<td>已创建</td>
+<td>基于创建时模板生成运行态结构</td>
+</tr>
+<tr>
+<td>FlowSpace 模板同步</td>
+<td>同步至未发布状态的 FlowSpace 模板</td>
+<td>需谨慎处理字段关联和业务数据</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 数据与表单影响</h2>
+<p>模板定义以下内容：</p>
+<ul>
+<li>订单主表单。</li>
+<li>里程碑。</li>
+<li>工单采集表单。</li>
+<li>工单批复表单。</li>
+<li>里程碑批复表单。</li>
+<li>订单标识默认配置。</li>
+<li>PDF 导入设置。</li>
+<li>第三方数据对接配置。</li>
+<li>预览数据。</li>
+</ul>
+<p>同步至 FlowSpace 时，需确认新增字段、删除字段、字段关联关系和历史业务数据保留规则。</p>
+<h2 id="7">7. 日志与追溯</h2>
+<p>需要记录：</p>
+<ul>
+<li>模板创建、编辑、删除。</li>
+<li>模板发布。</li>
+<li>模板可见范围设置。</li>
+<li>模板复制。</li>
+<li>同步至 FlowSpace。</li>
+<li>FlowSpace 创建。</li>
+<li>FlowSpace 设置变更。</li>
+</ul>
+<h2 id="8">8. 待确认问题</h2>
+<ul>
+<li>业务模板同步至已创建 FlowSpace 时，字段删除后的历史业务数据如何保留。</li>
+<li>FlowSpace 内模板是否存在发布态/未发布态的完整状态机。</li>
+<li>用户自建模板和定制模板是否纳入当前流程。</li>
+</ul>
+<h2 id="9">9. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【工作台】工作台、创建SCCS、SCCS分组.md</code></li>
+<li><code>source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

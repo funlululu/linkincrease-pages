@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>外部链接快照清单 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">外部链接快照清单</h1>
+<h2 id="_2">定位</h2>
+<p>原始需求文档中包含大量远程截图、Teambition 图片、Thoughts 链接和钉钉表格链接。为了避免外部链接失效，本页用于定义外部链接的快照策略和优先处理清单。</p>
+<h2 id="_3">外部链接类型</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>示例来源</th>
+<th>风险</th>
+<th>处理策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Teambition 图片</td>
+<td><code>https://tcs.teambition.net/storage/...</code></td>
+<td>链接过期、签名失效</td>
+<td>批量下载到 <code>assets/images/</code> 并建立映射</td>
+</tr>
+<tr>
+<td>Thoughts 文档</td>
+<td><code>https://thoughts.teambition.com/...</code></td>
+<td>权限变化、目录结构变化</td>
+<td>导出为 Markdown 或 PDF 放入 <code>sources/exported/</code></td>
+</tr>
+<tr>
+<td>钉钉表格</td>
+<td><code>https://alidocs.dingtalk.com/spreadsheetv2/...</code></td>
+<td>权限变化、在线内容变动</td>
+<td>导出为 xlsx/csv 放入 <code>sources/exported/</code></td>
+</tr>
+<tr>
+<td>外部 API 说明</td>
+<td>需求中的外部链接或嵌入说明</td>
+<td>链接不可访问、字段口径丢失</td>
+<td>整理为本地接口说明文档</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">当前重点外部资料</h2>
+<table>
+<thead>
+<tr>
+<th>资料</th>
+<th>当前出现位置</th>
+<th>建议处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace 权限矩阵钉钉表格</td>
+<td><code>【贸易端】【SCCS设置】.md</code>、<code>【贸易端】【协作SCCS设置】.md</code>、订单详情相关文档</td>
+<td>优先导出为权限矩阵表，补入 <code>docs/40-权限、安全与审计/</code></td>
+</tr>
+<tr>
+<td>需求截图</td>
+<td>几乎所有原始需求文档</td>
+<td>批量下载并按来源文档、行号或资源 ID 建立索引</td>
+</tr>
+<tr>
+<td>采集端消息中心关联 Thoughts 文档</td>
+<td><code>【采集端】【消息中心】消息通知列表.md</code></td>
+<td>导出原文，补入消息模板来源</td>
+</tr>
+<tr>
+<td>邮件、短信、通知规则及模板</td>
+<td>多份文档引用但未见独立完整文档</td>
+<td>从在线资料或团队文件中补齐后入库</td>
+</tr>
+<tr>
+<td>第三方 API / SCMPRO 字段说明</td>
+<td>外部 API、第三方数据对接、PDF 导入相关需求</td>
+<td>整理为字段映射和接口示例文档</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">建议本地存储结构</h2>
+<pre><code class="language-text">sources/
+  exported/
+    tables/
+    thoughts/
+    api/
+  snapshots/
+    screenshots/
+assets/
+  images/
+    requirements/
+</code></pre>
+<p>命名建议：</p>
+<pre><code class="language-text">需求来源短名__资源类型__序号__简述.ext
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-text">sccs-settings__table__permission-matrix.xlsx
+order-detail__image__tracking-record.png
+external-api__doc__field-mapping.md
+</code></pre>
+<h2 id="_6">快照元数据建议</h2>
+<p>后续可新增 <code>metadata/external-links.csv</code>，字段建议如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>外部资源唯一 ID</td>
+</tr>
+<tr>
+<td>source_file</td>
+<td>出现在哪个原始需求文档</td>
+</tr>
+<tr>
+<td>source_line</td>
+<td>出现行号</td>
+</tr>
+<tr>
+<td>url</td>
+<td>原始 URL</td>
+</tr>
+<tr>
+<td>type</td>
+<td>image、thoughts、dingtalk、api、other</td>
+</tr>
+<tr>
+<td>local_path</td>
+<td>本地快照路径</td>
+</tr>
+<tr>
+<td>status</td>
+<td>pending、downloaded、failed、not_needed</td>
+</tr>
+<tr>
+<td>captured_at</td>
+<td>快照时间</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">优先级</h2>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>范围</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>权限矩阵表、通知模板、外部 API 字段说明</td>
+<td>会影响产品规则和后续开发判断</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>订单、工单、权限、自动化关键截图</td>
+<td>有助于还原复杂交互</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>普通页面原型截图</td>
+<td>可在知识页稳定后批量归档</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">关联页面</h2>
+<ul>
+<li><a href="./来源入库状态.md">来源入库状态</a></li>
+<li><a href="./待确认问题.md">待确认问题</a></li>
+<li><a href="../../06-知识库工程架构.md">知识库工程架构</a></li>
+</ul>
+  </article>
+</body>
+</html>

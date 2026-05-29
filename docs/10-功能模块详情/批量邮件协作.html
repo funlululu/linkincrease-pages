@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>批量邮件协作 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">批量邮件协作</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>批量邮件协作用于在工单视图中对多条工单一次性发起邮件协作，减少重复操作。每个邮箱都会接收当前勾选工单的邮件协作，执行几条工单就收到几封邮件。</p>
+<h2 id="2">2. 入口与适用范围</h2>
+<ul>
+<li>入口：贸易端工单视图批量操作。</li>
+<li>对象：当前勾选的多条工单。</li>
+<li>发送记录：与单条邮件协作共用最近 10 条发送邮箱记录。</li>
+</ul>
+<h2 id="3">3. 配置内容</h2>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收件邮箱</td>
+<td>可输入多个邮箱</td>
+</tr>
+<tr>
+<td>邮件主题</td>
+<td>同单个工单邮件协作</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>同单个工单邮件协作</td>
+</tr>
+<tr>
+<td>附件</td>
+<td>可选择当前里程碑工单模板中的图片/附件字段；本地上传附件应用于所有工单</td>
+</tr>
+<tr>
+<td>协作内容设置</td>
+<td>列出当前所选工单中所有表单，可分别设置显隐</td>
+</tr>
+<tr>
+<td>预览</td>
+<td>查看发出后的协作内容</td>
+</tr>
+</tbody>
+</table>
+<p>由于批量邮件涉及多个工单，选择模板附件字段时不立即带入附件，而是在发出时统一上传。</p>
+<h2 id="4">4. 表单显隐与数据围栏</h2>
+<ul>
+<li>每行工单根据各自表单显隐、当前采集人是否可编辑进行展示。</li>
+<li>可编辑表单发出后字段内容为空，供外部填写。</li>
+<li>不可编辑表单发出后展示原工单最新数据。</li>
+<li>订单基本信息按当前采集人的数据围栏控制，不可见字段对邮件协作者也不可见。</li>
+</ul>
+<h2 id="5">5. 确定校验</h2>
+<table>
+<thead>
+<tr>
+<th>校验</th>
+<th>提示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>邮箱格式不正确</td>
+<td>邮箱格式不正确</td>
+</tr>
+<tr>
+<td>某工单可编辑表单全隐藏</td>
+<td>至少保留一个可编辑模块</td>
+</tr>
+<tr>
+<td>采集人可编辑表单或可见表单变更</td>
+<td>工单编辑权限已变更，请刷新页面</td>
+</tr>
+<tr>
+<td>指派权限被取消</td>
+<td>暂无权限，请刷新页面</td>
+</tr>
+<tr>
+<td>订单删除</td>
+<td>订单已删除，无法操作，请刷新页面</td>
+</tr>
+<tr>
+<td>里程碑完成或取消</td>
+<td>里程碑已完成/已取消，无法操作，请刷新页面</td>
+</tr>
+<tr>
+<td>工单终止采集、已批复或删除</td>
+<td>工单已终止采集/已批复/已删除，无法操作，请刷新页面</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 与批量采集的关系</h2>
+<p>同一需求中还包含批量采集工单。批量采集在编辑列表中直接修改可编辑工单字段，提交后触发与单条工单采集相同的动态、历史记录和消息通知。批量邮件协作则生成邮件协作任务，不直接提交工单采集数据。</p>
+<h2 id="7">7. 待确认问题</h2>
+<ul>
+<li>批量邮件协作是否支持“所有对象共同接收同一封邮件”的新发送模式，需与单条邮件协作统一。</li>
+<li>批量邮件发送失败的重试、部分成功和记录展示规则需补充。</li>
+</ul>
+  </article>
+</body>
+</html>

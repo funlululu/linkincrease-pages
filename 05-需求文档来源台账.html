@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>需求文档来源台账 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">需求文档来源台账</h1>
+<p>本台账用于记录 <code>最新需求源（source:thoughts-v2-current）</code> 中每份原始需求应归入知识库的哪个主题。后续新增或变更需求时，先运行来源扫描脚本，再更新本台账并合入对应知识页。</p>
+<h2 id="1">1. 贸易端</h2>
+<table>
+<thead>
+<tr>
+<th>原始需求文档</th>
+<th>知识库归属</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>【贸易端】【账号】注册登录、忘记密码.md</code></td>
+<td>账号与个人 / 用户身份</td>
+</tr>
+<tr>
+<td><code>【贸易端】【个人中心】个人信息、切换语言、退出账号.md</code></td>
+<td>账号与个人 / 个人设置</td>
+</tr>
+<tr>
+<td><code>【贸易端】【团队管理】创建团队.md</code></td>
+<td>团队与协作团队 / 创建团队</td>
+</tr>
+<tr>
+<td><code>【贸易端】【团队设置】团队信息、角色、成员、协作团队管理.md</code></td>
+<td>团队与协作团队 / 团队设置</td>
+</tr>
+<tr>
+<td><code>【贸易端】【团队设置】邀请成 员_协作团队流程变更.md</code></td>
+<td>团队与协作团队 / 邀请流程</td>
+</tr>
+<tr>
+<td><code>【贸易端】【工作台】工作台、创建SCCS、SCCS分组.md</code></td>
+<td>工作台 / FlowSpace 入口与分组</td>
+</tr>
+<tr>
+<td><code>【贸易端】【工作台】订单日程、任务中心、常用视图.md</code></td>
+<td>工作台 / 任务与日程</td>
+</tr>
+<tr>
+<td><code>【贸易端】【SCCS设置】.md</code></td>
+<td>FlowSpace / 设置、权限、数据围栏、成员、标签</td>
+</tr>
+<tr>
+<td><code>【贸易端】【协作SCCS设置】.md</code></td>
+<td>FlowSpace / 协作 FlowSpace 权限</td>
+</tr>
+<tr>
+<td><code>【贸易端】【仪表盘】权限管理.md</code></td>
+<td>展示与分析 / 仪表盘权限</td>
+</tr>
+<tr>
+<td><code>【贸易端】报告权限.md</code></td>
+<td>展示与分析 / 报告权限</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单列表】订单列表查看：概览、详情.md</code></td>
+<td>订单 / 订单列表</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单列表】订单增删改.md</code></td>
+<td>订单 / 增删改</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单列表】订单导入、订单导出.md</code></td>
+<td>订单 / 导入导出</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单列表】工单导入、导出.md</code></td>
+<td>工单 / 导入导出</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单列表】视图设置.md</code></td>
+<td>订单 / 视图设置</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单列表】视图模式：子表.md</code></td>
+<td>订单 / 子表视图</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单列表】工单视图.md</code></td>
+<td>工单 / 工单视图</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单列表】批量操作.md</code></td>
+<td>订单 / 批量操作</td>
+</tr>
+<tr>
+<td><code>【贸易端】【工单视图】批量操作：批量发邮件协作、批量采集.md</code></td>
+<td>工单 / 批量操作与邮件协作</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单详情】查看&amp;操作.md</code></td>
+<td>订单详情 / 查看与状态操作</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单详情】视图模式：看板、表格.md</code></td>
+<td>订单详情 / 看板与表格</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单详情】工单&amp;里程碑批复操作.md</code></td>
+<td>工单与批复 / 采集、批复、指派</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单详情】邮件协作.md</code></td>
+<td>邮件协作 / 单工单协作</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单管理】订单翻单功能.md</code></td>
+<td>订单复用 / 翻单</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单管理】订单关联功能.md</code></td>
+<td>订单复用 / 订单关联</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单管理】里程碑互用功能.md</code></td>
+<td>订单复用 / 里程碑互用</td>
+</tr>
+<tr>
+<td><code>【贸易端】【订单管理】工单互用功能.md</code></td>
+<td>订单复用 / 工单互用</td>
+</tr>
+<tr>
+<td><code>【贸易端】【资源库】第一阶段.md</code></td>
+<td>资源库 / 基础管理</td>
+</tr>
+<tr>
+<td><code>【贸易端】【资源库】资源库分享.md</code></td>
+<td>资源库 / 分享</td>
+</tr>
+<tr>
+<td><code>【贸易端】【资源库】视图管理.md</code></td>
+<td>资源库 / 视图管理</td>
+</tr>
+<tr>
+<td><code>【贸易端】【资源库】SCCS应用数据范围、数据编辑历史记录.md</code></td>
+<td>资源库 / FlowSpace 应用与历史</td>
+</tr>
+<tr>
+<td><code>【贸易端】【自动化】一期.md</code></td>
+<td>自动化 / 触发条件、动作、日志</td>
+</tr>
+<tr>
+<td><code>【贸易端】【自动化】二期：定时任务.md</code></td>
+<td>自动化 / 定时任务</td>
+</tr>
+<tr>
+<td><code>【贸易端】【消息中心】消息中心、实时消息.md</code></td>
+<td>消息通知 / 站内与实时消息</td>
+</tr>
+<tr>
+<td><code>【贸易端】【操作日志】所有设置类功能.md</code></td>
+<td>日志审计 / 设置类操作日志</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 运营端</h2>
+<table>
+<thead>
+<tr>
+<th>原始需求文档</th>
+<th>知识库归属</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>【运营端】【用户-用户管理】平台用户数据管理.md</code></td>
+<td>运营端 / 用户管理</td>
+</tr>
+<tr>
+<td><code>【运营端】【用户-团队管理】平台团队数据管理.md</code></td>
+<td>运营端 / 团队管理</td>
+</tr>
+<tr>
+<td><code>【运营端】【用户-SCCS管理】平台团队的SCCS数据管理.md</code></td>
+<td>运营端 / FlowSpace 数据管理</td>
+</tr>
+<tr>
+<td><code>【运营端】【用户-SCCS管理】邮件协作列表.md</code></td>
+<td>运营端 / 邮件协作监管</td>
+</tr>
+<tr>
+<td><code>【运营端】【用户-资源库管理】平台团队的资源库数据管理.md</code></td>
+<td>运营端 / 资源库数据管理</td>
+</tr>
+<tr>
+<td><code>【运营端】【SCCS列表-仪表盘】SCCS仪表盘管理.md</code></td>
+<td>运营端 / 仪表盘管理</td>
+</tr>
+<tr>
+<td><code>【运营端】【SCCS管理】SCCS自动化记录.md</code></td>
+<td>运营端 / 自动化记录</td>
+</tr>
+<tr>
+<td><code>【运营端】【SCCS管理】SCCS列表增加外部api集成配置.md</code></td>
+<td>运营端 / 外部 API 集成</td>
+</tr>
+<tr>
+<td><code>【运营端】【SCCS管理】SCCS列表增加报告管理.md</code></td>
+<td>运营端 / 报告管理</td>
+</tr>
+<tr>
+<td><code>【运营端】【模板中心】业务模版管理.md</code></td>
+<td>模板 / 业务模板</td>
+</tr>
+<tr>
+<td><code>【运营端】【模板中心】资源库模版管理.md</code></td>
+<td>模板 / 资源库模板</td>
+</tr>
+<tr>
+<td><code>【运营端】【业务模板】表单设计组件.md</code></td>
+<td>表单 / 业务模板组件</td>
+</tr>
+<tr>
+<td><code>【运营端】【业务模版】表单属性与显隐设置.md</code></td>
+<td>表单 / 属性与显隐</td>
+</tr>
+<tr>
+<td><code>【运营端】【资源库模版】表单设计组件.md</code></td>
+<td>表单 / 资源库模板组件</td>
+</tr>
+<tr>
+<td><code>【运营端】【仪表盘】表单设计组件.md</code></td>
+<td>表单 / 仪表盘组件</td>
+</tr>
+<tr>
+<td><code>【运营端】【模板设计】里程碑增加第三方数据对接.md</code></td>
+<td>模板 / 第三方数据对接</td>
+</tr>
+<tr>
+<td><code>【运营端】【设置-软件管理】软件相关信息与记录管理.md</code></td>
+<td>运营端 / 软件管理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 采集端</h2>
+<table>
+<thead>
+<tr>
+<th>原始需求文档</th>
+<th>知识库归属</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>【采集端】【登录】邮箱_密码登录、忘记密码.md</code></td>
+<td>采集端 / 登录</td>
+</tr>
+<tr>
+<td><code>【采集端】【首页】任务相关数据展示.md</code></td>
+<td>采集端 / 首页</td>
+</tr>
+<tr>
+<td><code>【采集端】【任务列表】工单、工单批复、里程碑批复任务列表.md</code></td>
+<td>采集端 / 任务列表</td>
+</tr>
+<tr>
+<td><code>【采集端】【任务搜索页】工单、工单批复、里程碑批复任务搜索.md</code></td>
+<td>采集端 / 任务搜索</td>
+</tr>
+<tr>
+<td><code>【采集端】【任务详情页】工单、工单批复、里程碑批复详情页.md</code></td>
+<td>采集端 / 任务详情</td>
+</tr>
+<tr>
+<td><code>【采集端】【消息中心】消息通知列表.md</code></td>
+<td>采集端 / 消息中心</td>
+</tr>
+<tr>
+<td><code>【采集端】【我的】个人中心页.md</code></td>
+<td>采集端 / 我的</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 公共能力</h2>
+<table>
+<thead>
+<tr>
+<th>原始需求文档</th>
+<th>知识库归属</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>公式函数.md</code></td>
+<td>表单 / 公式函数</td>
+</tr>
+<tr>
+<td><code>系统自动执行的相关操作日志.md</code></td>
+<td>日志审计 / 系统自动执行日志</td>
+</tr>
+<tr>
+<td><code>验货组件流程梳理.md</code></td>
+<td>表单 / 验货组件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 入库状态</h2>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已归类</td>
+<td>已确定归属模块，可继续抽取规则</td>
+</tr>
+<tr>
+<td>待拆页</td>
+<td>需要从综合文档拆成独立知识页</td>
+</tr>
+<tr>
+<td>待校验</td>
+<td>需求中存在跨文档冲突或需要产品确认</td>
+</tr>
+</tbody>
+</table>
+<p>当前所有原始需求已完成一级归类。已优先拆出 <code>产品端总纲</code>、<code>账号与个人中心</code>、<code>FlowSpace</code>、<code>订单</code>、<code>工单与批复</code>、<code>资源库</code>、<code>权限</code>、<code>模板表单与数据</code>、<code>协作通知与自动化</code>、<code>展示分析</code>、<code>日志审计</code>、<code>来源与待办</code> 等首批知识页。下一步建议继续拆 <code>运营端平台管理细页</code> 和 <code>采集端任务详情细页</code>。</p>
+  </article>
+</body>
+</html>

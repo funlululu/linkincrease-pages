@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>01-产品总览 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<p>﻿# 产品总览</p>
+<h2 id="1">1. 产品定位</h2>
+<p>Linkincrease 是面向供应链协作场景的业务协同平台。平台以 FlowSpace 为核心业务空间，围绕订单、里程碑、工单、资源库、协作团队、自动化、消息通知和移动采集，连接品牌方、供应商、验货/采集人员、运营人员等多类参与者，支撑从模板配置到业务执行、数据沉淀、追踪审计的完整闭环。</p>
+<h2 id="2">2. 产品端组成</h2>
+<table>
+<thead>
+<tr>
+<th>产品端</th>
+<th>使用对象</th>
+<th>核心定位</th>
+<th>关键关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运营端</td>
+<td>平台运营、实施、管理人员</td>
+<td>配置和监管平台基础能力，包括用户、团队、FlowSpace、业务模板、资源库模板、表单组件、仪表盘、报告、外部 API 和软件记录</td>
+<td>配置能力下发到贸易端；查看平台级数据</td>
+</tr>
+<tr>
+<td>贸易端</td>
+<td>B 端客户团队和协作团队</td>
+<td>业务协同主平台，承载团队、FlowSpace、订单、里程碑、工单、资源库、自动化、消息和仪表盘</td>
+<td>由运营端模板创建 FlowSpace；与采集端实时同步任务和数据</td>
+</tr>
+<tr>
+<td>采集端</td>
+<td>移动端执行人员、协作成员</td>
+<td>移动场景下的任务查看、工单采集、工单批复、里程碑批复和消息处理入口</td>
+<td>与贸易端订单、工单、批复任务双向同步</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 核心业务闭环</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;运营端配置业务模板 / 资源库模板 / 表单组件&quot;] --&gt; B[&quot;贸易端团队创建 FlowSpace&quot;]
+    B --&gt; C[&quot;FlowSpace 设置角色、成员、协作团队、数据围栏&quot;]
+    C --&gt; D[&quot;创建订单并生成里程碑计划&quot;]
+    D --&gt; E[&quot;创建、指派、采集、批复工单&quot;]
+    E --&gt; F[&quot;里程碑批复与状态推进&quot;]
+    F --&gt; G[&quot;订单完成、取消、重启或继续流转&quot;]
+    B --&gt; H[&quot;资源库提供标准数据&quot;]
+    H --&gt; D
+    E --&gt; I[&quot;采集端移动处理任务&quot;]
+    D --&gt; J[&quot;自动化、消息、日志、仪表盘、报告沉淀过程数据&quot;]
+</code></pre>
+<h2 id="4">4. 平台能力分层</h2>
+<table>
+<thead>
+<tr>
+<th>能力层</th>
+<th>说明</th>
+<th>代表模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>账号与组织层</td>
+<td>管理用户身份、团队归属、团队成员、协作团队和个人设置</td>
+<td>注册登录、个人中心、团队管理、团队设置</td>
+</tr>
+<tr>
+<td>模板与配置层</td>
+<td>定义业务结构、表单字段、里程碑、批复、资源库和可见范围</td>
+<td>运营端模板中心、业务模板、资源库模板、表单设计组件</td>
+</tr>
+<tr>
+<td>业务执行层</td>
+<td>承载供应链协作的核心执行过程</td>
+<td>FlowSpace、订单、里程碑、工单、批复、采集</td>
+</tr>
+<tr>
+<td>主数据层</td>
+<td>管理可被 FlowSpace 引用的标准化业务数据</td>
+<td>资源库、资源库分享、资源库视图、资源库历史</td>
+</tr>
+<tr>
+<td>协作与权限层</td>
+<td>控制不同团队、角色、成员在业务中的可见与可操作范围</td>
+<td>团队角色、FlowSpace 业务角色、协作方角色、数据围栏、仪表盘权限、报告权限</td>
+</tr>
+<tr>
+<td>自动化与通知层</td>
+<td>将机械性操作、消息推送和异常通知自动化</td>
+<td>自动化、定时任务、消息中心、实时消息、邮件协作</td>
+</tr>
+<tr>
+<td>追踪与审计层</td>
+<td>记录用户操作、系统操作和业务过程变化</td>
+<td>操作日志、动态、历史记录、跟踪记录、系统自动执行日志</td>
+</tr>
+<tr>
+<td>数据展示层</td>
+<td>对订单、任务、仪表盘、报告和运营数据进行聚合展示</td>
+<td>工作台、常用视图、订单日程、仪表盘、报告</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 核心业务对象关系</h2>
+<pre><code class="language-mermaid">erDiagram
+    USER ||--o{ TEAM_MEMBER : joins
+    TEAM ||--o{ TEAM_MEMBER : contains
+    TEAM ||--o{ FlowSpace : owns
+    TEAM ||--o{ RESOURCE_LIBRARY : owns
+    FlowSpace ||--o{ FlowSpace_MEMBER : contains
+    FlowSpace ||--o{ ORDER : contains
+    FlowSpace ||--o{ AUTOMATION : configures
+    FlowSpace ||--o{ DASHBOARD : presents
+    ORDER ||--o{ MILESTONE : contains
+    MILESTONE ||--o{ WORK_ORDER : contains
+    MILESTONE ||--o| MILESTONE_APPROVAL : may_have
+    WORK_ORDER ||--o| WORK_ORDER_APPROVAL : may_have
+    WORK_ORDER ||--o{ COLLECTION_FORM : contains
+    RESOURCE_LIBRARY ||--o{ RESOURCE_TABLE : contains
+    RESOURCE_TABLE ||--o{ RESOURCE_RECORD : contains
+    RESOURCE_RECORD ||--o{ ORDER : referenced_by
+</code></pre>
+<h2 id="6">6. 当前知识库重点</h2>
+<ol>
+<li>以 FlowSpace、订单、里程碑、工单为主线梳理业务执行链路。</li>
+<li>将团队权限、FlowSpace 权限、协作方权限、资源库权限和数据围栏拆开描述，避免混淆。</li>
+<li>将资源库、自动化、消息通知、日志审计作为横向能力，分别沉淀规则。</li>
+<li>将运营端模板能力与贸易端实际执行能力对应起来，形成“配置项 -&gt; 运行态行为”的知识结构。</li>
+</ol>
+  </article>
+</body>
+</html>

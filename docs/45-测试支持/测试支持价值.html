@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>测试支持价值 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">测试支持价值</h1>
+<p>本页用于说明 Linkincrease 知识库如何支持测试人员理解业务、设计用例、判断影响范围、执行回归和定位缺陷。</p>
+<h2 id="_2">测试人员可以从知识库获得什么</h2>
+<table>
+<thead>
+<tr>
+<th>测试关注点</th>
+<th>知识库价值</th>
+<th>主要入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务理解</td>
+<td>快速理解 Linkincrease 面向外贸供应链的业务对象、角色和场景</td>
+<td><a href="../00-产品总览与规划/产品能力地图.md">产品能力地图</a>、<a href="../50-运营支持知识/03-业务场景案例库/业务场景总览.md">业务场景总览</a></td>
+</tr>
+<tr>
+<td>功能边界</td>
+<td>明确每个模块负责什么、不负责什么</td>
+<td><a href="../10-功能模块详情/README.md">功能模块详情</a></td>
+</tr>
+<tr>
+<td>数据层级</td>
+<td>判断字段、状态、附件、批复、资源库引用应该落在哪个层级</td>
+<td><a href="../20-业务对象与数据模型/FlowSpace数据层级.md">FlowSpace 数据层级</a></td>
+</tr>
+<tr>
+<td>流程路径</td>
+<td>设计端到端主流程、异常流程和跨端协作用例</td>
+<td><a href="../30-业务流程与产品流程图/README.md">业务流程与产品流程图</a></td>
+</tr>
+<tr>
+<td>权限验证</td>
+<td>设计不同角色、团队、协作方、数据围栏的可见和可操作用例</td>
+<td><a href="../40-权限、安全与审计/权限体系总表.md">权限体系总表</a></td>
+</tr>
+<tr>
+<td>数据分析校验</td>
+<td>校验仪表盘、报表、视图统计口径和数据来源</td>
+<td><a href="../60-数据分析支持/README.md">数据分析支持</a></td>
+</tr>
+<tr>
+<td>审计追溯</td>
+<td>验证操作日志、历史记录、系统执行日志是否完整</td>
+<td><a href="../40-权限、安全与审计/README.md">权限、安全与审计</a></td>
+</tr>
+<tr>
+<td>行业场景验收</td>
+<td>按品牌方、供应商、工厂、验厂、CAP 等真实场景设计验收用例</td>
+<td><a href="../50-运营支持知识/03-业务场景案例库/外贸供应商治理/品牌方供应商与工厂准入协同方案.md">品牌方供应商与工厂准入协同方案</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">测试设计建议</h2>
+<h3 id="1">1. 按业务对象拆测试范围</h3>
+<p>需求涉及 FlowSpace、订单、工单、批复、资源库、仪表盘、自动化时，先判断变化发生在哪个对象层级。测试用例不应只按页面入口拆分，还要覆盖对象之间的数据关系。</p>
+<h3 id="2">2. 按角色拆权限矩阵</h3>
+<p>至少区分：</p>
+<ul>
+<li>品牌方管理员</li>
+<li>品牌方审核人</li>
+<li>供应商管理员</li>
+<li>工厂联系人</li>
+<li>DAREN 服务商</li>
+<li>现场审核员或 QC</li>
+<li>仅查看数据的管理层角色</li>
+</ul>
+<p>每个角色都应验证“能看到什么、能编辑什么、不能看到什么、不能操作什么”。</p>
+<h3 id="3">3. 按数据流转设计端到端用例</h3>
+<p>以品牌方供应商与工厂准入场景为例，测试链路应覆盖：</p>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;供应商提交工厂申报&quot;] --&gt; B[&quot;品牌方审批&quot;]
+    B --&gt; C[&quot;同步工厂资源库&quot;]
+    C --&gt; D[&quot;订单选择生产工厂&quot;]
+    D --&gt; E[&quot;发起社会责任验厂&quot;]
+    E --&gt; F[&quot;生成CAP整改&quot;]
+    F --&gt; G[&quot;CAP关闭后回写工厂状态&quot;]
+    G --&gt; H[&quot;订单侧展示最新工厂风险&quot;]
+</code></pre>
+<h3 id="4">4. 每个需求都要补齐回归检查</h3>
+<table>
+<thead>
+<tr>
+<th>变更类型</th>
+<th>必查回归</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增字段</td>
+<td>字段显示、编辑、必填、导入导出、历史记录、权限可见性</td>
+</tr>
+<tr>
+<td>新增状态</td>
+<td>状态流转、异常回退、自动化触发、筛选统计</td>
+</tr>
+<tr>
+<td>新增资源库引用</td>
+<td>引用过滤、断链处理、权限过滤、同步回写</td>
+</tr>
+<tr>
+<td>新增批复</td>
+<td>处理人、批复结论、退回、通知、日志</td>
+</tr>
+<tr>
+<td>新增自动化</td>
+<td>触发条件、执行动作、失败重试、执行日志</td>
+</tr>
+<tr>
+<td>新增仪表盘/报表</td>
+<td>数据源、指标口径、权限范围、刷新时机</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">缺陷定位建议</h2>
+<p>测试发现问题时，先按以下路径定位：</p>
+<ol>
+<li>是页面展示问题，还是底层数据层级问题。</li>
+<li>是用户权限问题，还是字段可见性/数据围栏问题。</li>
+<li>是流程状态不允许操作，还是按钮/入口遗漏。</li>
+<li>是资源库引用错误，还是订单/工单保存的数据错误。</li>
+<li>是自动化未触发，还是触发后写入目标错误。</li>
+<li>是仪表盘口径错误，还是数据源和权限范围不同。</li>
+<li>是否有日志、历史记录、快照可以证明问题发生时间和操作者。</li>
+</ol>
+<h2 id="_5">需求评审时测试应关注的问题</h2>
+<ul>
+<li>这个需求影响哪些业务对象和数据层级？</li>
+<li>是否涉及资源库引用、同步或回写？</li>
+<li>是否影响订单、工单、批复、里程碑状态？</li>
+<li>是否新增角色、权限、数据围栏或字段可见性？</li>
+<li>是否影响采集端、贸易端、运营端或外部协作方？</li>
+<li>是否需要通知、自动化、日志、历史记录？</li>
+<li>是否影响导入、导出、仪表盘、报表和搜索筛选？</li>
+<li>是否存在历史数据迁移或兼容性问题？</li>
+</ul>
+<h2 id="_6">维护规则</h2>
+<p>测试发现知识库与系统行为不一致时，应先确认系统行为是否符合产品预期。确认后，按结果更新权威知识页、待确认问题或版本变更记录。</p>
+  </article>
+</body>
+</html>

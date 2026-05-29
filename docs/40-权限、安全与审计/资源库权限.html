@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>资源库权限 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">资源库权限</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>资源库权限控制团队资源库的创建、删除、设置、表数据查看、创建、编辑、删除、导入、导出、分享，以及协作团队对资源库数据的访问和操作范围。</p>
+<h2 id="2">2. 团队级入口权限</h2>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建资源库</td>
+<td>允许成员在当前团队下创建资源库</td>
+</tr>
+<tr>
+<td>删除资源库</td>
+<td>允许成员删除本团队下任意资源库，并可查看所有资源库数据</td>
+</tr>
+<tr>
+<td>资源库设置</td>
+<td>允许成员查看本团队资源库所有数据，并管理资源库设置</td>
+</tr>
+<tr>
+<td>协作资源库管理</td>
+<td>允许成员管理本团队参与协作的资源库设置，以及主团队授权的数据操作权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 单个资源库角色</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源库管理员</td>
+<td>每个资源库固定角色，拥有当前资源库所有权限；默认创建资源库的成员为管理员；不可删除，不可修改权限点，但可修改成员</td>
+</tr>
+<tr>
+<td>成员角色</td>
+<td>面向本团队成员，可配置资源库设置和各表权限</td>
+</tr>
+<tr>
+<td>协作方角色</td>
+<td>面向协作团队，权限类似成员角色，但没有资源库设置权限</td>
+</tr>
+</tbody>
+</table>
+<p>任意资源库中任意角色添加了成员后，该成员即可见资源库主菜单；具体可见哪个资源库、哪些表、哪些数据，继续由角色勾选内容决定。</p>
+<h2 id="4">4. 表权限与数据范围</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表权限</td>
+<td>资源库下每张表单独配置权限；勾选任意表操作权限时，需同时勾选该表“查看数据”</td>
+</tr>
+<tr>
+<td>全部</td>
+<td>可操作对应表下所有数据</td>
+</tr>
+<tr>
+<td>本人创建</td>
+<td>仅可操作成员本人创建的数据</td>
+</tr>
+<tr>
+<td>自定义</td>
+<td>必须配置字段条件；字段范围包括模板字段、创建人、创建时间、更新人、更新时间等</td>
+</tr>
+</tbody>
+</table>
+<p>成员控件、创建人、更新人可选择“当前用户”；协作方控件可选择“当前团队”。</p>
+<h2 id="5">5. 数据操作权限</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>权限要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看数据</td>
+<td>需拥有当前表查看权限和对应数据范围</td>
+</tr>
+<tr>
+<td>创建数据</td>
+<td>需拥有当前表新增权限</td>
+</tr>
+<tr>
+<td>编辑数据</td>
+<td>需拥有当前表编辑权限；批量编辑按钮也受此权限控制</td>
+</tr>
+<tr>
+<td>删除数据</td>
+<td>需拥有当前表删除权限</td>
+</tr>
+<tr>
+<td>导入数据</td>
+<td>当前用户在当前资源表需有导入权限</td>
+</tr>
+<tr>
+<td>导出数据</td>
+<td>仅导出当前用户有查看权限的表和数据</td>
+</tr>
+<tr>
+<td>批量下载文件</td>
+<td>所有可进入当前资源表的成员可见</td>
+</tr>
+</tbody>
+</table>
+<p>导入记录仅能查看本人导入的记录。资源库数据导入成功后，需要增加导入人操作的新增或修改历史记录。</p>
+<h2 id="6">6. 协作资源库</h2>
+<p>主团队授权后，协作团队资源库列表会展示协作类型资源库，并只展示授权给本团队且有查看权限的表。协作资源库设置包含成员管理，可添加当前团队成员并设置角色。</p>
+<table>
+<thead>
+<tr>
+<th>协作角色</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源库管理员</td>
+<td>拥有当前协作资源库设置权限，以及主团队授权给本团队的所有表内相关权限</td>
+</tr>
+<tr>
+<td>普通成员</td>
+<td>拥有当前资源库中主团队授权给本团队的所有表内相关权限</td>
+</tr>
+</tbody>
+</table>
+<p>同一协作团队拥有多个角色时，权限叠加。</p>
+<h2 id="7">7. 分享权限</h2>
+<table>
+<thead>
+<tr>
+<th>分享类型</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单条数据分享</td>
+<td>内部成员或协作团队成员只要有数据查看权限，即可分享单条数据</td>
+</tr>
+<tr>
+<td>整表分享</td>
+<td>有资源表查看权限即可分享整表</td>
+</tr>
+<tr>
+<td>分享权限同步</td>
+<td>分享者权限变更后，被分享方权限同步更新</td>
+</tr>
+<tr>
+<td>分享失效</td>
+<td>分享者失去查看权限时，分享链接失效；重新获得权限后原链接仍失效，需重新分享</td>
+</tr>
+<tr>
+<td>分享链接管理</td>
+<td>管理员可查看权限范围内所有分享链接；成员个人只可查看本人分享链接</td>
+</tr>
+</tbody>
+</table>
+<p>分享链接删除后失效。预览、删除、编辑提交时均需校验权限。</p>
+<h2 id="8-flowspace">8. 与 FlowSpace 引用的关系</h2>
+<p>资源库被 FlowSpace 引用后，数据权限和同步规则会影响订单数据。若资源库协作授权导致数据不可见，当前需求暂按“资源库数据被删除”逻辑同步清空 FlowSpace 订单字段处理，但该方案仍需作为重点确认项保留。</p>
+<h2 id="9">9. 审计要求</h2>
+<p>资源库设置操作日志需要记录：</p>
+<ul>
+<li>基本信息新增、编辑。</li>
+<li>权限管理新增、编辑、删除。</li>
+</ul>
+<p>运营端模板修改不记录在资源库设置操作日志中。</p>
+<h2 id="10">10. 待确认问题</h2>
+<ul>
+<li>协作资源库数据不可见时，历史引用数据保留还是同步清空，目前需求中存在方案说明，需与线上规则确认。</li>
+<li>外部分享只读开关、分享者编辑权限、被分享者编辑权限之间的最终优先级需补充矩阵。</li>
+<li>导出是否严格按数据范围过滤字段和记录，需要后续用线上验证。</li>
+</ul>
+  </article>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>模板与实例关系 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">模板与实例关系</h1>
+<p>本页用于统一说明配置态模板与运行态数据之间的关系。</p>
+<h2 id="_2">核心关系</h2>
+<table>
+<thead>
+<tr>
+<th>配置态</th>
+<th>运行态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务模板</td>
+<td>FlowSpace</td>
+<td>业务模板决定可创建 FlowSpace 的基础结构</td>
+</tr>
+<tr>
+<td>默认主表单</td>
+<td>订单主表单</td>
+<td>默认主表单有且仅有一个，用于订单主数据</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>订单里程碑</td>
+<td>里程碑决定订单执行阶段</td>
+</tr>
+<tr>
+<td>里程碑挂载表单</td>
+<td>工单表单</td>
+<td>工单创建时填写当前里程碑下的表单数据</td>
+</tr>
+<tr>
+<td>工单批复表单</td>
+<td>工单批复</td>
+<td>开启后每个工单对应一个工单批复</td>
+</tr>
+<tr>
+<td>里程碑批复表单</td>
+<td>里程碑批复</td>
+<td>开启后当前里程碑仅有一个里程碑批复</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">设计原则</h2>
+<ol>
+<li>模板定义结构，实例承载业务数据。</li>
+<li>模板变更影响既有实例时，必须说明同步范围、历史数据保留方式和不可逆影响。</li>
+<li>运行态数据写入必须先判断目标层级，不能只按页面入口判断。</li>
+</ol>
+<h2 id="_4">关联文档</h2>
+<ul>
+<li><a href="./业务模板.md">业务模板</a></li>
+<li><a href="./FlowSpace数据层级.md">FlowSpace 数据层级</a></li>
+<li><a href="../30-业务流程与产品流程图/从模板到FlowSpace.md">从模板到 FlowSpace</a></li>
+</ul>
+  </article>
+</body>
+</html>

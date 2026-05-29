@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>仪表盘管理与设计器 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">仪表盘管理与设计器</h1>
+<h2 id="_2">定位</h2>
+<p>仪表盘用于在 FlowSpace 内配置统计分析页面，帮助用户快速监控订单动态、业务进度和关键指标。运营端负责仪表盘配置和设计，贸易端根据权限查看仪表盘数据。</p>
+<h2 id="_3">管理入口</h2>
+<p>运营端 FlowSpace 列表增加仪表盘数量字段和仪表盘管理入口。</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仪表盘数量</td>
+<td>统计对应 FlowSpace 添加的仪表盘数量</td>
+</tr>
+<tr>
+<td>仪表盘管理</td>
+<td>可进入当前 FlowSpace 的仪表盘管理页面</td>
+</tr>
+<tr>
+<td>添加仪表盘</td>
+<td>仪表盘名称必填，限制 100 字符</td>
+</tr>
+<tr>
+<td>修改名称</td>
+<td>可修改仪表盘名称，限制 100 字符</td>
+</tr>
+<tr>
+<td>删除仪表盘</td>
+<td>需要二次确认</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>支持拖动排序</td>
+</tr>
+<tr>
+<td>国际化</td>
+<td>仪表盘名称支持国际化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">数据源</h2>
+<p>仪表盘数据源来自 FlowSpace 的订单信息、里程碑、工单批复等表结构，并可扩展公式字段。</p>
+<table>
+<thead>
+<tr>
+<th>数据源</th>
+<th>字段范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单信息</td>
+<td>订单信息字段、里程碑批复字段，排除所有子表字段</td>
+</tr>
+<tr>
+<td>订单信息子表</td>
+<td>订单信息字段、子表字段</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>订单列表字段、里程碑字段、工单批复字段，排除所有子表字段</td>
+</tr>
+<tr>
+<td>里程碑子表</td>
+<td>订单列表字段、里程碑字段、子表字段</td>
+</tr>
+<tr>
+<td>工单批复子表</td>
+<td>订单列表字段、里程碑字段、工单批复字段、子表字段</td>
+</tr>
+</tbody>
+</table>
+<p>如果主表单或里程碑批复包含子表，则订单信息或里程碑会作为分组名，分组下展示对应字段和所有子表。</p>
+<h3 id="_5">公式字段</h3>
+<p>仪表盘支持添加、编辑、删除公式字段。</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公式名称</td>
+<td>必填，限制 100 字符</td>
+</tr>
+<tr>
+<td>公式类型</td>
+<td>必填，默认数字；支持数字、文本、百分比、日期</td>
+</tr>
+<tr>
+<td>订单信息公式变量</td>
+<td>订单信息、订单信息子表、所有里程碑、所有里程碑子表，排除图片、附件、签名、富文本字段</td>
+</tr>
+<tr>
+<td>子表公式变量</td>
+<td>当前子表字段</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>需要二次确认</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">仪表盘设计器组件</h2>
+<p>仪表盘由布局组件、工具组件、图表组件和特殊图表组成。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>布局组件</td>
+<td>模块分组、标题、标签卡</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>筛选器</td>
+</tr>
+<tr>
+<td>图表</td>
+<td>指标卡、柱状图、折线图、条形图、饼图、组合图、面积图、雷达图、统计表、透视表</td>
+</tr>
+<tr>
+<td>特殊图表</td>
+<td>里程碑状态</td>
+</tr>
+</tbody>
+</table>
+<p>所有组件通常支持标题、提示描述和国际化。可国际化内容一般包括标题、提示描述，部分图表还包括指标名称。</p>
+<h2 id="_7">图表通用配置</h2>
+<p>大多数图表具备类似的数据配置模型：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据源</td>
+<td>从数据表列表选择，默认订单信息</td>
+</tr>
+<tr>
+<td>筛选设置</td>
+<td>可对数据源字段设置筛选条件，并显示已设置条件数量</td>
+</tr>
+<tr>
+<td>维度</td>
+<td>按字段分组统计，日期字段可选年月日、年周、年月、年季、年等格式</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>可添加多个数据源字段或自定义公式字段</td>
+</tr>
+<tr>
+<td>统计方式</td>
+<td>统计记录总数、统计字段数值、自定义公式</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>支持记录顺序、维度值、指标值等排序方式</td>
+</tr>
+<tr>
+<td>数据显示</td>
+<td>可限制展示条数</td>
+</tr>
+<tr>
+<td>图表配置</td>
+<td>图例、数据标签、网格线、推荐配色、自定义配色等</td>
+</tr>
+</tbody>
+</table>
+<p>多选字段可选择拆分统计或不拆分统计。指标卡计算出的数字统一保留一位小数。</p>
+<h2 id="_8">筛选器</h2>
+<p>筛选器用于联动筛选一个或多个图表。</p>
+<p>规则：</p>
+<ol>
+<li>可筛选图表为当前仪表盘内的图表，可多选。</li>
+<li>所选图表有几个数据源，就展示几个数据源选项。</li>
+<li>不同数据源选择的字段必须是同一类型。</li>
+<li>最后选择的字段与其他字段类型不一致时，清空其他选项。</li>
+<li>日期字段可设置日期格式。</li>
+<li>选项字段可设置选项样式。</li>
+</ol>
+<h2 id="_9">典型图表</h2>
+<table>
+<thead>
+<tr>
+<th>图表</th>
+<th>核心规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指标卡</td>
+<td>支持统计记录总数、统计字段数值、自定义公式</td>
+</tr>
+<tr>
+<td>柱状图</td>
+<td>支持基础柱状图、堆积柱状图、百分比堆积柱状图</td>
+</tr>
+<tr>
+<td>折线图</td>
+<td>与柱状图类似，侧重趋势展示</td>
+</tr>
+<tr>
+<td>条形图</td>
+<td>与柱状图类似，横纵轴方向不同</td>
+</tr>
+<tr>
+<td>饼图</td>
+<td>支持实心和圆环；配置扇区分组和扇区数值</td>
+</tr>
+<tr>
+<td>组合图</td>
+<td>指标可设置为折线或柱状，并选择左轴或右轴</td>
+</tr>
+<tr>
+<td>统计表</td>
+<td>支持维度、统计方式、汇总、序号、排序</td>
+</tr>
+<tr>
+<td>透视表</td>
+<td>支持行维度、列维度、指标、冻结和汇总</td>
+</tr>
+<tr>
+<td>里程碑状态</td>
+<td>特殊图表，可按订单筛选并展示里程碑状态分布</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">仪表盘权限</h2>
+<p>贸易端按角色控制仪表盘查看和授权。</p>
+<table>
+<thead>
+<tr>
+<th>权限来源</th>
+<th>能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队角色-内部FlowSpace管理</td>
+<td>可查看所有内部 FlowSpace 的仪表盘数据，并可授权</td>
+</tr>
+<tr>
+<td>FlowSpace业务角色-仪表盘管理</td>
+<td>可查看当前 FlowSpace 所有仪表盘数据，并可授权</td>
+</tr>
+<tr>
+<td>被授权成员</td>
+<td>可查看被授权的仪表盘</td>
+</tr>
+<tr>
+<td>被授权协作团队成员</td>
+<td>可查看被授权的仪表盘</td>
+</tr>
+</tbody>
+</table>
+<p>仪表盘权限设置弹窗列出已加入当前 FlowSpace 的内部成员和协作团队成员。内部成员和协作成员即使未注册也可以授权。</p>
+<p>权限维护规则：</p>
+<ol>
+<li>可模糊搜索内部成员姓名、协作团队名称、协作成员姓名。</li>
+<li>协作团队成员支持两级下钻选择。</li>
+<li>已选计数和左右列表选中状态需要同步。</li>
+<li>当前用户无仪表盘管理权限时，提示暂无权限。</li>
+<li>成员被移除 FlowSpace 后，对应仪表盘权限列表也删除；重新加入后需重新授权。</li>
+</ol>
+<h2 id="_11">仪表盘查看</h2>
+<p>可管理当前 FlowSpace 仪表盘的用户可以查看当前 FlowSpace 中所有仪表盘数据。被授权部分仪表盘查看权限的成员或协作团队成员，只能查看被授权仪表盘。</p>
+<p>可查看的仪表盘可以星标，星标后在工作台常用视图中展示。如果星标后权限被取消，常用视图中同步隐藏；重新授权后若还需要常用入口，需要重新星标。</p>
+<h2 id="_12">关联页面</h2>
+<ul>
+<li><a href="../40-权限、安全与审计/仪表盘与报告权限.md">仪表盘与报告权限</a></li>
+<li><a href="../60-数据分析支持/分析场景.md">常用视图与视图设置</a></li>
+<li><a href="../20-业务对象与数据模型/公式函数.md">公式函数</a></li>
+<li><a href="../40-权限、安全与审计/数据围栏.md">数据围栏</a></li>
+</ul>
+<h2 id="_13">来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.3.x/运营端/【运营端】【SCCS列表-仪表盘】SCCS仪表盘管理.md</code></li>
+<li><code>missing-current-source/【运营端】【仪表盘】表单设计组件.md</code></li>
+<li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【仪表盘】权限管理.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

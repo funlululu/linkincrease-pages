@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>迭代需求设计工作流 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">迭代需求设计工作流</h1>
+<h2 id="_2">定位</h2>
+<p>本页说明如何在新增迭代需求设计时复用 Linkincrease 知识库。目标不是把知识库当资料仓库，而是让它参与需求设计前的背景检索、设计中的规则补全、设计后的影响范围检查和最终入库。</p>
+<p>本流程已蒸馏为本地 Codex Skill：<code>linkincrease-requirement-design</code>。在其他文件夹进行迭代功能设计或需求文档编写时，可以直接要求使用该 Skill。</p>
+<p>适用场景：</p>
+<ul>
+<li>新增功能需求。</li>
+<li>调整已有功能规则。</li>
+<li>补充权限、状态、通知、日志、导入导出等细节。</li>
+<li>将其他文件夹中的需求设计同步沉淀到知识库。</li>
+</ul>
+<h2 id="1">1. 需求设计前：查背景</h2>
+<p>开始写需求前，先确认该需求属于哪个产品端、业务对象和流程节点。</p>
+<table>
+<thead>
+<tr>
+<th>要确认的问题</th>
+<th>优先查看</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>这个需求属于哪个端</td>
+<td><a href="../../03-功能地图.md">../../03-功能地图.md</a>、<a href="../10-功能模块详情/运营端.md">../10-功能模块详情/运营端.md</a>、<a href="../10-功能模块详情/贸易端.md">../10-功能模块详情/贸易端.md</a>、<a href="../10-功能模块详情/采集端.md">../10-功能模块详情/采集端.md</a></td>
+</tr>
+<tr>
+<td>涉及哪些核心对象</td>
+<td><a href="../../02-核心概念词典.md">../../02-核心概念词典.md</a>、<a href="../20-业务对象与数据模型/FlowSpace.md">../20-业务对象与数据模型/FlowSpace.md</a>、<a href="../20-业务对象与数据模型/订单.md">../20-业务对象与数据模型/订单.md</a>、<a href="../20-业务对象与数据模型/工单与批复.md">../20-业务对象与数据模型/工单与批复.md</a>、<a href="../20-业务对象与数据模型/资源库.md">../20-业务对象与数据模型/资源库.md</a></td>
+</tr>
+<tr>
+<td>处于哪条业务流程</td>
+<td><a href="../30-业务流程与产品流程图/从模板到FlowSpace.md">../30-业务流程与产品流程图/从模板到FlowSpace.md</a>、<a href="../30-业务流程与产品流程图/订单生命周期.md">../30-业务流程与产品流程图/订单生命周期.md</a>、<a href="../30-业务流程与产品流程图/工单采集与批复.md">../30-业务流程与产品流程图/工单采集与批复.md</a>、<a href="../30-业务流程与产品流程图/跨团队协作.md">../30-业务流程与产品流程图/跨团队协作.md</a></td>
+</tr>
+<tr>
+<td>是否已有类似历史需求</td>
+<td><a href="../../05-需求文档来源台账.md">../../05-需求文档来源台账.md</a>、<a href="../../metadata/source-manifest.csv">../../metadata/source-manifest.csv</a>、<code>最新需求源（source:thoughts-v2-current）</code></td>
+</tr>
+</tbody>
+</table>
+<p>建议向知识库提问：</p>
+<pre><code class="language-text">基于当前知识库，帮我梳理这个需求涉及哪些已有模块、对象、流程和权限。
+</code></pre>
+<h2 id="2">2. 需求设计中：补齐规则</h2>
+<p>写需求正文时，至少检查以下维度。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>需要写清楚</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品端</td>
+<td>运营端、贸易端、采集端分别是否有入口或影响</td>
+</tr>
+<tr>
+<td>用户角色</td>
+<td>平台运营、团队管理员、普通成员、协作团队成员、采集人员等</td>
+</tr>
+<tr>
+<td>业务对象</td>
+<td>FlowSpace、订单、里程碑、工单、资源库、模板、报告、仪表盘等</td>
+</tr>
+<tr>
+<td>入口</td>
+<td>菜单、列表、详情、设置页、弹窗、移动端页面</td>
+</tr>
+<tr>
+<td>操作</td>
+<td>查看、新增、编辑、删除、批量、导入、导出、复制、同步</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>团队权限、FlowSpace 业务角色、协作 FlowSpace 角色、资源库权限、数据围栏</td>
+</tr>
+<tr>
+<td>状态限制</td>
+<td>进行中、已完成、已取消、已删除、停用、失效等状态下能否操作</td>
+</tr>
+<tr>
+<td>数据影响</td>
+<td>新老数据、历史快照、字段默认值、同步范围、冲突处理</td>
+</tr>
+<tr>
+<td>通知协作</td>
+<td>站内消息、实时消息、邮件、短信、任务中心、指派规则</td>
+</tr>
+<tr>
+<td>日志审计</td>
+<td>操作日志、动态、历史记录、跟踪记录、系统执行日志</td>
+</tr>
+<tr>
+<td>异常提示</td>
+<td>无权限、数据不存在、状态不允许、导入失败、同步失败等</td>
+</tr>
+<tr>
+<td>导入导出</td>
+<td>模板、字段、失败原因、权限、数据范围、异步任务</td>
+</tr>
+</tbody>
+</table>
+<p>建议向知识库提问：</p>
+<pre><code class="language-text">帮我检查这份需求是否遗漏权限、状态、通知、日志、导入导出、历史数据影响。
+</code></pre>
+<h2 id="3">3. 需求设计后：做影响范围检查</h2>
+<p>需求初稿完成后，用知识库做一次影响范围复盘。</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>术语是否统一</td>
+<td>使用 <a href="../../02-核心概念词典.md">../../02-核心概念词典.md</a> 中的标准名称，例如 FlowSpace</td>
+</tr>
+<tr>
+<td>是否影响功能地图</td>
+<td>新增入口或模块时，需要更新 <a href="../../03-功能地图.md">../../03-功能地图.md</a></td>
+</tr>
+<tr>
+<td>是否影响对象页</td>
+<td>新规则应回填到对应业务对象页</td>
+</tr>
+<tr>
+<td>是否影响流程页</td>
+<td>流程变化应回填到 <code>docs/30-业务流程与产品流程图/</code></td>
+</tr>
+<tr>
+<td>是否影响权限页</td>
+<td>权限变化应回填到 <code>docs/40-权限、安全与审计/</code></td>
+</tr>
+<tr>
+<td>是否影响通知和自动化</td>
+<td>通知、邮件、任务、自动化变化应回填到 <code>docs/60-数据分析支持/</code></td>
+</tr>
+<tr>
+<td>是否影响日志审计</td>
+<td>日志、历史记录、跟踪记录应回填到 <code>docs/80-架构与技术方案/</code></td>
+</tr>
+<tr>
+<td>是否存在待确认问题</td>
+<td>不确定项进入 <a href="../../99-待办与问题池.md">../../99-待办与问题池.md</a></td>
+</tr>
+</tbody>
+</table>
+<p>建议向知识库提问：</p>
+<pre><code class="language-text">基于知识库帮我做这份需求的影响范围分析，并列出需要同步更新的知识页。
+</code></pre>
+<h2 id="4">4. 需求确认后：同步入库</h2>
+<p>当需求评审确认后，按以下步骤沉淀。</p>
+<ol>
+<li>将最终需求文件放入当前迭代需求设计文件夹。</li>
+<li>如该需求也属于最新需求源，将文件同步到 <code>最新需求源（source:thoughts-v2-current）</code>。</li>
+<li>运行 <code>python scripts\scan_source_manifest.py</code> 更新来源清单。</li>
+<li>更新 <a href="../../05-需求文档来源台账.md">../../05-需求文档来源台账.md</a> 的归属模块。</li>
+<li>将确认后的规则写入对应知识页。</li>
+<li>更新 <code>metadata/documents.csv</code>、<code>metadata/sources.csv</code>、<code>metadata/search-index.json</code> 中的相关记录。</li>
+<li>如有未决问题，更新 <a href="../../99-待办与问题池.md">../../99-待办与问题池.md</a> 和 <a href="../90-版本历史与来源治理/待确认问题.md">../90-版本历史与来源治理/待确认问题.md</a>。</li>
+<li>如是较大迭代，更新 <a href="../90-版本历史与来源治理/版本变更记录.md">../90-版本历史与来源治理/版本变更记录.md</a>。</li>
+</ol>
+<h2 id="5">5. 推荐提问模板</h2>
+<h3 id="_3">新需求启动</h3>
+<pre><code class="language-text">我准备设计一个新需求：{一句话描述}。
+请基于 Linkincrease 知识库，帮我梳理背景、相关模块、已有规则、可能影响范围和设计注意事项。
+</code></pre>
+<h3 id="_4">需求补漏</h3>
+<pre><code class="language-text">这是我的需求草稿：{文件路径或内容}。
+请基于知识库检查是否遗漏权限、状态、通知、日志、导入导出、历史数据、异常提示和多端差异。
+</code></pre>
+<h3 id="_5">需求冲突检查</h3>
+<pre><code class="language-text">请对比这份新需求和知识库已有规则，找出可能冲突、重复或需要产品确认的点。
+</code></pre>
+<h3 id="_6">需求入库</h3>
+<pre><code class="language-text">这份需求已确认，请把它同步进 Linkincrease 知识库：更新来源台账、相关知识页、metadata 和待确认问题。
+</code></pre>
+<h2 id="6">6. 输出物建议</h2>
+<p>每个迭代需求设计完成后，建议至少形成以下内容：</p>
+<table>
+<thead>
+<tr>
+<th>输出物</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求正文</td>
+<td>给产品、研发、测试评审</td>
+</tr>
+<tr>
+<td>影响范围清单</td>
+<td>明确会改哪些页面、接口、权限、数据和日志</td>
+</tr>
+<tr>
+<td>权限与状态矩阵</td>
+<td>降低研发和测试理解成本</td>
+</tr>
+<tr>
+<td>异常提示清单</td>
+<td>统一前端提示和测试断言</td>
+</tr>
+<tr>
+<td>测试关注点</td>
+<td>提前覆盖边界场景</td>
+</tr>
+<tr>
+<td>知识库更新清单</td>
+<td>确保确认后的规则沉淀回知识库</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 设计原则</h2>
+<ol>
+<li>新需求不要只写页面交互，要补齐对象、流程、权限、状态、数据和日志。</li>
+<li>能复用已有概念时，不新增同义词。</li>
+<li>需求原文用于评审，知识库用于沉淀最终共识。</li>
+<li>不确定项不硬写成结论，先进入问题池。</li>
+<li>每次迭代结束，都要把确认后的新规则同步回知识库。</li>
+</ol>
+  </article>
+</body>
+</html>

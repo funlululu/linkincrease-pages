@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>自动化与系统执行日志 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">自动化与系统执行日志</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>自动化与系统执行日志用于追踪自动化、公式自动更新、资源库同步、SCMPro API 数据变更等系统行为，确保自动执行过程可审计、可解释、可排查。</p>
+<h2 id="2">2. 贸易端自动化执行日志</h2>
+<p>自动化列表中可点击日志查看对应自动化程序的执行记录。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>执行数据</td>
+<td>非定时任务显示具体订单标识；定时任务显示定时任务</td>
+</tr>
+<tr>
+<td>执行时间</td>
+<td>自动化执行时间</td>
+</tr>
+<tr>
+<td>执行状态</td>
+<td>成功、失败、部分成功</td>
+</tr>
+<tr>
+<td>详情</td>
+<td>查看触发条件、执行操作、具体数据和结果</td>
+</tr>
+</tbody>
+</table>
+<p>当前后续规划中提到执行状态可能先只保留成功和失败，部分成功是否启用需要确认。</p>
+<h2 id="3">3. 日志详情</h2>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>记录内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增数据触发</td>
+<td>流程设置、执行记录、操作人、新增数据内容</td>
+</tr>
+<tr>
+<td>数据变更触发</td>
+<td>流程设置、执行记录、操作人、变更前后值</td>
+</tr>
+<tr>
+<td>到达时间触发</td>
+<td>流程设置、执行记录、触发字段值</td>
+</tr>
+<tr>
+<td>发送通知</td>
+<td>通知对象、渠道、标题、内容、链接页面、附件</td>
+</tr>
+<tr>
+<td>新增数据</td>
+<td>被新增记录、处理人、新增数据内容</td>
+</tr>
+<tr>
+<td>更新数据</td>
+<td>被更新记录、更新字段及变更前后值</td>
+</tr>
+</tbody>
+</table>
+<p>操作人可能是团队成员、协作方成员或自动程序。自动程序头像为机器人，名称为具体触发程序。</p>
+<h2 id="4">4. 运营端自动化记录</h2>
+<p>运营端 FlowSpace 管理中存在自动化记录模块，用于平台侧追踪自动化任务全生命周期。</p>
+<p>筛选项：</p>
+<ul>
+<li>FlowSpace 名称、团队 ID/名称、自动化 ID/名称。</li>
+<li>触发类型：新增数据、数据变更、到达时间、定时任务。</li>
+<li>执行状态：成功、失败、已失效、待执行。</li>
+<li>触发时间、执行时间。</li>
+</ul>
+<p>列表字段包括 FlowSpace、所属团队、订单、自动化名称、触发类型、触发数据、触发时间、执行动作、执行状态、执行结果摘要和执行时间。</p>
+<h2 id="5">5. 系统自动执行日志</h2>
+<p>需要纳入系统自动执行记录的能力：</p>
+<ul>
+<li>公式自动更新。</li>
+<li>自动化更新。</li>
+<li>关联资源库数据同步更新。</li>
+<li>SCMPro API 数据变更自动更新。</li>
+</ul>
+<p>自动化更新时：</p>
+<ul>
+<li>操作人显示为自动化，头像为系统。</li>
+<li>操作时间为自动化执行时间。</li>
+<li>主表单更新、创建工单、更新工单采集/批复、更新里程碑批复时，需要增加历史记录。</li>
+<li>更新时间和更新人也应显示自动化或系统身份。</li>
+</ul>
+<h2 id="6">6. 与业务动态的关系</h2>
+<p>自动化执行后，需要在业务对象内留下对应动态：</p>
+<ul>
+<li>创建工单：工单动态增加创建记录，订单跟踪记录增加创建工单。</li>
+<li>更新工单：按采集和批复分别增加动态。</li>
+<li>更新里程碑批复：里程碑批复动态增加编辑记录。</li>
+<li>更新订单基本信息：订单跟踪记录增加编辑订单。</li>
+</ul>
+<h2 id="7">7. 待确认问题</h2>
+<ul>
+<li>失败操作的详情展示原文中仍有待确认项，需要产品补齐。</li>
+<li>运营端自动化记录与贸易端执行日志是否共用同一数据模型。</li>
+<li>系统自动执行失败是否有重试、告警、人工处理入口。</li>
+</ul>
+  </article>
+</body>
+</html>

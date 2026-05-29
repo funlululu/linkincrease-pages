@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>知识库维护规范 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">知识库维护规范</h1>
+<h2 id="1">1. 知识库定位</h2>
+<p>本知识库用于沉淀 Linkincrease 的当前产品共识。原始需求文档、会议纪要、原型和临时讨论可以作为来源，但不能直接等同于知识库结论。</p>
+<p>知识库正文应回答：</p>
+<ul>
+<li>这个对象或功能是什么。</li>
+<li>谁使用它。</li>
+<li>入口在哪里。</li>
+<li>业务流程是什么。</li>
+<li>权限和状态限制是什么。</li>
+<li>数据、表单、通知、日志如何流转。</li>
+<li>结论来自哪些需求文档。</li>
+</ul>
+<h2 id="2">2. 内容入库原则</h2>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可追溯</td>
+<td>每个结论都应能追溯到需求文档、评审结论或线上行为</td>
+</tr>
+<tr>
+<td>去重复</td>
+<td>同一规则跨多份需求出现时，只保留一处权威定义</td>
+</tr>
+<tr>
+<td>按对象归并</td>
+<td>优先按 FlowSpace、订单、里程碑、工单、资源库等业务对象组织</td>
+</tr>
+<tr>
+<td>权限单列</td>
+<td>权限规则不混在页面说明里，需要沉淀到权限章节</td>
+</tr>
+<tr>
+<td>状态单列</td>
+<td>状态枚举、状态变更、状态限制需要统一维护</td>
+</tr>
+<tr>
+<td>不确定不硬写</td>
+<td>未确认内容进入问题池，确认后再合入正式页面</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 推荐页面模板</h2>
+<pre><code class="language-text"># 功能或对象名称
+
+## 1. 功能定位
+## 2. 使用对象与入口
+## 3. 核心对象
+## 4. 业务流程
+## 5. 权限规则
+## 6. 状态与限制
+## 7. 字段、表单与校验
+## 8. 通知、日志与审计
+## 9. 异常提示
+## 10. 来源需求
+## 11. 待确认问题
+</code></pre>
+<h2 id="4">4. 更新流程</h2>
+<ol>
+<li>将新增或更新需求同步到 <code>最新需求源（source:thoughts-v2-current）</code>；维护人本地目录由 <code>LINKINCREASE_SOURCE_PATH</code> 指定。</li>
+<li>运行 <code>python scripts\scan_source_manifest.py</code> 更新 <code>metadata/source-manifest.csv</code> 和 <code>metadata/source-diff.csv</code>。</li>
+<li>在 <a href="./05-需求文档来源台账.md">05-需求文档来源台账.md</a> 中登记来源和归属模块。</li>
+<li>判断该需求是新增对象、补充规则、调整权限、调整状态，还是修正文案。</li>
+<li>更新对应知识页。</li>
+<li>如果影响核心术语，同步更新 <a href="./02-核心概念词典.md">02-核心概念词典.md</a>。</li>
+<li>如果影响功能边界，同步更新 <a href="./03-功能地图.md">03-功能地图.md</a>。</li>
+<li>如果有冲突或待确认项，记录到 <a href="./99-待办与问题池.md">99-待办与问题池.md</a>。</li>
+</ol>
+<h2 id="5">5. 冲突处理规则</h2>
+<table>
+<thead>
+<tr>
+<th>冲突类型</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新旧需求冲突</td>
+<td>标出两份来源，优先找产品确认，不自行猜测</td>
+</tr>
+<tr>
+<td>页面描述与权限描述冲突</td>
+<td>以权限矩阵或最新权限需求为准，待确认前进入问题池</td>
+</tr>
+<tr>
+<td>贸易端与采集端行为不一致</td>
+<td>分别记录端差异，不强行统一</td>
+</tr>
+<tr>
+<td>运营端配置与贸易端运行态冲突</td>
+<td>分别记录“配置态”和“运行态”，再确认转换规则</td>
+</tr>
+<tr>
+<td>状态限制不一致</td>
+<td>统一沉淀到状态章节，来源页保留引用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 命名规范</h2>
+<ul>
+<li>业务对象使用统一名称：FlowSpace、订单、里程碑、工单、资源库、业务模板、资源库模板。</li>
+<li>原需求中出现“模版”和“模板”时，知识库正文统一使用“模板”，文件名保留原样。</li>
+<li>原需求中出现 SCCS 时，知识库正文统一映射为 FlowSpace（流空间）；来源文件名、<code>source:</code> 引用和导出文件名保留原始 SCCS，以便追溯。</li>
+<li>更名原因：FlowSpace 比 SCCS 更直观，英文名称可直接联想到业务“流”与协作“空间”，降低新成员理解成本。</li>
+<li>文档标题尽量使用“对象 + 主题”，例如 <code>订单-生命周期与状态规则.md</code>。</li>
+</ul>
+<h2 id="7">7. 质量检查</h2>
+<p>每次更新后检查：</p>
+<ul>
+<li>是否能从 README 入口找到该内容。</li>
+<li>是否已登记来源。</li>
+<li>是否有权限、状态、通知、日志遗漏。</li>
+<li>是否把临时待确认内容写成了确定结论。</li>
+<li>是否与核心概念词典和功能地图保持一致。</li>
+</ul>
+  </article>
+</body>
+</html>

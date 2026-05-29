@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>订单生命周期 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">订单生命周期</h1>
+<h2 id="1">1. 流程定位</h2>
+<p>订单生命周期描述订单从创建、执行业务、推进里程碑和工单，到完成、取消或重启的完整状态变化，以及各状态下对里程碑、工单、批复和日志的影响。</p>
+<h2 id="2">2. 状态机</h2>
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; 进行中: 创建订单
+    进行中 --&gt; 已完成: 完成订单
+    进行中 --&gt; 已取消: 取消订单
+    已完成 --&gt; 进行中: 重启订单
+    已取消 --&gt; 进行中: 重启订单
+</code></pre>
+<h2 id="3">3. 主流程</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;创建订单&quot;] --&gt; B[&quot;填写订单基本信息&quot;]
+    B --&gt; C[&quot;生成里程碑实例&quot;]
+    C --&gt; D[&quot;创建工单或处理里程碑批复&quot;]
+    D --&gt; E[&quot;工单采集、工单批复&quot;]
+    E --&gt; F[&quot;里程碑状态推进&quot;]
+    F --&gt; G{&quot;订单是否结束&quot;}
+    G --&gt;|否| D
+    G --&gt;|完成| H[&quot;完成订单&quot;]
+    G --&gt;|取消| I[&quot;取消订单并选择取消原因&quot;]
+    H --&gt; J[&quot;限制后续编辑和处理动作&quot;]
+    I --&gt; J
+    J --&gt; K[&quot;写入跟踪记录、历史记录和动态&quot;]
+</code></pre>
+<h2 id="4">4. 关键规则</h2>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建订单</td>
+<td>按业务模板主表单填写数据，生成对应里程碑</td>
+</tr>
+<tr>
+<td>编辑订单</td>
+<td>需有编辑订单权限，已完成/已取消状态受限</td>
+</tr>
+<tr>
+<td>完成订单</td>
+<td>仅进行中订单可完成；完成后订单和相关里程碑、工单处理动作受限</td>
+</tr>
+<tr>
+<td>取消订单</td>
+<td>仅进行中订单可取消；需选择取消原因</td>
+</tr>
+<tr>
+<td>重启订单</td>
+<td>已完成或已取消订单可按权限重启为进行中</td>
+</tr>
+<tr>
+<td>删除订单</td>
+<td>需有删除订单权限；删除后相关链接应提示无权限或不可访问</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 完成订单后的影响</h2>
+<ul>
+<li>订单状态变更为已完成。</li>
+<li>订单不可编辑、不可取消。</li>
+<li>进行中的里程碑变更为已完成，其余里程碑状态按规则保持。</li>
+<li>所有里程碑不可创建工单，不可修改状态，不可从其他订单互用里程碑，不可添加互用工单。</li>
+<li>所有里程碑批复不可编辑、指派、修改处理人。</li>
+<li>所有工单不可采集、批复、指派、修改处理人、发邮件协作、终止采集、删除工单。</li>
+<li>跟踪记录增加完成订单记录。</li>
+</ul>
+<h2 id="6">6. 取消订单后的影响</h2>
+<ul>
+<li>订单状态变更为已取消。</li>
+<li>取消时需选择取消原因。</li>
+<li>取消原因来自 FlowSpace 设置中的订单取消原因预设。</li>
+<li>历史订单中保存取消时的文本，后续修改预设不影响已取消订单展示。</li>
+<li>业务处理动作受限。</li>
+<li>跟踪记录增加取消订单记录。</li>
+</ul>
+<h2 id="7">7. 权限规则</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>权限要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看订单</td>
+<td>查看订单基本信息权限 + 数据围栏</td>
+</tr>
+<tr>
+<td>创建订单</td>
+<td>创建订单权限</td>
+</tr>
+<tr>
+<td>编辑订单</td>
+<td>编辑订单权限</td>
+</tr>
+<tr>
+<td>修改订单状态</td>
+<td>修改订单状态权限</td>
+</tr>
+<tr>
+<td>删除订单</td>
+<td>删除订单权限</td>
+</tr>
+<tr>
+<td>查看跟踪记录</td>
+<td>查看跟踪记录权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 日志与审计</h2>
+<p>订单生命周期必须写入：</p>
+<ul>
+<li>订单创建记录。</li>
+<li>订单编辑历史。</li>
+<li>完成、取消、重启记录。</li>
+<li>跟踪记录。</li>
+<li>自动化修改订单基本信息记录。</li>
+<li>资源库同步或公式更新引发的系统自动执行日志。</li>
+</ul>
+<h2 id="9">9. 待确认问题</h2>
+<ul>
+<li>订单重启后，已完成/已取消里程碑和工单是否恢复可处理的完整规则。</li>
+<li>删除订单后，关联订单、翻单、互用数据如何展示和记录。</li>
+<li>自动化是否允许对已完成或已取消订单继续执行某些动作。</li>
+</ul>
+<h2 id="10">10. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单列表】订单增删改.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单列表】批量操作.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>常用运营报表制作方法 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">常用运营报表制作方法</h1>
+<p>运营报表的价值在于稳定复用和口径一致。制作报表前，应先确定业务问题，再确定数据来源、字段口径和展示维度。</p>
+<h2 id="_2">常用报表</h2>
+<table>
+<thead>
+<tr>
+<th>报表</th>
+<th>数据来源</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单推进报表</td>
+<td>订单 FlowSpace</td>
+<td>查看订单状态、交期风险、负责人</td>
+</tr>
+<tr>
+<td>供应商表现报表</td>
+<td>供应商资源库、订单 FlowSpace</td>
+<td>比较交付、异常、整改效率</td>
+</tr>
+<tr>
+<td>工厂准入报表</td>
+<td>工厂资源库、工厂申报 FlowSpace</td>
+<td>查看准入状态、审核进度</td>
+</tr>
+<tr>
+<td>验厂审核报表</td>
+<td>验厂 FlowSpace</td>
+<td>查看排期、报告结论、服务商效率</td>
+</tr>
+<tr>
+<td>CAP 整改报表</td>
+<td>CAP FlowSpace</td>
+<td>查看未关闭、超期、高风险问题</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">制作步骤</h2>
+<ol>
+<li>确认报表服务对象和使用频率。</li>
+<li>定义字段口径，尤其是状态、时间、风险等级。</li>
+<li>选择统计维度：供应商、工厂、客户、月份、负责人、业务类型。</li>
+<li>配置筛选条件和默认视图。</li>
+<li>验证报表数字是否能回溯到明细记录。</li>
+</ol>
+<h2 id="_4">维护规范</h2>
+<ul>
+<li>报表字段变更要记录原因。</li>
+<li>指标口径变更要同步通知运营和客户。</li>
+<li>不再使用的报表应归档，避免误用旧口径。</li>
+</ul>
+  </article>
+</body>
+</html>

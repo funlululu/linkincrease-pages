@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>动态与评论 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">动态与评论</h1>
+<h2 id="_2">定位</h2>
+<p>动态是工单和里程碑批复级别的过程记录，用于展示采集、批复、指派、修改处理人、终止采集、互用、评论等事件。动态同时承担协作评论入口和未读角标提示。</p>
+<h2 id="_3">动态类型</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>修改</td>
+<td>创建工单、采集工单、批复工单、创建或编辑里程碑批复等</td>
+</tr>
+<tr>
+<td>评论</td>
+<td>成员在工单或里程碑批复动态中发表评论</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>指派、修改处理人、终止采集、工单互用、取消互用等</td>
+</tr>
+</tbody>
+</table>
+<p>动态按操作时间正序排序。</p>
+<h2 id="_4">工单动态</h2>
+<p>有工单动态的页面包括查看工单、工单采集、工单批复。动态按钮数字角标表示当前成员上次打开这些页面之后新增的评论数。</p>
+<h3 id="_5">参与人</h3>
+<p>工单动态参与人包括：</p>
+<ol>
+<li>工单发起人。</li>
+<li>采集人。</li>
+<li>批复人。</li>
+<li>里程碑批复人。</li>
+</ol>
+<p>对接人或负责人未指派时，处理人头像显示协作团队头像；已指派后展示对应协作成员头像并增加协作标识。已提交的采集人、批复人头像展示已提交标识。</p>
+<h3 id="_6">过滤</h3>
+<table>
+<thead>
+<tr>
+<th>过滤项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所有</td>
+<td>展示所有类型动态</td>
+</tr>
+<tr>
+<td>仅评论</td>
+<td>只展示评论类动态，默认过滤该项</td>
+</tr>
+<tr>
+<td>仅修改历史</td>
+<td>只展示修改表单类型动态，此类动态可查看编辑历史记录</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">典型记录</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>动态文案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建工单</td>
+<td><code>$操作人 创建了工单</code></td>
+</tr>
+<tr>
+<td>导入工单</td>
+<td><code>$操作人 导入工单</code></td>
+</tr>
+<tr>
+<td>采集工单或修改工单采集部分</td>
+<td><code>$操作人 编辑了工单</code></td>
+</tr>
+<tr>
+<td>批复工单</td>
+<td><code>$操作人 批复了工单，工单无法继续编辑</code></td>
+</tr>
+<tr>
+<td>协作方指派采集</td>
+<td><code>$操作人 将工单任务指派给 $被指派人...</code></td>
+</tr>
+<tr>
+<td>协作方指派批复</td>
+<td><code>$操作人 将工单批复任务指派给 $被指派人...</code></td>
+</tr>
+<tr>
+<td>修改采集人</td>
+<td><code>$操作人 将工单任务处理人修改为 $修改后成员...</code></td>
+</tr>
+<tr>
+<td>修改批复人</td>
+<td><code>$操作人 将工单批复人修改为 $修改后成员...</code></td>
+</tr>
+<tr>
+<td>终止采集</td>
+<td><code>$操作人 终止采集，工单无法继续编辑</code></td>
+</tr>
+<tr>
+<td>工单互用于</td>
+<td><code>$操作人 将此工单互用于 $订单标识</code></td>
+</tr>
+<tr>
+<td>取消互用</td>
+<td><code>$操作人 取消 $订单标识 互用此工单</code></td>
+</tr>
+</tbody>
+</table>
+<p>修改处理人前后不一致时才记录。</p>
+<h2 id="_8">里程碑批复动态</h2>
+<p>有里程碑批复动态的页面为查看里程碑批复。动态按钮数字角标表示当前成员上次打开页面之后新增的评论数。</p>
+<h3 id="_9">参与人</h3>
+<p>里程碑批复动态参与人包括发起人和里程碑批复人。协作团队未指派时展示协作团队头像；已指派后展示具体协作成员头像并增加协作标识。</p>
+<h3 id="_10">典型记录</h3>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>动态文案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建里程碑批复</td>
+<td><code>$操作人 创建了里程碑批复</code></td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td><code>$操作人 编辑了里程碑批复</code></td>
+</tr>
+<tr>
+<td>协作方指派里程碑批复</td>
+<td><code>$操作人 将里程碑批复任务指派给 $被指派人...</code></td>
+</tr>
+<tr>
+<td>修改里程碑批复人</td>
+<td><code>$操作人 将里程碑批复人修改为 $修改后成员...</code></td>
+</tr>
+<tr>
+<td>协作方修改批复指派</td>
+<td><code>$操作人 将其团队的里程碑批复人修改为 $被指派人...</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_11">评论与通知</h2>
+<p>评论支持 @ 成员、@ 团队和 @ 所有参与者。</p>
+<table>
+<thead>
+<tr>
+<th>@对象</th>
+<th>通知规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@成员</td>
+<td>仅通知对应成员</td>
+</tr>
+<tr>
+<td>@团队</td>
+<td>通知该团队下参与当前工单或里程碑批复的成员</td>
+</tr>
+<tr>
+<td>@所有参与者</td>
+<td>当前工单或里程碑批复的所有参与成员都收到消息和邮件</td>
+</tr>
+<tr>
+<td>不@成员</td>
+<td>不发送通知，仅在详情页面动态按钮上显示未读角标</td>
+</tr>
+</tbody>
+</table>
+<p>成员支持按姓名或邮箱模糊搜索；团队支持按团队名称或简称模糊搜索。</p>
+<p>工单评论可 @ 工单发起人、当前采集人、当前工单批复人、里程碑批复人，以及这些身份所属团队。里程碑批复评论可 @ 发起人、当前里程碑批复人及相关团队。</p>
+<h2 id="_12">采集端一致性</h2>
+<p>采集端任务详情页中的工单动态和里程碑批复动态，数据与操作规则同贸易端。采集端参与评论、查看动态时，应复用同一套动态记录和未读角标规则。</p>
+<h2 id="_13">关联页面</h2>
+<ul>
+<li><a href="../30-业务流程与产品流程图/工单采集与批复.md">工单采集与批复</a></li>
+<li><a href="../30-业务流程与产品流程图/移动端采集.md">移动端采集</a></li>
+<li><a href="../10-功能模块详情/消息中心与实时通知.md">消息中心与实时通知</a></li>
+<li><a href="./历史记录与快照.md">历史记录与快照</a></li>
+</ul>
+<h2 id="_14">来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】工单&amp;里程碑批复操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【工单视图】批量操作：批量发邮件协作、批量采集.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务详情页】工单、工单批复、里程碑批复详情页.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

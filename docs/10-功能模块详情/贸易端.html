@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>贸易端 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">贸易端</h1>
+<h2 id="1">1. 定位</h2>
+<p>贸易端是 Linkincrease 的客户业务协同主平台，面向客户团队、团队成员、协作团队和业务管理人员。</p>
+<p>它承载团队、FlowSpace、订单、里程碑、工单、资源库、自动化、消息、仪表盘、报告和日志审计等核心业务。大部分日常业务创建、协作、查看、审批和数据复用都在贸易端完成。</p>
+<h2 id="2">2. 核心职责</h2>
+<table>
+<thead>
+<tr>
+<th>职责</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>账号与个人设置</td>
+<td>注册登录、忘记密码、个人信息、头像、语言、退出账号</td>
+</tr>
+<tr>
+<td>团队管理</td>
+<td>创建团队、维护团队信息、角色、成员、协作团队</td>
+</tr>
+<tr>
+<td>FlowSpace 工作空间</td>
+<td>创建 FlowSpace、维护设置、成员、业务角色、数据围栏、协作 FlowSpace</td>
+</tr>
+<tr>
+<td>订单执行</td>
+<td>创建、编辑、导入、导出、查看、完成、取消、重启订单</td>
+</tr>
+<tr>
+<td>工单与批复</td>
+<td>发起工单、采集、批复、指派、终止、评论和动态协作</td>
+</tr>
+<tr>
+<td>资源库</td>
+<td>维护团队资源库、引用资源库数据、同步到 FlowSpace、分享资源库</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>配置触发条件、执行动作、定时任务、执行日志</td>
+</tr>
+<tr>
+<td>协作通知</td>
+<td>消息中心、实时通知、邮件协作、批量邮件协作</td>
+</tr>
+<tr>
+<td>展示分析</td>
+<td>工作台、订单日程、任务中心、常用视图、仪表盘、报告</td>
+</tr>
+<tr>
+<td>日志审计</td>
+<td>操作日志、订单跟踪记录、动态、历史记录、快照</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 主要模块</h2>
+<h3 id="31">3.1 账号与个人中心</h3>
+<p>贸易端账号能力包括注册登录、忘记密码、个人信息维护、头像、姓名、性别、邮箱、手机号、重置密码、语言切换和退出账号。</p>
+<p>个人中心还需要展示当前用户加入的团队列表，并支持切换团队。若用户是团队拥有者，应展示拥有者标识。团队代码应支持复制。</p>
+<p>语言切换通常包含跟随系统、简体中文、英文等选项，切换后需要保存到账户并更新当前浏览器语言。</p>
+<h3 id="32">3.2 团队与协作团队</h3>
+<p>团队是贸易端业务归属的组织单位。用户先进入团队，再进入团队下的 FlowSpace、订单、资源库和仪表盘。</p>
+<p>团队管理需要覆盖：</p>
+<ul>
+<li>创建团队。</li>
+<li>修改团队信息。</li>
+<li>维护团队角色。</li>
+<li>邀请成员。</li>
+<li>管理协作团队。</li>
+<li>记录成员邀请和协作邀请流程。</li>
+</ul>
+<p>团队权限口径详见 <a href="../40-权限、安全与审计/团队权限.md">团队权限</a>。</p>
+<h3 id="33-flowspace">3.3 工作台与 FlowSpace</h3>
+<p>工作台是贸易端进入业务的日常入口。它提供团队下 FlowSpace 列表、FlowSpace 分组、创建 FlowSpace、星标、排序和常用入口。</p>
+<p>FlowSpace 是承载订单、里程碑、工单、资源库引用、自动化、仪表盘和报告的业务空间。FlowSpace 设置需要维护基本信息、成员、业务角色、协作团队、标签、数据围栏等。</p>
+<p>FlowSpace 对象口径详见 <a href="../20-业务对象与数据模型/FlowSpace.md">FlowSpace</a>。</p>
+<h3 id="34">3.4 订单、里程碑、工单与批复</h3>
+<p>订单是 FlowSpace 下的主业务实体。里程碑是订单流程节点，工单是里程碑下的执行任务，批复是对工单或里程碑结果的确认动作。</p>
+<p>贸易端负责订单的完整生命周期：</p>
+<ul>
+<li>创建订单。</li>
+<li>编辑订单。</li>
+<li>导入和导出订单。</li>
+<li>查看订单列表和详情。</li>
+<li>管理里程碑计划。</li>
+<li>发起和处理工单。</li>
+<li>执行工单批复和里程碑批复。</li>
+<li>完成、取消、重启订单。</li>
+</ul>
+<p>相关口径详见 <a href="../20-业务对象与数据模型/订单.md">订单</a>、<a href="../20-业务对象与数据模型/里程碑.md">里程碑</a>、<a href="../20-业务对象与数据模型/工单与批复.md">工单与批复</a>。</p>
+<h3 id="35">3.5 资源库</h3>
+<p>资源库是团队级主数据管理能力。贸易端用于维护资源库表数据、将资源库应用到 FlowSpace、在订单或工单中引用资源库数据、查看编辑历史、管理资源库视图和分享资源库。</p>
+<p>相关口径详见 <a href="../20-业务对象与数据模型/资源库.md">资源库</a> 和 <a href="../30-业务流程与产品流程图/资源库引用与同步.md">资源库引用与同步</a>。</p>
+<h3 id="36">3.6 自动化、消息与邮件协作</h3>
+<p>贸易端支持自动化配置，包括触发条件、执行动作、通知动作和定时任务。自动化执行结果应进入执行日志。</p>
+<p>协作通知能力包括：</p>
+<ul>
+<li>站内消息中心。</li>
+<li>在线实时消息。</li>
+<li>邮件协作。</li>
+<li>批量邮件协作。</li>
+<li>任务相关提醒。</li>
+</ul>
+<p>相关口径详见 <a href="../10-功能模块详情/自动化配置.md">自动化配置</a>、<a href="../10-功能模块详情/消息中心与实时通知.md">消息中心与实时通知</a>、<a href="../10-功能模块详情/邮件协作.md">邮件协作</a>。</p>
+<h2 id="4">4. 与其他产品端关系</h2>
+<table>
+<thead>
+<tr>
+<th>关系</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>来自运营端</td>
+<td>业务模板、资源库模板、表单组件、仪表盘组件、报告入口、外部 API 配置等由运营端维护或监管</td>
+</tr>
+<tr>
+<td>同步到采集端</td>
+<td>工单、工单批复、里程碑批复、任务状态、消息通知会同步到采集端</td>
+</tr>
+<tr>
+<td>回流自采集端</td>
+<td>采集端提交的工单数据、批复数据、指派结果、评论或动态回流贸易端</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 知识库拆分建议</h2>
+<p>贸易端后续可继续拆成以下细页：</p>
+<ul>
+<li>账号注册登录与个人中心。</li>
+<li>团队创建与团队设置。</li>
+<li>工作台和 FlowSpace 分组。</li>
+<li>FlowSpace 设置。</li>
+<li>协作 FlowSpace 设置。</li>
+<li>订单列表、订单详情、订单管理。</li>
+<li>工单视图和批量操作。</li>
+<li>资源库视图、分享和应用范围。</li>
+<li>自动化一期、定时任务。</li>
+<li>消息中心、邮件协作。</li>
+</ul>
+<h2 id="6">6. 来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【账号】注册登录、忘记密码.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【个人中心】个人信息、切换语言、退出账号.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【团队管理】创建团队.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【团队设置】团队信息、角色、成员、协作团队管理.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【工作台】工作台、创建SCCS、SCCS分组.md</code></li>
+<li><code>source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
+<li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】工单&amp;里程碑批复操作.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【资源库】第一阶段.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【自动化】一期.md</code></li>
+<li><code>03-功能地图.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

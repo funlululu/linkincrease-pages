@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>消息中心与实时通知 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">消息中心与实时通知</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>消息中心用于汇总用户在所有团队下收到的待处理、通知、自动化、团队管理和账号类消息。实时通知用于在用户在线时弹出新消息提示；采集端还需要触发 APP 消息通知和首页未读红点。</p>
+<h2 id="2">2. 贸易端消息中心</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据范围</td>
+<td>展示当前用户在所有团队下的消息</td>
+</tr>
+<tr>
+<td>展示层级</td>
+<td>一级按消息类型分组；二级展示该分组下所有消息</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>一级按重要程度：待处理、通知、自动化、团队管理、账号；二级按接收时间倒序</td>
+</tr>
+<tr>
+<td>时间范围</td>
+<td>最多显示最近 3 个月消息</td>
+</tr>
+<tr>
+<td>筛选</td>
+<td>全部/未读 tab；未读时只展示有未读的分类和消息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 已读规则</h2>
+<ul>
+<li>点击二级消息后，该条消息变为已读。</li>
+<li>若消息有跳转页面，则点击后打开对应页面。</li>
+<li>如果消息来源不是当前团队，需要提示是否切换到对应团队；无论是否切换，点击即视为已读。</li>
+<li>二级列表可将当前分类全部标记已读。</li>
+<li>一级列表可将所有消息全部标记已读。</li>
+</ul>
+<h2 id="4">4. 消息分类</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>典型触发</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>待处理</td>
+<td>创建工单通知采集人；创建工单通知协作团队对接人；指派工单采集、工单批复、里程碑批复</td>
+</tr>
+<tr>
+<td>通知</td>
+<td>工单采集提交、工单批复提交、里程碑批复提交、动态中被 @、里程碑预警或延期</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>自动化相关消息，原始资料中标注暂无，需要跟自动化通知合并确认</td>
+</tr>
+<tr>
+<td>团队管理</td>
+<td>协作团队邀请、接受/拒绝、移出团队、加入/移出 FlowSpace、邀请成员加入团队</td>
+</tr>
+<tr>
+<td>账号</td>
+<td>被邀请加入团队、被移出团队、被添加或移出 FlowSpace、权限或角色被修改、被设置为对接人</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 实时消息</h2>
+<table>
+<thead>
+<tr>
+<th>设置</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实时通知开关</td>
+<td>默认打开</td>
+</tr>
+<tr>
+<td>打开</td>
+<td>用户在线且触发消息时，右下角弹出小窗</td>
+</tr>
+<tr>
+<td>关闭</td>
+<td>不弹窗，只记录到消息列表并显示未读数量</td>
+</tr>
+<tr>
+<td>小窗计数</td>
+<td>展示本次登录期间收到的未读消息，如“新消息：1/4”</td>
+</tr>
+<tr>
+<td>点击查看</td>
+<td>对应消息已读，小窗隐藏该已读消息</td>
+</tr>
+<tr>
+<td>关闭浏览器</td>
+<td>下次登录不展示上次小窗消息，只展示新消息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 采集端消息中心</h2>
+<p>采集端消息中心用于移动端任务处理场景。</p>
+<ul>
+<li>对应团队有未读消息时，首页消息 icon 出现红点。</li>
+<li>消息全部已读后，首页红点消失。</li>
+<li>点击首页消息入口跳转消息中心页。</li>
+<li>消息分类显示红点和未读数。</li>
+<li>部分消息仅通知，部分消息点击可跳转页面。</li>
+<li>手机未开启 APP 通知时，底部展示通知条；点击开启跳转手机通知设置页。</li>
+<li>点击全部已读后，所有分类消息已读。</li>
+</ul>
+<h2 id="7">7. 待确认问题</h2>
+<ul>
+<li>自动化消息分类当前资料标注“暂无”，但自动化执行支持站内通知，需要统一口径。</li>
+<li>消息模板来源仍在外部链接中，建议导出为本地来源文件。</li>
+<li>消息跳转时如果用户已失去权限，需统一提示“暂无权限”并保留已读状态。</li>
+</ul>
+  </article>
+</body>
+</html>

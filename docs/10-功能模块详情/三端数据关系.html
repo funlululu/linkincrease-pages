@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>三端数据关系 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">三端数据关系</h1>
+<h2 id="1">1. 总览</h2>
+<p>Linkincrease 的三端不是并列孤岛，而是围绕同一套业务对象形成配置、执行、监管和回流关系。</p>
+<pre><code class="language-mermaid">flowchart LR
+  A[&quot;运营端&lt;br/&gt;模板、配置、监管、集成&quot;] --&gt; B[&quot;贸易端&lt;br/&gt;团队、FlowSpace、订单、资源库、协作&quot;]
+  B --&gt; C[&quot;采集端&lt;br/&gt;任务、采集、批复、消息&quot;]
+  C --&gt; B
+  B --&gt; A
+</code></pre>
+<p>简化理解：</p>
+<ul>
+<li>运营端定义和监管平台能力。</li>
+<li>贸易端承载客户团队的业务运行。</li>
+<li>采集端处理移动执行任务，并把结果回流贸易端。</li>
+</ul>
+<h2 id="2">2. 数据主从关系</h2>
+<table>
+<thead>
+<tr>
+<th>数据或能力</th>
+<th>主维护端</th>
+<th>使用端</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户账号</td>
+<td>运营端监管，用户自维护</td>
+<td>贸易端、采集端</td>
+<td>运营端可查看和管理账号状态；用户在个人中心维护个人信息</td>
+</tr>
+<tr>
+<td>团队</td>
+<td>贸易端创建维护，运营端监管</td>
+<td>贸易端、运营端、采集端</td>
+<td>团队是业务归属单位；采集端通过团队切换查看任务</td>
+</tr>
+<tr>
+<td>FlowSpace</td>
+<td>贸易端创建维护，运营端监管</td>
+<td>贸易端、采集端、运营端</td>
+<td>FlowSpace 承载订单、工单、资源库应用、仪表盘和报告</td>
+</tr>
+<tr>
+<td>业务模板</td>
+<td>运营端</td>
+<td>贸易端</td>
+<td>贸易端创建 FlowSpace 时使用运营端模板</td>
+</tr>
+<tr>
+<td>资源库模板</td>
+<td>运营端</td>
+<td>贸易端</td>
+<td>贸易端创建团队资源库时使用运营端模板</td>
+</tr>
+<tr>
+<td>表单组件和显隐规则</td>
+<td>运营端</td>
+<td>贸易端、采集端</td>
+<td>采集端任务详情页展示和填写规则受模板配置影响</td>
+</tr>
+<tr>
+<td>订单</td>
+<td>贸易端</td>
+<td>采集端、运营端</td>
+<td>订单在贸易端创建和管理；采集端展示任务关联订单；运营端可监管数据</td>
+</tr>
+<tr>
+<td>里程碑</td>
+<td>贸易端</td>
+<td>采集端、运营端</td>
+<td>里程碑定义订单流程节点和批复任务</td>
+</tr>
+<tr>
+<td>工单</td>
+<td>贸易端</td>
+<td>采集端、运营端</td>
+<td>工单可在贸易端发起，在采集端移动填写和提交</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>贸易端</td>
+<td>采集端、运营端</td>
+<td>批复任务可在采集端处理，结果回流贸易端</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>贸易端</td>
+<td>采集端、运营端</td>
+<td>采集端可处理里程碑批复任务</td>
+</tr>
+<tr>
+<td>资源库数据</td>
+<td>贸易端</td>
+<td>贸易端、采集端、运营端</td>
+<td>资源库数据可被订单或工单引用，运营端监管资源库数据</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>贸易端配置，运营端监管</td>
+<td>贸易端、运营端</td>
+<td>自动化执行结果进入日志，部分动作影响订单、工单、资源库</td>
+</tr>
+<tr>
+<td>消息通知</td>
+<td>贸易端和系统触发</td>
+<td>贸易端、采集端</td>
+<td>消息状态需要跨端一致</td>
+</tr>
+<tr>
+<td>仪表盘和报告</td>
+<td>运营端配置或监管，贸易端使用</td>
+<td>贸易端、运营端</td>
+<td>权限控制决定查看和管理范围</td>
+</tr>
+<tr>
+<td>日志审计</td>
+<td>系统记录</td>
+<td>贸易端、运营端</td>
+<td>设置、操作、动态、历史、系统执行均需要可追溯</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 核心数据流</h2>
+<h3 id="31-flowspace">3.1 从模板到 FlowSpace</h3>
+<ol>
+<li>运营端维护业务模板、资源库模板、表单组件、字段规则。</li>
+<li>贸易端在工作台选择模板创建 FlowSpace。</li>
+<li>FlowSpace 生成订单、里程碑、工单、权限、仪表盘等业务空间。</li>
+<li>后续模板更新需要按同步规则影响已创建的 FlowSpace。</li>
+</ol>
+<p>参考：<a href="../30-业务流程与产品流程图/从模板到FlowSpace.md">从模板到FlowSpace</a>。</p>
+<h3 id="32">3.2 从订单到移动采集</h3>
+<ol>
+<li>贸易端创建或导入订单。</li>
+<li>贸易端在订单里程碑下创建工单、工单批复或里程碑批复。</li>
+<li>采集端按用户、团队、FlowSpace、任务状态展示待办任务。</li>
+<li>执行人员在采集端填写工单或提交批复。</li>
+<li>数据、动态、历史记录和任务状态回流贸易端。</li>
+</ol>
+<p>参考：<a href="../30-业务流程与产品流程图/工单采集与批复.md">工单采集与批复</a>、<a href="../30-业务流程与产品流程图/移动端采集.md">移动端采集</a>。</p>
+<h3 id="33">3.3 从资源库到业务表单</h3>
+<ol>
+<li>运营端维护资源库模板。</li>
+<li>贸易端基于模板创建团队资源库。</li>
+<li>FlowSpace 应用资源库数据范围。</li>
+<li>订单或工单字段引用资源库数据。</li>
+<li>资源库数据变更后，按引用和同步规则更新业务数据。</li>
+<li>系统记录资源库同步和字段变更历史。</li>
+</ol>
+<p>参考：<a href="../30-业务流程与产品流程图/资源库引用与同步.md">资源库引用与同步</a>。</p>
+<h3 id="34">3.4 从协作到通知</h3>
+<ol>
+<li>贸易端发起成员邀请、协作团队邀请、工单指派或邮件协作。</li>
+<li>系统按场景生成消息、实时通知、邮件或任务入口。</li>
+<li>贸易端和采集端展示未读、待办、关注、团队指派等状态。</li>
+<li>处理结果回流并更新任务状态、动态和日志。</li>
+</ol>
+<p>参考：<a href="../10-功能模块详情/消息中心与实时通知.md">消息中心与实时通知</a>、<a href="../10-功能模块详情/邮件协作.md">邮件协作</a>。</p>
+<h2 id="4">4. 权限边界</h2>
+<p>三端权限关系应按“平台监管、团队归属、FlowSpace 业务角色、协作方角色、数据围栏、资源权限、展示权限”分层理解。</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>主要控制点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台监管权限</td>
+<td>运营端可查看和监管平台用户、团队、FlowSpace、资源库、软件和系统记录</td>
+</tr>
+<tr>
+<td>团队权限</td>
+<td>贸易端团队拥有者、管理员、成员等角色控制团队设置和成员管理</td>
+</tr>
+<tr>
+<td>FlowSpace 权限</td>
+<td>FlowSpace 业务角色控制订单、里程碑、工单、仪表盘、报告等操作</td>
+</tr>
+<tr>
+<td>协作权限</td>
+<td>协作团队和协作方角色控制外部团队可见和可操作范围</td>
+</tr>
+<tr>
+<td>数据围栏</td>
+<td>控制字段、标签、数据范围对不同成员或团队是否可见</td>
+</tr>
+<tr>
+<td>采集端权限</td>
+<td>采集端按用户任务、编辑权限、指派权限决定按钮和表单状态</td>
+</tr>
+</tbody>
+</table>
+<p>参考：<a href="../40-权限、安全与审计/权限体系总表.md">权限体系总表</a>。</p>
+<h2 id="5">5. 知识库维护规则</h2>
+<ol>
+<li>涉及三端共有对象时，优先写入 <code>20-业务对象与数据模型/</code>。</li>
+<li>涉及跨端动作链路时，优先写入 <code>30-业务流程与产品流程图/</code>。</li>
+<li>涉及单端菜单、入口和页面职责时，写入 <code>10-功能模块详情/</code>。</li>
+<li>涉及权限边界时，必须同步引用或更新 <code>40-权限、安全与审计/</code>。</li>
+<li>涉及消息、日志、自动化、导入导出时，不要只写在页面说明里，应同步沉淀到对应横向能力目录。</li>
+</ol>
+<h2 id="6">6. 来源</h2>
+<ul>
+<li><code>01-产品总览.md</code></li>
+<li><code>03-功能地图.md</code></li>
+<li><code>docs/10-功能模块详情/运营端.md</code></li>
+<li><code>docs/10-功能模块详情/贸易端.md</code></li>
+<li><code>docs/10-功能模块详情/采集端.md</code></li>
+<li><code>docs/20-业务对象与数据模型/</code></li>
+<li><code>docs/30-业务流程与产品流程图/</code></li>
+<li><code>docs/40-权限、安全与审计/</code></li>
+</ul>
+  </article>
+</body>
+</html>

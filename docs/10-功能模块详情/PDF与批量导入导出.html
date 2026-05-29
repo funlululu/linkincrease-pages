@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDF与批量导入导出 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="pdf">PDF与批量导入导出</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>批量导入导出用于将订单、工单、资源库数据与本地 Excel、CSV、PDF 文件流转。导入导出必须同时遵守模板字段配置、组件校验、权限、数据围栏、对象状态、历史记录和进程中心规则。</p>
+<h2 id="2-pdf">2. 业务模板中的 PDF 导入设置</h2>
+<p>业务模板可配置 PDF 导入：</p>
+<ul>
+<li>PDF 导入开关默认关闭。</li>
+<li>当前暂支持指定 PDF 模板。</li>
+<li>可配置 PDF 附件是否导入到主表单附件字段。</li>
+<li>贸易端支持上传多份 PDF 文件导入。</li>
+<li>模板发布和同步至 FlowSpace 时，PDF 导入设置也属于同步内容。</li>
+</ul>
+<h2 id="3-excel">3. 订单 Excel 导入</h2>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上传文件</td>
+<td>支持 <code>.xls</code>、<code>.xlsx</code>、<code>.csv</code>；拖拽不支持格式时提示</td>
+</tr>
+<tr>
+<td>导入设置</td>
+<td>选择工作表、匹配系统字段、设置过滤重复字段、字段格式、日期格式</td>
+</tr>
+<tr>
+<td>导入数据</td>
+<td>分为新增和覆盖；覆盖可选覆盖整行或覆盖有值</td>
+</tr>
+<tr>
+<td>执行导入</td>
+<td>在进程中心显示导入任务，完成后提示成功或失败</td>
+</tr>
+<tr>
+<td>导入记录</td>
+<td>仅能查看本人导入记录，下载文件增加导入执行结果</td>
+</tr>
+</tbody>
+</table>
+<p>订单导入支持 999 行订单数。订单 ID、成员邮箱、地址不区分大小写，其余控件区分大小写。</p>
+<h2 id="4-pdf">4. 订单 PDF 导入</h2>
+<p>PDF 导入与 Excel 导入主要差异：</p>
+<ul>
+<li>仅支持 <code>.pdf</code> 文件，可上传多份。</li>
+<li>无需选择工作表。</li>
+<li>导入文件字段展示运营端配置需导入的字段。</li>
+<li>无需手动匹配系统字段。</li>
+<li>过滤重复数据设置与 Excel 分别记忆。</li>
+<li>识别多份 PDF 的订单数据后，归类为新增或覆盖，后续操作同 Excel 导入。</li>
+</ul>
+<h2 id="5">5. 工单导入</h2>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>权限入口</td>
+<td>有任意里程碑导入权限的用户可见工单导入按钮</td>
+</tr>
+<tr>
+<td>里程碑选择</td>
+<td>只能选择当前用户有工单导入权限的里程碑</td>
+</tr>
+<tr>
+<td>模板字段</td>
+<td>订单识别字段 + 工单采集字段</td>
+</tr>
+<tr>
+<td>匹配订单</td>
+<td>仅在当前用户有导入工单权限的订单范围内匹配</td>
+</tr>
+<tr>
+<td>新增</td>
+<td>匹配到订单的数据可作为新工单导入</td>
+</tr>
+<tr>
+<td>覆盖</td>
+<td>对有采集权限的已有工单可覆盖采集部分内容</td>
+</tr>
+<tr>
+<td>未匹配</td>
+<td>未匹配到订单的数据仅可查看，不可导入</td>
+</tr>
+</tbody>
+</table>
+<p>新增工单成功后，工单采集人为导入成员；批复人默认跟随运营端配置，未配置时取导入成员。若此前未创建里程碑批复，则同步创建。</p>
+<h2 id="6">6. 资源库导入导出</h2>
+<p>资源库导入支持工作表选择、字段匹配、重复数据识别、新增、覆盖整行、覆盖有值、导入记录和进程中心。导入成功后，资源库数据历史记录增加导入人操作的新增或修改记录。</p>
+<p>资源库导出可选择导出当前资源库或当前表数据。导出当前整个资源库时，仅导出当前用户有查看权限的表。</p>
+<h2 id="7">7. 导入失败与校验</h2>
+<p>常见失败原因：</p>
+<ul>
+<li>当前用户无导入权限。</li>
+<li>未设置任何新增或覆盖数据。</li>
+<li>同一条数据同时设为新增和覆盖。</li>
+<li>覆盖未选择目标数据。</li>
+<li>多行覆盖至同一条系统数据。</li>
+<li>对象已完成、已取消或已删除。</li>
+<li>必填项为空。</li>
+<li>控件内容不符合输入规则。</li>
+<li>单选/多选内容与选项值不一致。</li>
+<li>日期格式与运营端配置不符。</li>
+</ul>
+<p>如果必填项正好是当前用户被数据围栏限制不可见字段，则导入时不校验该字段。</p>
+<h2 id="8">8. 导出规则</h2>
+<p>订单导出范围为当前用户权限内可见的订单、里程碑批复、里程碑工单数据。</p>
+<p>导出内容：</p>
+<ul>
+<li>订单信息，包括订单字段和各里程碑批复字段，需排除数据围栏不可见字段。</li>
+<li>里程碑工单，按里程碑分 sheet。</li>
+<li>字段修改次数统计。</li>
+</ul>
+<p>导出内容无字段或无数据时，不执行导出并提示没有可导出的数据。</p>
+<h2 id="9">9. 待确认问题</h2>
+<ul>
+<li>PDF 字段整理目前仍引用外部资料，建议导出成本地来源。</li>
+<li>订单、工单、资源库导入的字段类型支持范围需要沉淀为统一矩阵。</li>
+<li>数据围栏对导入、导出、记录下载的影响需要继续验证。</li>
+</ul>
+  </article>
+</body>
+</html>

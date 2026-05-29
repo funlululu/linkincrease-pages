@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>第三方数据对接 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">第三方数据对接</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>第三方数据对接用于把外部系统数据引入 Linkincrease，减少手动录入并保持数据一致。当前资料覆盖两类能力：模板内表单级 API 引用，以及运营端 FlowSpace 级外部 API 集成配置。</p>
+<h2 id="2-api">2. 表单级 API 引用</h2>
+<p>表单级 API 引用主要配置在业务模板的里程碑属性中，可分别针对工单、工单批复、里程碑批复设置引用能力。</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否启用</td>
+<td>默认禁用</td>
+</tr>
+<tr>
+<td>按钮名称</td>
+<td>非必填，默认“数据引用”，限制 20 字符，需国际化</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>接口地址</td>
+</tr>
+<tr>
+<td>请求方式</td>
+<td>默认 POST</td>
+</tr>
+<tr>
+<td>Result Format</td>
+<td>默认 JSON</td>
+</tr>
+<tr>
+<td>请求配置</td>
+<td>请求头等信息，可不填</td>
+</tr>
+<tr>
+<td>查询配置</td>
+<td>传给服务器的查询、过滤、排序、分页等参数</td>
+</tr>
+<tr>
+<td>字段匹配</td>
+<td>接口字段与模板字段映射；模板字段不可重复配置</td>
+</tr>
+<tr>
+<td>贸易端白名单</td>
+<td>控制哪些团队可使用数据引用</td>
+</tr>
+</tbody>
+</table>
+<p>如果已匹配字段在模板变更后被删除，贸易端和运营端不展示对应字段。</p>
+<h2 id="3">3. 自动引用与定期更新</h2>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动引用</td>
+<td>启用后，用户填写已匹配的触发字段时自动查询并引用 API 数据</td>
+</tr>
+<tr>
+<td>多条匹配</td>
+<td>可选择不引用、引用最新更新、引用最后创建、引用最早创建</td>
+</tr>
+<tr>
+<td>引用时机</td>
+<td>工单初次发起、工单批复初次批复、里程碑初次批复</td>
+</tr>
+<tr>
+<td>定期更新</td>
+<td>开启后，根据自动引用字段内的数据定期更新相关数据</td>
+</tr>
+</tbody>
+</table>
+<p>可更新状态：</p>
+<ul>
+<li>工单：里程碑进行中、未被工单批复、未终止，排除互用自的工单。</li>
+<li>工单批复：里程碑进行中，排除互用自的工单。</li>
+<li>里程碑批复：里程碑进行中。</li>
+</ul>
+<p>更新后需要增加动态和历史记录。</p>
+<h2 id="4">4. 贸易端引用应用</h2>
+<ul>
+<li>对应表单开启 API 配置且当前团队在白名单内，才展示引用按钮。</li>
+<li>可通过弹窗搜索接口数据，选择一条数据后按字段匹配填入表单。</li>
+<li>确认引入需要二次确认。</li>
+<li>填入数据支持手动修改。</li>
+<li>只读或隐藏字段不填入。</li>
+<li>采集端任务详情若配置引用第三方数据且工单可编辑，也展示引用能力。</li>
+</ul>
+<h2 id="5-flowspace-api">5. FlowSpace 级外部 API 集成</h2>
+<p>FlowSpace 级外部 API 集成用于把外部系统数据直接创建或更新 Linkincrease 的订单、工单和批复。</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>集成名称</td>
+<td>必填</td>
+</tr>
+<tr>
+<td>来源标识</td>
+<td>必填，后端配置项</td>
+</tr>
+<tr>
+<td>配置状态</td>
+<td>默认开启</td>
+</tr>
+<tr>
+<td>同步更新</td>
+<td>默认关闭，关闭时只允许创建新记录</td>
+</tr>
+<tr>
+<td>同步删除</td>
+<td>默认关闭，关闭时外部删除标记不删除 FlowSpace 数据</td>
+</tr>
+<tr>
+<td>Linkincrease 同步至外部</td>
+<td>默认关闭，关闭时 Linkincrease 修改不回写</td>
+</tr>
+<tr>
+<td>冲突数据同步</td>
+<td>暂定时间戳优先，仍需补充</td>
+</tr>
+</tbody>
+</table>
+<p>集成生效后，订单和工单由外部系统创建，Linkincrease 不允许手动创建对应数据。</p>
+<h2 id="6">6. 字段映射</h2>
+<p>外部 API 集成支持 JSONPath 提取深层数据。</p>
+<table>
+<thead>
+<tr>
+<th>映射对象</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主表单主键</td>
+<td>必选，可配置文本、数字、百分比、日期字段</td>
+</tr>
+<tr>
+<td>主表单字段</td>
+<td>支持非子表字段和子表字段配置</td>
+</tr>
+<tr>
+<td>里程碑工单</td>
+<td>按里程碑数组路径映射工单字段</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>有工单批复时配置</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>有里程碑批复时配置</td>
+</tr>
+<tr>
+<td>采集人/批复人</td>
+<td>通常通过邮箱与 FlowSpace 成员匹配，匹配失败则创建失败或后续手动修改</td>
+</tr>
+</tbody>
+</table>
+<p>参与配置的 FlowSpace 字段不允许重复配置。配置了主键的模板字段不允许用户修改，以防数据冲突。</p>
+<h2 id="7">7. 冲突与写入策略</h2>
+<ul>
+<li>API 显式写入：映射配置了字段且外部数据有值时，强制写入。</li>
+<li>FlowSpace 默认值：外部数据无字段或值为空时，创建时可填入默认值。</li>
+<li>公式/联动：API 写入触发字段后，系统自动计算相关公式字段。</li>
+<li>未映射字段不可被外部 API 修改。</li>
+</ul>
+<h2 id="8">8. 日志与追溯</h2>
+<p>外部 API 集成日志列表展示触发时间、事件类型、同步方向、数据标识、状态和详情。</p>
+<p>业务侧需要记录：</p>
+<ul>
+<li>订单跟踪记录：创建订单、更新订单、里程碑开始、删除工单等。</li>
+<li>工单动态：创建工单、创建里程碑批复、更新工单采集、更新工单批复、更新里程碑批复等。</li>
+<li>历史记录：以来源标识记录创建或编辑行为。</li>
+</ul>
+<h2 id="9">9. 待确认问题</h2>
+<ul>
+<li>外部主键组合填写规则和后端支持范围仍待补充。</li>
+<li>冲突数据同步策略除时间戳优先外，是否需要人工处理队列。</li>
+<li>第三方成员与 FlowSpace 成员邮箱不一致时的异常处理需要形成正式规则。</li>
+</ul>
+  </article>
+</body>
+</html>

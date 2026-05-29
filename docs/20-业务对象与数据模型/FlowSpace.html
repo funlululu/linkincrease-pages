@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowSpace - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="flowspace">FlowSpace</h1>
+<blockquote>
+<p>命名说明：FlowSpace（流空间）是 SCCS 的新名称。为了让英文名更容易被直接理解，知识库正文统一使用 FlowSpace；历史来源文档中的 SCCS 仅作为原始文件名和追溯标识保留。</p>
+</blockquote>
+<h2 id="1">1. 功能定位</h2>
+<p>FlowSpace 是 Linkincrease 贸易端的核心业务空间，用于承载某类供应链协作业务。FlowSpace 通常由运营端业务模板创建，运行态包含订单、里程碑、工单、批复、成员、角色、协作团队、数据围栏、标签、自动化、仪表盘、报告和资源库关联。</p>
+<h2 id="2">2. 使用对象与入口</h2>
+<table>
+<thead>
+<tr>
+<th>使用对象</th>
+<th>入口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队成员</td>
+<td>工作台 FlowSpace 列表</td>
+<td>查看、进入、创建或管理本团队 FlowSpace</td>
+</tr>
+<tr>
+<td>团队管理员</td>
+<td>FlowSpace 设置</td>
+<td>管理基本信息、角色、成员、协作团队、数据围栏</td>
+</tr>
+<tr>
+<td>协作团队成员</td>
+<td>协作 FlowSpace</td>
+<td>在被授权范围内参与订单、工单和批复</td>
+</tr>
+<tr>
+<td>运营人员</td>
+<td>运营端 FlowSpace 管理</td>
+<td>查看平台团队的 FlowSpace 数据、自动化记录、仪表盘、报告等</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 核心对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace 基本信息</td>
+<td>名称、图标、来源模板、描述等基础信息</td>
+</tr>
+<tr>
+<td>FlowSpace 成员</td>
+<td>被加入当前 FlowSpace 的团队成员</td>
+</tr>
+<tr>
+<td>FlowSpace 业务角色</td>
+<td>主团队成员在 FlowSpace 内的业务权限集合</td>
+</tr>
+<tr>
+<td>协作团队</td>
+<td>被主团队邀请参与当前 FlowSpace 的外部团队</td>
+</tr>
+<tr>
+<td>协作 FlowSpace 角色</td>
+<td>协作团队在 FlowSpace 内的权限集合</td>
+</tr>
+<tr>
+<td>数据围栏</td>
+<td>控制成员可见订单、里程碑、工单、字段、标签等数据范围</td>
+</tr>
+<tr>
+<td>里程碑计划</td>
+<td>FlowSpace 内订单流程节点的默认计划配置</td>
+</tr>
+<tr>
+<td>标签设置</td>
+<td>根据条件展示在订单或里程碑中的业务标签</td>
+</tr>
+<tr>
+<td>更多设置</td>
+<td>订单标识、订单取消原因等 FlowSpace 级业务设置</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 业务流程</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;运营端发布业务模板&quot;] --&gt; B[&quot;贸易端选择模板创建 FlowSpace&quot;]
+    B --&gt; C[&quot;设置 FlowSpace 基本信息&quot;]
+    C --&gt; D[&quot;配置业务角色、成员、协作团队&quot;]
+    D --&gt; E[&quot;配置数据围栏、里程碑计划、标签、更多设置&quot;]
+    E --&gt; F[&quot;创建订单并进入业务执行&quot;]
+    F --&gt; G[&quot;自动化、仪表盘、报告、资源库关联持续生效&quot;]
+</code></pre>
+<h2 id="5">5. 权限规则</h2>
+<p>FlowSpace 权限由团队权限、FlowSpace 业务角色、协作 FlowSpace 角色、数据围栏共同决定。</p>
+<table>
+<thead>
+<tr>
+<th>权限域</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队权限</td>
+<td>决定是否可创建 FlowSpace、进入团队设置、管理团队级资源</td>
+</tr>
+<tr>
+<td>FlowSpace 业务角色</td>
+<td>决定主团队成员可操作哪些订单、里程碑、工单、仪表盘等</td>
+</tr>
+<tr>
+<td>协作 FlowSpace 角色</td>
+<td>决定协作团队成员可查看和处理哪些业务数据</td>
+</tr>
+<tr>
+<td>数据围栏</td>
+<td>决定用户可见的数据范围和字段范围</td>
+</tr>
+</tbody>
+</table>
+<p>判断入口是否展示时，前端可结合权限、对象状态和成员关系；提交时必须服务端再次校验。</p>
+<h2 id="6">6. 状态与限制</h2>
+<p>当前资料重点描述 FlowSpace 运行态设置，尚未形成完整 FlowSpace 生命周期状态机。已确认限制：</p>
+<ul>
+<li>创建 FlowSpace 依赖运营端已发布且对当前团队可见的业务模板。</li>
+<li>FlowSpace 内角色、成员、协作团队变更会影响后续订单、里程碑、工单可见性和可操作性。</li>
+<li>数据围栏变更会影响字段、标签、订单、里程碑、工单等展示范围。</li>
+<li>订单标识、取消原因等更多设置会影响订单列表、订单详情和状态操作展示。</li>
+</ul>
+<h2 id="7">7. 字段、表单与校验</h2>
+<p>FlowSpace 继承业务模板中的主表单、里程碑、工单表单、批复表单等结构。运行态可调整的配置包括：</p>
+<ul>
+<li>业务角色和协作方角色。</li>
+<li>数据围栏。</li>
+<li>FlowSpace 成员和协作团队。</li>
+<li>里程碑计划。</li>
+<li>标签设置。</li>
+<li>订单标识。</li>
+<li>订单取消原因。</li>
+</ul>
+<h2 id="8">8. 通知、日志与审计</h2>
+<p>FlowSpace 设置类操作需要进入操作日志。涉及成员、协作团队、权限变化时，后续应补充消息通知规则。</p>
+<p>已知日志范围：</p>
+<ul>
+<li>FlowSpace 设置操作日志。</li>
+<li>协作 FlowSpace 设置操作日志。</li>
+<li>自动化执行日志。</li>
+<li>系统自动执行日志中与 FlowSpace 相关的自动化、公式、资源库同步动作。</li>
+</ul>
+<h2 id="9">9. 异常与提示</h2>
+<p>需要从原始需求继续抽取的提示包括：</p>
+<ul>
+<li>无权限操作。</li>
+<li>成员或协作团队被移除后的业务处理限制。</li>
+<li>数据围栏变化后的可见性变化。</li>
+<li>模板或字段变更对运行态 FlowSpace 的影响。</li>
+</ul>
+<h2 id="10">10. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【SCCS设置】.md</code></li>
+<li><code>source:thoughts-v2-current/v2.1.x/贸易端/【贸易端】【协作SCCS设置】.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/贸易端/【贸易端】【工作台】工作台、创建SCCS、SCCS分组.md</code></li>
+<li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【仪表盘】权限管理.md</code></li>
+<li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】报告权限.md</code></li>
+<li><code>source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md</code></li>
+</ul>
+<h2 id="11">11. 待确认问题</h2>
+<ul>
+<li>FlowSpace 与 FlowSpace 是否完全同义，还是存在历史命名与产品边界差异。</li>
+<li>FlowSpace 删除、停用、归档等生命周期状态是否已有完整规则。</li>
+<li>模板同步至已创建 FlowSpace 时的冲突处理和历史数据影响。</li>
+</ul>
+  </article>
+</body>
+</html>

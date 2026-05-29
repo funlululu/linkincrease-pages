@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>运营使用场景 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">运营使用场景</h1>
+<p>本页用于帮助运营人员从外贸供应链行业场景出发，解释 Linkincrease 能解决什么问题，以及应该如何把客户业务映射到平台能力。</p>
+<h2 id="_2">行业问题到平台能力</h2>
+<table>
+<thead>
+<tr>
+<th>行业问题</th>
+<th>业务表现</th>
+<th>Linkincrease 支撑方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商与工厂资料分散</td>
+<td>一级供应商清单、工厂资质、准入状态散落在 Excel、邮件和聊天记录中</td>
+<td>用资源库维护供应商、工厂、资质、准入状态等主数据</td>
+</tr>
+<tr>
+<td>新工厂准入流程不可控</td>
+<td>供应商提交工厂资料后，品牌方审批、补充资料、结果确认缺少统一流程</td>
+<td>用 FlowSpace 设计工厂申报与准入流程，沉淀审批记录和资质附件</td>
+</tr>
+<tr>
+<td>订单生产工厂不透明</td>
+<td>供应商接单后实际使用哪个工厂生产，品牌方难以及时掌握</td>
+<td>在订单管理 FlowSpace 中让供应商按权限选择关联工厂，形成订单工厂报备数据</td>
+</tr>
+<tr>
+<td>未准入工厂临时使用风险高</td>
+<td>订单执行中发现需要使用新工厂，但无法快速完成申报、审批、准入</td>
+<td>从订单工厂报备引导到工厂申报 FlowSpace，准入通过后同步资源库</td>
+</tr>
+<tr>
+<td>社会责任验厂协同复杂</td>
+<td>品牌方、供应商、工厂、DAREN 服务商之间的验厂任务、资料、审核结果难追踪</td>
+<td>用独立 FlowSpace 承载验厂审核流程，工单派发给服务商和现场执行人员</td>
+</tr>
+<tr>
+<td>CAP 整改闭环不完整</td>
+<td>验厂报告中的改进项责任、期限、整改证据和复核结论难以闭环</td>
+<td>用 CAP 跟进 FlowSpace 管理整改项、提交证据、品牌方或服务商复核</td>
+</tr>
+<tr>
+<td>管理层缺少全局视图</td>
+<td>供应商数量、准入状态、订单使用工厂、验厂风险、CAP 进度无法联动分析</td>
+<td>用仪表盘和报表跨资源库、订单、工单、批复汇总分析</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">推荐场景方案</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>适用客户</th>
+<th>关键对象</th>
+<th>方案入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方供应商与工厂准入协同</td>
+<td>品牌方、采购团队、贸易公司</td>
+<td>供应商、工厂、资质、准入申请、订单、验厂、CAP</td>
+<td><a href="./外贸供应商治理/品牌方供应商与工厂准入协同方案.md">品牌方供应商与工厂准入协同方案</a></td>
+</tr>
+<tr>
+<td>订单全流程追踪</td>
+<td>贸易公司、采购团队、Sourcing Agency</td>
+<td>FlowSpace、订单、里程碑、工单、负责人、计划时间</td>
+<td><a href="../../10-功能模块详情/订单.md">订单</a>、<a href="../../30-业务流程与产品流程图/订单生命周期.md">订单生命周期</a></td>
+</tr>
+<tr>
+<td>供应商协同管理</td>
+<td>品牌方、采购团队、贸易公司</td>
+<td>协作团队、数据围栏、供应商工单、邮件协作</td>
+<td><a href="./多团队协同实战.md">多团队协同实战</a>、<a href="../../40-权限、安全与审计/协作FlowSpace权限.md">协作 FlowSpace 权限</a></td>
+</tr>
+<tr>
+<td>QC 验货与整改闭环</td>
+<td>QC 服务商、品牌方、采购团队</td>
+<td>验货工单、图片附件、签名、批复、CAP</td>
+<td><a href="../../10-功能模块详情/验货组件流程.md">验货组件流程</a>、<a href="../../30-业务流程与产品流程图/从模板到FlowSpace.md">从模板到 FlowSpace</a></td>
+</tr>
+<tr>
+<td>资源库标准化复用</td>
+<td>贸易公司、品牌方、采购团队</td>
+<td>供应商库、工厂库、物料库、款式库、证书库</td>
+<td><a href="../../10-功能模块详情/资源库.md">资源库</a>、<a href="../../30-业务流程与产品流程图/资源库引用与同步.md">资源库引用与同步</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">运营讲解顺序</h2>
+<ol>
+<li>先问客户现在如何管理订单、供应商、工厂、验货、整改。</li>
+<li>区分哪些是长期主数据，哪些是流程中产生的一次性过程数据。</li>
+<li>把主数据放到资源库，把过程数据放到 FlowSpace、订单、工单和批复。</li>
+<li>用权限和数据围栏说明品牌方、供应商、工厂、服务商各自能看到什么、能填什么。</li>
+<li>用日志、历史记录、仪表盘说明过程可追溯、结果可分析。</li>
+</ol>
+  </article>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>运营常用脚本工具 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">运营常用脚本工具</h1>
+<p>本页用于记录运营在知识库维护、站点生成、数据检查中常用的本地脚本和命令。公开站点中不要写入个人本地路径、账号、Token 或客户敏感数据。</p>
+<h2 id="_2">知识库站点</h2>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生成静态站点</td>
+<td><code>python scripts/build_static_site.py</code></td>
+</tr>
+<tr>
+<td>检查敏感信息</td>
+<td>使用搜索工具检查本地盘符、访问令牌前缀、客户敏感词等不应公开发布的内容</td>
+</tr>
+<tr>
+<td>查看 Git 状态</td>
+<td><code>git status --short</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">文档维护</h2>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增文档</td>
+<td>放入对应编号目录，并更新入口页或索引页</td>
+</tr>
+<tr>
+<td>删除旧文档</td>
+<td>同步清理 metadata 和站点索引</td>
+</tr>
+<tr>
+<td>Mermaid 图表</td>
+<td>保留源码，并在站点中使用预览能力查看大图</td>
+</tr>
+<tr>
+<td>来源说明</td>
+<td>写业务来源和确认状态，不写个人电脑路径</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">安全提醒</h2>
+<ul>
+<li>不要把 Personal Access Token 写入文档、脚本或提交记录。</li>
+<li>不要把客户内部文件路径写入公开站点。</li>
+<li>公开站点只发布已脱敏、可共享的知识内容。</li>
+</ul>
+  </article>
+</body>
+</html>

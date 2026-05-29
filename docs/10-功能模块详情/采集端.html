@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>采集端 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">采集端</h1>
+<h2 id="1">1. 定位</h2>
+<p>采集端是 Linkincrease 的移动执行入口，面向需要在移动场景中查看任务、填写工单、提交批复、处理指派和接收消息的执行人员。</p>
+<p>采集端不是完整后台，它聚焦“我需要处理什么、在哪里处理、处理后如何同步回贸易端”。因此知识库中采集端应优先围绕任务列表、任务详情、采集提交、批复提交、消息提醒和个人中心沉淀。</p>
+<h2 id="2">2. 核心职责</h2>
+<table>
+<thead>
+<tr>
+<th>职责</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录与账号</td>
+<td>邮箱密码登录、忘记密码、账号状态校验</td>
+</tr>
+<tr>
+<td>首页概览</td>
+<td>展示我的任务、团队待指派任务、我关注、FlowSpace 任务统计</td>
+</tr>
+<tr>
+<td>任务列表</td>
+<td>按进行中、已完成、我发起、我关注、团队指派等维度查看任务</td>
+</tr>
+<tr>
+<td>任务搜索</td>
+<td>搜索工单、工单批复、里程碑批复任务</td>
+</tr>
+<tr>
+<td>任务详情</td>
+<td>查看工单详情、工单批复详情、里程碑批复详情</td>
+</tr>
+<tr>
+<td>移动采集</td>
+<td>填写工单表单、引用第三方数据、处理子表、提交数据</td>
+</tr>
+<tr>
+<td>批复处理</td>
+<td>提交工单批复和里程碑批复</td>
+</tr>
+<tr>
+<td>指派处理</td>
+<td>在具备权限时处理协作工单或批复的指派</td>
+</tr>
+<tr>
+<td>消息中心</td>
+<td>接收任务、评论、协作、系统相关消息</td>
+</tr>
+<tr>
+<td>我的</td>
+<td>查看个人信息和基础账号入口</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 主要模块</h2>
+<h3 id="31">3.1 登录</h3>
+<p>采集端登录与贸易端账号体系保持一致，通常使用邮箱和密码登录，并支持忘记密码。</p>
+<p>账号状态、禁用状态、待激活状态等应与平台账号规则一致。若账号被禁用，应阻止登录并提示用户。</p>
+<h3 id="32">3.2 首页</h3>
+<p>首页展示任务相关数据和 FlowSpace 相关任务数据。常见区域包括：</p>
+<ul>
+<li>我的任务。</li>
+<li>团队待指派任务。</li>
+<li>我关注。</li>
+<li>FlowSpace 任务统计。</li>
+<li>团队切换入口。</li>
+<li>底部导航。</li>
+</ul>
+<p>FlowSpace 统计需要展示该团队下与当前用户相关的订单数、任务数、里程碑任务数、待办数等。若 FlowSpace 来自外部协作，需要展示协作标识和所属团队信息。</p>
+<p>首页需要支持下拉刷新；页面较长时可出现返回顶部入口；点击头像或名称进入个人中心；点击待办、团队指派、我关注等入口跳转到任务列表对应标签页。</p>
+<h3 id="33">3.3 任务列表</h3>
+<p>任务列表按不同状态和业务维度展示任务，至少包含：</p>
+<ul>
+<li>进行中任务。</li>
+<li>已完成任务。</li>
+<li>我发起任务。</li>
+<li>我关注任务。</li>
+<li>团队指派任务。</li>
+</ul>
+<p>进行中任务需要区分待办和已处理。任务类型包括工单、工单批复、里程碑批复。任务列表应排除互用产生的工单，仅展示正常创建的工单。</p>
+<p>常见筛选和排序包括：</p>
+<ul>
+<li>任务状态标签。</li>
+<li>任务排序：最新发起、最近发起等。</li>
+<li>FlowSpace 范围：全部或指定 FlowSpace，多选。</li>
+<li>订单状态：全部、进行中、已完成、已取消等。</li>
+</ul>
+<p>列表需要支持下拉刷新、上拉加载更多、标签切换、进入任务搜索页、点击任务进入详情、关注和取消关注。</p>
+<h3 id="34">3.4 任务详情</h3>
+<p>任务详情覆盖三类页面：</p>
+<ul>
+<li>工单详情页。</li>
+<li>工单批复详情页。</li>
+<li>里程碑批复详情页。</li>
+</ul>
+<p>工单详情页需要展示基础信息，包括里程碑状态、订单标识、FlowSpace 名称、里程碑名称、发起人、发起时间、采集人、最新采集时间、批复人、最新批复时间、工单完成度、可编辑模块、所属团队等。</p>
+<p>工单表单需要按可编辑和不可编辑状态展示。若用户具有编辑权限且工单可编辑，则展示提交按钮；若无权限或不可编辑，则隐藏提交按钮。</p>
+<p>采集端任务详情还需要处理：</p>
+<ul>
+<li>未提交修改返回时的保存提示。</li>
+<li>服务端任务更新后的冲突提示。</li>
+<li>指派按钮显隐。</li>
+<li>第三方数据引用入口。</li>
+<li>工单终止标签。</li>
+<li>工单动态。</li>
+<li>子表引用、添加、保存、继续添加、继续关联。</li>
+<li>子表行数据切换和未保存提示。</li>
+</ul>
+<p>工单批复详情页以工单批复为第一标签，其他逻辑与工单详情页保持一致。里程碑批复详情页需要展示里程碑批复表单、该里程碑下的工单和工单批复、订单信息。</p>
+<h3 id="35">3.5 消息中心与我的</h3>
+<p>采集端消息中心承接任务、评论、协作、系统相关消息，并与贸易端消息状态保持一致。需要支持未读提示和 App 通知入口。</p>
+<p>我的页面用于展示个人中心信息，通常承接头像、姓名、账号相关信息、退出或账号管理入口。</p>
+<h2 id="4">4. 与其他产品端关系</h2>
+<table>
+<thead>
+<tr>
+<th>关系</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>来自贸易端</td>
+<td>任务、工单、批复、指派、订单和 FlowSpace 信息从贸易端同步到采集端</td>
+</tr>
+<tr>
+<td>回流贸易端</td>
+<td>采集提交、批复提交、评论、动态、指派结果回写贸易端</td>
+</tr>
+<tr>
+<td>受运营端配置影响</td>
+<td>表单组件、字段显隐、第三方数据引用、模板规则由运营端配置，并在采集端任务详情中体现</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 知识库拆分建议</h2>
+<p>采集端后续可继续拆成以下细页：</p>
+<ul>
+<li>登录与账号状态。</li>
+<li>首页任务统计。</li>
+<li>任务列表。</li>
+<li>任务搜索。</li>
+<li>工单详情。</li>
+<li>工单批复详情。</li>
+<li>里程碑批复详情。</li>
+<li>消息中心。</li>
+<li>我的。</li>
+</ul>
+<h2 id="6">6. 来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【登录】邮箱_密码登录、忘记密码.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【首页】任务相关数据展示.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务列表】工单、工单批复、里程碑批复任务列表.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务搜索页】工单、工单批复、里程碑批复任务搜索.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务详情页】工单、工单批复、里程碑批复详情页.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【消息中心】消息通知列表.md</code></li>
+<li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【我的】个人中心页.md</code></li>
+<li><code>docs/30-业务流程与产品流程图/移动端采集.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

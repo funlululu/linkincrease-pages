@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>产品指标与路线图 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">产品指标与路线图</h1>
+<h2 id="1">1. 页面定位</h2>
+<p>本页用于沉淀 Linkincrease 的指标与路线图框架，帮助团队在讨论需求优先级、阶段目标和投入顺序时有统一参照。</p>
+<p>历史产品文档中的时间、版本、数值目标和 RICE 分数属于早期规划假设。除非已经被产品负责人确认或进入最新需求源，否则本页只将其整理为“评估框架”，不作为承诺版本计划。</p>
+<h2 id="2">2. 指标分层</h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>关注问题</th>
+<th>示例指标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务结果指标</td>
+<td>产品是否让供应链协作更有效</td>
+<td>订单准时完成率、任务处理时长、跨团队响应时长</td>
+</tr>
+<tr>
+<td>产品使用指标</td>
+<td>用户是否持续使用核心能力</td>
+<td>FlowSpace 创建量、订单创建量、工单处理量、资源库引用量</td>
+</tr>
+<tr>
+<td>协作效率指标</td>
+<td>协作是否从人工沟通转为结构化流程</td>
+<td>工单指派到处理时长、批复处理时长、邮件协作使用量</td>
+</tr>
+<tr>
+<td>数据质量指标</td>
+<td>数据是否可复用、可追踪、可分析</td>
+<td>资源库字段完整率、引用数据占比、导入成功率、历史记录覆盖率</td>
+</tr>
+<tr>
+<td>治理与稳定指标</td>
+<td>平台是否可控、可审计、可扩展</td>
+<td>权限配置完整率、日志覆盖率、自动化执行成功率、异常处理闭环率</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 阶段目标框架</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>核心目标</th>
+<th>产品重点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-1 验证阶段</td>
+<td>验证 FlowSpace + 订单 + 里程碑 + 工单是否能承载核心供应链协作流程</td>
+<td>业务模板、创建 FlowSpace、订单执行、工单采集、基础权限、基础通知</td>
+</tr>
+<tr>
+<td>1-10 增长阶段</td>
+<td>提升协作效率、复用能力和客户团队规模化使用能力</td>
+<td>资源库、自动化、订单复用、协作团队、仪表盘、报告、日志治理</td>
+</tr>
+<tr>
+<td>10-100 扩展阶段</td>
+<td>支撑更多行业、更多团队、更复杂集成与管理场景</td>
+<td>高级模板、外部 API、行业组件、数据分析、生态集成、国际化能力</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 优先级判断原则</h2>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>先主链路后增强能力</td>
+<td>优先保证 FlowSpace、订单、里程碑、工单、批复、权限、状态能跑通</td>
+</tr>
+<tr>
+<td>先稳定口径后体验优化</td>
+<td>涉及权限、状态、数据流转、日志的需求优先明确规则，再优化交互</td>
+</tr>
+<tr>
+<td>先高频场景后低频配置</td>
+<td>高频业务执行、任务处理、数据复用优先级通常高于低频后台配置</td>
+</tr>
+<tr>
+<td>先可追溯后自动化</td>
+<td>自动化、同步、批量操作必须先明确日志、异常、权限和回滚边界</td>
+</tr>
+<tr>
+<td>先确认来源后进入知识库</td>
+<td>历史文档、访谈假设、路线图目标必须经过确认，才能成为正式规则</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-rice">5. 可复用的 RICE 评估口径</h2>
+<p>历史文档使用过 RICE 作为功能优先级框架。后续可继续使用，但建议统一解释如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>使用注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reach</td>
+<td>影响用户或业务对象范围</td>
+<td>需要说明影响哪些端、哪些角色、哪些对象</td>
+</tr>
+<tr>
+<td>Impact</td>
+<td>对业务目标的影响强度</td>
+<td>需要连接到订单效率、协作效率、数据质量或治理目标</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>判断依据可信度</td>
+<td>最新需求、客户反馈、线上数据优先；早期假设需降低置信度</td>
+</tr>
+<tr>
+<td>Effort</td>
+<td>实现复杂度</td>
+<td>需要包含前端、后端、数据、权限、日志、迁移和测试成本</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 当前知识库对应关系</h2>
+<table>
+<thead>
+<tr>
+<th>路线图主题</th>
+<th>已沉淀知识页</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace 主链路</td>
+<td><a href="../30-业务流程与产品流程图/从模板到FlowSpace.md">从模板到FlowSpace</a>、<a href="../20-业务对象与数据模型/FlowSpace.md">FlowSpace</a></td>
+</tr>
+<tr>
+<td>订单执行</td>
+<td><a href="../30-业务流程与产品流程图/订单生命周期.md">订单生命周期</a>、<a href="../20-业务对象与数据模型/订单.md">订单</a></td>
+</tr>
+<tr>
+<td>工单与移动采集</td>
+<td><a href="../30-业务流程与产品流程图/工单采集与批复.md">工单采集与批复</a>、<a href="../30-业务流程与产品流程图/移动端采集.md">移动端采集</a></td>
+</tr>
+<tr>
+<td>权限治理</td>
+<td><a href="../40-权限、安全与审计/权限体系总表.md">权限体系总表</a>、<a href="../40-权限、安全与审计/数据围栏.md">数据围栏</a></td>
+</tr>
+<tr>
+<td>资源复用</td>
+<td><a href="../20-业务对象与数据模型/资源库.md">资源库</a>、<a href="../30-业务流程与产品流程图/资源库引用与同步.md">资源库引用与同步</a></td>
+</tr>
+<tr>
+<td>自动化与通知</td>
+<td><a href="../30-业务流程与产品流程图/自动化执行.md">自动化执行</a>、<a href="../10-功能模块详情/消息中心与实时通知.md">消息中心与实时通知</a></td>
+</tr>
+<tr>
+<td>分析展示</td>
+<td><a href="../10-功能模块详情/工作台.md">工作台与FlowSpace入口</a>、<a href="../60-数据分析支持/仪表盘配置说明.md">仪表盘管理与设计器</a>、<a href="../60-数据分析支持/报表权限.md">报告管理与权限</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 待确认问题</h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>建议处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历史文档中的阶段时间是否仍有效</td>
+<td>需要产品负责人确认后进入版本变更记录或路线图页</td>
+</tr>
+<tr>
+<td>历史文档中的 OKR 数值是否有真实数据支撑</td>
+<td>需要补充数据来源；无来源时仅作假设</td>
+</tr>
+<tr>
+<td>RICE 分数是否仍符合当前产品阶段</td>
+<td>需要按最新需求和实现成本重新评估</td>
+</tr>
+<tr>
+<td>商业模式、定价策略是否属于当前知识库范围</td>
+<td>如需保留，建议单独建立商业策略页，不混入功能规则</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 来源</h2>
+<ul>
+<li><code>source:product-docs-legacy/产品路线图-0到100.md</code></li>
+<li><code>source:product-docs-legacy/产品指标体系-OKR.md</code></li>
+<li><code>source:product-docs-legacy/功能优先级规划-RICE框架.md</code></li>
+<li><code>source:product-docs-legacy/精益UX画布-LeanUXCanvas.md</code></li>
+<li><code>source:product-docs-legacy/产品综合定义文档.md</code></li>
+</ul>
+  </article>
+</body>
+</html>

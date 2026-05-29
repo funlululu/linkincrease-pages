@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Knowledge Base Map - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="knowledge-base-map">Knowledge Base Map</h1>
+<p>Knowledge base root resolution:</p>
+<pre><code class="language-text">1. LINKINCREASE_KB_PATH
+2. Current workspace if it contains metadata/source-roots.csv and docs/README.md
+3. Nearby workspace/repository roots containing those marker files
+4. User-provided local path, shared drive path, or repository clone
+</code></pre>
+<p>Use these pages as entry points.</p>
+<h2 id="global">Global</h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overall product understanding</td>
+<td><code>01-产品总览.md</code></td>
+</tr>
+<tr>
+<td>Standard terminology</td>
+<td><code>02-核心概念词典.md</code></td>
+</tr>
+<tr>
+<td>Feature ownership and module map</td>
+<td><code>03-功能地图.md</code></td>
+</tr>
+<tr>
+<td>Full knowledge architecture</td>
+<td><code>04-Linkincrease完整知识库架构与内容.md</code></td>
+</tr>
+<tr>
+<td>Source ledger</td>
+<td><code>05-需求文档来源台账.md</code></td>
+</tr>
+<tr>
+<td>KB engineering architecture</td>
+<td><code>06-知识库工程架构.md</code></td>
+</tr>
+<tr>
+<td>Open questions</td>
+<td><code>99-待办与问题池.md</code></td>
+</tr>
+<tr>
+<td>Requirement design workflow</td>
+<td><code>docs/00-产品总览与规划/迭代需求设计工作流.md</code></td>
+</tr>
+<tr>
+<td>Product strategy and positioning</td>
+<td><code>docs/00-产品总览与规划/产品战略与定位.md</code></td>
+</tr>
+<tr>
+<td>User roles and scenarios</td>
+<td><code>docs/00-产品总览与规划/用户角色与场景.md</code></td>
+</tr>
+<tr>
+<td>Product metrics and roadmap</td>
+<td><code>docs/00-产品总览与规划/产品指标与路线图.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="product-ends">Product Ends</h2>
+<table>
+<thead>
+<tr>
+<th>End</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运营端</td>
+<td><code>docs/10-功能模块详情/运营端.md</code></td>
+</tr>
+<tr>
+<td>贸易端</td>
+<td><code>docs/10-功能模块详情/贸易端.md</code></td>
+</tr>
+<tr>
+<td>采集端</td>
+<td><code>docs/10-功能模块详情/采集端.md</code></td>
+</tr>
+<tr>
+<td>Cross-end data relationship</td>
+<td><code>docs/10-功能模块详情/三端数据关系.md</code></td>
+</tr>
+<tr>
+<td>Account and personal center</td>
+<td><code>docs/10-功能模块详情/账号与个人中心.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="objects">Objects</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace</td>
+<td><code>docs/20-业务对象与数据模型/FlowSpace.md</code></td>
+</tr>
+<tr>
+<td>Team and collaboration team</td>
+<td><code>docs/20-业务对象与数据模型/团队与协作团队.md</code></td>
+</tr>
+<tr>
+<td>Order</td>
+<td><code>docs/20-业务对象与数据模型/订单.md</code></td>
+</tr>
+<tr>
+<td>Milestone</td>
+<td><code>docs/20-业务对象与数据模型/里程碑.md</code></td>
+</tr>
+<tr>
+<td>Work order and approval</td>
+<td><code>docs/20-业务对象与数据模型/工单与批复.md</code></td>
+</tr>
+<tr>
+<td>Resource library</td>
+<td><code>docs/20-业务对象与数据模型/资源库.md</code></td>
+</tr>
+<tr>
+<td>Business template</td>
+<td><code>docs/20-业务对象与数据模型/业务模板.md</code></td>
+</tr>
+<tr>
+<td>Resource library template</td>
+<td><code>docs/20-业务对象与数据模型/资源库模板.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="flows">Flows</h2>
+<table>
+<thead>
+<tr>
+<th>Flow</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Template to FlowSpace</td>
+<td><code>docs/30-业务流程与产品流程图/从模板到FlowSpace.md</code></td>
+</tr>
+<tr>
+<td>Order lifecycle</td>
+<td><code>docs/30-业务流程与产品流程图/订单生命周期.md</code></td>
+</tr>
+<tr>
+<td>Work order collection and approval</td>
+<td><code>docs/30-业务流程与产品流程图/工单采集与批复.md</code></td>
+</tr>
+<tr>
+<td>Cross-team collaboration</td>
+<td><code>docs/30-业务流程与产品流程图/跨团队协作.md</code></td>
+</tr>
+<tr>
+<td>Resource reference and sync</td>
+<td><code>docs/30-业务流程与产品流程图/资源库引用与同步.md</code></td>
+</tr>
+<tr>
+<td>Automation execution</td>
+<td><code>docs/30-业务流程与产品流程图/自动化执行.md</code></td>
+</tr>
+<tr>
+<td>Mobile collection</td>
+<td><code>docs/30-业务流程与产品流程图/移动端采集.md</code></td>
+</tr>
+<tr>
+<td>Order reuse relationship</td>
+<td><code>docs/30-业务流程与产品流程图/订单复用关系.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="permissions">Permissions</h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Permission overview</td>
+<td><code>docs/40-权限、安全与审计/权限体系总表.md</code></td>
+</tr>
+<tr>
+<td>Team permissions</td>
+<td><code>docs/40-权限、安全与审计/团队权限.md</code></td>
+</tr>
+<tr>
+<td>FlowSpace role permissions</td>
+<td><code>docs/40-权限、安全与审计/FlowSpace业务角色权限.md</code></td>
+</tr>
+<tr>
+<td>Collaborative FlowSpace permissions</td>
+<td><code>docs/40-权限、安全与审计/协作FlowSpace权限.md</code></td>
+</tr>
+<tr>
+<td>Data fence</td>
+<td><code>docs/40-权限、安全与审计/数据围栏.md</code></td>
+</tr>
+<tr>
+<td>Resource permissions</td>
+<td><code>docs/40-权限、安全与审计/资源库权限.md</code></td>
+</tr>
+<tr>
+<td>Dashboard and report permissions</td>
+<td><code>docs/40-权限、安全与审计/仪表盘与报告权限.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration-notification-display-audit">Configuration, Notification, Display, Audit</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Folder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Form, template, formulas, import/export</td>
+<td><code>docs/50-运营支持知识/</code></td>
+</tr>
+<tr>
+<td>Messages, mail collaboration, automation</td>
+<td><code>docs/60-数据分析支持/</code></td>
+</tr>
+<tr>
+<td>Workbench, views, dashboard, reports</td>
+<td><code>docs/70-产品维护知识/</code></td>
+</tr>
+<tr>
+<td>Logs, tracking, history, snapshots</td>
+<td><code>docs/80-架构与技术方案/</code></td>
+</tr>
+<tr>
+<td>Source, questions, version records</td>
+<td><code>docs/90-版本历史与来源治理/</code></td>
+</tr>
+<tr>
+<td>Historical product document evaluation</td>
+<td><code>docs/90-版本历史与来源治理/历史产品文档评估.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="metadata">Metadata</h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Knowledge documents</td>
+<td><code>metadata/documents.csv</code></td>
+</tr>
+<tr>
+<td>Source list</td>
+<td><code>metadata/sources.csv</code></td>
+</tr>
+<tr>
+<td>Tags</td>
+<td><code>metadata/tags.csv</code></td>
+</tr>
+<tr>
+<td>Search index</td>
+<td><code>metadata/search-index.json</code></td>
+</tr>
+<tr>
+<td>Source roots</td>
+<td><code>metadata/source-roots.csv</code></td>
+</tr>
+<tr>
+<td>Latest source manifest</td>
+<td><code>metadata/source-manifest.csv</code></td>
+</tr>
+<tr>
+<td>Latest source diff</td>
+<td><code>metadata/source-diff.csv</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="source-authority">Source Authority</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Authority</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source:thoughts-v2-current</code></td>
+<td>Primary latest requirement source</td>
+<td>Current feature rules, confirmed PRD details, source traceability</td>
+</tr>
+<tr>
+<td><code>source:product-docs-legacy</code></td>
+<td>Secondary historical reference</td>
+<td>Product strategy, user roles, metrics, roadmap, historical PRD comparison</td>
+</tr>
+</tbody>
+</table>
+<p>Do not let <code>source:product-docs-legacy</code> override current feature rules unless the user confirms the rule is still valid.</p>
+  </article>
+</body>
+</html>

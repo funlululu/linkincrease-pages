@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>历史产品文档来源层说明 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">历史产品文档来源层说明</h1>
+<h2 id="_2">定位</h2>
+<p><code>source:product-docs-legacy</code> 表示早期整理的产品文档来源层。它包含产品愿景、问题陈述、用户画像、用户访谈、三端 PRD 草案、路线图、OKR 和 RICE 优先级规划等内容。</p>
+<p>该来源层用于补充产品背景、战略假设、用户场景和指标框架，不作为当前功能规则的最高权威来源。</p>
+<h2 id="_3">路径规则</h2>
+<p>维护人本地目录由环境变量 <code>LINKINCREASE_PRODUCT_DOCS_PATH</code> 指定。知识库仓库和只读站点只展示 <code>source:product-docs-legacy/...</code>，不展示维护人本机绝对路径。</p>
+<h2 id="_4">权威等级</h2>
+<table>
+<thead>
+<tr>
+<th>内容类型</th>
+<th>使用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品愿景、定位、价值主张</td>
+<td>可抽取为入门层战略口径，但需要与当前产品事实保持一致</td>
+</tr>
+<tr>
+<td>用户画像、访谈、问题陈述</td>
+<td>可作为需求设计背景和角色分析输入</td>
+</tr>
+<tr>
+<td>OKR、路线图、RICE 评分</td>
+<td>只作为评估框架或历史假设，具体数值和时间需重新确认</td>
+</tr>
+<tr>
+<td>三端 PRD 草案</td>
+<td>只作为历史参考，具体规则必须与最新需求源和标准知识页核对</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">当前入库结果</h2>
+<p>已抽取为以下正式知识页：</p>
+<ul>
+<li><a href="../../docs/00-产品总览与规划/产品战略与定位.md">产品战略与定位</a></li>
+<li><a href="../../docs/00-产品总览与规划/用户角色与场景.md">用户角色与场景</a></li>
+<li><a href="../../docs/00-产品总览与规划/产品指标与路线图.md">产品指标与路线图</a></li>
+<li><a href="../../docs/90-版本历史与来源治理/历史产品文档评估.md">历史产品文档评估</a></li>
+</ul>
+<h2 id="_6">维护建议</h2>
+<ol>
+<li>不直接复制历史产品文档全文进入 <code>docs/</code>。</li>
+<li>不用历史 PRD 覆盖 <code>source:thoughts-v2-current</code> 已确认的功能规则。</li>
+<li>从历史文档中发现仍有效但未入库的内容时，先登记为待确认问题。</li>
+<li>术语统一使用 FlowSpace；历史原文中的 SCCS 只在来源路径或必要说明中保留。</li>
+</ol>
+  </article>
+</body>
+</html>

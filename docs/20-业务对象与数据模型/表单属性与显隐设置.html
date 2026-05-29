@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>表单属性与显隐设置 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">表单属性与显隐设置</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>表单属性用于配置表单名称、描述和国际化；显隐设置用于根据条件动态显示或隐藏字段。显隐规则直接影响贸易端和采集端的数据录入、必填校验、导入保存和服务端数据。</p>
+<h2 id="2">2. 表单属性</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必填</th>
+<th>限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表单名称</td>
+<td>必填</td>
+<td>100 字符</td>
+</tr>
+<tr>
+<td>表单名称国际化</td>
+<td>非必填</td>
+<td>100 字符</td>
+</tr>
+<tr>
+<td>描述</td>
+<td>非必填</td>
+<td>200 字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 显隐设置定义</h2>
+<p>显隐设置表示：当满足某些条件时，才显示指定字段。未满足条件时，指定字段隐藏。</p>
+<p>核心规则：</p>
+<ul>
+<li>子表和子表内组件不可作为条件字段。</li>
+<li>条件中已使用的字段，不可再作为显示指定字段。</li>
+<li>不同显隐规则中的显示指定字段不可重复。</li>
+<li>本表单若有子表，子表作为一个大组件参与显示字段设置。</li>
+</ul>
+<h2 id="4">4. 可参与条件的数据源</h2>
+<table>
+<thead>
+<tr>
+<th>当前表单</th>
+<th>可参与条件的字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主表单</td>
+<td>主表单字段、里程碑批复字段</td>
+</tr>
+<tr>
+<td>工单表单</td>
+<td>主表单字段、同一里程碑所有表单，不含工单批复表单</td>
+</tr>
+<tr>
+<td>工单批复表单</td>
+<td>主表单字段、同一里程碑所有表单、本工单批复表单</td>
+</tr>
+<tr>
+<td>里程碑批复表单</td>
+<td>主表单字段、本里程碑批复字段</td>
+</tr>
+</tbody>
+</table>
+<p>里程碑所有表单指工单表单和工单批复表单。</p>
+<h2 id="5">5. 条件字段类型与运算符</h2>
+<table>
+<thead>
+<tr>
+<th>字段类型</th>
+<th>运算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单行文本、多行文本、单选、多选、定位</td>
+<td>等于、不等于、包含、不包含、为空、不为空</td>
+</tr>
+<tr>
+<td>数字、评级、百分比</td>
+<td>等于、不等于、小于等于、大于等于、为空、不为空</td>
+</tr>
+<tr>
+<td>成员</td>
+<td>为空、不为空</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>等于、早于、晚于、在范围内、为空、不为空</td>
+</tr>
+<tr>
+<td>公式</td>
+<td>根据公式显示类型使用对应运算符</td>
+</tr>
+</tbody>
+</table>
+<p>当运算符选择“为空/不为空”时，不显示后续条件值输入。</p>
+<h2 id="6">6. 条件值来源</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自定义</td>
+<td>根据前方字段类型展示对应输入框；选项字段可选择选项值</td>
+</tr>
+<tr>
+<td>其他字段</td>
+<td>可选同类型数据源字段，但需排除当前条件中的目标字段</td>
+</tr>
+</tbody>
+</table>
+<p>条件支持同时增加“或”和“且”。</p>
+<h2 id="7">7. 贸易端应用</h2>
+<ul>
+<li>隐藏后的组件所在整行如果无其他显示内容，需要自动上移，不保留整行空白。</li>
+<li>隐藏组件的数据应清空，不验证必填。</li>
+<li>隐藏组件数据不保存至服务端。</li>
+<li>导入时，显隐判断为隐藏的字段即使有导入值，也应导入为空。</li>
+</ul>
+<h2 id="8">8. 变更与删除提示</h2>
+<ul>
+<li>表单内容发生变更，未保存返回或关闭页面时，需要提示保存。</li>
+<li>删除控件时需要关键操作提示。</li>
+<li>显隐规则中涉及的字段被删除或变更时，需要避免产生不可见但仍参与判断的悬挂规则。</li>
+</ul>
+<h2 id="9">9. 待确认问题</h2>
+<ul>
+<li>显隐设置是否影响导出、报告、仪表盘统计口径。</li>
+<li>多条显隐规则同时命中同一字段时目前禁止重复设置，后续是否允许优先级模式。</li>
+<li>历史数据中已保存的隐藏字段值清空时机，需要与线上逻辑核对。</li>
+</ul>
+  </article>
+</body>
+</html>

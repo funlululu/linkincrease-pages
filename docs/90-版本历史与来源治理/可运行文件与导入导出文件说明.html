@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>可运行文件与导入导出文件说明 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">可运行文件与导入导出文件说明</h1>
+<h2 id="1">1. 定位</h2>
+<p>本页列出当前 Linkincrease 知识库及其最新需求源中可以运行的脚本、会被脚本读取或生成的文件，以及维护时的注意事项。</p>
+<p>当前唯一最新需求源为：</p>
+<pre><code class="language-text">最新需求源（source:thoughts-v2-current）
+</code></pre>
+<p>其本地目录不写入仓库，由维护人通过环境变量 <code>LINKINCREASE_SOURCE_PATH</code> 指定。</p>
+<p>知识库根目录为：</p>
+<pre><code class="language-text">知识库私有 Git 仓库本地工作区
+</code></pre>
+<h2 id="2">2. 可运行文件</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>位置</th>
+<th>运行目录</th>
+<th>命令</th>
+<th>作用</th>
+<th>是否会修改文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scan_source_manifest.py</code></td>
+<td><code>&lt;知识库仓库本地目录&gt;\scripts\scan_source_manifest.py</code></td>
+<td><code>&lt;知识库仓库本地目录&gt;</code></td>
+<td><code>python scripts\scan_source_manifest.py</code></td>
+<td>扫描 <code>最新需求源（source:thoughts-v2-current）</code> 中的 <code>.md</code> 需求文件，生成来源全量清单和本次差异清单</td>
+<td>会改写 <code>metadata/source-manifest.csv</code> 和 <code>metadata/source-diff.csv</code></td>
+</tr>
+<tr>
+<td><code>build_static_site.py</code></td>
+<td><code>&lt;知识库仓库本地目录&gt;\scripts\build_static_site.py</code></td>
+<td><code>&lt;知识库仓库本地目录&gt;</code></td>
+<td><code>python scripts\build_static_site.py</code></td>
+<td>将 Markdown 知识库打包成只读静态站点，供产品团队查看</td>
+<td>会重建 <code>exports/site</code></td>
+</tr>
+<tr>
+<td><code>thoughts_sync.py</code></td>
+<td><code>&lt;最新需求源本地目录&gt;\thoughts_sync.py</code></td>
+<td><code>&lt;最新需求源本地目录&gt;</code></td>
+<td><code>python thoughts_sync.py</code> 或按脚本参数运行</td>
+<td>从所思在线同步/导出最新需求文档到 <code>最新需求源（source:thoughts-v2-current）</code></td>
+<td>会更新最新需求源中的需求 <code>.md</code>、图片资产和 <code>.thoughts_sync</code> 同步状态</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 脚本说明</h2>
+<h3 id="31-scan_source_manifestpy">3.1 <code>scan_source_manifest.py</code></h3>
+<p>用途：</p>
+<ul>
+<li>读取 <code>metadata/source-roots.csv</code>，找到当前 active 的外部来源目录。</li>
+<li>扫描来源目录中的 <code>.md</code> 文件。</li>
+<li>排除 <code>.thoughts_sync</code>、<code>__pycache__</code>、<code>*_assets</code> 等非正文目录。</li>
+<li>为每份需求生成文件大小、最后修改时间、SHA256 内容指纹。</li>
+<li>从路径和标题中推断版本、产品端、模块。</li>
+<li>生成全量来源清单 <code>metadata/source-manifest.csv</code>。</li>
+<li>与上次 manifest 对比，生成差异清单 <code>metadata/source-diff.csv</code>。</li>
+</ul>
+<p>运行后输出示例：</p>
+<pre><code class="language-text">source_roots=1 manifest=63 diff=0
+</code></pre>
+<p>含义：</p>
+<ul>
+<li><code>source_roots=1</code>：扫描了 1 个 active 来源根目录。</li>
+<li><code>manifest=63</code>：当前最新源中有 63 份 <code>.md</code> 需求文档。</li>
+<li><code>diff=0</code>：本次与上次扫描相比没有新增、修改、删除。</li>
+</ul>
+<p>适合运行时机：</p>
+<ul>
+<li>每次运行 <code>thoughts_sync.py</code> 之后。</li>
+<li>手动新增、移动、删除 <code>2.0需求文档</code> 中的需求文档之后。</li>
+<li>准备判断知识库是否需要更新之前。</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li>该脚本只读取 <code>最新需求源（source:thoughts-v2-current）</code>，不会修改最新源目录。</li>
+<li>该脚本会覆盖 <code>metadata/source-manifest.csv</code> 和 <code>metadata/source-diff.csv</code>。</li>
+<li>如果 <code>source-diff.csv</code> 出现 <code>modified</code>，需要人工判断对应知识页是否要更新。</li>
+<li>如果 <code>source-diff.csv</code> 出现 <code>deleted</code>，不要直接删除知识页，应先确认需求是否迁移、改名或废弃。</li>
+<li>如果新增来源是图片资产，目前不会进入 manifest；图片资产后续需要单独建立清单。</li>
+</ul>
+<h3 id="32-build_static_sitepy">3.2 <code>build_static_site.py</code></h3>
+<p>用途：</p>
+<ul>
+<li>扫描知识库中的 Markdown 文档。</li>
+<li>将文档复制到 <code>exports/site/content</code>。</li>
+<li>生成 <code>exports/site/index.html</code>，提供左侧目录、搜索框和 Markdown 阅读界面。</li>
+<li>用于给产品团队发布只读知识库站点。</li>
+</ul>
+<p>运行后输出示例：</p>
+<pre><code class="language-text">site=知识库私有 Git 仓库本地工作区\exports\site
+documents=78
+</code></pre>
+<p>适合运行时机：</p>
+<ul>
+<li>知识库内容更新后。</li>
+<li>需求确认并入库后。</li>
+<li>准备给产品团队发布最新只读站点前。</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li>该脚本会删除并重建 <code>exports/site</code>。</li>
+<li><code>exports/site</code> 是发布结果，不是知识库源文件。</li>
+<li>如果用本地预览，需在 <code>exports/site</code> 目录下运行 <code>python -m http.server 8010</code> 后访问 <code>http://localhost:8010</code>。</li>
+<li>当前页面渲染使用浏览器端 Markdown 渲染库；如果内网不允许访问外部 CDN，需要后续将渲染库下载到本地资产。</li>
+</ul>
+<h3 id="33-thoughts_syncpy">3.3 <code>thoughts_sync.py</code></h3>
+<p>用途：</p>
+<ul>
+<li>从所思在线通过 API 导出需求文档。</li>
+<li>支持增量同步，只导出所思中已更新的文档。</li>
+<li>将导出内容落到 <code>最新需求源（source:thoughts-v2-current）</code> 的版本目录中。</li>
+<li>维护 <code>.thoughts_sync</code> 下的登录、配置、同步状态和浏览器相关缓存。</li>
+</ul>
+<p>适合运行时机：</p>
+<ul>
+<li>想检查所思在线是否有新需求或变更时。</li>
+<li>产品文档在所思中更新后，需要同步到本地最新源时。</li>
+<li>准备更新知识库之前。</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li>该脚本不在知识库目录内，而在最新需求源目录中。</li>
+<li><code>.thoughts_sync</code> 可能包含登录状态、Cookie、浏览器 profile 或同步元数据，不要纳入知识库正文，不要随意分享。</li>
+<li>同步完成后，需要回到知识库目录运行 <code>python scripts\scan_source_manifest.py</code>。</li>
+<li>如果同步脚本报登录失效，应在 <code>2.0需求文档</code> 目录下按脚本说明重新登录。</li>
+</ul>
+<h2 id="4">4. 导入/导出与元数据文件</h2>
+<h3 id="41">4.1 来源输入配置</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+<th>维护方式</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata/source-roots.csv</code></td>
+<td>定义外部来源根目录，目前 active 来源为 <code>最新需求源（source:thoughts-v2-current）</code></td>
+<td>少量人工维护</td>
+<td>改路径后必须重新运行 <code>scan_source_manifest.py</code>；不要把 <code>.thoughts_sync</code> 设为扫描范围</td>
+</tr>
+<tr>
+<td><code>sources/external/thoughts-current.md</code></td>
+<td>说明所思最新需求源如何接入知识库</td>
+<td>人工维护</td>
+<td>只写流程说明，不放账号、Cookie、Token</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42">4.2 脚本输出文件</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>由谁生成</th>
+<th>作用</th>
+<th>是否建议手改</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata/source-manifest.csv</code></td>
+<td><code>scan_source_manifest.py</code></td>
+<td>最新需求源的全量文件清单，包含版本、端、模块、标题、大小、更新时间、SHA256</td>
+<td>不建议手改</td>
+<td>会被脚本覆盖；用它判断当前最新源有哪些文件</td>
+</tr>
+<tr>
+<td><code>metadata/source-diff.csv</code></td>
+<td><code>scan_source_manifest.py</code></td>
+<td>本次扫描相对上次扫描的新增、修改、删除差异</td>
+<td>不建议手改</td>
+<td>会被脚本覆盖；每次同步后优先查看它</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43">4.3 知识库管理台账</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+<th>维护方式</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata/documents.csv</code></td>
+<td>知识页台账，记录每个标准知识页的 ID、标题、路径、标签、来源</td>
+<td>人工维护为主</td>
+<td>新增/重命名知识页后要同步更新；ID 不可重复</td>
+</tr>
+<tr>
+<td><code>metadata/sources.csv</code></td>
+<td>已入库来源台账，记录来源文档、所属端、模块、入库状态</td>
+<td>人工维护为主</td>
+<td>来源路径应优先使用 <code>source:thoughts-v2-current/...</code>；旧 <code>missing-current-source/...</code> 表示最新源缺口</td>
+</tr>
+<tr>
+<td><code>metadata/tags.csv</code></td>
+<td>标签表，统一标签分类和含义</td>
+<td>人工维护</td>
+<td>新增知识页常用标签时补充；避免同义标签泛滥</td>
+</tr>
+<tr>
+<td><code>metadata/permissions.csv</code></td>
+<td>权限分级说明</td>
+<td>人工维护</td>
+<td>当前用于内部权限口径，不是产品权限矩阵</td>
+</tr>
+<tr>
+<td><code>metadata/search-index.json</code></td>
+<td>本地检索索引，记录可检索知识页</td>
+<td>人工维护为主</td>
+<td>JSON 格式必须有效；新增重要知识页后要补索引</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44">4.4 文档和模板</h3>
+<table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>作用</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>templates/需求文档入库模板.md</code></td>
+<td>新增知识页或来源入库时的模板参考</td>
+<td>适合人工复制使用，不是脚本输入</td>
+</tr>
+<tr>
+<td><code>exports/</code></td>
+<td>预留导出目录</td>
+<td>当前未见实际导出文件；后续可放离线包、PDF、压缩包</td>
+</tr>
+<tr>
+<td><code>sources/exported/</code></td>
+<td>预留外部资料导出目录</td>
+<td>可放钉钉表格、外部报告、补充资料</td>
+</tr>
+<tr>
+<td><code>sources/snapshots/</code></td>
+<td>预留快照目录</td>
+<td>可放重要链接、图片、PDF 的本地快照</td>
+</tr>
+<tr>
+<td><code>archive/</code></td>
+<td>预留归档目录</td>
+<td>可放废弃旧文件、历史压缩包；不要混入当前最新源</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 推荐运行流程</h2>
+<h3 id="51">5.1 检查所思是否更新</h3>
+<pre><code class="language-powershell">$env:LINKINCREASE_SOURCE_PATH=&quot;&lt;最新需求源本地目录&gt;&quot;
+cd &lt;最新需求源本地目录&gt;
+python thoughts_sync.py
+</code></pre>
+<p>然后回到知识库：</p>
+<pre><code class="language-powershell">cd &lt;知识库仓库本地目录&gt;
+python scripts\scan_source_manifest.py
+</code></pre>
+<p>最后查看：</p>
+<pre><code class="language-text">metadata/source-diff.csv
+</code></pre>
+<h3 id="52">5.2 发现新增需求</h3>
+<ol>
+<li>查看 <code>source-diff.csv</code> 中 <code>change_type=added</code> 的行。</li>
+<li>判断是新功能、新模块、补充说明还是通用规则。</li>
+<li>更新 <code>05-需求文档来源台账.md</code>。</li>
+<li>新建或更新 <code>docs/</code> 知识页。</li>
+<li>更新 <code>metadata/documents.csv</code>、<code>metadata/sources.csv</code>、<code>metadata/search-index.json</code>。</li>
+</ol>
+<h3 id="53">5.3 发现需求变更</h3>
+<ol>
+<li>查看 <code>source-diff.csv</code> 中 <code>change_type=modified</code> 的行。</li>
+<li>打开对应 <code>最新需求源（source:thoughts-v2-current）</code> 源文件。</li>
+<li>找出变更影响的知识页。</li>
+<li>更新知识页正文和来源说明。</li>
+<li>必要时更新待确认问题。</li>
+</ol>
+<h3 id="54">5.4 发现需求删除或移动</h3>
+<ol>
+<li>查看 <code>source-diff.csv</code> 中 <code>change_type=deleted</code> 的行。</li>
+<li>先判断是文件改名、移动、版本归档，还是需求废弃。</li>
+<li>不要立即删除知识页。</li>
+<li>若业务口径仍有效，知识页保留，但来源状态改为待确认或历史来源。</li>
+<li>若确认废弃，更新知识页、来源台账和版本变更记录。</li>
+</ol>
+<h2 id="6">6. 当前已知注意事项</h2>
+<ol>
+<li>旧 <code>需求文档/</code> 已删除，不再维护双来源。</li>
+<li>当前最新源 <code>最新需求源（source:thoughts-v2-current）</code> 中有 63 份 <code>.md</code> 文档。</li>
+<li>旧来源中有 3 份文件未在最新源中出现，已标记为待确认：</li>
+<li><code>公式函数.md</code></li>
+<li><code>【运营端】【资源库模版】表单设计组件.md</code></li>
+<li><code>【运营端】【仪表盘】表单设计组件.md</code></li>
+<li>如果这 3 份仍有效，应补入 <code>最新需求源（source:thoughts-v2-current）</code> 后重新运行扫描脚本。</li>
+<li>不要手动编辑 <code>.thoughts_sync</code>，除非明确知道同步脚本的登录和缓存机制。</li>
+<li>不要把浏览器缓存、Cookie、Token、临时数据库放入知识库正文或 metadata。</li>
+<li><code>source-manifest.csv</code> 和 <code>source-diff.csv</code> 是脚本输出，可以查看和分析，但不建议长期手动维护。</li>
+<li>标准知识页以 <code>docs/</code> 为准；来源文档不是最终产品口径，只是证据和变更输入。</li>
+</ol>
+<h2 id="7">7. 快速判断表</h2>
+<table>
+<thead>
+<tr>
+<th>你想做什么</th>
+<th>应该看/运行什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>检查所思是否有更新</td>
+<td>运行 <code>&lt;最新需求源本地目录&gt;\thoughts_sync.py</code></td>
+</tr>
+<tr>
+<td>让知识库知道最新源变了没</td>
+<td>运行 <code>scripts/scan_source_manifest.py</code></td>
+</tr>
+<tr>
+<td>看当前最新源有哪些需求文件</td>
+<td><code>metadata/source-manifest.csv</code></td>
+</tr>
+<tr>
+<td>看这次新增/修改/删除了什么</td>
+<td><code>metadata/source-diff.csv</code></td>
+</tr>
+<tr>
+<td>看某个知识页登记情况</td>
+<td><code>metadata/documents.csv</code></td>
+</tr>
+<tr>
+<td>看某个来源是否已入库</td>
+<td><code>metadata/sources.csv</code></td>
+</tr>
+<tr>
+<td>看知识库检索入口</td>
+<td><code>metadata/search-index.json</code></td>
+</tr>
+<tr>
+<td>看单源接入说明</td>
+<td><code>sources/external/thoughts-current.md</code></td>
+</tr>
+</tbody>
+</table>
+  </article>
+</body>
+</html>

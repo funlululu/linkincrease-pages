@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>设置操作日志 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">设置操作日志</h1>
+<h2 id="_2">定位</h2>
+<p>设置操作日志用于追溯团队、FlowSpace、协作 FlowSpace、资源库等配置类功能的新增、编辑、删除和权限变更。它记录的是“配置被谁改了、改了什么、改前改后是什么”，区别于订单跟踪记录和工单动态。</p>
+<h2 id="_3">适用范围</h2>
+<table>
+<thead>
+<tr>
+<th>日志范围</th>
+<th>记录对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队设置</td>
+<td>基本信息、团队角色、成员管理、协作团队管理、FlowSpace 关联设置</td>
+</tr>
+<tr>
+<td>FlowSpace设置</td>
+<td>基本信息、业务角色、协作方角色、数据围栏、成员管理、协作团队管理、计划时间、标签设置、订单标识设置、订单取消原因</td>
+</tr>
+<tr>
+<td>协作FlowSpace设置</td>
+<td>自建角色、主团队角色、成员管理</td>
+</tr>
+<tr>
+<td>资源库设置</td>
+<td>基本信息、权限管理</td>
+</tr>
+</tbody>
+</table>
+<p>运营端模板修改不记录在贸易端 FlowSpace 设置、协作 FlowSpace 设置或资源库设置操作日志中。</p>
+<h2 id="_4">列表查询</h2>
+<p>设置操作日志列表支持按操作对象、功能模块、操作类型、操作人和操作时间查询。</p>
+<table>
+<thead>
+<tr>
+<th>查询项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模糊搜索</td>
+<td>搜索操作对象</td>
+</tr>
+<tr>
+<td>功能模块</td>
+<td>取值参照各设置日志的记录内容</td>
+</tr>
+<tr>
+<td>操作类型</td>
+<td>新增、编辑、删除、设置权限</td>
+</tr>
+<tr>
+<td>操作人</td>
+<td>可选择日志列表中出现过的成员</td>
+</tr>
+<tr>
+<td>操作时间</td>
+<td>日期范围</td>
+</tr>
+</tbody>
+</table>
+<p>列表数据中可点击快照查看对应操作的详细变更内容。</p>
+<h2 id="_5">团队设置日志</h2>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>记录操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本信息</td>
+<td>新增、编辑；新增指创建团队</td>
+</tr>
+<tr>
+<td>团队角色</td>
+<td>新增、编辑、删除；在角色中修改成员，仅记录在角色操作中</td>
+</tr>
+<tr>
+<td>成员管理</td>
+<td>新增、删除、设置权限</td>
+</tr>
+<tr>
+<td>协作团队管理</td>
+<td>新增、删除</td>
+</tr>
+<tr>
+<td>FlowSpace关联设置</td>
+<td>新增、删除；仅记录主动新增或删除的 FlowSpace</td>
+</tr>
+</tbody>
+</table>
+<p>FlowSpace 被动关联或被动取消关联时，不在团队设置日志中记录。</p>
+<h2 id="flowspace">FlowSpace设置日志</h2>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>记录操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本信息</td>
+<td>新增、删除；新增指创建 FlowSpace</td>
+</tr>
+<tr>
+<td>业务角色</td>
+<td>新增、编辑、删除</td>
+</tr>
+<tr>
+<td>协作方角色</td>
+<td>新增、编辑、删除</td>
+</tr>
+<tr>
+<td>数据围栏</td>
+<td>新增、编辑、删除</td>
+</tr>
+<tr>
+<td>成员管理</td>
+<td>新增、删除、设置权限</td>
+</tr>
+<tr>
+<td>协作团队管理</td>
+<td>新增、删除、设置权限</td>
+</tr>
+<tr>
+<td>计划时间</td>
+<td>编辑</td>
+</tr>
+<tr>
+<td>标签设置</td>
+<td>新增、编辑、删除</td>
+</tr>
+<tr>
+<td>订单标识设置</td>
+<td>编辑</td>
+</tr>
+<tr>
+<td>订单取消原因</td>
+<td>新增、编辑、删除</td>
+</tr>
+</tbody>
+</table>
+<p>从团队设置中删除成员或协作团队，导致其从 FlowSpace 中被删除时，FlowSpace 设置日志也记录一条删除记录。</p>
+<h2 id="flowspace_1">协作FlowSpace设置日志</h2>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>记录操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自建角色</td>
+<td>新增、编辑、删除</td>
+</tr>
+<tr>
+<td>主团队角色</td>
+<td>编辑，仅能编辑主团队角色中的成员</td>
+</tr>
+<tr>
+<td>成员管理</td>
+<td>新增、删除、设置权限</td>
+</tr>
+</tbody>
+</table>
+<p>主团队修改协作团队协作的里程碑，不记录在协作方 FlowSpace 的操作日志内。主团队修改或删除协作方角色，也不记录在协作方 FlowSpace 的操作日志内。</p>
+<h2 id="_6">资源库设置日志</h2>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>记录操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本信息</td>
+<td>新增、编辑；新增指创建资源库</td>
+</tr>
+<tr>
+<td>权限管理</td>
+<td>新增、编辑、删除</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">快照查看</h2>
+<p>快照用于查看某次配置操作当时的数据。</p>
+<table>
+<thead>
+<tr>
+<th>操作类型</th>
+<th>快照规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增</td>
+<td>仅展示新增当时的数据</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>仅展示删除当时的数据</td>
+</tr>
+<tr>
+<td>编辑</td>
+<td>展示编辑前和编辑后的数据</td>
+</tr>
+<tr>
+<td>协作团队增删</td>
+<td>仅记录“我邀请的”团队增删，无快照</td>
+</tr>
+</tbody>
+</table>
+<p>多层级内容需要通过气泡方式展示，例如业务角色或协作方角色的自定义订单范围规则、计划时间默认负责人规则、标签设置多语言、自建角色自定义订单范围等。</p>
+<h2 id="_8">关联页面</h2>
+<ul>
+<li><a href="../40-权限、安全与审计/团队权限.md">团队权限</a></li>
+<li><a href="../40-权限、安全与审计/FlowSpace业务角色权限.md">FlowSpace业务角色权限</a></li>
+<li><a href="../40-权限、安全与审计/协作FlowSpace权限.md">协作FlowSpace权限</a></li>
+<li><a href="../40-权限、安全与审计/资源库权限.md">资源库权限</a></li>
+</ul>
+<h2 id="_9">来源</h2>
+<ul>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【操作日志】所有设置类功能.md</code></li>
+</ul>
+  </article>
+</body>
+</html>
