@@ -181,18 +181,6 @@
     }
     function normalize(value) { return (value || '').toLowerCase(); }
     function escapeHtml(value) { return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-    function groupForDoc(doc) {
-      const path = doc.path;
-      const parts = path.split('/');
-      if (path === 'README.md' || !path.includes('/')) return '00 根目录';
-      if (parts[0] === 'docs') return (!parts[1] || parts[1] === 'README.md') ? '00-入门' : parts[1];
-      if (parts[0] === 'sources') return '91 来源材料';
-      if (parts[0] === 'templates') return '92 模板';
-      return parts[0];
-    }
-    function groupLabel(group) {
-      return group.replace(/^\d+\s*/, '').replace(/^\d+-/, '').replace(/^-+/, '');
-    }
     function renderNav(items) {
       nav.innerHTML = '';
       if (!items.length) {
@@ -202,42 +190,62 @@
         nav.appendChild(empty);
         return;
       }
-      const groups = items.reduce((result, doc) => {
-        const group = groupForDoc(doc);
-        if (!result[group]) result[group] = [];
-        result[group].push(doc);
-        return result;
-      }, {});
       const current = decodeURIComponent(location.hash.slice(1)) || 'README.md';
-      Object.keys(groups).sort((a, b) => a.localeCompare(b, 'zh-Hans-CN', { numeric:true })).forEach(group => {
-        const details = document.createElement('details');
-        details.className = 'nav-group';
-        const shouldOpen = search.value.trim() || groups[group].some(doc => doc.path === current);
-        details.open = Boolean(shouldOpen);
-        const summary = document.createElement('summary');
-        summary.innerHTML = `<span>${escapeHtml(groupLabel(group))}</span><span class="nav-count">${groups[group].length}</span>`;
-        const itemsWrap = document.createElement('div');
-        itemsWrap.className = 'nav-items';
-        groups[group].forEach(doc => {
-          const a = document.createElement('a');
-          a.href = '#' + encodeURIComponent(doc.path);
-          a.dataset.path = doc.path;
-          a.innerHTML = `<span class="doc-title">${escapeHtml(doc.title)}</span><span class="folder">${escapeHtml(doc.path)}</span>`;
-          itemsWrap.appendChild(a);
-        });
-        details.appendChild(summary);
-        details.appendChild(itemsWrap);
-        nav.appendChild(details);
-      });
+      const tree = buildTree(items);
+      const searchActive = !!search.value.trim();
+      nav.innerHTML = renderTree(tree, current, searchActive);
+    }
+    function buildTree(items) {
+      const root = { dirs: {}, docs: [] };
+      for (const doc of items) {
+        const parts = doc.path.split('/');
+        let node = root;
+        for (let i = 0; i < parts.length - 1; i++) {
+          if (!node.dirs[parts[i]]) node.dirs[parts[i]] = { dirs: {}, docs: [] };
+          node = node.dirs[parts[i]];
+        }
+        node.docs.push(doc);
+      }
+      return root;
+    }
+    function renderTree(node, currentPath, searchActive) {
+      const dirKeys = Object.keys(node.dirs).sort((a, b) => a.localeCompare(b, 'zh-Hans-CN', { numeric: true }));
+      const docItems = [...node.docs].sort((a, b) => a.title.localeCompare(b.title, 'zh-Hans-CN'));
+      let html = '';
+      for (const key of dirKeys) {
+        const child = node.dirs[key];
+        const shouldOpen = searchActive || (currentPath && currentPath.startsWith(key + '/'));
+        html += '<details class="nav-group"' + (shouldOpen ? ' open' : '') + '>';
+        html += '<summary><span>' + escapeHtml(key) + '</span><span class="nav-count">' + countDocs(child) + '</span></summary>';
+        html += '<div class="nav-items">';
+        html += renderTree(child, currentPath, searchActive);
+        html += '</div></details>';
+      }
+      for (const doc of docItems) {
+        const active = doc.path === currentPath ? ' active' : '';
+        html += '<a href="#' + encodeURIComponent(doc.path) + '" data-path="' + doc.path + '" class="' + active + '">';
+        html += '<span class="doc-title">' + escapeHtml(doc.title) + '</span>';
+        html += '<span class="folder">' + escapeHtml(doc.path) + '</span>';
+        html += '</a>';
+      }
+      return html;
+    }
+    function countDocs(node) {
+      let count = node.docs.length;
+      for (const key in node.dirs) {
+        count += countDocs(node.dirs[key]);
+      }
+      return count;
     }
     async function loadDoc(path) {
       const doc = docs.find(item => item.path === path) || docs.find(item => item.path === 'README.md') || docs[0];
       if (!doc) return;
-      const group = groupForDoc(doc);
-      [...nav.querySelectorAll('.nav-group')].forEach(details => {
-        const summaryText = details.querySelector('summary span')?.textContent || '';
-        if (summaryText === groupLabel(group)) details.open = true;
-      });
+      [...nav.querySelectorAll('.nav-group')].forEach(d => d.removeAttribute('open'));
+      let el = nav.querySelector('a[data-path="' + doc.path.replace(/"/g, '\"') + '"]');
+      while (el && el !== nav) {
+        if (el.tagName === 'DETAILS') el.setAttribute('open', '');
+        el = el.parentElement;
+      }
       [...nav.querySelectorAll('a')].forEach(a => a.classList.toggle('active', a.dataset.path === doc.path));
       const folder = doc.path.split('/').slice(0, -1).join(' / ');
       currentPath.textContent = folder ? `Linkincrease / ${folder} / ${doc.title}` : `Linkincrease / ${doc.title}`;
