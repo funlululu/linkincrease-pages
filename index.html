@@ -18,17 +18,19 @@
     * { box-sizing:border-box; }
     html { min-height:100%; }
     body { min-height:100%; margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; letter-spacing:0; }
-    header { position:fixed; inset:0 auto 0 0; z-index:3; width:292px; height:100vh; display:flex; flex-direction:column; gap:14px; padding:14px 12px; background:var(--soft); border-right:1px solid var(--line); }
+    .sidebar { position:fixed; inset:0 auto 0 0; z-index:3; width:292px; height:100vh; display:flex; flex-direction:column; background:var(--soft); border-right:1px solid var(--line); }
+    header { flex:0 0 auto; display:flex; flex-direction:column; gap:14px; padding:14px 12px 12px; background:var(--soft); }
     header h1 { display:flex; align-items:center; gap:10px; min-height:38px; margin:0; padding:4px 8px; font-size:15px; line-height:1.2; font-weight:650; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     header h1::before { content:"L"; width:24px; height:24px; display:grid; place-items:center; flex:0 0 auto; border:1px solid var(--line-strong); border-radius:6px; background:var(--panel); color:var(--accent); font-family:Georgia,"Times New Roman",serif; font-weight:700; font-size:15px; }
     #search { width:100%; height:34px; padding:7px 10px; border:1px solid transparent; border-radius:6px; color:var(--text); background:var(--hover); outline:none; font-size:14px; }
     #search:focus { background:var(--panel); border-color:var(--focus); box-shadow:0 0 0 3px rgba(155,139,114,.14); }
+    .download-actions { display:grid; gap:8px; }
     .download-link { display:grid; gap:2px; padding:9px 10px; border:1px solid var(--line); border-radius:8px; color:var(--text); background:var(--panel); text-decoration:none; box-shadow:0 8px 24px rgba(47,52,55,.04); }
     .download-link:hover { border-color:var(--line-strong); background:#fffdf9; }
     .download-title { font-size:14px; font-weight:650; }
     .download-subtitle { color:var(--muted); font-size:12px; }
     main { display:grid; grid-template-columns:292px minmax(0,1fr); min-height:100vh; }
-    nav { position:fixed; inset:154px auto 0 0; z-index:4; width:292px; overflow:auto; padding:0 14px 18px; scrollbar-width:thin; scrollbar-color:var(--line-strong) transparent; }
+    nav { flex:1 1 auto; min-height:0; width:100%; overflow:auto; padding:0 14px 18px; scrollbar-width:thin; scrollbar-color:var(--line-strong) transparent; }
     .nav-group { margin:4px 0 8px; }
     .nav-group summary {
       display:flex;
@@ -130,9 +132,10 @@
     .mermaid-modal-diagram svg { max-width:none; height:auto; }
     .empty-state { margin:10px 8px; padding:12px; color:var(--muted); border:1px dashed var(--line-strong); border-radius:8px; font-size:13px; line-height:1.5; }
     @media (max-width:900px) {
-      header { position:sticky; top:0; width:100%; height:auto; padding:12px 14px; border-right:0; border-bottom:1px solid var(--line); }
+      .sidebar { position:sticky; top:0; width:100%; height:auto; max-height:72vh; border-right:0; border-bottom:1px solid var(--line); }
+      header { padding:12px 14px; }
       main { display:block; min-height:auto; }
-      nav { position:relative; inset:auto; width:100%; max-height:36vh; padding:8px 14px 12px; border-bottom:1px solid var(--line); background:var(--soft); }
+      nav { max-height:36vh; padding:8px 14px 12px; background:var(--soft); }
       .meta { height:auto; padding:10px 20px; }
       article { padding:30px 20px 72px; }
       article h1 { font-size:31px; }
@@ -141,17 +144,25 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Linkincrease 知识库</h1>
-    <input id="search" placeholder="搜索 FlowSpace、订单、权限、日志..." />
+  <main>
+    <aside class="sidebar">
+      <header>
+        <h1>Linkincrease 知识库</h1>
+        <input id="search" placeholder="搜索 FlowSpace、订单、权限、日志..." />
 
+    <div class="download-actions">
     <a class="download-link" href="downloads/linkincrease-ai-package.zip" download>
       <span class="download-title">下载 AI 知识包</span>
       <span class="download-subtitle">GPT / 钉钉 AI 可用</span>
     </a>
-  </header>
-  <main>
-    <nav id="nav"></nav>
+    <a class="download-link" href="downloads/linkincrease-requirement-design-skill.zip" download>
+      <span class="download-title">下载 Codex Skill</span>
+      <span class="download-subtitle">需求设计 / 入库助手</span>
+    </a>
+    </div>
+      </header>
+      <nav id="nav"></nav>
+    </aside>
     <div class="meta" id="currentPath"></div>
     <article>
       <div id="content">加载中...</div>
@@ -190,6 +201,18 @@
     }
     function normalize(value) { return (value || '').toLowerCase(); }
     function escapeHtml(value) { return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function displayFolderName(name) {
+      return ({
+        'docs': '标准知识库',
+        'templates': '模板',
+        'sources': '来源说明',
+        'metadata': '元数据',
+        'skills': 'skills'
+      })[name] || name;
+    }
+    function displayPath(path) {
+      return path.split('/').map((part, index, parts) => index === parts.length - 1 ? part : displayFolderName(part)).join('/');
+    }
     function renderNav(items) {
       nav.innerHTML = '';
       if (!items.length) {
@@ -221,21 +244,21 @@
       const dirKeys = Object.keys(node.dirs).sort((a, b) => a.localeCompare(b, 'zh-Hans-CN', { numeric: true }));
       const docItems = [...node.docs].sort((a, b) => a.title.localeCompare(b.title, 'zh-Hans-CN'));
       let html = '';
-      for (const key of dirKeys) {
-        const child = node.dirs[key];
-        const shouldOpen = searchActive || (currentPath && currentPath.startsWith(key + '/'));
-        html += '<details class="nav-group"' + (shouldOpen ? ' open' : '') + '>';
-        html += '<summary><span>' + escapeHtml(key) + '</span><span class="nav-count">' + countDocs(child) + '</span></summary>';
-        html += '<div class="nav-items">';
-        html += renderTree(child, currentPath, searchActive);
-        html += '</div></details>';
-      }
       for (const doc of docItems) {
         const active = doc.path === currentPath ? ' active' : '';
         html += '<a href="#' + encodeURIComponent(doc.path) + '" data-path="' + doc.path + '" class="' + active + '">';
         html += '<span class="doc-title">' + escapeHtml(doc.title) + '</span>';
-        html += '<span class="folder">' + escapeHtml(doc.path) + '</span>';
+        html += '<span class="folder">' + escapeHtml(displayPath(doc.path)) + '</span>';
         html += '</a>';
+      }
+      for (const key of dirKeys) {
+        const child = node.dirs[key];
+        const shouldOpen = searchActive || (currentPath && currentPath.startsWith(key + '/'));
+        html += '<details class="nav-group"' + (shouldOpen ? ' open' : '') + '>';
+        html += '<summary><span>' + escapeHtml(displayFolderName(key)) + '</span><span class="nav-count">' + countDocs(child) + '</span></summary>';
+        html += '<div class="nav-items">';
+        html += renderTree(child, currentPath, searchActive);
+        html += '</div></details>';
       }
       return html;
     }
@@ -256,7 +279,7 @@
         el = el.parentElement;
       }
       [...nav.querySelectorAll('a')].forEach(a => a.classList.toggle('active', a.dataset.path === doc.path));
-      const folder = doc.path.split('/').slice(0, -1).join(' / ');
+      const folder = doc.path.split('/').slice(0, -1).map(displayFolderName).join(' / ');
       currentPath.textContent = folder ? `Linkincrease / ${folder} / ${doc.title}` : `Linkincrease / ${doc.title}`;
       const response = await fetch('content/' + doc.path);
       const markdown = await response.text();
