@@ -24,7 +24,18 @@
     header h1::before { content:"L"; width:24px; height:24px; display:grid; place-items:center; flex:0 0 auto; border:1px solid var(--line-strong); border-radius:6px; background:var(--panel); color:var(--accent); font-family:Georgia,"Times New Roman",serif; font-weight:700; font-size:15px; }
     #search { width:100%; height:34px; padding:7px 10px; border:1px solid transparent; border-radius:6px; color:var(--text); background:var(--hover); outline:none; font-size:14px; }
     #search:focus { background:var(--panel); border-color:var(--focus); box-shadow:0 0 0 3px rgba(155,139,114,.14); }
-    .download-actions { display:grid; gap:8px; }
+    .sidebar-footer { flex:0 0 auto; border-top:1px solid var(--line); background:var(--soft); }
+    .download-section { font-size:13px; }
+    .download-section summary {
+      display:flex; align-items:center; gap:6px; padding:10px 14px; cursor:pointer;
+      color:var(--muted); list-style:none; user-select:none; transition:var(--transition);
+    }
+    .download-section summary::-webkit-details-marker { display:none; }
+    .download-section summary:hover { color:var(--text); background:var(--hover); }
+    .download-section summary::before { content:"▸"; font-size:11px; transition:transform .12s ease; }
+    .download-section[open] summary::before { transform:rotate(90deg); }
+    .download-section[open] summary { color:var(--text); }
+    .download-actions { display:grid; gap:8px; padding:0 14px 12px; }
     .download-link { display:grid; gap:2px; padding:9px 10px; border:1px solid var(--line); border-radius:8px; color:var(--text); background:var(--panel); text-decoration:none; box-shadow:0 8px 24px rgba(47,52,55,.04); }
     .download-link:hover { border-color:var(--line-strong); background:#fffdf9; }
     .download-title { font-size:14px; font-weight:650; }
@@ -149,8 +160,13 @@
       <header>
         <h1>Linkincrease 知识库</h1>
         <input id="search" placeholder="搜索 FlowSpace、订单、权限、日志..." />
+      </header>
+      <nav id="nav"></nav>
 
-    <div class="download-actions">
+      <div class="sidebar-footer">
+        <details class="download-section">
+          <summary>📦 下载资源</summary>
+            <div class="download-actions">
     <a class="download-link" href="downloads/linkincrease-ai-package.zip" download>
       <span class="download-title">下载 AI 知识包</span>
       <span class="download-subtitle">GPT / 钉钉 AI 可用</span>
@@ -159,9 +175,9 @@
       <span class="download-title">下载 Codex Skill</span>
       <span class="download-subtitle">需求设计 / 入库助手</span>
     </a>
-    </div>
-      </header>
-      <nav id="nav"></nav>
+            </div>
+        </details>
+      </div>
     </aside>
     <div class="meta" id="currentPath"></div>
     <article>
