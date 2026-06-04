@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linkincrease Requirement Design - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="linkincrease-requirement-design">Linkincrease Requirement Design</h1>
+<h2 id="purpose">Purpose</h2>
+<p>Use this skill as the Linkincrease-specific requirement design assistant. The skill does not duplicate the full knowledge base. It points opencode to the canonical knowledge base and defines how to use it during iteration planning, PRD writing, requirement review, impact analysis, and confirmed requirement ingestion.</p>
+<p>Knowledge base path resolution:</p>
+<pre><code class="language-text">1. If LINKINCREASE_KB_PATH is set and exists, use it.
+2. Else if the current workspace contains Linkincrease knowledge base files such as metadata/source-roots.csv and docs/README.md, use the current workspace.
+3. Else search nearby workspace/repository roots for those marker files.
+4. Else ask the user for the knowledge base path or read-only site/repository location.
+</code></pre>
+<p>Canonical latest requirement source:</p>
+<pre><code class="language-text">source:thoughts-v2-current
+Local path is provided by LINKINCREASE_SOURCE_PATH.
+</code></pre>
+<p>Historical product reference source:</p>
+<pre><code class="language-text">source:product-docs-legacy
+Local path is provided by LINKINCREASE_PRODUCT_DOCS_PATH.
+Use this only for product strategy, user roles, metrics, roadmap, or historical PRD comparison. It must not override confirmed feature rules from source:thoughts-v2-current or docs/.
+</code></pre>
+<h2 id="core-rules">Core Rules</h2>
+<ol>
+<li>Treat the resolved Linkincrease knowledge base path as the product knowledge authority.</li>
+<li>Treat <code>source:thoughts-v2-current</code> as the primary latest raw requirement source.</li>
+<li>Treat <code>source:product-docs-legacy</code> as secondary historical context only; do not use it to overwrite current rules unless the user confirms the rule is still valid.</li>
+<li>Use <code>FlowSpace（流空间）</code> as the standard product term. Historical source filenames may still contain <code>SCCS</code>; preserve them in source references.</li>
+<li>Do not copy the whole knowledge base into the answer. Search and read only the relevant pages.</li>
+<li>For strategic or early-stage product work, read the entry pages for product strategy, user roles, and metrics/roadmap before proposing scope.</li>
+<li>For every requirement, check object, flow, permission, state, data, notification, log, import/export, exception, and multi-end impact.</li>
+<li>If a rule is unclear or conflicting, record it as a question instead of turning it into a final conclusion.</li>
+</ol>
+<h2 id="when-starting-a-requirement">When Starting a Requirement</h2>
+<ol>
+<li>Identify the target product end: 运营端, 贸易端, 采集端, or public capability.</li>
+<li>Identify impacted objects: FlowSpace, 订单, 里程碑, 工单, 资源库, 模板, 自动化, 仪表盘, 报告, 权限, 日志.</li>
+<li>Resolve the knowledge base path using the path resolution rules above.</li>
+<li>Search the knowledge base with grep before reading files.</li>
+<li>For product positioning, user, roadmap, or priority questions, read:</li>
+<li><code>docs/00-产品总览与规划/产品战略与定位.md</code></li>
+<li><code>docs/00-产品总览与规划/用户角色与场景.md</code></li>
+<li><code>docs/00-产品总览与规划/产品指标与路线图.md</code></li>
+<li>Read only the relevant documents.</li>
+<li>Produce background, existing rules, likely impact scope, risks, and suggested PRD structure.</li>
+</ol>
+<p>Read the detailed knowledge map only when needed:</p>
+<pre><code class="language-text">references/knowledge-base-map.md
+</code></pre>
+<h2 id="when-reviewing-a-draft-requirement">When Reviewing a Draft Requirement</h2>
+<ol>
+<li>Read the user's draft or referenced file.</li>
+<li>Search the knowledge base for matching terms, objects, and source files.</li>
+<li>If the draft appears to come from historical product documents, compare it against <code>docs/90-版本历史与来源治理/历史产品文档评估.md</code> and treat it as reference until confirmed.</li>
+<li>Check the draft against the design checklist.</li>
+<li>Return concrete gaps, conflicts, missing decisions, and suggested additions.</li>
+<li>Prefer actionable PRD edits or section-level suggestions over broad advice.</li>
+</ol>
+<p>Read the checklist when doing a review:</p>
+<pre><code class="language-text">references/requirement-checklist.md
+</code></pre>
+<h2 id="when-syncing-confirmed-requirements-back">When Syncing Confirmed Requirements Back</h2>
+<ol>
+<li>Confirm the requirement is approved or explicitly ready to ingest.</li>
+<li>If it should become part of the latest source set, ensure it exists under the local path represented by <code>LINKINCREASE_SOURCE_PATH</code> / <code>source:thoughts-v2-current</code>.</li>
+<li>If it comes from historical product docs, decide whether to:</li>
+<li>keep it as <code>source:product-docs-legacy</code> reference,</li>
+<li>promote it into the latest requirement source after confirmation,</li>
+<li>or record it as a question.</li>
+<li>Run from the knowledge base root:</li>
+</ol>
+<pre><code class="language-powershell"># Optional: set these only when the source roots are outside the knowledge base repository.
+# $env:LINKINCREASE_SOURCE_PATH=&quot;&lt;local latest requirement source path&gt;&quot;
+# $env:LINKINCREASE_PRODUCT_DOCS_PATH=&quot;&lt;local historical product docs path&gt;&quot;
+python scripts\scan_source_manifest.py
+</code></pre>
+<ol>
+<li>Update source ledger, relevant knowledge pages, metadata, questions, and version records.</li>
+<li>Keep source filenames and <code>source:</code> references faithful to the original source files.</li>
+<li>Validate metadata files and search index after edits.</li>
+</ol>
+<p>Read the ingestion workflow when syncing:</p>
+<pre><code class="language-text">references/ingestion-workflow.md
+</code></pre>
+<h2 id="useful-user-prompts">Useful User Prompts</h2>
+<p>For new design:</p>
+<pre><code class="language-text">基于 Linkincrease 知识库，帮我设计这个迭代功能：{功能描述}
+</code></pre>
+<p>For review:</p>
+<pre><code class="language-text">请用 Linkincrease 需求设计 Skill 检查这个需求文档：{文件路径}
+</code></pre>
+<p>For impact analysis:</p>
+<pre><code class="language-text">基于知识库分析这个需求会影响哪些模块、权限、状态、通知、日志和数据。
+</code></pre>
+<p>For ingestion:</p>
+<pre><code class="language-text">这个需求已经确认，请同步回 Linkincrease 知识库。
+</code></pre>
+  </article>
+</body>
+</html>
