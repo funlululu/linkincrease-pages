@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>采购订单履约与交期跟踪 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">采购订单履约与交期跟踪</h1>
+<h2 id="1">1. 业务定义</h2>
+<p>采购订单履约与交期跟踪是采购方、贸易公司、供应商和工厂围绕已确认采购订单，持续管理订单要求、阶段计划、责任人、进度、异常、质量放行、出货和结案的过程。</p>
+<p>场景目标不是收集一个笼统的“完成百分比”，而是让各方基于相同订单、交期和阶段事实协作，尽早发现偏差，并形成可追溯的承诺、调整和处理记录。</p>
+<p>本页重点覆盖采购订单确认后到出货或结案前的履约协同。需求预测、询报价、精细生产排程、库存核算、运输执行和财务结算属于相邻场景，只说明接口关系。</p>
+<h2 id="11">1.1 在端到端供应链中的位置</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;需求、询价与定点&quot;] --&gt; B[&quot;合同/采购订单确认&quot;]
+    B --&gt; C[&quot;生产准备&quot;]
+    C --&gt; D[&quot;生产与进度跟踪&quot;]
+    D --&gt; E[&quot;质量检验与放行&quot;]
+    E --&gt; F[&quot;出货准备与交付&quot;]
+    F --&gt; G[&quot;收货、结算与绩效&quot;]
+    D --&gt; H[&quot;异常与订单变更&quot;]
+    H --&gt; C
+    H --&gt; D
+    H --&gt; E
+    H --&gt; F
+</code></pre>
+<p>采购订单是商业承诺和履约跟踪的主线，但实际业务可能按照订单行、生产批次或出货批次分阶段执行。</p>
+<h2 id="2">2. 适用客户与前提</h2>
+<table>
+<thead>
+<tr>
+<th>客户类型</th>
+<th>典型诉求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方、进口商</td>
+<td>查看供应商和工厂执行进度，提前识别延期、质量和出货风险</td>
+</tr>
+<tr>
+<td>贸易公司</td>
+<td>协调客户订单、采购订单、供应商、工厂和物流节点</td>
+</tr>
+<tr>
+<td>采购团队、Sourcing Agency</td>
+<td>统一多供应商订单跟踪方式，减少邮件和表格催办</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>接收订单要求、提交计划和进度、反馈异常与出货资料</td>
+</tr>
+<tr>
+<td>工厂</td>
+<td>提交生产准备、生产进度、完工和质量数据</td>
+</tr>
+<tr>
+<td>QC 或服务商</td>
+<td>接收验货任务、提交结果并支持出货放行决策</td>
+</tr>
+</tbody>
+</table>
+<p>实施该场景前，客户至少应明确：</p>
+<ul>
+<li>跟踪对象是客户订单、采购订单、订单行还是生产批次。</li>
+<li>谁承诺交期，谁维护计划，谁确认延期和出货。</li>
+<li>各阶段需要提交什么证据。</li>
+<li>哪些异常需要升级、审批或变更订单。</li>
+</ul>
+<h2 id="3">3. 参与角色与责任</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要责任</th>
+<th>提供的数据</th>
+<th>做出的决策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>采购方或品牌方</td>
+<td>确认订单要求、优先级和关键变更</td>
+<td>订单、规格、请求交期、质量和交付要求</td>
+<td>接受承诺、批准变更、放行或取消</td>
+</tr>
+<tr>
+<td>贸易公司或跟单人员</td>
+<td>统筹订单计划、催办、异常和跨方沟通</td>
+<td>计划、节点、沟通和风险信息</td>
+<td>升级异常、调整协作计划</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>承担商务履约和对采购方的承诺</td>
+<td>承诺交期、生产安排、进度、异常、出货资料</td>
+<td>接受订单、提出变更和补救方案</td>
+</tr>
+<tr>
+<td>工厂</td>
+<td>执行生产并反馈实际进度</td>
+<td>物料、开工、产量、完工、质量和现场异常</td>
+<td>确认生产计划和纠偏措施</td>
+</tr>
+<tr>
+<td>QC 或验货人员</td>
+<td>执行检验和提交专业结论</td>
+<td>验货计划、样本、缺陷、报告</td>
+<td>给出检验结论，不一定承担商业放行</td>
+</tr>
+<tr>
+<td>物流或单证人员</td>
+<td>准备出货计划和资料</td>
+<td>订舱、截单、装柜、单证和运输节点</td>
+<td>确认出货安排和资料完整性</td>
+</tr>
+<tr>
+<td>管理者</td>
+<td>监控交付、风险和供应商表现</td>
+<td>仪表盘和异常汇总</td>
+<td>资源协调、风险升级和供应商决策</td>
+</tr>
+</tbody>
+</table>
+<p>专业结论与商业决策需要分离。例如，QC提交验货结果，是否让步放行仍可能由品牌方决定。</p>
+<h2 id="4">4. 核心业务对象与层级</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>定义</th>
+<th>关键字段</th>
+<th>关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户订单或销售订单</td>
+<td>客户对品牌方或贸易公司的需求承诺</td>
+<td>客户、产品、数量、要求交期</td>
+<td>可拆成多个采购订单</td>
+</tr>
+<tr>
+<td>采购订单</td>
+<td>采购方向供应商发出的采购承诺</td>
+<td>PO号、供应商、币种、条款、订单日期、状态</td>
+<td>包含一个或多个订单行</td>
+</tr>
+<tr>
+<td>订单行</td>
+<td>采购订单中的产品和数量明细</td>
+<td>产品/SKU、规格、数量、单价、交期</td>
+<td>可拆成生产或出货批次</td>
+</tr>
+<tr>
+<td>生产工厂</td>
+<td>实际执行生产的场所</td>
+<td>工厂、准入状态、风险状态</td>
+<td>关联供应商和订单</td>
+</tr>
+<tr>
+<td>履约计划</td>
+<td>围绕订单建立的阶段和时间安排</td>
+<td>阶段、负责人、计划起止时间</td>
+<td>关联订单或订单行</td>
+</tr>
+<tr>
+<td>生产批次</td>
+<td>一次具体生产安排</td>
+<td>批次、数量、计划、实际产出</td>
+<td>来源于一个或多个订单行</td>
+</tr>
+<tr>
+<td>出货批次</td>
+<td>一次具体发运安排</td>
+<td>批次、数量、计划出货日、实际出货日</td>
+<td>可合并或拆分订单行</td>
+</tr>
+<tr>
+<td>进度记录</td>
+<td>某阶段或任务的实际执行事实</td>
+<td>状态、数量、日期、证据、填报人</td>
+<td>关联阶段、任务或批次</td>
+</tr>
+<tr>
+<td>异常记录</td>
+<td>对交期、质量、物料或协作偏差的结构化记录</td>
+<td>类型、影响、责任人、措施、预计恢复时间</td>
+<td>影响订单、阶段或批次</td>
+</tr>
+<tr>
+<td>订单变更</td>
+<td>对已确认要求的正式调整</td>
+<td>变更项、原值、新值、原因、批准人</td>
+<td>影响计划、成本、质量和交付</td>
+</tr>
+</tbody>
+</table>
+<h2 id="41">4.1 层级选择原则</h2>
+<table>
+<thead>
+<tr>
+<th>业务情况</th>
+<th>推荐跟踪层级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一个订单只有一个产品和一次交付</td>
+<td>订单级</td>
+</tr>
+<tr>
+<td>一个订单包含多个产品或不同交期</td>
+<td>订单行级</td>
+</tr>
+<tr>
+<td>同一产品分多次生产</td>
+<td>生产批次级</td>
+</tr>
+<tr>
+<td>多个订单合并出货或一个订单分批出货</td>
+<td>出货批次级</td>
+</tr>
+</tbody>
+</table>
+<p>如果只在订单头维护一个进度和交期，可能掩盖部分订单行或批次已经延期的事实。</p>
+<h2 id="5">5. 日期与交期口径</h2>
+<p>交期管理必须先统一日期含义，不能把所有日期都叫“交期”。</p>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>业务含义</th>
+<th>典型责任方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>请求交期</td>
+<td>采购方希望完成或交付的日期</td>
+<td>采购方</td>
+</tr>
+<tr>
+<td>供应商承诺交期</td>
+<td>供应商评估后承诺的完成或交付日期</td>
+<td>供应商</td>
+</tr>
+<tr>
+<td>当前计划日期</td>
+<td>根据实际情况更新后的执行计划</td>
+<td>跟单、供应商或工厂</td>
+</tr>
+<tr>
+<td>计划开工/完工日</td>
+<td>生产阶段计划日期</td>
+<td>工厂</td>
+</tr>
+<tr>
+<td>计划验货日</td>
+<td>预计达到可验货条件的日期</td>
+<td>供应商、工厂、QC</td>
+</tr>
+<tr>
+<td>计划出货日</td>
+<td>预计完成交货或装运的日期</td>
+<td>供应商、物流</td>
+</tr>
+<tr>
+<td>实际完工日</td>
+<td>实际达到完工标准的日期</td>
+<td>工厂</td>
+</tr>
+<tr>
+<td>实际出货日</td>
+<td>实际完成约定出货动作的日期</td>
+<td>物流或供应商</td>
+</tr>
+<tr>
+<td>实际交付日</td>
+<td>按约定地点完成交付的日期</td>
+<td>由贸易条件和业务定义决定</td>
+</tr>
+</tbody>
+</table>
+<p>不同贸易条件下“交付”发生的地点和风险转移节点可能不同。指标页面必须说明使用计划出货、实际出货、到港还是签收日期。</p>
+<h2 id="51">5.1 基准日期与当前计划</h2>
+<p>建议同时保留：</p>
+<ul>
+<li>原始请求日期：采购方最初要求。</li>
+<li>原始承诺日期：供应商首次正式承诺。</li>
+<li>当前承诺或计划日期：经批准调整后的最新日期。</li>
+<li>实际日期：真实完成时间。</li>
+</ul>
+<p>只覆盖原始日期会导致无法衡量承诺变化和真实延期；只保留原始日期又不维护当前计划，会让执行视图失去可操作性。</p>
+<h2 id="6">6. 标准业务流程</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;创建或导入采购订单&quot;] --&gt; B[&quot;供应商确认订单和交期&quot;]
+    B --&gt; C{&quot;能否满足要求?&quot;}
+    C --&gt;|否| D[&quot;提出交期、数量或条件变更&quot;]
+    D --&gt; E[&quot;采购方评审和确认&quot;]
+    E --&gt; B
+    C --&gt;|是| F[&quot;建立履约计划和责任人&quot;]
+    F --&gt; G[&quot;生产准备：工厂、物料、产前确认&quot;]
+    G --&gt; H[&quot;生产执行和阶段进度提交&quot;]
+    H --&gt; I{&quot;出现偏差或异常?&quot;}
+    I --&gt;|是| J[&quot;记录影响、措施和预计恢复时间&quot;]
+    J --&gt; K{&quot;是否需要订单变更或升级?&quot;}
+    K --&gt;|是| L[&quot;变更审批并重排计划&quot;]
+    L --&gt; H
+    K --&gt;|否| H
+    I --&gt;|否| M[&quot;达到验货条件&quot;]
+    M --&gt; N[&quot;验货、整改或放行&quot;]
+    N --&gt; O{&quot;允许出货?&quot;}
+    O --&gt;|否| P[&quot;返工、复验或让步审批&quot;]
+    P --&gt; N
+    O --&gt;|是| Q[&quot;出货资料和出货确认&quot;]
+    Q --&gt; R[&quot;订单结案和绩效回流&quot;]
+</code></pre>
+<h2 id="61">6.1 推荐阶段</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>目标</th>
+<th>典型任务或证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单确认</td>
+<td>确认产品、数量、价格、交期和要求</td>
+<td>订单确认、差异反馈、承诺日期</td>
+</tr>
+<tr>
+<td>生产准备</td>
+<td>确认工厂、物料、样品和生产条件</td>
+<td>工厂报备、物料齐套、产前确认</td>
+</tr>
+<tr>
+<td>生产中</td>
+<td>获取可信生产进度和异常</td>
+<td>开工、产量、照片、预计完工日</td>
+</tr>
+<tr>
+<td>验货与整改</td>
+<td>判断质量是否满足放行条件</td>
+<td>验货安排、报告、返工、复验</td>
+</tr>
+<tr>
+<td>出货准备</td>
+<td>准备订舱、装箱和贸易资料</td>
+<td>订舱、装箱单、发票、出货审批</td>
+</tr>
+<tr>
+<td>出货与结案</td>
+<td>确认实际出货并沉淀结果</td>
+<td>实际出货日、数量、异常、绩效</td>
+</tr>
+</tbody>
+</table>
+<p>具体阶段应随品类、交付周期和客户管理方式调整，不应把模板阶段视为统一行业标准。</p>
+<h2 id="7">7. 业务状态模型</h2>
+<p>需要区分三类状态：</p>
+<table>
+<thead>
+<tr>
+<th>状态层</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台订单状态</td>
+<td>Linkincrease对象是否仍允许业务处理</td>
+<td>进行中、已完成、已取消</td>
+</tr>
+<tr>
+<td>业务履约状态</td>
+<td>采购订单当前所处业务阶段</td>
+<td>待确认、生产准备、生产中、待验货、待出货、已出货、已结案</td>
+</tr>
+<tr>
+<td>风险或健康状态</td>
+<td>是否存在影响履约的偏差</td>
+<td>正常、预警、延期、高风险、阻塞</td>
+</tr>
+</tbody>
+</table>
+<p>业务履约状态和风险状态应通过字段、里程碑、标签、公式或仪表盘表达，不能直接假设平台订单状态已经覆盖全部行业状态。</p>
+<h2 id="71">7.1 阶段状态</h2>
+<table>
+<thead>
+<tr>
+<th>阶段状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未开始</td>
+<td>前置条件未满足或尚未到计划时间</td>
+</tr>
+<tr>
+<td>进行中</td>
+<td>阶段已经启动并持续执行</td>
+</tr>
+<tr>
+<td>已完成</td>
+<td>阶段完成标准已满足</td>
+</tr>
+<tr>
+<td>已取消</td>
+<td>阶段不再执行，并保留原因</td>
+</tr>
+<tr>
+<td>阻塞</td>
+<td>行业建议状态，可通过标签或字段表达；平台是否需要原生状态应另行评估</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 进度与延期判断</h2>
+<h2 id="81">8.1 进度证据</h2>
+<p>进度不能只有主观百分比，建议同时记录：</p>
+<ul>
+<li>当前阶段和状态。</li>
+<li>已完成数量与目标数量。</li>
+<li>实际开始、完成或提交日期。</li>
+<li>现场照片、报告、附件或系统数据。</li>
+<li>填报人、填报时间和确认人。</li>
+<li>下一步计划和预计完成时间。</li>
+</ul>
+<h2 id="82">8.2 延期分类</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>判断示例</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>阶段延期</td>
+<td>当前日期超过阶段计划结束日且未完成</td>
+<td>催办、升级、重排后续计划</td>
+</tr>
+<tr>
+<td>承诺延期</td>
+<td>最新预计交付日晚于供应商承诺日</td>
+<td>供应商提出恢复计划</td>
+</tr>
+<tr>
+<td>客户要求延期</td>
+<td>最新预计交付日晚于采购方请求日</td>
+<td>评估业务影响和替代方案</td>
+</tr>
+<tr>
+<td>已实际延期</td>
+<td>实际交付日晚于目标日期</td>
+<td>记录原因、影响和绩效</td>
+</tr>
+<tr>
+<td>潜在延期</td>
+<td>关键前置任务延迟但最终交付日尚未变化</td>
+<td>提前预警并采取纠偏措施</td>
+</tr>
+</tbody>
+</table>
+<h2 id="83">8.3 延期原因</h2>
+<p>建议结构化分类：</p>
+<ul>
+<li>订单或规格变更。</li>
+<li>样品或确认延迟。</li>
+<li>原材料短缺或质量问题。</li>
+<li>产能、设备、人员或排期问题。</li>
+<li>生产质量和返工。</li>
+<li>验货、审核或审批等待。</li>
+<li>物流、单证、报关或外部事件。</li>
+<li>客户原因、供应商原因、工厂原因或不可抗力。</li>
+</ul>
+<p>延期原因不能只用于事后统计，还应关联责任人、恢复措施和预计恢复时间。</p>
+<h2 id="9">9. 订单变更与影响分析</h2>
+<table>
+<thead>
+<tr>
+<th>变更类型</th>
+<th>可能影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品、规格或包装</td>
+<td>样品、物料、工艺、质量标准和单证</td>
+</tr>
+<tr>
+<td>数量</td>
+<td>物料、产能、生产批次、出货批次和金额</td>
+</tr>
+<tr>
+<td>交期</td>
+<td>生产计划、验货、订舱、运输和客户承诺</td>
+</tr>
+<tr>
+<td>供应商或工厂</td>
+<td>准入、产能、质量、成本和合规风险</td>
+</tr>
+<tr>
+<td>价格或付款条件</td>
+<td>合同、发票、审批和结算</td>
+</tr>
+<tr>
+<td>运输或贸易条件</td>
+<td>成本、责任、风险、单据和交付日期口径</td>
+</tr>
+</tbody>
+</table>
+<p>订单变更至少应记录：</p>
+<ol>
+<li>原值和新值。</li>
+<li>变更原因和提出人。</li>
+<li>影响范围。</li>
+<li>批准人和生效时间。</li>
+<li>是否需要重排阶段计划。</li>
+<li>是否通知供应商、工厂、QC和物流。</li>
+</ol>
+<h2 id="10">10. 异常、风险与控制措施</h2>
+<table>
+<thead>
+<tr>
+<th>风险或异常</th>
+<th>业务影响</th>
+<th>识别方式</th>
+<th>控制措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单要求版本不一致</td>
+<td>按旧规格或旧交期执行</td>
+<td>订单、附件和沟通记录版本冲突</td>
+<td>保留变更历史和生效版本</td>
+</tr>
+<tr>
+<td>供应商确认不及时</td>
+<td>采购方无法判断是否能按期履约</td>
+<td>超过确认时限仍无承诺</td>
+<td>自动提醒、升级和替代评估</td>
+</tr>
+<tr>
+<td>进度填报缺少证据</td>
+<td>管理层看到的进度不可信</td>
+<td>只有百分比，无日期、数量或附件</td>
+<td>定义阶段完成标准和必填证据</td>
+</tr>
+<tr>
+<td>未准入或高风险工厂生产</td>
+<td>质量和合规风险</td>
+<td>订单工厂与资源库状态不符</td>
+<td>限制选择、风险提示或审批</td>
+</tr>
+<tr>
+<td>关键阶段延期未传导</td>
+<td>后续验货和出货计划失真</td>
+<td>前置阶段延期但后续计划未调整</td>
+<td>影响分析、重排和通知</td>
+</tr>
+<tr>
+<td>订单变更未同步</td>
+<td>工厂、QC或物流按旧要求执行</td>
+<td>变更后相关任务仍使用旧数据</td>
+<td>变更审批、版本和通知机制</td>
+</tr>
+<tr>
+<td>验货不通过仍出货</td>
+<td>客诉、返工和索赔风险</td>
+<td>验货结论与出货状态不一致</td>
+<td>放行批复、阻断或例外审批</td>
+</tr>
+<tr>
+<td>分批交付被订单总状态掩盖</td>
+<td>部分数量延期或缺失</td>
+<td>订单头已完成但批次未完成</td>
+<td>按订单行和出货批次跟踪</td>
+</tr>
+<tr>
+<td>完成订单过早</td>
+<td>后续任务和资料无法继续处理</td>
+<td>仍有未完成任务时完成订单</td>
+<td>完成前校验或运营检查清单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11_1">11. 管理指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+<th>建议口径</th>
+<th>数据来源</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单确认及时率</td>
+<td>判断供应商响应效率</td>
+<td>时限内确认订单数/应确认订单数</td>
+<td>订单和确认任务</td>
+<td>催办或调整供应商协同规则</td>
+</tr>
+<tr>
+<td>准时出货率</td>
+<td>判断按计划完成出货能力</td>
+<td>按期实际出货订单或批次数/应出货订单或批次数</td>
+<td>计划和实际出货日</td>
+<td>分析延期原因和供应商表现</td>
+</tr>
+<tr>
+<td>OTIF</td>
+<td>判断是否按时足量交付</td>
+<td>按约定日期且满足约定数量的交付数/应交付数</td>
+<td>订单行、批次和实际交付</td>
+<td>用于供应商绩效和采购决策</td>
+</tr>
+<tr>
+<td>平均延期天数</td>
+<td>判断延期严重程度</td>
+<td>延期对象的实际或预计日期减目标日期</td>
+<td>日期字段</td>
+<td>识别重点订单和系统性瓶颈</td>
+</tr>
+<tr>
+<td>阶段计划达成率</td>
+<td>判断过程计划可靠性</td>
+<td>按期完成阶段数/应完成阶段数</td>
+<td>里程碑计划与实际时间</td>
+<td>优化计划和提前预警</td>
+</tr>
+<tr>
+<td>异常关闭周期</td>
+<td>判断问题响应效率</td>
+<td>异常关闭时间减异常创建时间</td>
+<td>异常工单</td>
+<td>升级超期问题</td>
+</tr>
+<tr>
+<td>变更次数与影响订单数</td>
+<td>判断需求稳定性</td>
+<td>统计正式变更及受影响对象</td>
+<td>历史和变更记录</td>
+<td>改善前端确认和版本治理</td>
+</tr>
+<tr>
+<td>验货后准时出货率</td>
+<td>判断质量环节对交付影响</td>
+<td>验货完成后按期出货批次数/应出货批次数</td>
+<td>验货和出货数据</td>
+<td>协调QC、返工和物流计划</td>
+</tr>
+</tbody>
+</table>
+<p>OTIF、准时出货和准时交付必须明确统计层级、目标日期、允许偏差、足量标准、分批规则和取消订单处理。</p>
+<h2 id="12">12. 产品研发映射</h2>
+<table>
+<thead>
+<tr>
+<th>行业需求或规则</th>
+<th>产品对象或能力</th>
+<th>数据、状态或权限影响</th>
+<th>支持度</th>
+<th>产品依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>采购订单作为履约主记录</td>
+<td>FlowSpace订单、主表单</td>
+<td>需要明确订单头与订单行/批次的数据层级</td>
+<td>L2</td>
+<td><a href="../../20-业务对象与数据模型/订单.md">订单</a></td>
+</tr>
+<tr>
+<td>按阶段管理计划和实际时间</td>
+<td>里程碑、里程碑计划</td>
+<td>可承载阶段计划、状态、负责人和提前/延迟标签</td>
+<td>L2</td>
+<td><a href="../../20-业务对象与数据模型/里程碑.md">里程碑</a></td>
+</tr>
+<tr>
+<td>供应商、工厂、QC提交进度和证据</td>
+<td>工单、采集端、附件</td>
+<td>需要按角色控制可编辑表单和处理人</td>
+<td>L2</td>
+<td><a href="../../20-业务对象与数据模型/工单与批复.md">工单与批复</a></td>
+</tr>
+<tr>
+<td>对验货、出货和关键变更做确认</td>
+<td>工单批复、里程碑批复</td>
+<td>专业结论和商业放行可能需要不同批复</td>
+<td>L2</td>
+<td><a href="../../20-业务对象与数据模型/工单与批复.md">工单与批复</a></td>
+</tr>
+<tr>
+<td>引用供应商、工厂、产品和风险信息</td>
+<td>资源库、关联引用</td>
+<td>需要历史快照、状态过滤和同步边界</td>
+<td>L2/LX</td>
+<td><a href="../../30-业务流程与产品流程图/资源库引用与同步.md">资源库引用与同步</a></td>
+</tr>
+<tr>
+<td>交期临近、延期和异常自动提醒</td>
+<td>自动化、消息通知</td>
+<td>需要日期触发、条件判断、通知对象和失败日志</td>
+<td>L2</td>
+<td><a href="../../30-业务流程与产品流程图/自动化执行.md">自动化执行</a></td>
+</tr>
+<tr>
+<td>展示履约状态和风险</td>
+<td>字段、标签、公式、仪表盘</td>
+<td>业务状态和风险状态不能直接等同平台订单状态</td>
+<td>L2</td>
+<td><a href="../../30-业务流程与产品流程图/订单生命周期.md">订单生命周期</a></td>
+</tr>
+<tr>
+<td>保存订单变更和执行依据</td>
+<td>历史记录、跟踪记录、动态、日志</td>
+<td>需要区分字段变更、关键业务事件和系统更新</td>
+<td>L1/L2</td>
+<td><a href="../../40-权限、安全与审计/订单跟踪记录.md">订单跟踪记录</a></td>
+</tr>
+<tr>
+<td>支持订单行、生产批次和出货批次</td>
+<td>子表、工单、关联FlowSpace或独立对象</td>
+<td>通用对象模型和跨层状态汇总尚待评估</td>
+<td>LX</td>
+<td><a href="../../20-业务对象与数据模型/字段、组件、子表、引用关系.md">字段、组件、子表、引用关系</a></td>
+</tr>
+<tr>
+<td>计算OTIF和订单绩效</td>
+<td>仪表盘、报告、跨FlowSpace数据</td>
+<td>需要明确日期、数量、批次、去重和权限口径</td>
+<td>LX</td>
+<td><a href="../../60-数据分析支持/核心指标口径.md">核心指标口径</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="121">12.1 关键产品边界</h2>
+<ul>
+<li>平台订单状态当前为进行中、已完成、已取消，不等于采购订单的完整履约状态。</li>
+<li>里程碑计划可支持阶段日期，但复杂依赖关系、自动重排和关键路径能力需另行评估。</li>
+<li>Linkincrease适合收集和协同生产进度，不等同于MES的实时产量和工序控制。</li>
+<li>Linkincrease适合管理出货准备和单据协同，不等同于TMS、货代或报关系统。</li>
+<li>订单行、生产批次、出货批次的通用建模方式尚未形成产品权威规则。</li>
+</ul>
+<h2 id="13">13. 测试关注点</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>需要验证的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主流程</td>
+<td>创建订单、生成阶段、供应商确认、进度提交、验货、出货和完成订单</td>
+</tr>
+<tr>
+<td>数据层级</td>
+<td>订单头、订单行、生产批次、出货批次之间的数量和状态汇总</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>请求、承诺、当前计划、实际日期及跨时区、空值和修改后的判断</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>品牌方、供应商、工厂、QC、物流只能查看和编辑授权范围</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>平台订单状态、里程碑状态、业务状态和风险状态之间不互相覆盖</td>
+</tr>
+<tr>
+<td>变更</td>
+<td>数量、交期、产品、工厂变化后的计划、任务、通知和历史记录</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>处理人变化、协作方退出、并发提交、附件失效、自动化失败</td>
+</tr>
+<tr>
+<td>完成限制</td>
+<td>完成或取消订单后，工单、批复、邮件和自动化行为符合产品规则</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>分批出货、部分交付、取消、重启和变更订单的统计口径</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>承诺、进度、异常、变更、验货放行和出货确认均可追溯</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14">14. 产品差距与需求候选</h2>
+<table>
+<thead>
+<tr>
+<th>差距</th>
+<th>业务影响</th>
+<th>当前替代方案</th>
+<th>建议优先级</th>
+<th>去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单行、生产批次和出货批次缺少统一模型</td>
+<td>分批生产和交付难以准确汇总</td>
+<td>使用子表、工单或拆分订单</td>
+<td>P0调研</td>
+<td><a href="../99-待研究问题/README.md">待研究问题</a></td>
+</tr>
+<tr>
+<td>原始承诺日期、当前计划和实际日期缺少统一口径</td>
+<td>延期和供应商绩效可能失真</td>
+<td>在模板中配置独立字段并保留历史</td>
+<td>P0调研</td>
+<td>数据分析和产品评审</td>
+</tr>
+<tr>
+<td>阶段延期后缺少通用计划重排机制</td>
+<td>后续验货和出货计划需要人工调整</td>
+<td>自动提醒后由跟单人员调整</td>
+<td>P1</td>
+<td>产品维护区评估</td>
+</tr>
+<tr>
+<td>业务履约状态与平台订单状态容易混淆</td>
+<td>状态设计和测试结论不一致</td>
+<td>使用独立业务状态字段和标签</td>
+<td>P0规范</td>
+<td>产品知识和模板规范</td>
+</tr>
+<tr>
+<td>OTIF和分批交付统计能力待验证</td>
+<td>无法形成可靠绩效看板</td>
+<td>导出或外部分析</td>
+<td>P1</td>
+<td>数据分析和产品评审</td>
+</tr>
+</tbody>
+</table>
+<p>以上为调研和需求候选，不代表已进入产品计划。</p>
+<h2 id="15">15. 产品成功应用</h2>
+<h3 id="_2">客户识别信号</h3>
+<ul>
+<li>客户通过Excel、邮件或群消息逐单催生产和出货。</li>
+<li>同一个订单在采购方、供应商和工厂之间存在不同交期。</li>
+<li>管理层只能看到最终延期，无法提前识别阶段风险。</li>
+<li>供应商填报“完成80%”，但缺少数量、日期和证据。</li>
+<li>订单变更后，工厂、QC或物流仍按旧要求执行。</li>
+<li>分批生产或出货时，订单总状态无法反映剩余数量。</li>
+</ul>
+<h3 id="_3">重点诊断问题</h3>
+<ul>
+<li>客户主要跟踪客户订单、采购订单、订单行还是生产批次？</li>
+<li>请求交期、供应商承诺交期和实际交付日分别是什么？</li>
+<li>订单经过哪些固定阶段，每个阶段如何判定完成？</li>
+<li>谁提交生产进度，需要哪些数量、日期、图片或报告证据？</li>
+<li>哪些异常需要升级，谁负责提出和确认恢复计划？</li>
+<li>订单变更由谁批准，如何通知所有受影响角色？</li>
+<li>验货结论和商业出货放行是否由不同角色完成？</li>
+<li>是否存在分批生产、分批验货、分批出货或合并出货？</li>
+<li>客户希望用哪些指标评价订单和供应商？</li>
+</ul>
+<h3 id="_4">方案输出入口</h3>
+<ul>
+<li>使用 <a href="../07-产品成功应用/客户场景诊断清单.md">客户场景诊断清单</a> 补齐业务现状。</li>
+<li>参考 <a href="../../50-运营支持知识/02-日常运营任务/模板配置/订单管理类模板最佳实践.md">订单管理类模板最佳实践</a> 设计配置。</li>
+<li>使用 <a href="../07-产品成功应用/平台能力边界表达规范.md">平台能力边界表达规范</a> 说明订单行、批次、计划重排和指标边界。</li>
+<li>使用 <a href="../07-产品成功应用/业务方案输出模板.md">业务方案输出模板</a> 形成客户方案。</li>
+</ul>
+<h2 id="16">16. 来源与可信度</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>类型</th>
+<th>证据等级</th>
+<th>支撑结论</th>
+<th>版本或日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../20-业务对象与数据模型/订单.md">订单</a>及订单相关权威页</td>
+<td>内部产品知识</td>
+<td>不适用</td>
+<td>Linkincrease订单、里程碑、工单、状态和权限边界</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td><a href="../../50-运营支持知识/02-日常运营任务/模板配置/订单管理类模板最佳实践.md">订单管理类模板最佳实践</a></td>
+<td>内部配置实践</td>
+<td>E3</td>
+<td>订单阶段、资源库引用、协作和仪表盘方案</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td><a href="../外贸供应链全景与端到端业务地图.md">外贸供应链全景与端到端业务地图</a></td>
+<td>行业知识总纲</td>
+<td>E1/E3组合</td>
+<td>场景在端到端供应链中的位置和系统边界</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>ASCM SCOR Digital Standard</td>
+<td>国际行业框架</td>
+<td>E1</td>
+<td>订单、寻源、生产和履约过程范围</td>
+<td>当前公开版本</td>
+</tr>
+</tbody>
+</table>
+<p>当前版本已经形成行业模型和产品映射，但日期口径、订单行/批次模型和OTIF规则仍需结合客户样本与产品能力验证。</p>
+<h2 id="17">17. 待确认问题</h2>
+<ul>
+<li>[ ] 由产品确认订单行、生产批次和出货批次在Linkincrease中的推荐建模方式。</li>
+<li>[ ] 由产品和数据团队定义请求交期、承诺交期、计划出货、实际出货和实际交付的标准字段口径。</li>
+<li>[ ] 由测试补充分批交付、订单变更、重启和跨角色并发的异常用例。</li>
+<li>[ ] 由产品成功收集至少三类客户的订单阶段、交期口径和异常升级方式。</li>
+<li>[ ] 确认完成订单前是否需要通用的未完成任务、未放行验货或未出货数量检查。</li>
+</ul>
+<h2 id="18">18. 关联知识</h2>
+<ul>
+<li>全景总纲：<a href="../外贸供应链全景与端到端业务地图.md">外贸供应链全景与端到端业务地图</a></li>
+<li>产品规则：<a href="../../20-业务对象与数据模型/订单.md">订单</a>、<a href="../../20-业务对象与数据模型/里程碑.md">里程碑</a>、<a href="../../20-业务对象与数据模型/工单与批复.md">工单与批复</a></li>
+<li>运营方案：<a href="../../50-运营支持知识/02-日常运营任务/模板配置/订单管理类模板最佳实践.md">订单管理类模板最佳实践</a></li>
+<li>测试支持：<a href="../../45-测试支持/数据流转与校验规则.md">数据流转与校验规则</a></li>
+<li>数据分析：<a href="../../60-数据分析支持/核心指标口径.md">核心指标口径</a></li>
+<li>产品成功应用：<a href="../07-产品成功应用/客户场景诊断清单.md">客户场景诊断清单</a>、<a href="../07-产品成功应用/业务方案输出模板.md">业务方案输出模板</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

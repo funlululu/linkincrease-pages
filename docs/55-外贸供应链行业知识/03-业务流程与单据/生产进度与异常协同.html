@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>生产进度与异常协同 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">生产进度与异常协同</h1>
+<h2 id="1">1. 业务定义</h2>
+<p>生产进度与异常协同是采购方、贸易公司、供应商和工厂围绕采购订单或生产批次，管理生产准备、开工、过程进展、完工、偏差、纠正措施和预计恢复时间的过程。</p>
+<p>该场景关注跨组织的信息透明和责任协同，回答：</p>
+<ul>
+<li>订单是否具备开工条件。</li>
+<li>当前实际完成了什么，而不是主观填报了多少百分比。</li>
+<li>哪个阶段偏离计划，会不会影响验货和出货。</li>
+<li>异常由谁负责、采取什么措施、何时恢复。</li>
+<li>计划和承诺是否需要正式调整。</li>
+</ul>
+<p>Linkincrease适合承载计划、任务、进度证据、异常、通知和审计，不等同于MES的工序排程、设备控制、工时采集和实时产量管理。</p>
+<h2 id="11">1.1 在端到端供应链中的位置</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;采购订单确认&quot;] --&gt; B[&quot;生产准备&quot;]
+    B --&gt; C[&quot;物料与产前条件确认&quot;]
+    C --&gt; D[&quot;开工与过程生产&quot;]
+    D --&gt; E[&quot;完工与待验货&quot;]
+    E --&gt; F[&quot;验货、整改和出货&quot;]
+    B --&gt; G[&quot;异常识别&quot;]
+    C --&gt; G
+    D --&gt; G
+    E --&gt; G
+    G --&gt; H[&quot;影响评估与责任分配&quot;]
+    H --&gt; I[&quot;纠正措施与恢复计划&quot;]
+    I --&gt; B
+    I --&gt; C
+    I --&gt; D
+    I --&gt; E
+</code></pre>
+<h2 id="2">2. 适用客户与前提</h2>
+<table>
+<thead>
+<tr>
+<th>客户类型</th>
+<th>典型诉求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方、进口商</td>
+<td>查看关键订单生产风险，提前干预可能延期或质量异常</td>
+</tr>
+<tr>
+<td>贸易公司、跟单团队</td>
+<td>统一供应商和工厂进度填报，减少反复催问</td>
+</tr>
+<tr>
+<td>采购团队、Sourcing Agency</td>
+<td>跨供应商比较计划达成和异常响应</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>汇总工厂执行情况，对采购方提供可信承诺</td>
+</tr>
+<tr>
+<td>工厂</td>
+<td>按阶段提交物料、开工、产量、完工和现场异常</td>
+</tr>
+<tr>
+<td>QC 或现场人员</td>
+<td>核实现场进度、质量状态和待验货条件</td>
+</tr>
+</tbody>
+</table>
+<p>落地前需要明确：</p>
+<ul>
+<li>跟踪对象是订单、订单行还是生产批次。</li>
+<li>是否需要物料级齐套和工序级进度。</li>
+<li>进度由谁填报、谁确认、多久更新一次。</li>
+<li>哪些数据必须提供照片、附件、数量或现场核实。</li>
+<li>哪些异常会影响交期、质量或出货。</li>
+</ul>
+<h2 id="3">3. 参与角色与责任</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要责任</th>
+<th>提供的数据</th>
+<th>做出的决策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>采购方或品牌方</td>
+<td>明确订单要求、优先级和升级规则</td>
+<td>要求交期、质量标准、变更</td>
+<td>是否接受恢复计划或调整承诺</td>
+</tr>
+<tr>
+<td>跟单或采购人员</td>
+<td>建立计划、催办、识别偏差和组织升级</td>
+<td>阶段计划、沟通、影响判断</td>
+<td>是否发起变更、验货或管理升级</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>对整体履约承诺负责</td>
+<td>生产安排、预计日期、异常和措施</td>
+<td>提交恢复计划、协调工厂资源</td>
+</tr>
+<tr>
+<td>工厂计划或生产人员</td>
+<td>执行并反馈实际生产</td>
+<td>物料、开工、产量、完工、现场证据</td>
+<td>调整生产安排和现场措施</td>
+</tr>
+<tr>
+<td>QC 或现场人员</td>
+<td>核实进度或质量事实</td>
+<td>现场检查、照片、检验记录</td>
+<td>提供专业核实结论</td>
+</tr>
+<tr>
+<td>管理者</td>
+<td>处理跨订单和高风险问题</td>
+<td>风险汇总、资源负荷、异常趋势</td>
+<td>资源协调、优先级和供应商决策</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 核心业务对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>定义</th>
+<th>关键字段</th>
+<th>关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生产计划</td>
+<td>对生产准备、开工、产出和完工的时间及数量安排</td>
+<td>计划日期、数量、负责人、版本</td>
+<td>来源于订单或订单行</td>
+</tr>
+<tr>
+<td>生产批次</td>
+<td>一次相对独立的生产安排</td>
+<td>批次号、产品、数量、工厂、计划</td>
+<td>可对应一个或多个订单行</td>
+</tr>
+<tr>
+<td>生产阶段</td>
+<td>用于管理生产过程的业务节点</td>
+<td>阶段、计划起止、完成标准</td>
+<td>包含进度任务</td>
+</tr>
+<tr>
+<td>进度记录</td>
+<td>某次填报或核实的实际执行事实</td>
+<td>日期、状态、完成数量、预计完成日、证据</td>
+<td>关联阶段或批次</td>
+</tr>
+<tr>
+<td>物料或产前条件</td>
+<td>开工前必须满足的条件</td>
+<td>物料、样品、工艺、设备、包装、批准状态</td>
+<td>影响是否允许开工</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>偏离计划、标准或承诺的事件</td>
+<td>类型、发现时间、影响、等级、责任人、状态</td>
+<td>影响订单、阶段或批次</td>
+</tr>
+<tr>
+<td>纠正或恢复措施</td>
+<td>为消除异常影响采取的行动</td>
+<td>措施、负责人、截止时间、预计恢复时间</td>
+<td>关联异常</td>
+</tr>
+<tr>
+<td>变更记录</td>
+<td>对订单或生产计划的正式调整</td>
+<td>原值、新值、原因、批准和生效时间</td>
+<td>可能由异常触发</td>
+</tr>
+</tbody>
+</table>
+<h2 id="41">4.1 进度记录与当前状态</h2>
+<p>进度记录是多次发生的过程事实；当前状态是根据最新有效记录形成的视图。两者不能混为一个反复覆盖的字段。</p>
+<p>建议保留：</p>
+<ul>
+<li>每次填报的时间和填报人。</li>
+<li>本次完成数量和累计完成数量。</li>
+<li>当前阶段。</li>
+<li>最新预计完成时间。</li>
+<li>附件或现场证据。</li>
+<li>审核或确认状态。</li>
+<li>与上次填报相比的变化。</li>
+</ul>
+<h2 id="5">5. 生产层级与粒度</h2>
+<table>
+<thead>
+<tr>
+<th>粒度</th>
+<th>适用情况</th>
+<th>优点</th>
+<th>风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单级</td>
+<td>产品单一、周期短、一次生产</td>
+<td>配置简单</td>
+<td>容易掩盖订单行差异</td>
+</tr>
+<tr>
+<td>订单行级</td>
+<td>多产品、不同交期或不同工厂</td>
+<td>可准确跟踪产品明细</td>
+<td>数据量和任务量增加</td>
+</tr>
+<tr>
+<td>生产批次级</td>
+<td>分批生产、分批验货或分批出货</td>
+<td>贴近真实执行</td>
+<td>需要批次与订单行关系</td>
+</tr>
+<tr>
+<td>工序级</td>
+<td>关键工序决定交期或质量</td>
+<td>可定位瓶颈</td>
+<td>更接近MES范围，维护成本高</td>
+</tr>
+</tbody>
+</table>
+<p>Linkincrease应优先覆盖订单、订单行或关键生产批次的协同。若客户要求设备、工位、工时和工序级实时数据，应评估MES集成或外部数据接入。</p>
+<h2 id="6">6. 标准业务流程</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[&quot;订单和生产要求确认&quot;] --&gt; B[&quot;建立生产计划&quot;]
+    B --&gt; C[&quot;确认工厂、物料和产前条件&quot;]
+    C --&gt; D{&quot;满足开工条件?&quot;}
+    D --&gt;|否| E[&quot;记录缺口和责任人&quot;]
+    E --&gt; F[&quot;补齐物料、样品或批准&quot;]
+    F --&gt; C
+    D --&gt;|是| G[&quot;确认开工&quot;]
+    G --&gt; H[&quot;按周期提交实际产量和进度证据&quot;]
+    H --&gt; I{&quot;与计划存在偏差?&quot;}
+    I --&gt;|否| J[&quot;继续生产并更新预计完工时间&quot;]
+    J --&gt; K{&quot;达到完工标准?&quot;}
+    K --&gt;|否| H
+    K --&gt;|是| L[&quot;提交完工和待验货信息&quot;]
+    I --&gt;|是| M[&quot;创建异常并评估影响&quot;]
+    M --&gt; N[&quot;分配责任人和纠正措施&quot;]
+    N --&gt; O{&quot;影响订单承诺?&quot;}
+    O --&gt;|是| P[&quot;升级、变更评审和重排计划&quot;]
+    O --&gt;|否| Q[&quot;按恢复计划执行&quot;]
+    P --&gt; Q
+    Q --&gt; H
+</code></pre>
+<h2 id="61">6.1 推荐阶段</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>完成标准示例</th>
+<th>典型证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生产计划确认</td>
+<td>工厂、数量、计划日期和责任人已确认</td>
+<td>生产计划、排期或确认记录</td>
+</tr>
+<tr>
+<td>物料准备</td>
+<td>关键物料齐套或缺口有明确计划</td>
+<td>物料清单、到料日期、照片</td>
+</tr>
+<tr>
+<td>产前确认</td>
+<td>样品、规格、工艺和包装要求已批准</td>
+<td>批准记录、样品或文件版本</td>
+</tr>
+<tr>
+<td>已开工</td>
+<td>满足客户定义的真实开工条件</td>
+<td>开工日期、首件或现场照片</td>
+</tr>
+<tr>
+<td>生产中</td>
+<td>按约定频率提交数量、阶段和预计完成日</td>
+<td>产量、进度、图片、说明</td>
+</tr>
+<tr>
+<td>已完工</td>
+<td>完成约定数量并达到待验货条件</td>
+<td>完工数量、日期、包装状态</td>
+</tr>
+<tr>
+<td>待验货</td>
+<td>货物和资料满足验货安排条件</td>
+<td>验货申请、地点、数量</td>
+</tr>
+</tbody>
+</table>
+<p>“已开工”和“已完工”的行业定义必须由客户确认，不能只依赖人工选择状态。</p>
+<h2 id="7">7. 进度模型</h2>
+<h2 id="71">7.1 进度表达方式</h2>
+<table>
+<thead>
+<tr>
+<th>表达方式</th>
+<th>适用场景</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>阶段状态</td>
+<td>高层管理和跨组织协同</td>
+<td>需要明确阶段完成标准</td>
+</tr>
+<tr>
+<td>完成数量/目标数量</td>
+<td>可量化生产</td>
+<td>注意不良、返工和单位换算</td>
+</tr>
+<tr>
+<td>完成百分比</td>
+<td>管理摘要</td>
+<td>应由数量或阶段推导，避免主观填写</td>
+</tr>
+<tr>
+<td>实际日期</td>
+<td>开工、完工和提交事实</td>
+<td>不能被计划日期覆盖</td>
+</tr>
+<tr>
+<td>预计完成日期</td>
+<td>前瞻性判断</td>
+<td>每次变化应保留历史和原因</td>
+</tr>
+<tr>
+<td>证据附件</td>
+<td>现场核实</td>
+<td>需要时间、来源和权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="72">7.2 计划、实际与预测</h2>
+<p>建议区分：</p>
+<ul>
+<li>基准计划：首次批准的生产计划。</li>
+<li>当前计划：经过批准调整后的执行计划。</li>
+<li>实际结果：真实发生的开工、产量和完工。</li>
+<li>最新预测：根据当前情况预计的完成日期。</li>
+</ul>
+<p>最新预测晚于基准计划不一定代表批准延期；是否修改对外承诺仍需业务决策。</p>
+<h2 id="73">7.3 更新频率</h2>
+<p>更新频率可按风险和阶段设置：</p>
+<ul>
+<li>长周期低风险订单：每周或关键节点更新。</li>
+<li>临近交付订单：每日更新。</li>
+<li>高风险或已延期订单：按恢复计划频率更新。</li>
+<li>关键现场事件：发生后立即更新。</li>
+</ul>
+<p>要求所有订单高频填报会增加无效工作，频率应服务于管理决策。</p>
+<h2 id="8">8. 异常管理模型</h2>
+<p>异常不是普通评论或备注，应具备独立生命周期。</p>
+<h2 id="81">8.1 异常分类</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单与技术</td>
+<td>规格、数量、样品、包装或批准变化</td>
+</tr>
+<tr>
+<td>物料</td>
+<td>缺料、来料延期、来料不合格、替代料待批</td>
+</tr>
+<tr>
+<td>产能与计划</td>
+<td>排期冲突、产能不足、人员不足、插单</td>
+</tr>
+<tr>
+<td>设备与工艺</td>
+<td>设备故障、模具问题、工艺不稳定</td>
+</tr>
+<tr>
+<td>质量</td>
+<td>过程缺陷、返工、测试不通过、良率不足</td>
+</tr>
+<tr>
+<td>协作</td>
+<td>信息未确认、处理人缺失、审批等待</td>
+</tr>
+<tr>
+<td>外部事件</td>
+<td>停电、天气、政策、运输或不可抗力</td>
+</tr>
+</tbody>
+</table>
+<h2 id="82">8.2 严重程度</h2>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>判断示例</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一般</td>
+<td>不影响当前订单承诺，可在阶段内解决</td>
+<td>责任人跟进并按期关闭</td>
+</tr>
+<tr>
+<td>重要</td>
+<td>可能影响关键阶段、质量或成本</td>
+<td>通知采购方并提交恢复计划</td>
+</tr>
+<tr>
+<td>严重</td>
+<td>已影响交期、质量放行或关键客户</td>
+<td>管理升级、变更评审和每日跟踪</td>
+</tr>
+<tr>
+<td>紧急</td>
+<td>可能造成重大损失、合规或停产风险</td>
+<td>立即升级并启动应急方案</td>
+</tr>
+</tbody>
+</table>
+<p>具体分级标准应结合客户品类、订单价值和影响定义。</p>
+<h2 id="83">8.3 异常生命周期</h2>
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; 已发现
+    已发现 --&gt; 分析中
+    分析中 --&gt; 处理中
+    处理中 --&gt; 待验证
+    待验证 --&gt; 已关闭
+    待验证 --&gt; 处理中: 验证不通过
+    已发现 --&gt; 已取消: 非异常或重复记录
+</code></pre>
+<p>每个异常至少记录：</p>
+<ul>
+<li>发现时间、发现人和影响对象。</li>
+<li>异常类型、描述和证据。</li>
+<li>对数量、质量、计划和交付的影响。</li>
+<li>责任人、措施和截止时间。</li>
+<li>最新预计恢复时间。</li>
+<li>是否需要订单变更或客户确认。</li>
+<li>验证结果和关闭依据。</li>
+</ul>
+<h2 id="9-cap">9. 生产异常与CAP的边界</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>关注点</th>
+<th>适合的处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>即时生产异常</td>
+<td>恢复当前订单执行</td>
+<td>异常任务、恢复措施、升级</td>
+</tr>
+<tr>
+<td>质量不合格</td>
+<td>控制不合格品和放行</td>
+<td>返工、复验、批复</td>
+</tr>
+<tr>
+<td>CAP</td>
+<td>解决系统性根因并防止重复发生</td>
+<td>根因、纠正、预防、验证</td>
+</tr>
+<tr>
+<td>订单变更</td>
+<td>正式调整商业或交付承诺</td>
+<td>变更申请、影响分析、批准</td>
+</tr>
+</tbody>
+</table>
+<p>并非所有生产异常都需要CAP。重复、高风险或暴露系统性问题的异常，才适合进一步进入CAP。</p>
+<h2 id="10">10. 异常、风险与控制措施</h2>
+<table>
+<thead>
+<tr>
+<th>风险或异常</th>
+<th>业务影响</th>
+<th>识别方式</th>
+<th>控制措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进度长期不更新</td>
+<td>风险发现滞后</td>
+<td>超过规定时间无有效记录</td>
+<td>定时提醒和升级</td>
+</tr>
+<tr>
+<td>主观百分比与实际数量不一致</td>
+<td>管理判断失真</td>
+<td>百分比缺少数量或证据</td>
+<td>用数量、阶段和附件校验</td>
+</tr>
+<tr>
+<td>预计完工日反复变化</td>
+<td>供应商承诺不可靠</td>
+<td>多次修改但无原因</td>
+<td>保留预测历史和变化原因</td>
+</tr>
+<tr>
+<td>物料未齐套却标记开工</td>
+<td>后续进度和交期失真</td>
+<td>开工状态与物料状态冲突</td>
+<td>定义开工前置条件</td>
+</tr>
+<tr>
+<td>生产异常只写在评论中</td>
+<td>无法分派、统计和关闭</td>
+<td>评论存在问题但无异常记录</td>
+<td>建立结构化异常对象</td>
+</tr>
+<tr>
+<td>异常关闭但交期未更新</td>
+<td>订单风险仍未消除</td>
+<td>恢复结果与计划日期不一致</td>
+<td>关闭时复核计划和承诺</td>
+</tr>
+<tr>
+<td>多个订单争用同一工厂产能</td>
+<td>单订单视图无法识别冲突</td>
+<td>工厂订单负荷超过能力</td>
+<td>跨订单看板或外部产能数据</td>
+</tr>
+<tr>
+<td>工厂自行分包</td>
+<td>实际生产主体不透明</td>
+<td>现场或资料与订单工厂不一致</td>
+<td>工厂变更审批和准入检查</td>
+</tr>
+<tr>
+<td>订单变更未传递到生产任务</td>
+<td>按旧要求继续生产</td>
+<td>任务字段与订单最新版本不一致</td>
+<td>变更通知和版本校验</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11_1">11. 管理指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+<th>建议口径</th>
+<th>数据来源</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进度更新及时率</td>
+<td>判断信息透明度</td>
+<td>时限内有效更新数/应更新数</td>
+<td>进度任务和提交时间</td>
+<td>催办和供应商协同评价</td>
+</tr>
+<tr>
+<td>阶段计划达成率</td>
+<td>判断计划执行能力</td>
+<td>按期完成阶段数/应完成阶段数</td>
+<td>计划和实际日期</td>
+<td>识别瓶颈阶段</td>
+</tr>
+<tr>
+<td>生产按期完工率</td>
+<td>判断生产交付能力</td>
+<td>按计划完工批次数/应完工批次数</td>
+<td>生产批次和完工日期</td>
+<td>供应商和工厂绩效</td>
+</tr>
+<tr>
+<td>预计完工日变更次数</td>
+<td>判断计划稳定性</td>
+<td>每个订单或批次预测日期变化次数</td>
+<td>进度历史</td>
+<td>识别承诺不稳定订单</td>
+</tr>
+<tr>
+<td>异常发生率</td>
+<td>判断生产稳定性</td>
+<td>异常订单或批次数/执行订单或批次数</td>
+<td>异常记录</td>
+<td>分析高发类型和供应商</td>
+</tr>
+<tr>
+<td>异常按期关闭率</td>
+<td>判断问题处理能力</td>
+<td>时限内关闭异常数/应关闭异常数</td>
+<td>异常和措施</td>
+<td>升级超期异常</td>
+</tr>
+<tr>
+<td>平均恢复周期</td>
+<td>判断纠偏效率</td>
+<td>恢复或关闭时间减发现时间</td>
+<td>异常记录</td>
+<td>优化响应机制</td>
+</tr>
+<tr>
+<td>重复异常率</td>
+<td>判断根因治理效果</td>
+<td>重复异常数/异常总数</td>
+<td>异常分类和历史</td>
+<td>触发CAP或供应商改进</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12">12. 产品研发映射</h2>
+<table>
+<thead>
+<tr>
+<th>行业需求或规则</th>
+<th>产品对象或能力</th>
+<th>数据、状态或权限影响</th>
+<th>支持度</th>
+<th>产品依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按订单或阶段提交生产计划</td>
+<td>订单、里程碑、工单</td>
+<td>计划字段所属层级和负责人需要明确</td>
+<td>L2</td>
+<td><a href="../../20-业务对象与数据模型/里程碑.md">里程碑</a></td>
+</tr>
+<tr>
+<td>供应商或工厂周期性提交进度</td>
+<td>工单、采集端、邮件协作</td>
+<td>同一阶段可创建多个进度工单或更新指定工单</td>
+<td>L2</td>
+<td><a href="../../20-业务对象与数据模型/工单与批复.md">工单与批复</a></td>
+</tr>
+<tr>
+<td>保存多次进度历史</td>
+<td>多工单、子表、历史记录</td>
+<td>需要区分新增进度记录与覆盖当前字段</td>
+<td>L2/LX</td>
+<td><a href="../../20-业务对象与数据模型/字段、组件、子表、引用关系.md">字段、组件、子表、引用关系</a></td>
+</tr>
+<tr>
+<td>用数量、阶段和证据表达进度</td>
+<td>表单字段、子表、附件、公式</td>
+<td>需要数量单位、累计规则和附件权限</td>
+<td>L2</td>
+<td><a href="../../20-业务对象与数据模型/表单设计组件.md">表单设计组件</a></td>
+</tr>
+<tr>
+<td>将异常作为可分派、可关闭对象</td>
+<td>工单、独立FlowSpace或子表</td>
+<td>需要异常状态、负责人、措施、期限和关联订单</td>
+<td>L2/LX</td>
+<td><a href="../../20-业务对象与数据模型/工单数据模型.md">工单数据模型</a></td>
+</tr>
+<tr>
+<td>跨团队讨论和升级异常</td>
+<td>动态、评论、@通知、协作团队</td>
+<td>评论不能替代结构化异常数据</td>
+<td>L2</td>
+<td><a href="../../40-权限、安全与审计/动态与评论.md">动态与评论</a></td>
+</tr>
+<tr>
+<td>进度逾期或异常超期提醒</td>
+<td>自动化、定时任务、消息</td>
+<td>需要防重复、接收人和失败日志</td>
+<td>L2</td>
+<td><a href="../../30-业务流程与产品流程图/自动化执行.md">自动化执行</a></td>
+</tr>
+<tr>
+<td>更新计划、风险和业务状态</td>
+<td>自动化、公式、标签、订单字段</td>
+<td>需要处理人工修改和系统更新冲突</td>
+<td>L2/LX</td>
+<td><a href="../../40-权限、安全与审计/自动化与系统执行日志.md">自动化与系统执行日志</a></td>
+</tr>
+<tr>
+<td>跨订单识别工厂产能和异常集中度</td>
+<td>仪表盘、报告、资源库和外部数据</td>
+<td>Linkincrease缺少精细产能模型，可能依赖外部系统</td>
+<td>L3/LX</td>
+<td><a href="../../50-运营支持知识/04-监控与数据分析/Tower仪表盘配置指南.md">Tower仪表盘配置指南</a></td>
+</tr>
+<tr>
+<td>工序级实时生产控制</td>
+<td>外部MES或API集成</td>
+<td>设备、工时、工序和实时产量不属于当前协同模型</td>
+<td>L4/集成</td>
+<td><a href="../../80-架构与技术方案/集成方案.md">集成方案</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="121">12.1 关键产品边界</h2>
+<ul>
+<li>Linkincrease可以收集计划、阶段、数量、预计日期和证据，但不默认验证工厂填报是否与现场设备数据一致。</li>
+<li>周期性进度适合使用多工单、子表明细或独立进度对象，推荐方式需要结合更新频率和统计要求。</li>
+<li>动态和评论用于沟通，不应替代异常的类型、责任、期限、措施和状态。</li>
+<li>自动化可提醒和更新字段，但复杂计划重排、产能平衡和关键路径计算需要另行评估。</li>
+<li>生产工序、设备状态、工时、在制品和实时产量通常属于MES边界。</li>
+</ul>
+<h2 id="13">13. 测试关注点</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>需要验证的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主流程</td>
+<td>生产计划、产前确认、开工、进度提交、完工和待验货</td>
+</tr>
+<tr>
+<td>多次记录</td>
+<td>新增进度、累计数量、修改历史和最新状态汇总</td>
+</tr>
+<tr>
+<td>数量</td>
+<td>0、负数、超订单量、单位变化、不良和返工数量</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>基准、当前计划、预测和实际日期的修改与延期判断</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>品牌方、供应商、工厂和QC的字段、附件和异常可见范围</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>创建、分派、升级、措施、验证、退回和关闭</td>
+</tr>
+<tr>
+<td>协作</td>
+<td>处理人离职、协作团队退出、评论@和通知链接</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>重复提醒、异常超期、计划更新冲突和执行失败</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>阶段完成、订单完成或取消后进度和异常是否还能处理</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>进度、预测日期、异常、措施和状态变化均可追溯</td>
+</tr>
+<tr>
+<td>集成</td>
+<td>外部数据重复、延迟、乱序、失败和人工修正冲突</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14">14. 产品差距与需求候选</h2>
+<table>
+<thead>
+<tr>
+<th>差距</th>
+<th>业务影响</th>
+<th>当前替代方案</th>
+<th>建议优先级</th>
+<th>去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>周期性生产进度缺少统一对象模型</td>
+<td>不同模板的数据结构和统计方式不一致</td>
+<td>多工单或子表记录</td>
+<td>P0调研</td>
+<td><a href="../99-待研究问题/README.md">待研究问题</a></td>
+</tr>
+<tr>
+<td>异常缺少跨场景通用状态和字段规范</td>
+<td>难以形成统一看板和测试资产</td>
+<td>使用异常工单模板</td>
+<td>P0规范</td>
+<td>行业知识和模板规范</td>
+</tr>
+<tr>
+<td>计划、预测和实际日期的变化规则未统一</td>
+<td>无法准确判断延期和恢复</td>
+<td>配置独立字段并人工复核</td>
+<td>P0调研</td>
+<td>数据和产品评审</td>
+</tr>
+<tr>
+<td>缺少原生产计划与当前计划对比视图</td>
+<td>难以衡量计划稳定性</td>
+<td>历史记录或导出分析</td>
+<td>P1</td>
+<td>产品维护区评估</td>
+</tr>
+<tr>
+<td>工厂产能和订单负荷缺少标准模型</td>
+<td>无法跨订单预测产能冲突</td>
+<td>外部数据或人工看板</td>
+<td>P1/集成</td>
+<td>产品边界评估</td>
+</tr>
+</tbody>
+</table>
+<h2 id="15">15. 产品成功应用</h2>
+<h3 id="_2">客户识别信号</h3>
+<ul>
+<li>跟单人员每天通过群消息逐个询问生产进度。</li>
+<li>供应商只提交“完成百分比”，但无法说明产量和预计完工日。</li>
+<li>物料、样品或批准未完成，订单却已经显示生产中。</li>
+<li>生产异常分散在聊天和邮件中，没有责任人和恢复计划。</li>
+<li>管理层直到临近出货才发现延期。</li>
+<li>多个订单集中在同一工厂，但无法看到风险聚集。</li>
+</ul>
+<h3 id="_3">重点诊断问题</h3>
+<ul>
+<li>客户按订单、订单行、生产批次还是工序跟踪？</li>
+<li>生产过程有哪些关键节点，各节点如何判定完成？</li>
+<li>是否需要物料齐套、样品批准和产前会等开工前置条件？</li>
+<li>进度多久更新一次，由供应商还是工厂填报？</li>
+<li>进度必须包含哪些数量、日期、照片或附件？</li>
+<li>哪些异常需要立即升级，如何划分严重程度？</li>
+<li>异常是否需要恢复措施、订单变更或CAP？</li>
+<li>是否已有ERP或MES，哪些数据需要集成？</li>
+<li>管理层需要按订单、供应商还是工厂查看哪些指标？</li>
+</ul>
+<h3 id="_4">方案输出入口</h3>
+<ul>
+<li>结合 <a href="./采购订单履约与交期跟踪.md">采购订单履约与交期跟踪</a> 确定订单和交期主线。</li>
+<li>参考 <a href="../../50-运营支持知识/02-日常运营任务/模板配置/订单管理类模板最佳实践.md">订单管理类模板最佳实践</a> 设计里程碑和工单。</li>
+<li>使用 <a href="../07-产品成功应用/平台能力边界表达规范.md">平台能力边界表达规范</a> 说明MES、产能和计划重排边界。</li>
+<li>使用 <a href="../07-产品成功应用/业务方案输出模板.md">业务方案输出模板</a> 形成客户方案。</li>
+</ul>
+<h2 id="16">16. 来源与可信度</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>类型</th>
+<th>证据等级</th>
+<th>支撑结论</th>
+<th>版本或日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../50-运营支持知识/02-日常运营任务/模板配置/订单管理类模板最佳实践.md">订单管理类模板最佳实践</a></td>
+<td>内部配置实践</td>
+<td>E3</td>
+<td>生产计划、进度、异常和协作配置</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td><a href="../../20-业务对象与数据模型/工单与批复.md">工单与批复</a>等产品权威页</td>
+<td>内部产品知识</td>
+<td>不适用</td>
+<td>任务、采集、批复、权限和状态边界</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td><a href="./采购订单履约与交期跟踪.md">采购订单履约与交期跟踪</a></td>
+<td>行业场景</td>
+<td>E1/E3组合</td>
+<td>订单、计划、交期和变更主线</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>ASCM SCOR Digital Standard</td>
+<td>国际行业框架</td>
+<td>E1</td>
+<td>生产转化和履约过程范围</td>
+<td>当前公开版本</td>
+</tr>
+</tbody>
+</table>
+<p>当前页面已形成生产协同的基础模型，但物料齐套、产能、工序和MES集成仍需结合具体客户与品类验证。</p>
+<h2 id="17">17. 待确认问题</h2>
+<ul>
+<li>[ ] 由产品确认周期性进度推荐使用多工单、子表还是独立FlowSpace。</li>
+<li>[ ] 由产品和测试定义累计产量、返工、不良和超量填报的通用校验规则。</li>
+<li>[ ] 由产品成功收集不同品类客户的生产节点、更新频率和证据要求。</li>
+<li>[ ] 确认异常与CAP之间的升级条件和数据关联方式。</li>
+<li>[ ] 评估ERP/MES进度数据进入Linkincrease后的去重、覆盖和人工修正规则。</li>
+</ul>
+<h2 id="18">18. 关联知识</h2>
+<ul>
+<li>上游场景：<a href="./采购订单履约与交期跟踪.md">采购订单履约与交期跟踪</a></li>
+<li>产品规则：<a href="../../20-业务对象与数据模型/里程碑.md">里程碑</a>、<a href="../../20-业务对象与数据模型/工单与批复.md">工单与批复</a></li>
+<li>协作规则：<a href="../../40-权限、安全与审计/动态与评论.md">动态与评论</a></li>
+<li>运营方案：<a href="../../50-运营支持知识/02-日常运营任务/模板配置/订单管理类模板最佳实践.md">订单管理类模板最佳实践</a></li>
+<li>测试支持：<a href="../../45-测试支持/异常场景与边界值库.md">异常场景与边界值库</a></li>
+<li>产品成功应用：<a href="../07-产品成功应用/客户场景诊断清单.md">客户场景诊断清单</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

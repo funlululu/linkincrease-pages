@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>供应商与工厂准入 - Linkincrease 知识库</title>
+  <title>供应商开发、准入与生命周期管理 - Linkincrease 知识库</title>
   <base href="/linkincrease-pages/">
   <style>
 :root {
@@ -40,10 +40,27 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <body>
   <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
   <article>
-<h1 id="_1">供应商与工厂准入</h1>
+<h1 id="_1">供应商开发、准入与生命周期管理</h1>
 <h2 id="1">1. 业务定义</h2>
-<p>供应商与工厂准入是品牌方、采购团队或贸易企业在开展采购和生产协作前，对合作企业及实际生产场所进行资料收集、资质验证、风险评估、审批和持续维护的过程。</p>
+<p>供应商开发、准入与生命周期管理是品牌方、采购团队或贸易企业识别潜在合作方，评估商业和供应能力，批准合作，并在后续订单中持续评价、复审、暂停或淘汰供应商和实际生产工厂的过程。</p>
 <p>供应商准入关注商业合作主体及履约能力，工厂准入关注实际生产场所、生产能力、质量和合规风险。两者可能合并执行，也可能分别审批。本页不把单个客户的审批层级视为统一行业标准。</p>
+<p>当前页面重点详细展开“准入、审核、整改和持续维护”。寻源、询报价、样品或试单、商务谈判、绩效和淘汰只定义其与准入的关系，后续可拆为独立场景。</p>
+<h2 id="11">1.1 在端到端供应链中的位置</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;需求与采购计划&quot;] --&gt; B[&quot;供应商寻源和初筛&quot;]
+    B --&gt; C[&quot;资料、能力和风险评估&quot;]
+    C --&gt; D[&quot;样品/试单/审核&quot;]
+    D --&gt; E[&quot;准入和定点决策&quot;]
+    E --&gt; F[&quot;订单履约&quot;]
+    F --&gt; G[&quot;交付、质量和协同绩效&quot;]
+    G --&gt; H{&quot;继续合作?&quot;}
+    H --&gt;|是| I[&quot;分级、复审和扩大合作&quot;]
+    H --&gt;|有条件| J[&quot;整改、限制或暂停&quot;]
+    H --&gt;|否| K[&quot;退出或淘汰&quot;]
+    I --&gt; F
+    J --&gt; G
+</code></pre>
+<p>准入不是供应商管理的终点。没有订单履约、质量、交付和风险数据回流，准入状态会逐渐失去管理意义。</p>
 <h2 id="2">2. 适用客户与前提</h2>
 <table>
 <thead>
@@ -166,9 +183,69 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>等级、责任人、期限、证据、复核结论</td>
 <td>来源于审核，关闭后影响准入结果</td>
 </tr>
+<tr>
+<td>寻源或候选记录</td>
+<td>供应商正式准入前的发现、接触和初步筛选记录</td>
+<td>来源、品类、地区、能力、联系人、初筛结果</td>
+<td>通过初筛后可发起准入</td>
+</tr>
+<tr>
+<td>评价与绩效记录</td>
+<td>对供应商或工厂在订单中的表现进行周期评价</td>
+<td>交付、质量、成本、协同、合规、评价周期</td>
+<td>影响等级、复审、业务分配和退出</td>
+</tr>
 </tbody>
 </table>
 <p>供应商和工厂应有稳定唯一标识。名称、地址或联系人变化不应产生无法识别的重复主体。</p>
+<h2 id="41">4.1 典型评价维度</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>关注内容</th>
+<th>常见证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商务</td>
+<td>价格、付款条件、报价响应和合同接受能力</td>
+<td>报价、合同、沟通记录</td>
+</tr>
+<tr>
+<td>产品与技术</td>
+<td>品类经验、开发能力、规格理解和样品表现</td>
+<td>产品清单、样品、技术评审</td>
+</tr>
+<tr>
+<td>产能与交付</td>
+<td>设备、人员、产能、旺季负荷和历史交付</td>
+<td>产能资料、生产计划、订单绩效</td>
+</tr>
+<tr>
+<td>质量</td>
+<td>质量体系、过程控制、缺陷和验货表现</td>
+<td>体系证书、审核和验货报告</td>
+</tr>
+<tr>
+<td>合规</td>
+<td>合法经营、社会责任、环境和客户特定要求</td>
+<td>证照、证书、审核报告</td>
+</tr>
+<tr>
+<td>财务与连续性</td>
+<td>财务稳定性、关键依赖和中断风险</td>
+<td>信用资料、风险调查、业务连续性计划</td>
+</tr>
+<tr>
+<td>协同</td>
+<td>数据及时性、问题响应、整改和跨团队配合</td>
+<td>任务、消息、CAP 和历史记录</td>
+</tr>
+</tbody>
+</table>
+<p>不同品类和客户的权重不同。行业知识应沉淀评价框架，不应假设存在统一评分公式。</p>
 <h2 id="5">5. 标准业务流程</h2>
 <pre><code class="language-mermaid">flowchart LR
     A[&quot;发起供应商或工厂申报&quot;] --&gt; B[&quot;提交基础资料与资质&quot;]
@@ -470,7 +547,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tbody>
 </table>
 <p>可结合 <a href="../../45-测试支持/README.md">测试支持</a> 中的权限矩阵、数据校验和异常边界继续拆分测试用例。</p>
-<h2 id="11">11. 产品差距与需求候选</h2>
+<h2 id="11_1">11. 产品差距与需求候选</h2>
 <table>
 <thead>
 <tr>

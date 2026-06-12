@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>外贸供应链全景与端到端业务地图 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">外贸供应链全景与端到端业务地图</h1>
+<p>本页是外贸供应链行业知识的总纲，用于帮助产品、测试、研发和产品成功从端到端视角理解各业务环节之间的关系。它不要求 Linkincrease 覆盖供应链的全部环节，而是为产品定位、能力边界、场景设计和客户方案提供共同业务坐标。</p>
+<h2 id="1">1. 外贸供应链的范围</h2>
+<p>外贸供应链连接市场需求、产品开发、供应商、工厂、采购订单、生产、质量、跨境交付和资金结算。</p>
+<p>可以将完整链路概括为：</p>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;市场需求与销售机会&quot;] --&gt; B[&quot;预测与采购计划&quot;]
+    B --&gt; C[&quot;供应商寻源、评估与准入&quot;]
+    C --&gt; D[&quot;询价、报价、比价与定点&quot;]
+    D --&gt; E[&quot;产品/样品开发与确认&quot;]
+    E --&gt; F[&quot;合同与采购订单&quot;]
+    F --&gt; G[&quot;物料准备与生产计划&quot;]
+    G --&gt; H[&quot;生产进度与异常协同&quot;]
+    H --&gt; I[&quot;质量检验与整改&quot;]
+    I --&gt; J[&quot;出货计划、订舱与单证&quot;]
+    J --&gt; K[&quot;报关、运输、清关与交付&quot;]
+    K --&gt; L[&quot;对账、付款与结案&quot;]
+    L --&gt; M[&quot;绩效、风险、复盘与复购&quot;]
+    M --&gt; B
+</code></pre>
+<p>供应商治理、质量合规、数据管理、风险控制和绩效分析贯穿全链路，不是独立于订单之外的一次性工作。</p>
+<h2 id="2">2. 端到端过程域</h2>
+<p>本知识库使用七个过程域组织供应链场景。该划分参考供应链运营的通用过程思想，并结合外贸业务进行了本地化表达。</p>
+<table>
+<thead>
+<tr>
+<th>过程域</th>
+<th>核心问题</th>
+<th>典型业务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>治理与协同</td>
+<td>谁参与、按什么规则协作、如何控制风险</td>
+<td>组织角色、权限、标准、合规、主数据、绩效</td>
+</tr>
+<tr>
+<td>计划</td>
+<td>未来需要什么、何时需要、需要多少</td>
+<td>需求预测、采购计划、交付计划、产能和资源计划</td>
+</tr>
+<tr>
+<td>订单与交易</td>
+<td>买卖双方承诺了什么</td>
+<td>询报价、合同、订单、价格、数量、交期、付款和变更</td>
+</tr>
+<tr>
+<td>寻源与采购</td>
+<td>向谁采购、供应能力是否可信</td>
+<td>寻源、准入、定点、供应商分配、采购执行</td>
+</tr>
+<tr>
+<td>产品与生产</td>
+<td>如何把需求转成可交付产品</td>
+<td>样品、BOM、物料、生产计划、进度、异常</td>
+</tr>
+<tr>
+<td>质量与合规</td>
+<td>产品和生产过程是否满足要求</td>
+<td>检验、验货、审核、证书、CAP、追溯和召回</td>
+</tr>
+<tr>
+<td>履约与逆向</td>
+<td>如何完成跨境交付并处理异常</td>
+<td>订舱、单证、报关、运输、收货、索赔、退货和结案</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 贯穿全链路的业务主线</h2>
+<h3 id="31">3.1 需求到订单</h3>
+<p>将市场需求、销售预测或客户订单转成采购需求和供应计划。主要风险是需求变化、数据版本不一致、计划与产能脱节。</p>
+<h3 id="32">3.2 供应商到工厂</h3>
+<p>选择商业合作主体并识别实际生产场所。主要风险是供应商和工厂关系不透明、未经批准的分包、能力与订单不匹配。</p>
+<h3 id="33">3.3 订单到生产</h3>
+<p>把合同或采购订单中的产品、数量、交期和质量要求转成生产计划。主要风险是物料不齐、产能不足、变更未同步和进度失真。</p>
+<h3 id="34">3.4 生产到质量放行</h3>
+<p>通过过程控制、检验和验货判断产品能否进入下一阶段或出货。主要风险是标准不一致、抽检结论失真、问题未整改和未经授权放行。</p>
+<h3 id="35">3.5 出货到交付</h3>
+<p>将订单转成出货批次、运输和贸易单据，完成报关、运输、清关和收货。主要风险是单据不一致、责任边界不清、延误、短装、破损和清关异常。</p>
+<h3 id="36">3.6 交付到结算和复购</h3>
+<p>核对订单、出货、收货、质量和发票数据，完成付款、索赔、绩效评价和后续采购决策。</p>
+<h2 id="4">4. 关键角色与责任链</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要责任</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方、进口商、客户</td>
+<td>提出需求和标准，做出采购、质量放行和商业决策</td>
+</tr>
+<tr>
+<td>贸易公司、采购办公室、Sourcing Agency</td>
+<td>寻源、议价、订单协调、供应商和交付管理</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>承担商务履约责任，协调工厂、物料、质量和交付</td>
+</tr>
+<tr>
+<td>工厂、分包工厂</td>
+<td>承担实际生产、过程质量和现场合规责任</td>
+</tr>
+<tr>
+<td>QC、审核或实验室</td>
+<td>执行检验、验货、审核、测试并提供专业结论</td>
+</tr>
+<tr>
+<td>货代、承运人、仓库</td>
+<td>承担订舱、仓储、运输和交接</td>
+</tr>
+<tr>
+<td>报关行、海关及监管机构</td>
+<td>承担申报、查验、放行和监管</td>
+</tr>
+<tr>
+<td>财务、银行、保险机构</td>
+<td>承担信用、付款、融资、保险和索赔处理</td>
+</tr>
+</tbody>
+</table>
+<p>同一组织可能承担多个角色。知识库应按业务责任建模，不能只按企业名称判断权限和数据归属。</p>
+<h2 id="5">5. 核心业务对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象域</th>
+<th>典型对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组织与关系</td>
+<td>客户、供应商、工厂、分包工厂、服务商、组织关系</td>
+</tr>
+<tr>
+<td>产品与物料</td>
+<td>产品、款式、SKU、规格、BOM、物料、包装</td>
+</tr>
+<tr>
+<td>交易与订单</td>
+<td>询价、报价、合同、销售订单、采购订单、订单行、变更</td>
+</tr>
+<tr>
+<td>计划与生产</td>
+<td>需求、采购计划、产能、生产计划、生产批次、进度</td>
+</tr>
+<tr>
+<td>质量与合规</td>
+<td>检验标准、验货、缺陷、测试、审核、证书、CAP</td>
+</tr>
+<tr>
+<td>物流与单据</td>
+<td>出货批次、订舱、装箱单、发票、提单、原产地证、报关单</td>
+</tr>
+<tr>
+<td>资金与绩效</td>
+<td>应付、付款、索赔、成本、绩效、风险和供应商等级</td>
+</tr>
+</tbody>
+</table>
+<p>这些行业对象不能机械地一一对应为 Linkincrease 系统对象。产品设计应先判断对象是稳定主数据、流程实例、阶段、任务、决策还是分析结果。</p>
+<h2 id="6">6. 信息流、实物流与资金流</h2>
+<p>供应链不能只按流程节点理解，还需要同时观察三类流：</p>
+<table>
+<thead>
+<tr>
+<th>流</th>
+<th>内容</th>
+<th>常见问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>信息流</td>
+<td>预测、订单、规格、状态、证书、报告、单据</td>
+<td>信息延迟、版本不一致、重复录入、权限不清</td>
+</tr>
+<tr>
+<td>实物流</td>
+<td>物料、在制品、成品、样品、退货</td>
+<td>数量差异、批次失联、延误、破损和库存不准</td>
+</tr>
+<tr>
+<td>资金流</td>
+<td>价格、预付款、尾款、费用、索赔、退款</td>
+<td>条件不清、单据不匹配、汇率和信用风险</td>
+</tr>
+</tbody>
+</table>
+<p>Linkincrease 当前更适合承载跨组织信息流、任务协同、过程留痕、主数据复用和管理分析。涉及库存核算、生产排程、运输执行、报关申报或财务记账时，应明确与 ERP、MES、WMS、TMS、报关或财务系统的边界。</p>
+<h2 id="7">7. 外贸供应链典型场景地图</h2>
+<h3 id="p0-linkincrease">P0：与 Linkincrease 当前能力高度相关</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>主要业务价值</th>
+<th>关键对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商开发、准入与生命周期管理</td>
+<td>建立可信供应网络并控制合作风险</td>
+<td>供应商、工厂、证书、审核、状态</td>
+</tr>
+<tr>
+<td>采购订单履约与交期跟踪</td>
+<td>提升订单进度透明度和按期交付能力</td>
+<td>订单、里程碑、任务、交期、异常</td>
+</tr>
+<tr>
+<td>生产进度与异常协同</td>
+<td>让供应商、工厂和采购方及时协同</td>
+<td>生产计划、进度、物料、异常、责任人</td>
+</tr>
+<tr>
+<td>QC 验货与质量异常</td>
+<td>结构化收集检验结果并控制放行</td>
+<td>检验标准、验货、缺陷、批复</td>
+</tr>
+<tr>
+<td>社会责任审核与 CAP 整改</td>
+<td>形成审核、整改、复核闭环</td>
+<td>审核、报告、问题项、CAP</td>
+</tr>
+<tr>
+<td>出货计划与单证协同</td>
+<td>降低出货资料缺失和节点延误</td>
+<td>出货批次、订舱、单证、截止时间</td>
+</tr>
+<tr>
+<td>供应商绩效与风险管理</td>
+<td>用历史履约结果支持采购决策</td>
+<td>交付、质量、协同、合规、风险</td>
+</tr>
+<tr>
+<td>订单变更、异常、索赔与结案</td>
+<td>控制变更影响并保留责任依据</td>
+<td>变更、异常、损失、索赔、结案</td>
+</tr>
+</tbody>
+</table>
+<h3 id="p1">P1：重要但需要明确产品边界</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>常见系统边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>询价、报价、比价与定点</td>
+<td>需要价格权限、版本、币种、税费和商业审批</td>
+</tr>
+<tr>
+<td>样品开发与确认</td>
+<td>需要样品版本、评审意见、规格和量产转换</td>
+</tr>
+<tr>
+<td>需求预测与采购计划</td>
+<td>可能依赖 ERP、销售和库存数据</td>
+</tr>
+<tr>
+<td>物料准备与齐套管理</td>
+<td>可能依赖 BOM、库存、采购和生产系统</td>
+</tr>
+<tr>
+<td>国际物流与到货跟踪</td>
+<td>可能依赖货代、承运人或 TMS 数据</td>
+</tr>
+<tr>
+<td>报关、清关与贸易合规</td>
+<td>可能依赖专业申报和合规系统</td>
+</tr>
+<tr>
+<td>对账、付款和结算</td>
+<td>可能依赖 ERP、财务和银行系统</td>
+</tr>
+<tr>
+<td>退货、返工和召回</td>
+<td>需要批次追溯、库存和财务处理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-linkincrease">8. 与 Linkincrease 的定位关系</h2>
+<p>Linkincrease 不需要成为覆盖全部供应链交易和执行的单体系统。更适合重点解决：</p>
+<ul>
+<li>跨企业、跨团队和跨角色的流程协同。</li>
+<li>供应商、工厂、产品、证书和问题项等主数据复用。</li>
+<li>订单、里程碑、工单和批复驱动的过程管理。</li>
+<li>外部参与者的数据采集、任务处理和审核。</li>
+<li>权限、数据围栏、历史记录和审计追溯。</li>
+<li>自动提醒、状态联动、仪表盘和业务分析。</li>
+</ul>
+<p>产品设计和客户方案都应明确：</p>
+<ol>
+<li>哪些数据以 Linkincrease 为主。</li>
+<li>哪些数据来自外部系统。</li>
+<li>哪些环节由 Linkincrease 协同，但不负责专业执行或财务核算。</li>
+<li>哪些结果需要回写资源库或其他系统。</li>
+</ol>
+<h2 id="9">9. 阅读路径</h2>
+<ol>
+<li>先读本页建立端到端全景。</li>
+<li>阅读 <a href="./供应链必备知识地图.md">供应链必备知识地图</a> 掌握各知识域的最低要求。</li>
+<li>进入 <a href="./03-业务流程与单据/README.md">业务流程与单据</a> 查看具体场景。</li>
+<li>进入 <a href="./06-行业到产品研发映射/README.md">行业到产品研发映射</a> 判断产品对象、规则和差距。</li>
+<li>产品成功进入 <a href="./07-产品成功应用/README.md">产品成功应用</a> 完成客户诊断和方案输出。</li>
+</ol>
+<h2 id="10">10. 参考框架</h2>
+<ul>
+<li><a href="https://www.ascm.org/corporate-solutions/standards-tools/scor-ds/">ASCM SCOR Digital Standard</a>：用于校验供应链端到端过程域。</li>
+<li><a href="https://iccwbo.org/business-solutions/incoterms-rules/">ICC Incoterms® Rules</a>：用于理解货物交付中的任务、成本和风险分配。</li>
+<li><a href="https://wto.org/tradefacilitation">WTO Trade Facilitation</a>：用于界定货物移动、放行、清关和过境流程的知识范围。</li>
+<li><a href="https://www.oecd.org/en/topics/due-diligence-for-responsible-business-conduct.html">OECD Due Diligence for Responsible Business Conduct</a>：用于界定供应链负面影响识别和风险尽调范围。</li>
+</ul>
+<p>这些框架用于建立知识地图和校验业务范围，不表示 Linkincrease 已支持其中全部过程或专业能力。</p>
+
+  </article>
+</body>
+</html>
