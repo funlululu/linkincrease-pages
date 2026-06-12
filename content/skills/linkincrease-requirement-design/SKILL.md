@@ -5,6 +5,8 @@
 
 Use this skill as the Linkincrease-specific requirement design assistant. The skill does not duplicate the full knowledge base. It points Codex to the canonical knowledge base and defines how to use it during iteration planning, PRD writing, requirement review, impact analysis, and confirmed requirement ingestion.
 
+Optimize for implementable requirement design. Keep analysis short, make decisions traceable, and convert product intent into concrete feature points, page/entry changes, permissions, data rules, states, logs, acceptance criteria, and testing focus.
+
 Knowledge base path resolution:
 
 ```text
@@ -38,7 +40,9 @@ Use this only for product strategy, user roles, metrics, roadmap, or historical 
 5. Do not copy the whole knowledge base into the answer. Search and read only the relevant pages.
 6. For strategic or early-stage product work, read the entry pages for product strategy, user roles, and metrics/roadmap before proposing scope.
 7. For every requirement, check object, flow, permission, state, data, notification, log, import/export, exception, and multi-end impact.
-8. If a rule is unclear or conflicting, record it as a question instead of turning it into a final conclusion.
+8. Keep the same product end or module together. Do not split 贸易端, 运营端, or 采集端 design details across distant headings unless the later section is a shared rule or appendix.
+9. Put the implementable design before long analysis. Use a concise context section, then a feature list and product-end-specific design.
+10. If a rule is unclear or conflicting, record it as a question instead of turning it into a final conclusion.
 
 ## When Starting a Requirement
 
@@ -51,7 +55,26 @@ Use this only for product strategy, user roles, metrics, roadmap, or historical 
    - `docs/00-产品总览与规划/用户角色与场景.md`
    - `docs/00-产品总览与规划/产品指标与路线图.md`
 6. Read only the relevant documents.
-7. Produce background, existing rules, likely impact scope, risks, and suggested PRD structure.
+7. Produce concise background, existing rules, likely impact scope, risks, feature list, and an implementation-ready PRD structure.
+
+Read the output pattern when writing or heavily rewriting a PRD:
+
+```text
+references/requirement-output-patterns.md
+```
+
+## When Writing a New PRD
+
+1. Start with source basis, target users, impacted ends, impacted objects, and non-goals.
+2. Provide a deliverable feature list table before detailed design. Include feature ID, product end, module/page, user role, operation, priority, dependencies, and open questions.
+3. Organize detailed design by product end first, then by page/entry/operation. Keep each end continuous:
+   - 运营端: menu, list, detail, settings, governance, logs, exports.
+   - 贸易端: FlowSpace/order list, order detail, work order/milestone, collaboration, dashboards.
+   - 采集端: task list, task detail, form filling, offline/attachment behavior, submit/sync.
+4. Put shared business rules after the end-specific sections: object model, data flow, permission matrix, states, notifications, audit logs, import/export, historical compatibility.
+5. End with acceptance criteria, test focus, release scope, risks, and questions.
+6. Prefer tables, rule lists, and page-level interaction specs over broad prose. Use diagrams only when they reduce ambiguity.
+7. If the user asks for a full file update, edit the referenced document instead of only proposing content.
 
 Read the detailed knowledge map only when needed:
 

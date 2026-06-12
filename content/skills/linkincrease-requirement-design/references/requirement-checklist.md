@@ -30,6 +30,15 @@ Use this checklist when drafting or reviewing Linkincrease requirements.
 - Exception: no permission, missing data, invalid state, duplicate operation, import failure, sync failure.
 - Multi-end difference: whether 运营端, 贸易端, and 采集端 behave differently.
 
+## Output Structure
+
+- Does the PRD start with scope, non-goals, and a deliverable feature list?
+- Are 运营端, 贸易端, and 采集端 details grouped continuously instead of scattered across distant sections?
+- Does each feature point map to a concrete page, entry, operation, permission, state, data rule, and log/audit requirement when applicable?
+- Are shared rules separated from end-specific UI and interaction behavior?
+- Are V1.0 and later-phase capabilities clearly separated?
+- Are acceptance criteria specific enough for QA and development to verify?
+
 ## Review Output
 
 When reviewing, produce:
@@ -41,6 +50,7 @@ When reviewing, produce:
 - Questions requiring product confirmation.
 - Suggested PRD sections or exact additions.
 - Testing focus points when useful.
+- Structure issues that make the document hard to implement, especially repeated or scattered end/module sections.
 
 ## Avoid
 

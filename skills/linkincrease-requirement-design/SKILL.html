@@ -43,6 +43,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h1 id="linkincrease-requirement-design">Linkincrease Requirement Design</h1>
 <h2 id="purpose">Purpose</h2>
 <p>Use this skill as the Linkincrease-specific requirement design assistant. The skill does not duplicate the full knowledge base. It points Codex to the canonical knowledge base and defines how to use it during iteration planning, PRD writing, requirement review, impact analysis, and confirmed requirement ingestion.</p>
+<p>Optimize for implementable requirement design. Keep analysis short, make decisions traceable, and convert product intent into concrete feature points, page/entry changes, permissions, data rules, states, logs, acceptance criteria, and testing focus.</p>
 <p>Knowledge base path resolution:</p>
 <pre><code class="language-text">1. If LINKINCREASE_KB_PATH is set and exists, use it.
 2. Else if the current workspace contains Linkincrease knowledge base files such as metadata/source-roots.csv and docs/README.md, use the current workspace.
@@ -67,6 +68,8 @@ Use this only for product strategy, user roles, metrics, roadmap, or historical 
 <li>Do not copy the whole knowledge base into the answer. Search and read only the relevant pages.</li>
 <li>For strategic or early-stage product work, read the entry pages for product strategy, user roles, and metrics/roadmap before proposing scope.</li>
 <li>For every requirement, check object, flow, permission, state, data, notification, log, import/export, exception, and multi-end impact.</li>
+<li>Keep the same product end or module together. Do not split 贸易端, 运营端, or 采集端 design details across distant headings unless the later section is a shared rule or appendix.</li>
+<li>Put the implementable design before long analysis. Use a concise context section, then a feature list and product-end-specific design.</li>
 <li>If a rule is unclear or conflicting, record it as a question instead of turning it into a final conclusion.</li>
 </ol>
 <h2 id="when-starting-a-requirement">When Starting a Requirement</h2>
@@ -80,7 +83,23 @@ Use this only for product strategy, user roles, metrics, roadmap, or historical 
 <li><code>docs/00-产品总览与规划/用户角色与场景.md</code></li>
 <li><code>docs/00-产品总览与规划/产品指标与路线图.md</code></li>
 <li>Read only the relevant documents.</li>
-<li>Produce background, existing rules, likely impact scope, risks, and suggested PRD structure.</li>
+<li>Produce concise background, existing rules, likely impact scope, risks, feature list, and an implementation-ready PRD structure.</li>
+</ol>
+<p>Read the output pattern when writing or heavily rewriting a PRD:</p>
+<pre><code class="language-text">references/requirement-output-patterns.md
+</code></pre>
+<h2 id="when-writing-a-new-prd">When Writing a New PRD</h2>
+<ol>
+<li>Start with source basis, target users, impacted ends, impacted objects, and non-goals.</li>
+<li>Provide a deliverable feature list table before detailed design. Include feature ID, product end, module/page, user role, operation, priority, dependencies, and open questions.</li>
+<li>Organize detailed design by product end first, then by page/entry/operation. Keep each end continuous:</li>
+<li>运营端: menu, list, detail, settings, governance, logs, exports.</li>
+<li>贸易端: FlowSpace/order list, order detail, work order/milestone, collaboration, dashboards.</li>
+<li>采集端: task list, task detail, form filling, offline/attachment behavior, submit/sync.</li>
+<li>Put shared business rules after the end-specific sections: object model, data flow, permission matrix, states, notifications, audit logs, import/export, historical compatibility.</li>
+<li>End with acceptance criteria, test focus, release scope, risks, and questions.</li>
+<li>Prefer tables, rule lists, and page-level interaction specs over broad prose. Use diagrams only when they reduce ambiguity.</li>
+<li>If the user asks for a full file update, edit the referenced document instead of only proposing content.</li>
 </ol>
 <p>Read the detailed knowledge map only when needed:</p>
 <pre><code class="language-text">references/knowledge-base-map.md
@@ -133,6 +152,7 @@ python scripts\scan_source_manifest.py
 <p>For ingestion:</p>
 <pre><code class="language-text">这个需求已经确认，请同步回 Linkincrease 知识库。
 </code></pre>
+
   </article>
 </body>
 </html>

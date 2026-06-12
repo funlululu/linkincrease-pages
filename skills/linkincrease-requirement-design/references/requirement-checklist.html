@@ -70,6 +70,15 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>Exception: no permission, missing data, invalid state, duplicate operation, import failure, sync failure.</li>
 <li>Multi-end difference: whether 运营端, 贸易端, and 采集端 behave differently.</li>
 </ul>
+<h2 id="output-structure">Output Structure</h2>
+<ul>
+<li>Does the PRD start with scope, non-goals, and a deliverable feature list?</li>
+<li>Are 运营端, 贸易端, and 采集端 details grouped continuously instead of scattered across distant sections?</li>
+<li>Does each feature point map to a concrete page, entry, operation, permission, state, data rule, and log/audit requirement when applicable?</li>
+<li>Are shared rules separated from end-specific UI and interaction behavior?</li>
+<li>Are V1.0 and later-phase capabilities clearly separated?</li>
+<li>Are acceptance criteria specific enough for QA and development to verify?</li>
+</ul>
 <h2 id="review-output">Review Output</h2>
 <p>When reviewing, produce:</p>
 <ul>
@@ -80,6 +89,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>Questions requiring product confirmation.</li>
 <li>Suggested PRD sections or exact additions.</li>
 <li>Testing focus points when useful.</li>
+<li>Structure issues that make the document hard to implement, especially repeated or scattered end/module sections.</li>
 </ul>
 <h2 id="avoid">Avoid</h2>
 <ul>
@@ -88,6 +98,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>Do not ignore permissions, states, logs, or historical data impact.</li>
 <li>Do not change source filenames that are used for traceability.</li>
 </ul>
+
   </article>
 </body>
 </html>

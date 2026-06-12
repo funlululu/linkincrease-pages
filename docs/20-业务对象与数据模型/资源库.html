@@ -105,6 +105,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>控制资源库设置和表数据权限</td>
 </tr>
 <tr>
+<td>协作方角色</td>
+<td>控制协作团队可见资源表、可操作权限和数据范围</td>
+</tr>
+<tr>
 <td>资源库视图</td>
 <td>组织表数据查看方式</td>
 </tr>
@@ -122,12 +126,14 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <pre><code class="language-mermaid">flowchart TD
     A[&quot;运营端配置资源库模板&quot;] --&gt; B[&quot;贸易端从模板中心选择模板&quot;]
     B --&gt; C[&quot;创建资源库&quot;]
-    C --&gt; D[&quot;设置资源库角色和表权限&quot;]
-    D --&gt; E[&quot;维护资源库数据&quot;]
-    E --&gt; F[&quot;FlowSpace 关联资源库&quot;]
-    F --&gt; G[&quot;订单字段引用资源库数据&quot;]
-    E --&gt; H[&quot;资源库数据变更&quot;]
-    H --&gt; I[&quot;按策略同步到已引用字段或保留历史快照&quot;]
+    C --&gt; D[&quot;设置基础信息、成员角色、协作方角色&quot;]
+    D --&gt; E[&quot;按表配置权限、数据范围、FlowSpace应用范围&quot;]
+    E --&gt; F[&quot;维护资源库数据&quot;]
+    F --&gt; G[&quot;授权协作资源库或开启资源库分享&quot;]
+    E --&gt; H[&quot;FlowSpace关联资源库&quot;]
+    H --&gt; I[&quot;订单、工单、批复字段引用资源库数据&quot;]
+    F --&gt; J[&quot;资源库数据变更&quot;]
+    J --&gt; K[&quot;按同步策略更新已引用字段或保留历史数据&quot;]
 </code></pre>
 <h2 id="5">5. 权限规则</h2>
 <table>
@@ -155,11 +161,16 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>控制成员可见或可操作的数据范围</td>
 </tr>
 <tr>
+<td>FlowSpace 应用范围</td>
+<td>控制 FlowSpace 引用资源库数据时使用所有数据或按用户权限过滤</td>
+</tr>
+<tr>
 <td>分享权限</td>
 <td>控制外链、只读、可编辑、密码、失效等能力</td>
 </tr>
 </tbody>
 </table>
+<p>资源库应用到 FlowSpace 时，最终可引用数据由资源表有效性、资源库表权限、数据范围、FlowSpace 应用范围、协作授权范围共同决定。</p>
 <h2 id="6">6. 状态与限制</h2>
 <p>已确认规则：</p>
 <ul>
@@ -169,6 +180,9 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>历史订单中已引用的数据需保留文本或快照。</li>
 <li>资源库名称在当前团队内不可重复。</li>
 <li>资源库管理员为固定角色，默认包含创建资源库的成员。</li>
+<li>FlowSpace 关联资源库时，资源库表最多可多选 5 个。</li>
+<li>同一订单字段不可在同一模块内被多组资源库关联关系重复使用。</li>
+<li>分享者失去数据或表查看权限后，分享链接失效，重新获得权限后也需要重新分享。</li>
 </ul>
 <h2 id="7">7. 字段、表单与校验</h2>
 <p>资源库数据表单由资源库模板决定。字段规则包括：</p>
@@ -179,17 +193,21 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>图片、附件、日期、数字、百分比等组件规则。</li>
 <li>导入模板字段校验。</li>
 <li>资源库引用在订单表单中的展示和历史保留。</li>
+<li>资源库引用在工单、工单批复、里程碑批复中的展示和同步边界。</li>
 </ul>
 <h2 id="8">8. 通知、日志与审计</h2>
 <p>资源库需要沉淀的记录包括：</p>
 <ul>
 <li>创建、编辑、删除资源库。</li>
 <li>创建、编辑、删除资源库角色。</li>
+<li>创建、编辑、删除协作方角色。</li>
+<li>FlowSpace 应用数据范围变更。</li>
+<li>FlowSpace 关联资源库配置变更。</li>
 <li>创建、编辑、删除资源库数据。</li>
 <li>导入导出记录。</li>
 <li>批量编辑和批量下载记录。</li>
 <li>数据编辑历史。</li>
-<li>资源库同步触发的系统自动执行日志。</li>
+<li>资源库同步造成订单侧字段变化时，订单侧不新增普通操作记录；资源库数据历史记录保留变更来源。</li>
 </ul>
 <h2 id="9">9. 异常与提示</h2>
 <p>需要统一沉淀：</p>
@@ -207,15 +225,17 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【资源库】资源库分享.md</code></li>
 <li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【资源库】视图管理.md</code></li>
 <li><code>source:thoughts-v2-current/v2.7/贸易端/【贸易端】【资源库】SCCS应用数据范围、数据编辑历史记录.md</code></li>
+<li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【操作日志】所有设置类功能.md</code></li>
 <li><code>source:thoughts-v2-current/v2.3.x/运营端/【运营端】【模板中心】资源库模版管理.md</code></li>
 <li><code>missing-current-source/【运营端】【资源库模版】表单设计组件.md</code></li>
 </ul>
 <h2 id="11">11. 待确认问题</h2>
 <ul>
 <li>资源库同步与自动化更新同一字段时的优先级。</li>
-<li>资源库分享的外部访问权限、密码和失效策略是否需要独立权限页。</li>
 <li>资源库数据编辑历史的字段级快照范围。</li>
+<li>工单、工单批复、里程碑批复完成或锁定后，资源库同步是否仍可更新对应字段。</li>
 </ul>
+<details class="source-section" open><summary>需求来源 (5)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【资源库】第一阶段</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr><tr><td>【贸易端】【资源库】资源库分享</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr><tr><td>【贸易端】【资源库】视图管理</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr><tr><td>【贸易端】【资源库】SCCS应用数据范围、数据编辑历史记录</td><td><span class="source-badge">v2.7</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr><tr><td>【贸易端】【操作日志】所有设置类功能</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>操作日志</td><td>2026-05-26</td></tr></table></details>
   </article>
 </body>
 </html>
