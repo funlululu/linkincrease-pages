@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>客户场景诊断清单 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">客户场景诊断清单</h1>
+<p>本清单用于产品成功在输出业务方案前收集最小必要信息。具体场景还应补充对应行业知识页中的专业问题。</p>
+<h2 id="1">1. 客户与业务范围</h2>
+<ul>
+<li>客户属于品牌方、贸易公司、采购团队、Sourcing Agency、供应商、工厂还是服务商？</li>
+<li>本次希望解决哪个业务场景，明确不包含哪些相邻流程？</li>
+<li>涉及哪些组织、地区、产品类别和业务规模？</li>
+<li>当前主要使用 Excel、邮件、聊天工具、ERP、PLM、QMS 还是其他系统？</li>
+</ul>
+<h2 id="2">2. 角色与协作</h2>
+<ul>
+<li>谁发起业务，谁提交数据，谁审核，谁最终决策？</li>
+<li>哪些参与方属于客户内部，哪些属于外部企业？</li>
+<li>外部企业是否需要自行指派成员？</li>
+<li>各角色分别能看什么、填什么、修改什么和审批什么？</li>
+</ul>
+<h2 id="3">3. 业务对象与数据</h2>
+<ul>
+<li>需要长期维护并复用的主数据有哪些？</li>
+<li>每次流程执行产生哪些过程数据？</li>
+<li>主体、订单、任务、报告和问题项之间如何关联？</li>
+<li>是否有唯一编码、历史快照、附件、有效期和版本要求？</li>
+<li>数据来自人工录入、导入、其他系统还是现场采集？</li>
+</ul>
+<h2 id="4">4. 流程与状态</h2>
+<ul>
+<li>流程由什么事件触发，何时视为完成？</li>
+<li>经过哪些阶段、任务、审核和例外处理？</li>
+<li>有哪些状态，状态由谁改变？</li>
+<li>哪些步骤可以退回、重启、取消或跳过？</li>
+<li>逾期、驳回、信息不完整和人员变化时如何处理？</li>
+</ul>
+<h2 id="5">5. 通知、审计与分析</h2>
+<ul>
+<li>哪些事件需要通知谁，通过什么渠道？</li>
+<li>哪些操作必须保留历史和审计记录？</li>
+<li>管理层需要看哪些待办、风险和结果指标？</li>
+<li>指标用于做什么决策，数据从哪里产生？</li>
+</ul>
+<h2 id="6">6. 平台边界确认</h2>
+<ul>
+<li>哪些需求可由标准功能直接满足？</li>
+<li>哪些需要模板、资源库、权限、自动化或仪表盘配置？</li>
+<li>哪些需要人工操作或外部系统配合？</li>
+<li>哪些能力尚未确认，不能在现场承诺？</li>
+<li>客户是否接受当前替代方案及其操作成本？</li>
+</ul>
+<h2 id="7">7. 方案输出前检查</h2>
+<ul>
+<li>[ ] 已区分客户原话、行业通行做法和推荐方案。</li>
+<li>[ ] 已引用产品权威规则确认能力边界。</li>
+<li>[ ] 已明确主数据、过程数据和系统间数据来源。</li>
+<li>[ ] 已列出角色、权限、状态、异常和审计要求。</li>
+<li>[ ] 已标记暂不支持、待确认和需要产品评审的内容。</li>
+<li>[ ] 已明确试点范围、验收标准和后续扩展范围。</li>
+</ul>
+
+  </article>
+</body>
+</html>

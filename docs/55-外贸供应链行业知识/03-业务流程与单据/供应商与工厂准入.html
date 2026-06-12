@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>供应商与工厂准入 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">供应商与工厂准入</h1>
+<h2 id="1">1. 业务定义</h2>
+<p>供应商与工厂准入是品牌方、采购团队或贸易企业在开展采购和生产协作前，对合作企业及实际生产场所进行资料收集、资质验证、风险评估、审批和持续维护的过程。</p>
+<p>供应商准入关注商业合作主体及履约能力，工厂准入关注实际生产场所、生产能力、质量和合规风险。两者可能合并执行，也可能分别审批。本页不把单个客户的审批层级视为统一行业标准。</p>
+<h2 id="2">2. 适用客户与前提</h2>
+<table>
+<thead>
+<tr>
+<th>客户类型</th>
+<th>典型诉求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方、进口商</td>
+<td>识别实际生产工厂，控制质量、社会责任和供应链风险</td>
+</tr>
+<tr>
+<td>贸易公司</td>
+<td>建立可复用供应商和工厂档案，降低跟单与审厂成本</td>
+</tr>
+<tr>
+<td>采购团队、Sourcing Agency</td>
+<td>统一多个项目和客户的供应商开发、评价与审批过程</td>
+</tr>
+<tr>
+<td>一级供应商</td>
+<td>申报自身及合作工厂，提交资质并跟进补充要求</td>
+</tr>
+<tr>
+<td>QC 或审核服务商</td>
+<td>执行现场审核、提交报告并验证整改结果</td>
+</tr>
+</tbody>
+</table>
+<p>该场景通常依赖明确的准入标准、资料清单、审批责任人、有效期规则和退出机制。</p>
+<h2 id="3">3. 参与角色与责任</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要责任</th>
+<th>提供的数据</th>
+<th>做出的决策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方或采购负责人</td>
+<td>制定准入要求并承担最终业务决策</td>
+<td>准入标准、风险等级、审批意见</td>
+<td>通过、条件通过、驳回、暂停或退出</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>提交企业和合作工厂资料，响应补充要求</td>
+<td>企业信息、联系人、证照、工厂关系</td>
+<td>确认申报内容和整改计划</td>
+</tr>
+<tr>
+<td>工厂</td>
+<td>提交生产场所、产能、质量和合规资料</td>
+<td>工厂档案、证书、设备、产能、审核材料</td>
+<td>确认现场信息和整改证据</td>
+</tr>
+<tr>
+<td>QC 或审核服务商</td>
+<td>执行文件审核或现场审核</td>
+<td>审核记录、问题项、报告和建议</td>
+<td>给出专业结论，不一定承担最终准入决策</td>
+</tr>
+<tr>
+<td>产品成功或实施人员</td>
+<td>将客户规则配置为可执行流程</td>
+<td>模板、角色、字段、权限和报表方案</td>
+<td>判断配置方案，不替代客户业务审批</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 核心业务对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>定义</th>
+<th>关键字段</th>
+<th>与其他对象的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商</td>
+<td>与采购方建立商业合作关系的组织</td>
+<td>编码、名称、区域、类别、联系人、状态、风险等级</td>
+<td>可关联一个或多个工厂</td>
+</tr>
+<tr>
+<td>工厂</td>
+<td>实际承担生产活动的场所或法人主体</td>
+<td>编码、地址、产品类别、产能、证书、审核状态</td>
+<td>归属或服务于供应商，可参与订单生产</td>
+</tr>
+<tr>
+<td>准入申请</td>
+<td>一次新增、变更或重新准入请求</td>
+<td>申请类型、申请人、对象、提交时间、当前状态</td>
+<td>关联供应商、工厂和审批记录</td>
+</tr>
+<tr>
+<td>证书与资质</td>
+<td>支撑合法经营、质量或合规判断的材料</td>
+<td>类型、编号、签发机构、生效日、失效日、附件</td>
+<td>关联供应商或工厂</td>
+</tr>
+<tr>
+<td>审核记录</td>
+<td>对资料、现场或能力进行核验的过程记录</td>
+<td>审核类型、审核人、日期、结论、报告</td>
+<td>可产生问题项和 CAP</td>
+</tr>
+<tr>
+<td>问题项与 CAP</td>
+<td>对不符合项的整改要求和闭环记录</td>
+<td>等级、责任人、期限、证据、复核结论</td>
+<td>来源于审核，关闭后影响准入结果</td>
+</tr>
+</tbody>
+</table>
+<p>供应商和工厂应有稳定唯一标识。名称、地址或联系人变化不应产生无法识别的重复主体。</p>
+<h2 id="5">5. 标准业务流程</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[&quot;发起供应商或工厂申报&quot;] --&gt; B[&quot;提交基础资料与资质&quot;]
+    B --&gt; C[&quot;资料完整性检查&quot;]
+    C --&gt;|不完整| D[&quot;退回补充&quot;]
+    D --&gt; B
+    C --&gt;|完整| E[&quot;风险评估或审核&quot;]
+    E --&gt; F{&quot;存在需整改问题?&quot;}
+    F --&gt;|是| G[&quot;创建 CAP 并提交整改证据&quot;]
+    G --&gt; H[&quot;复核整改结果&quot;]
+    H --&gt; E
+    F --&gt;|否| I[&quot;准入审批&quot;]
+    I --&gt; J[&quot;写入供应商/工厂主数据&quot;]
+    J --&gt; K[&quot;持续监控、到期复审或退出&quot;]
+</code></pre>
+<p>典型控制点：</p>
+<ol>
+<li>发起前检查主体是否已经存在，避免重复建档。</li>
+<li>资料完整不等于满足准入要求，需要区分完整性检查和业务审批。</li>
+<li>审核机构的专业结论与品牌方的最终商业决策可以分离。</li>
+<li>条件通过时需要记录条件、责任人、期限和后续复核。</li>
+<li>准入后仍需管理证书到期、信息变更、风险升级和退出。</li>
+</ol>
+<h2 id="6">6. 状态与业务规则</h2>
+<p>以下状态是建议模型，不代表所有客户必须采用相同枚举。</p>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>状态或规则</th>
+<th>进入条件</th>
+<th>允许操作</th>
+<th>退出条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>准入申请</td>
+<td>草稿</td>
+<td>已创建但未正式提交</td>
+<td>编辑、补充、删除</td>
+<td>提交申请</td>
+</tr>
+<tr>
+<td>准入申请</td>
+<td>待补充</td>
+<td>资料不完整或审核要求补件</td>
+<td>补充资料、重新提交</td>
+<td>完整性检查通过</td>
+</tr>
+<tr>
+<td>准入申请</td>
+<td>审核中</td>
+<td>资料完整，进入文件或现场审核</td>
+<td>审核、记录问题、发起 CAP</td>
+<td>进入审批或退回补充</td>
+</tr>
+<tr>
+<td>准入申请</td>
+<td>整改中</td>
+<td>存在需要关闭的问题项</td>
+<td>提交证据、复核、调整期限</td>
+<td>问题关闭或审批终止</td>
+</tr>
+<tr>
+<td>准入申请</td>
+<td>待审批</td>
+<td>已达到客户设定的审批条件</td>
+<td>审批、退回</td>
+<td>通过、条件通过或驳回</td>
+</tr>
+<tr>
+<td>主体</td>
+<td>已准入</td>
+<td>审批通过且满足生效条件</td>
+<td>被新业务引用、持续维护</td>
+<td>暂停、失效、退出或重新评估</td>
+</tr>
+<tr>
+<td>主体</td>
+<td>条件准入</td>
+<td>允许有限合作但仍有未完成条件</td>
+<td>按限制被引用、继续整改</td>
+<td>转正式准入或暂停</td>
+</tr>
+<tr>
+<td>主体</td>
+<td>暂停/退出</td>
+<td>风险、过期、违规或合作终止</td>
+<td>查看历史、整改或重新申请</td>
+<td>恢复或重新准入</td>
+</tr>
+</tbody>
+</table>
+<p>建议区分“申请状态”和“供应商/工厂主数据状态”，避免一次申请的结束状态覆盖主体长期生命周期。</p>
+<h2 id="7">7. 异常、风险与控制措施</h2>
+<table>
+<thead>
+<tr>
+<th>风险或异常</th>
+<th>业务影响</th>
+<th>识别方式</th>
+<th>控制措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同一供应商或工厂重复申报</td>
+<td>档案、审核和订单数据分裂</td>
+<td>名称、统一编码、地址或证照重复</td>
+<td>发起前查重，设置唯一标识和合并机制</td>
+</tr>
+<tr>
+<td>供应商申报的实际工厂不透明</td>
+<td>未准入工厂参与生产</td>
+<td>订单工厂与已申报关系不一致</td>
+<td>订单关联已准入工厂，新增工厂触发准入</td>
+</tr>
+<tr>
+<td>证书过期仍被使用</td>
+<td>合规风险和审核失真</td>
+<td>到期日、状态和订单引用检查</td>
+<td>到期预警、失效状态、新业务引用限制</td>
+</tr>
+<tr>
+<td>条件准入缺少后续跟踪</td>
+<td>临时例外长期化</td>
+<td>条件、责任人或期限缺失</td>
+<td>将条件转为有期限任务或 CAP</td>
+</tr>
+<tr>
+<td>审核问题未闭环</td>
+<td>风险持续存在</td>
+<td>CAP 状态、逾期天数、复核结果</td>
+<td>明确责任、证据、复核和升级机制</td>
+</tr>
+<tr>
+<td>历史审批记录被覆盖</td>
+<td>无法审计当时决策依据</td>
+<td>资料和结论仅保留当前值</td>
+<td>保存申请、批复、附件和变更历史</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 管理指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+<th>建议口径</th>
+<th>数据来源</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平均准入周期</td>
+<td>判断流程效率</td>
+<td>准入生效时间减首次正式提交时间</td>
+<td>准入申请、审批记录</td>
+<td>定位补件、审核和审批瓶颈</td>
+</tr>
+<tr>
+<td>首次资料完整率</td>
+<td>判断申报质量</td>
+<td>首次提交即通过完整性检查的申请数/首次提交申请数</td>
+<td>申请和退回记录</td>
+<td>优化资料清单和供应商培训</td>
+</tr>
+<tr>
+<td>准入通过率</td>
+<td>判断对象质量及标准严苛程度</td>
+<td>通过或条件通过申请数/完成审批申请数</td>
+<td>审批结果</td>
+<td>分析供应商来源和驳回原因</td>
+</tr>
+<tr>
+<td>CAP 按期关闭率</td>
+<td>判断整改执行力</td>
+<td>期限内关闭 CAP 数/应关闭 CAP 数</td>
+<td>CAP、期限和复核记录</td>
+<td>催办、升级或调整合作等级</td>
+</tr>
+<tr>
+<td>有效证书覆盖率</td>
+<td>判断资质维护健康度</td>
+<td>关键证书有效的主体数/应具备证书的主体数</td>
+<td>主体和证书档案</td>
+<td>到期提醒、暂停新增业务</td>
+</tr>
+</tbody>
+</table>
+<p>正式进入仪表盘前，应在数据分析支持区补充字段口径和统计范围。</p>
+<h2 id="9">9. 产品研发映射</h2>
+<table>
+<thead>
+<tr>
+<th>行业需求或规则</th>
+<th>产品对象或能力</th>
+<th>数据、状态或权限影响</th>
+<th>支持度</th>
+<th>产品依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商、工厂和证书需要长期维护并跨流程复用</td>
+<td>资源库</td>
+<td>需要主体唯一标识、对象关联、有效期和历史变更</td>
+<td>L2</td>
+<td><a href="../../20-业务对象与数据模型/资源库.md">资源库</a></td>
+</tr>
+<tr>
+<td>一次准入申请需要经历补件、审核、整改和审批</td>
+<td>业务模板、FlowSpace、订单、里程碑、工单、批复</td>
+<td>需要区分申请状态、任务状态和主体长期状态</td>
+<td>L2</td>
+<td><a href="../../30-业务流程与产品流程图/从模板到FlowSpace.md">从模板到 FlowSpace</a></td>
+</tr>
+<tr>
+<td>供应商、工厂和服务商需要参与同一流程</td>
+<td>协作团队、业务角色、处理人</td>
+<td>需要验证组织关系、处理人变化和协作方退出后的规则</td>
+<td>L2</td>
+<td><a href="../../40-权限、安全与审计/协作FlowSpace权限.md">协作 FlowSpace 权限</a></td>
+</tr>
+<tr>
+<td>不同参与方只能查看和填写职责范围内的数据</td>
+<td>角色权限、数据围栏、表单显隐</td>
+<td>字段可见、数据可见和操作权限需要组合判断</td>
+<td>L2</td>
+<td><a href="../../40-权限、安全与审计/权限体系总表.md">权限体系总表</a></td>
+</tr>
+<tr>
+<td>准入通过后应形成可复用主数据</td>
+<td>资源库写入或同步</td>
+<td>需要明确触发条件、字段映射、重复判断、覆盖和失败处理</td>
+<td>LX</td>
+<td><a href="../../30-业务流程与产品流程图/资源库引用与同步.md">资源库引用与同步</a></td>
+</tr>
+<tr>
+<td>证书到期和整改期限需要主动提醒</td>
+<td>日期字段、自动化、消息通知</td>
+<td>需要验证时间触发、通知对象、重复提醒和失败日志</td>
+<td>L2</td>
+<td><a href="../../10-功能模块详情/自动化.md">自动化</a></td>
+</tr>
+<tr>
+<td>管理层需要查看准入、审核和整改进度</td>
+<td>仪表盘、报告、跨 FlowSpace 数据</td>
+<td>需要统一指标口径、统计范围和数据权限</td>
+<td>L2</td>
+<td><a href="../../50-运营支持知识/04-监控与数据分析/Tower仪表盘配置指南.md">Tower 仪表盘配置指南</a></td>
+</tr>
+<tr>
+<td>申请、审批和资料变化必须可追溯</td>
+<td>动态、历史记录、操作日志</td>
+<td>需要区分人工操作、业务过程和系统写入记录</td>
+<td>L1/L2</td>
+<td><a href="../../40-权限、安全与审计/历史记录与快照.md">历史记录与快照</a></td>
+</tr>
+</tbody>
+</table>
+<p>“审批完成后自动写入资源库”的具体触发、字段映射和冲突处理需要依据当前产品规则进一步确认，因此暂记为 LX。</p>
+<h2 id="10">10. 测试关注点</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>需要验证的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主流程</td>
+<td>申报、补件、审核、CAP、审批、主数据沉淀是否形成完整闭环</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>品牌方、供应商、工厂、服务商只能查看和处理职责范围内的数据</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>已驳回、已暂停、已退出、条件准入和证书失效后的操作限制</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>重复主体、资源库引用、历史快照、申请数据与主数据之间的一致性</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>处理人离职、协作团队退出、附件失效、自动化失败、并发编辑</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>提交、退回、补充、审核、批复、状态变化和系统写入是否可追溯</td>
+</tr>
+</tbody>
+</table>
+<p>可结合 <a href="../../45-测试支持/README.md">测试支持</a> 中的权限矩阵、数据校验和异常边界继续拆分测试用例。</p>
+<h2 id="11">11. 产品差距与需求候选</h2>
+<table>
+<thead>
+<tr>
+<th>差距</th>
+<th>业务影响</th>
+<th>当前替代方案</th>
+<th>建议优先级</th>
+<th>去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>准入通过后写入资源库的规则和冲突策略待确认</td>
+<td>可能需要重复录入，或覆盖已有主体数据</td>
+<td>人工复核后维护资源库</td>
+<td>P0 调研</td>
+<td><a href="../99-待研究问题/README.md">待研究问题</a></td>
+</tr>
+<tr>
+<td>主体重复识别和合并机制尚未形成行业方案</td>
+<td>供应商、工厂档案可能重复</td>
+<td>配置唯一编码并人工查重</td>
+<td>P1</td>
+<td>产品维护区评估</td>
+</tr>
+<tr>
+<td>条件准入、暂停、退出的通用状态模型待验证</td>
+<td>不同客户模板难以复用</td>
+<td>按客户定制状态字段和流程</td>
+<td>P1 调研</td>
+<td><a href="../99-待研究问题/README.md">待研究问题</a></td>
+</tr>
+</tbody>
+</table>
+<p>以上为需求候选和调研项，不代表已经进入产品计划。</p>
+<h2 id="12">12. 产品成功应用</h2>
+<h3 id="_2">客户识别信号</h3>
+<p>客户出现以下情况时，可以优先使用本场景知识：</p>
+<ul>
+<li>供应商、工厂和证书分散在多个 Excel、邮件或聊天记录中。</li>
+<li>品牌方无法确认订单实际使用的生产工厂。</li>
+<li>新工厂申报、资料补充、审核和审批缺少统一进度。</li>
+<li>审核问题和 CAP 整改无法持续跟踪。</li>
+<li>证书过期、条件准入和工厂退出主要依靠人工记忆。</li>
+</ul>
+<h3 id="_3">重点诊断问题</h3>
+<ul>
+<li>客户是否分别管理供应商和工厂，两者是什么关系？</li>
+<li>谁发起准入、谁检查资料、谁审核、谁最终批准？</li>
+<li>存在哪些准入类型和状态，是否允许条件准入或临时使用？</li>
+<li>哪些证书、报告和信息有有效期？</li>
+<li>审核发现问题后，是否必须完成 CAP 才能准入？</li>
+<li>准入结果如何影响新订单选择供应商或工厂？</li>
+<li>历史订单是否必须保留当时的主体信息和审批依据？</li>
+</ul>
+<h3 id="_4">方案输出入口</h3>
+<ul>
+<li>使用 <a href="../07-产品成功应用/客户场景诊断清单.md">客户场景诊断清单</a> 补齐客户现状。</li>
+<li>使用 <a href="../07-产品成功应用/平台能力边界表达规范.md">平台能力边界表达规范</a> 标记 L1 至 L4 和 LX。</li>
+<li>参考 <a href="../../50-运营支持知识/03-业务场景案例库/外贸供应商治理/品牌方供应商与工厂准入协同方案.md">品牌方供应商与工厂准入协同方案</a> 设计配置方案。</li>
+<li>使用 <a href="../07-产品成功应用/业务方案输出模板.md">业务方案输出模板</a> 形成客户交付内容。</li>
+</ul>
+<h2 id="13">13. 来源与可信度</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>类型</th>
+<th>证据等级</th>
+<th>支撑结论</th>
+<th>版本或日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../50-运营支持知识/03-业务场景案例库/外贸供应商治理/品牌方供应商与工厂准入协同方案.md">品牌方供应商与工厂准入协同方案</a></td>
+<td>内部场景方案</td>
+<td>E3</td>
+<td>角色、对象、FlowSpace 组合和客户配置方式</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td><a href="../../50-运营支持知识/03-业务场景案例库/业务场景总览.md">业务场景总览</a></td>
+<td>内部场景总结</td>
+<td>E3</td>
+<td>行业问题到产品能力的初步映射</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>产品业务对象、流程和权限权威页</td>
+<td>内部产品知识</td>
+<td>不适用</td>
+<td>Linkincrease 当前产品能力</td>
+<td>当前版本</td>
+</tr>
+</tbody>
+</table>
+<p>当前版本主要基于内部场景方案建立结构，尚需补充标准、更多客户样本和行业专家确认，不能视为完整行业标准。</p>
+<h2 id="14">14. 待确认问题</h2>
+<ul>
+<li>[ ] 由产品成功归纳不同客户的准入层级、状态和审批角色，验证是否可以形成三至五种稳定模式。</li>
+<li>[ ] 由产品确认准入结果自动写入资源库时的触发条件、字段映射、重复数据和覆盖规则。</li>
+<li>[ ] 由测试补充证书失效、协作关系变化、并发处理和自动化失败的完整异常用例。</li>
+<li>[ ] 补充至少一个 E1 或 E2 来源，校正当前主要来自内部方案的行业描述。</li>
+</ul>
+<h2 id="15">15. 关联知识</h2>
+<ul>
+<li>客户配置方案：<a href="../../50-运营支持知识/03-业务场景案例库/外贸供应商治理/品牌方供应商与工厂准入协同方案.md">品牌方供应商与工厂准入协同方案</a></li>
+<li>产品权威规则：<a href="../../20-业务对象与数据模型/资源库.md">资源库</a>、<a href="../../20-业务对象与数据模型/FlowSpace.md">FlowSpace</a>、<a href="../../40-权限、安全与审计/权限体系总表.md">权限体系总表</a></li>
+<li>测试支持：<a href="../../45-测试支持/测试支持价值.md">测试支持价值</a></li>
+<li>数据分析：<a href="../../60-数据分析支持/核心指标口径.md">核心指标口径</a></li>
+<li>产品维护：<a href="../../70-产品维护知识/竞品分析.md">竞品分析</a>、<a href="../../70-产品维护知识/需求池.md">需求池</a></li>
+<li>产品成功应用：<a href="../07-产品成功应用/客户场景诊断清单.md">客户场景诊断清单</a>、<a href="../07-产品成功应用/业务方案输出模板.md">业务方案输出模板</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

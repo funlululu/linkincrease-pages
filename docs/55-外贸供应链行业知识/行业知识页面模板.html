@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>行业知识页面模板 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#fbfaf8; --text:#2f3437; --muted:#787774; --faint:#a8a29e;
+  --line:#e7e2dc; --line-strong:#d8d1c8; --accent:#6b5f4b;
+  --accent-soft:#eee9df; --code:#f3f0eb; --panel:#fff; --soft:#f7f6f3;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#6f5f43; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#6f5f43; text-decoration:underline; text-decoration-color:#d7c7aa; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#4f4a43; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#5c4b35; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid var(--line); border-radius:8px; background:#282522; color:#f7f3ec; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">行业知识页面模板</h1>
+<p>复制本模板创建具体行业知识页。删除无关提示，但不要省略“来源与可信度”和“待确认问题”。</p>
+<pre><code class="language-markdown"># 场景或主题名称
+
+## 1. 业务定义
+
+说明该主题解决什么业务问题，以及不包含哪些相邻场景。
+
+## 2. 适用客户与前提
+
+| 客户类型 | 适用方式 |
+| --- | --- |
+| 品牌方 |  |
+| 贸易公司 |  |
+| Sourcing Agency |  |
+| 供应商或工厂 |  |
+
+## 3. 参与角色与责任
+
+| 角色 | 主要责任 | 提供的数据 | 做出的决策 |
+| --- | --- | --- | --- |
+
+## 4. 核心业务对象
+
+| 对象 | 定义 | 关键字段 | 与其他对象的关系 |
+| --- | --- | --- | --- |
+
+## 5. 标准业务流程
+
+使用步骤表或 Mermaid 图说明触发条件、阶段、输入、输出和责任人。
+
+## 6. 状态与业务规则
+
+| 对象 | 状态或规则 | 进入条件 | 允许操作 | 退出条件 |
+| --- | --- | --- | --- | --- |
+
+## 7. 异常、风险与控制措施
+
+| 风险或异常 | 业务影响 | 识别方式 | 控制措施 |
+| --- | --- | --- | --- |
+
+## 8. 管理指标
+
+| 指标 | 用途 | 计算口径 | 数据来源 | 管理动作 |
+| --- | --- | --- | --- | --- |
+
+## 9. 产品研发映射
+
+| 行业需求或规则 | 产品对象或能力 | 数据、状态或权限影响 | 支持度 | 产品依据 |
+| --- | --- | --- | --- | --- |
+
+支持度使用 L1、L2、L3、L4 或 LX。
+
+## 10. 测试关注点
+
+| 类别 | 需要验证的内容 |
+| --- | --- |
+| 主流程 |  |
+| 权限 |  |
+| 状态 |  |
+| 数据 |  |
+| 异常 |  |
+| 审计 |  |
+
+## 11. 产品差距与需求候选
+
+| 差距 | 业务影响 | 当前替代方案 | 建议优先级 | 去向 |
+| --- | --- | --- | --- | --- |
+
+尚未经过产品评审的内容只能称为“需求候选”。
+
+## 12. 产品成功应用
+
+### 客户识别信号
+
+说明客户出现哪些问题时，应使用本场景知识。
+
+### 重点诊断问题
+
+- 
+
+### 方案输出入口
+
+- 对应运营支持方案：
+- 需要说明的平台边界：
+
+## 13. 来源与可信度
+
+| 来源 | 类型 | 证据等级 | 支撑结论 | 版本或日期 |
+| --- | --- | --- | --- | --- |
+
+## 14. 待确认问题
+
+- [ ] 问题、责任人或建议确认角色、期望确认时间。
+
+## 15. 关联知识
+
+- 客户配置方案：
+- 产品权威规则：
+- 测试支持：
+- 数据分析：
+- 产品维护：
+</code></pre>
+
+  </article>
+</body>
+</html>
