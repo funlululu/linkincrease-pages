@@ -116,6 +116,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>历史记录</td>
 <td>表单数据编辑历史</td>
 </tr>
+<tr>
+<td>订单负责人</td>
+<td>订单系统字段，默认等于订单创建人；用于数据移交和后续负责人权限判断</td>
+</tr>
 </tbody>
 </table>
 <h2 id="4">4. 业务流程</h2>
@@ -227,6 +231,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>字段类型和必填校验。</li>
 <li>数据围栏对字段可见性的控制。</li>
 <li>订单标识字段。</li>
+<li>订单负责人字段；订单/工单列表的字段配置、筛选、排序、模糊搜索和列统计均需支持该字段。</li>
 <li>子表模式展示。</li>
 <li>资源库引用字段。</li>
 <li>公式字段自动更新。</li>
@@ -240,6 +245,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>跟踪记录。</li>
 <li>历史记录。</li>
 <li>自动化对订单基本信息的更新记录。</li>
+<li>订单负责人数据移交成功后，需要写入订单跟踪记录。</li>
 </ul>
 <h2 id="9">9. 异常与提示</h2>
 <p>需要统一沉淀的异常包括：</p>
@@ -258,12 +264,14 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单列表】订单导入、订单导出.md</code></li>
 <li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
 <li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】视图模式：看板、表格.md</code></li>
+<li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】FlowSpace 数据移交.md</code></li>
 </ul>
 <h2 id="11">11. 待确认问题</h2>
 <ul>
 <li>订单完成、取消、重启后，对邮件协作、互用、自动化是否存在例外场景。</li>
 <li>删除订单后，采集端已打开任务页面如何实时提示。</li>
 <li>订单关联和 FlowSpace 关联是否需要进入订单核心页，还是拆为复用关系页。</li>
+<li>订单负责人是否直接影响订单可见范围，以及数据移交后是否需要立即刷新订单可见授权。</li>
 </ul>
 
   </article>

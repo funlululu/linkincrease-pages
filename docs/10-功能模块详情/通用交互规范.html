@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>通用交互规范 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">通用交互规范</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>本页沉淀跨模块复用的通用交互规则。若具体需求未另行说明，头像展示、提示弹窗、查询按钮、排序、弹窗遮罩和模糊搜索等基础交互按本页执行。</p>
+<h2 id="2">2. 头像展示</h2>
+<h3 id="_2">工单/批复任务查看状态</h3>
+<ul>
+<li>头像叠放展示。</li>
+<li>超过 3 个处理人时，多出部分以 <code>+数字</code> 表示。</li>
+<li>鼠标移入可查看成员信息或协作团队信息。</li>
+<li>成员信息展示姓名和邮箱。</li>
+<li>协作团队信息展示全称和简称。</li>
+<li>协作成员头像展示协作标识，同时成员信息展示所属团队全称和简称。</li>
+<li>工单任务已提交时，头像展示已提交标识。</li>
+</ul>
+<h3 id="_3">设置类页面查看状态</h3>
+<ul>
+<li>头像不做收起，有几个成员或协作团队则显示几个。</li>
+<li>一行显示不下时换行展示。</li>
+<li>每个姓名标签最大宽度以当前列宽为限；一个名字一行显示不下时，末尾展示省略号。</li>
+</ul>
+<h3 id="_4">设置类页面编辑状态</h3>
+<p>选中后输入框内展示：</p>
+<ul>
+<li>成员：头像和姓名；未注册成员展示 <code>未注册</code> 标识。</li>
+<li>协作团队：头像和简称。</li>
+</ul>
+<p>下拉列表中展示：</p>
+<ul>
+<li>成员：头像和姓名；未注册成员展示 <code>未注册</code> 标识。</li>
+<li>协作团队：头像、全称和简称。</li>
+</ul>
+<h2 id="3">3. 提示</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编辑数据校验空提示</td>
+<td>文案为 <code>请输入$字段名称</code></td>
+</tr>
+<tr>
+<td>删除提示</td>
+<td>标题为 <code>删除$删除内容</code>；说明为 <code>确定要删除$删除内容【$被删除对象名称】</code></td>
+</tr>
+<tr>
+<td>数据编辑时取消提示</td>
+<td><code>提交</code> 表示提交当前内容校验；<code>不提交</code> 表示关闭弹窗；<code>取消</code> 表示关闭提示并返回继续编辑</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 按钮与排序</h2>
+<p>设置类页面查询条件中：</p>
+<ul>
+<li><code>重置</code>：还原回默认查询条件，同时刷新列表。</li>
+<li><code>查询</code>：按设定条件筛选列表。</li>
+</ul>
+<p>无特殊说明时，列表数据均按新增时间倒序展示。</p>
+<h2 id="5">5. 弹窗遮罩</h2>
+<table>
+<thead>
+<tr>
+<th>弹窗类型</th>
+<th>遮罩交互</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据编辑类弹窗</td>
+<td>点击遮罩不可关闭弹窗</td>
+</tr>
+<tr>
+<td>提示类弹窗</td>
+<td>点击遮罩可关闭弹窗</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 搜索</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务数据模糊搜索</td>
+<td>点击 <code>查询</code> 或按 <code>Enter</code> 键进行筛选</td>
+</tr>
+<tr>
+<td>设置类模糊搜索</td>
+<td>输入后延迟 1.2 秒实时筛选</td>
+</tr>
+</tbody>
+</table>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>通用说明（持续更新）</td><td><span class="source-badge">common</span></td><td>公共能力</td><td></td><td>2026-05-26</td></tr></table></details>
+  </article>
+</body>
+</html>

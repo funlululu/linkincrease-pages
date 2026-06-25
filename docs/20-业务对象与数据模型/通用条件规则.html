@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>通用条件规则 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">通用条件规则</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>通用条件规则用于统一显隐设置、自动化、标签设置、自定义权限、视图筛选等功能中的条件配置口径。未做特别说明时，可设置条件的字段类型、运算符和值来源以本页为准。</p>
+<p>协作团队在主团队 FlowSpace 内设置条件时，协作方控件仅可选择本团队。</p>
+<h2 id="2">2. 可作为条件的字段</h2>
+<p>可设置条件的字段控件包括：</p>
+<ul>
+<li>单行文字、多行文字。</li>
+<li>数字、百分比、评级。</li>
+<li>单选、多选。</li>
+<li>定位、地址。</li>
+<li>日期。</li>
+<li>成员控件，包括内部成员、协作团队的单选/多选控件；系统字段中的各类操作人也属于成员控件。</li>
+<li>图片、附件。</li>
+<li>显示类型为以上类型的公式字段。</li>
+<li>关联引用中的以上类型字段。</li>
+<li>子表内以上类型字段。</li>
+</ul>
+<h2 id="3">3. 运算符</h2>
+<table>
+<thead>
+<tr>
+<th>字段类型</th>
+<th>运算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单行文字、多行文字、单选、多选、定位、成员控件、地址</td>
+<td>等于、不等于、包含、不包含、为空、不为空</td>
+</tr>
+<tr>
+<td>数字、评级、百分比</td>
+<td>等于、不等于、小于等于、大于等于、为空、不为空</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>等于、早于、晚于、在范围内、为空、不为空</td>
+</tr>
+<tr>
+<td>图片、附件</td>
+<td>为空、不为空</td>
+</tr>
+<tr>
+<td>任意字段类型</td>
+<td>变更时；仅自动化条件支持</td>
+</tr>
+</tbody>
+</table>
+<p>当运算符选择 <code>变更时</code>、<code>为空</code>、<code>不为空</code> 时，不再展示条件值来源和条件值字段。</p>
+<h2 id="4">4. 条件值来源</h2>
+<p>条件值来源分为 <code>其他字段</code> 和 <code>自定义</code>。</p>
+<p>选择 <code>其他字段</code> 时，可选字段范围包括：</p>
+<ul>
+<li>系统字段：订单基本信息分组下的系统字段、各里程碑分组下的系统字段。</li>
+<li>表单字段：订单基本信息、各里程碑批复字段；具体业务功能可按页面范围继续收窄。</li>
+<li>自定义标签：FlowSpace 设置中添加的主表单和各里程碑标签字段。</li>
+</ul>
+<p>选择 <code>自定义</code> 时，根据条件字段类型输入或选择对应类型的数据。</p>
+<h2 id="5">5. 其他字段匹配规则</h2>
+<table>
+<thead>
+<tr>
+<th>当前条件字段类型</th>
+<th>可选择的其他字段类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单行文本、多行文本、定位、地址</td>
+<td>单行文本、多行文本、数字、百分比、单选、多选、定位、日期、评级、地址，以及关联引用或公式中的这些控件</td>
+</tr>
+<tr>
+<td>单选</td>
+<td>单行文本、多行文本、数字、百分比、单选、定位、日期、评级、关联引用单条数据、公式中的这些控件</td>
+</tr>
+<tr>
+<td>多选</td>
+<td>单行文本、多行文本、数字、百分比、单选、多选、定位、日期、评级、关联引用、公式中的这些控件</td>
+</tr>
+<tr>
+<td>成员单选</td>
+<td>成员单选</td>
+</tr>
+<tr>
+<td>成员多选</td>
+<td>成员单选、成员多选</td>
+</tr>
+<tr>
+<td>协作方单选</td>
+<td>协作方单选</td>
+</tr>
+<tr>
+<td>协作方多选</td>
+<td>协作方单选、协作方多选</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>日期；公式型日期需按日期精度自动补零或截断</td>
+</tr>
+<tr>
+<td>数字、百分比、评级</td>
+<td>数字、百分比、评级，或对应公式字段</td>
+</tr>
+<tr>
+<td>其余控件</td>
+<td>同类型控件，或显示为对应类型的公式控件</td>
+</tr>
+</tbody>
+</table>
+<p>选择其他字段时，需要过滤当前条件字段本身。</p>
+<h2 id="6">6. 工单字段条件</h2>
+<p>当条件字段来自工单内字段时，需要展示 <code>任意工单</code> / <code>所有工单</code> 规则：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任意工单</td>
+<td>订单中任意工单的该字段满足设定规则，即符合条件</td>
+</tr>
+<tr>
+<td>所有工单</td>
+<td>订单中所有工单的该字段均满足设定规则，才符合条件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 字段删除后的展示</h2>
+<p>当已被设为条件的字段在运营端被删除时，条件配置中需要将该字段展示为已删除样式，并增加相关提示。该规则用于避免条件仍在运行但配置页面无法识别字段来源。</p>
+<h2 id="8">8. 适用功能</h2>
+<p>本页规则可被以下能力复用：</p>
+<ul>
+<li>表单显隐设置。</li>
+<li>自动化触发条件和执行条件。</li>
+<li>标签设置条件。</li>
+<li>自定义权限中的订单范围条件。</li>
+<li>视图筛选和报表条件中需要复用的字段匹配口径。</li>
+</ul>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【通用】自定义条件</td><td><span class="source-badge">common</span></td><td>公共能力</td><td></td><td>2026-05-26</td></tr></table></details>
+  </article>
+</body>
+</html>
