@@ -166,6 +166,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </table>
 <h2 id="5-today">5. TODAY 自动更新</h2>
 <p>当公式组件内含 TODAY 函数时，贸易端展示需要每天自动更新到当天。</p>
+<p>当公式中直接包含 <code>TODAY</code>，或公式变量因子引用的其他公式中包含 <code>TODAY</code> 时，该公式视为 TODAY 公式。TODAY 公式默认进入系统自动计算范围，即使未开启普通公式自动计算，也会随日期变化自动重新计算。</p>
 <p>不更新场景：</p>
 <ul>
 <li>订单已完成。</li>
@@ -175,6 +176,8 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </ul>
 <h2 id="6">6. 自动更新与日志</h2>
 <p>公式因子发生变更后，相关公式字段需要同步更新。系统自动执行日志中需要记录公式自动更新，并在对应业务模块留下可追溯记录，例如订单跟踪记录、工单/里程碑批复动态、主表单或批复历史记录。</p>
+<p>未开启自动计算时，公式只在用户编辑当前表单期间实时计算，提交后固化。开启自动计算后，公式成为系统自动写入能力，需要按照公式所在数据源判断是否允许更新：订单主表单、里程碑批复表单、工单采集表单和工单批复表单分别遵守订单、里程碑、工单状态限制。</p>
+<p>资源库表单公式变量只来自当前表单，按普通表单编辑逻辑处理：用户编辑资源库记录时实时计算，提交后固化，不纳入公式自动计算状态限制表。</p>
 <h2 id="7">7. 与组件的关系</h2>
 <ul>
 <li>文本、数字、百分比、日期等组件可通过公式计算默认值。</li>
@@ -188,7 +191,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>公式错误值如何在贸易端、导出、报告中展示，需要补统一规则。</li>
 <li>公式自动更新失败是否需要重试、告警或单独日志页。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>系统自动执行的相关操作日志</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (2)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>系统自动执行的相关操作日志</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr><tr><td>平台自动计算、更新规则说明</td><td><span class="source-badge">common</span></td><td>未识别</td><td></td><td>2026-07-03</td></tr></table></details>
   </article>
 </body>
 </html>

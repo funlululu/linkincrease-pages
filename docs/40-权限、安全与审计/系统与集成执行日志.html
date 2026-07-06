@@ -58,6 +58,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>公式字段根据依赖字段自动重新计算</td>
 </tr>
 <tr>
+<td>TODAY 公式自动更新</td>
+<td>包含 TODAY 的公式随日期变化自动重新计算</td>
+</tr>
+<tr>
 <td>自动化更新</td>
 <td>FlowSpace 自动化程序根据触发条件执行动作</td>
 </tr>
@@ -100,6 +104,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tbody>
 </table>
 <p>操作人显示为系统，操作时间为自动更新时间，历史快照展示公式字段更新前后的值。</p>
+<p>公式自动更新需要遵守业务对象状态限制。订单已完成、已取消或已删除时，不再自动更新订单主表单公式；里程碑已完成或已取消时，不再自动更新里程碑批复公式；工单已批复、已终止采集或已删除时，不再自动更新工单采集公式。</p>
 <h2 id="_5">自动化更新</h2>
 <p>自动化更新同普通用户操作逻辑，增加订单跟踪记录、动态、历史记录，并更新数据更新时间和更新人。</p>
 <table>
@@ -327,12 +332,13 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h2 id="_12">来源</h2>
 <ul>
 <li><code>source:thoughts-v2-current/V2.4.x/贸易端/系统自动执行的相关操作日志.md</code></li>
+<li><code>source:thoughts-v2-current/平台自动计算、更新规则说明.md</code></li>
 <li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【自动化】一期.md</code></li>
 <li><code>source:thoughts-v2-current/V2.4.x/运营端/【运营端】【SCCS管理】SCCS自动化记录.md</code></li>
 <li><code>source:thoughts-v2-current/V2.5.x/运营端/【运营端】【SCCS管理】SCCS列表增加外部api集成配置.md</code></li>
 <li><code>source:thoughts-v2-current/V2.4.x/运营端/【运营端】【设置-软件管理】软件相关信息与记录管理.md</code></li>
 </ul>
-<details class="source-section" open><summary>需求来源 (5)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>系统自动执行的相关操作日志</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr><tr><td>【贸易端】【自动化】一期</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>自动化</td><td>2026-06-12</td></tr><tr><td>【运营端】【SCCS管理】SCCS自动化记录</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>【运营端】【SCCS管理】SCCS列表增加外部api集成配置</td><td><span class="source-badge">V2.5.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>【运营端】【设置-软件管理】软件相关信息与记录管理</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>设置-软件管理</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (6)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>系统自动执行的相关操作日志</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr><tr><td>平台自动计算、更新规则说明</td><td><span class="source-badge">common</span></td><td>未识别</td><td></td><td>2026-07-03</td></tr><tr><td>【贸易端】【自动化】一期</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>自动化</td><td>2026-07-03</td></tr><tr><td>【运营端】【SCCS管理】SCCS自动化记录</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>【运营端】【SCCS管理】SCCS列表增加外部api集成配置</td><td><span class="source-badge">V2.5.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>【运营端】【设置-软件管理】软件相关信息与记录管理</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>设置-软件管理</td><td>2026-05-26</td></tr></table></details>
   </article>
 </body>
 </html>

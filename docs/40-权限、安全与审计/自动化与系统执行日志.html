@@ -123,6 +123,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <ul>
 <li>公式自动更新。</li>
 <li>自动化更新。</li>
+<li>TODAY 公式和开启自动计算的公式更新。</li>
 <li>关联资源库数据同步更新。</li>
 <li>SCMPro API 数据变更自动更新。</li>
 </ul>
@@ -133,6 +134,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>主表单更新、创建工单、更新工单采集/批复、更新里程碑批复时，需要增加历史记录。</li>
 <li>更新时间和更新人也应显示自动化或系统身份。</li>
 </ul>
+<p>公式自动计算时，也需要按照数据源写入对应业务记录：订单主表单写入订单主表单历史记录或订单跟踪记录；里程碑批复写入里程碑批复动态或历史记录；工单采集和工单批复写入工单动态或对应历史记录。</p>
 <h2 id="6">6. 与业务动态的关系</h2>
 <p>自动化执行后，需要在业务对象内留下对应动态：</p>
 <ul>
@@ -147,7 +149,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>运营端自动化记录与贸易端执行日志是否共用同一数据模型。</li>
 <li>系统自动执行失败是否有重试、告警、人工处理入口。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (3)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【自动化】一期</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>自动化</td><td>2026-06-12</td></tr><tr><td>【运营端】【SCCS管理】SCCS自动化记录</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>系统自动执行的相关操作日志</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (4)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【自动化】一期</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>自动化</td><td>2026-07-03</td></tr><tr><td>【运营端】【SCCS管理】SCCS自动化记录</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>系统自动执行的相关操作日志</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr><tr><td>平台自动计算、更新规则说明</td><td><span class="source-badge">common</span></td><td>未识别</td><td></td><td>2026-07-03</td></tr></table></details>
   </article>
 </body>
 </html>

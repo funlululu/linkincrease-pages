@@ -43,6 +43,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h1 id="_1">仪表盘管理与设计器</h1>
 <h2 id="_2">定位</h2>
 <p>仪表盘用于在 FlowSpace 内配置统计分析页面，帮助用户快速监控订单动态、业务进度和关键指标。运营端负责仪表盘配置和设计，贸易端根据权限查看仪表盘数据。</p>
+<p>Tower 是贸易端团队级标准入口，每个团队固定一个 Tower 入口。Tower 页面内按分组展示仪表盘；当协作团队成员被授权查看其他团队 Tower 仪表盘时，在协作方当前团队的 Tower 页面内按协作来源或来源团队展示，不新增多个 Tower 入口。</p>
 <h2 id="_3">管理入口</h2>
 <p>运营端 FlowSpace 列表增加仪表盘数量字段和仪表盘管理入口。</p>
 <table>
@@ -83,7 +84,155 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tr>
 </tbody>
 </table>
-<h2 id="_4">数据源</h2>
+<p>运营端团队列表也支持团队 Tower 管理入口：<code>运营端 &gt; 团队管理 &gt; 团队列表 &gt; 操作列 &gt; 仪表盘</code>。点击后打开当前团队的 Tower 仪表盘管理弹窗，仅展示当前团队已配置的 Tower 分组和仪表盘。</p>
+<h2 id="tower">团队 Tower 管理</h2>
+<p>团队 Tower 管理用于维护团队级仪表盘分组、仪表盘名称、图标、帆软链接、状态和展示顺序。运营端只维护基础配置和分组，不直接维护贸易端可见权限；运营端可查看可见范围概览，便于判断帆软链接维护影响对象。</p>
+<h3 id="tower_1">Tower 分组</h3>
+<p>Tower 仪表盘必须归属一个分组。分组用于贸易端 Tower 页面按业务主题展示，例如订单履约、供应商绩效、库存与成本。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分组名称</td>
+<td>必填，限制 50 字符，同团队内不可重复</td>
+</tr>
+<tr>
+<td>分组名称（英文）</td>
+<td>非必填，限制 100 字符，用于贸易端英文语言展示</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>启用 / 停用</td>
+</tr>
+<tr>
+<td>排序</td>
+<td>支持统一拖拽排序</td>
+</tr>
+</tbody>
+</table>
+<p>启用分组时，贸易端展示该分组及其下启用仪表盘；停用分组时，贸易端不展示该分组及其下仪表盘。空分组可在运营端展示并继续新增仪表盘；删除分组前必须保证分组下无仪表盘。</p>
+<h3 id="tower_2">Tower 仪表盘</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所属分组</td>
+<td>必填，新增时默认带入当前分组，可修改</td>
+</tr>
+<tr>
+<td>贸易端展示图标</td>
+<td>必填，从系统预置图标中选择</td>
+</tr>
+<tr>
+<td>仪表盘名称</td>
+<td>必填，限制 100 字符</td>
+</tr>
+<tr>
+<td>仪表盘名称（英文）</td>
+<td>非必填，限制 100 字符</td>
+</tr>
+<tr>
+<td>帆软链接</td>
+<td>必填，填写仪表盘访问链接</td>
+</tr>
+<tr>
+<td>说明</td>
+<td>非必填，限制 500 字符</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>默认启用，可切换为停用</td>
+</tr>
+<tr>
+<td>打开方式</td>
+<td>V1.0 固定为页面内 iframe 打开</td>
+</tr>
+</tbody>
+</table>
+<p>新增仪表盘默认追加到所选分组末尾；编辑时修改所属分组，保存后卡片追加到目标分组末尾。删除仪表盘需要二次确认，删除后贸易端不再展示该仪表盘，已配置的可见权限同步失效。</p>
+<h3 id="_4">排序与可见范围</h3>
+<p>仪表盘支持拖拽排序，可跨组拖拽。停用仪表盘仍可参与运营端排序，但贸易端不展示。</p>
+<p>运营端提供只读可见范围概览：</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>卡片概览</td>
+<td>展示内部成员数、协作团队数、协作成员数</td>
+</tr>
+<tr>
+<td>查看明细</td>
+<td>点击可见范围后打开弹窗</td>
+</tr>
+<tr>
+<td>无授权成员</td>
+<td>展示“仅 Tower 管理员可见”</td>
+</tr>
+<tr>
+<td>编辑限制</td>
+<td>运营端不支持修改可见权限</td>
+</tr>
+<tr>
+<td>权限维护入口</td>
+<td>可见权限在贸易端团队设置 &gt; Tower 管理中维护</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">贸易端展示规则</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前用户无可见仪表盘</td>
+<td>团队工作台不展示 Tower 入口</td>
+</tr>
+<tr>
+<td>当前用户有本团队可见仪表盘</td>
+<td>展示 Tower 入口</td>
+</tr>
+<tr>
+<td>当前用户仅有协作来源仪表盘</td>
+<td>展示 Tower 入口，进入后仅展示协作来源内容</td>
+</tr>
+<tr>
+<td>本团队仪表盘</td>
+<td>按运营端分组展示</td>
+</tr>
+<tr>
+<td>协作来源仪表盘</td>
+<td>按“来自 {来源团队} &gt; 来源团队分组 &gt; 仪表盘”展示</td>
+</tr>
+<tr>
+<td>仪表盘打开</td>
+<td>服务端二次鉴权通过后，页面内 iframe 打开帆软链接</td>
+</tr>
+<tr>
+<td>无权限或已取消授权</td>
+<td>提示“暂无权限，请联系管理员”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">数据源</h2>
 <p>仪表盘数据源来自 FlowSpace 的订单信息、里程碑、工单批复等表结构，并可扩展公式字段。</p>
 <table>
 <thead>
@@ -116,7 +265,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tbody>
 </table>
 <p>如果主表单或里程碑批复包含子表，则订单信息或里程碑会作为分组名，分组下展示对应字段和所有子表。</p>
-<h3 id="_5">公式字段</h3>
+<h3 id="_7">公式字段</h3>
 <p>仪表盘支持添加、编辑、删除公式字段。</p>
 <table>
 <thead>
@@ -148,7 +297,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tr>
 </tbody>
 </table>
-<h2 id="_6">仪表盘设计器组件</h2>
+<h2 id="_8">仪表盘设计器组件</h2>
 <p>仪表盘由布局组件、工具组件、图表组件和特殊图表组成。</p>
 <table>
 <thead>
@@ -177,7 +326,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tbody>
 </table>
 <p>所有组件通常支持标题、提示描述和国际化。可国际化内容一般包括标题、提示描述，部分图表还包括指标名称。</p>
-<h2 id="_7">图表通用配置</h2>
+<h2 id="_9">图表通用配置</h2>
 <p>大多数图表具备类似的数据配置模型：</p>
 <table>
 <thead>
@@ -222,7 +371,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tbody>
 </table>
 <p>多选字段可选择拆分统计或不拆分统计。指标卡计算出的数字统一保留一位小数。</p>
-<h2 id="_8">筛选器</h2>
+<h2 id="_10">筛选器</h2>
 <p>筛选器用于联动筛选一个或多个图表。</p>
 <p>规则：</p>
 <ol>
@@ -233,7 +382,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>日期字段可设置日期格式。</li>
 <li>选项字段可设置选项样式。</li>
 </ol>
-<h2 id="_9">典型图表</h2>
+<h2 id="_11">典型图表</h2>
 <table>
 <thead>
 <tr>
@@ -280,7 +429,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tr>
 </tbody>
 </table>
-<h2 id="_10">仪表盘权限</h2>
+<h2 id="_12">仪表盘权限</h2>
 <p>贸易端按角色控制仪表盘查看和授权。</p>
 <table>
 <thead>
@@ -317,23 +466,24 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>当前用户无仪表盘管理权限时，提示暂无权限。</li>
 <li>成员被移除 FlowSpace 后，对应仪表盘权限列表也删除；重新加入后需重新授权。</li>
 </ol>
-<h2 id="_11">仪表盘查看</h2>
+<h2 id="_13">仪表盘查看</h2>
 <p>可管理当前 FlowSpace 仪表盘的用户可以查看当前 FlowSpace 中所有仪表盘数据。被授权部分仪表盘查看权限的成员或协作团队成员，只能查看被授权仪表盘。</p>
 <p>可查看的仪表盘可以星标，星标后在工作台常用视图中展示。如果星标后权限被取消，常用视图中同步隐藏；重新授权后若还需要常用入口，需要重新星标。</p>
-<h2 id="_12">关联页面</h2>
+<h2 id="_14">关联页面</h2>
 <ul>
 <li><a href="../40-权限、安全与审计/仪表盘与报告权限.md">仪表盘与报告权限</a></li>
 <li><a href="../60-数据分析支持/分析场景.md">常用视图与视图设置</a></li>
 <li><a href="../20-业务对象与数据模型/公式函数.md">公式函数</a></li>
 <li><a href="../40-权限、安全与审计/数据围栏.md">数据围栏</a></li>
 </ul>
-<h2 id="_13">来源</h2>
+<h2 id="_15">来源</h2>
 <ul>
 <li><code>source:thoughts-v2-current/v2.3.x/运营端/【运营端】【SCCS列表-仪表盘】SCCS仪表盘管理.md</code></li>
+<li><code>source:thoughts-v2-current/v2.8/运营端/【运营端】【团队列表-仪表盘】团队Tower管理.md</code></li>
 <li><code>missing-current-source/【运营端】【仪表盘】表单设计组件.md</code></li>
 <li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【仪表盘】权限管理.md</code></li>
 </ul>
-<details class="source-section" open><summary>需求来源 (2)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【运营端】【SCCS列表-仪表盘】SCCS仪表盘管理</td><td><span class="source-badge">v2.3.x</span></td><td>运营端</td><td>SCCS列表-仪表盘</td><td>2026-05-26</td></tr><tr><td>【贸易端】【仪表盘】权限管理</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>仪表盘</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (3)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【运营端】【SCCS列表-仪表盘】SCCS仪表盘管理</td><td><span class="source-badge">v2.3.x</span></td><td>运营端</td><td>SCCS列表-仪表盘</td><td>2026-05-26</td></tr><tr><td>【运营端】【团队列表-仪表盘】团队Tower管理</td><td><span class="source-badge">v2.8</span></td><td>运营端</td><td>团队列表-仪表盘</td><td>2026-07-03</td></tr><tr><td>【贸易端】【仪表盘】权限管理</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>仪表盘</td><td>2026-05-26</td></tr></table></details>
   </article>
 </body>
 </html>

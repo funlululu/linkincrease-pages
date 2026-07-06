@@ -112,6 +112,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tbody>
 </table>
 <p>数据源选择工单且满足条件使用该工单字段时，可设置工单范围为当前工单。</p>
+<p>到达记录中的时间时，触发时间支持当时、之前、之后。之前/之后需要输入正整数，并选择分钟、小时、天、周、月、年等单位；当选择当时时，偏移输入隐藏。</p>
 <h2 id="5">5. 执行操作</h2>
 <table>
 <thead>
@@ -145,6 +146,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>订单模板控件。</li>
 <li>步骤一数据源角色。</li>
 </ul>
+<p>通知对象可进一步包含主团队成员、协作团队负责人和成员、业务角色、协作方角色、订单模板中的成员/协作方控件，以及步骤一数据源中的创建人、更新人、负责人、发起人、采集人、批复人等角色。协作团队负责人和具体成员为同一人时需要去重通知。</p>
 <p>通知渠道包括 Linkincrease 消息和邮件。邮件可配置分别发送，或让所有被通知对象同时接收同一封邮件。标题和正文可拼接模板字段；邮件可附带步骤一数据源中的图片或附件字段。</p>
 <h2 id="7">7. 新增数据</h2>
 <p>新增数据当前主要用于创建工单。</p>
@@ -165,7 +167,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>里程碑或工单互用自其他订单。</li>
 <li>更新工单采集字段时，工单已批复或终止采集。</li>
 </ul>
-<h2 id="9">9. 定时任务</h2>
+<p>数据源为工单且更新指定记录时，过滤条件仅可使用工单范围字段。执行后，订单基本信息更新写入订单跟踪记录；里程碑批复更新写入里程碑批复动态；工单更新按采集和批复分别写入动态，操作人显示为自动化或系统身份。</p>
+<h2 id="9">9. 状态写入限制</h2>
+<p>自动化可写入的前提是目标业务对象仍处于可流转状态。订单结束、里程碑结束、工单采集结束后，自动化不能绕过状态限制继续改写业务字段。完整状态矩阵见 <a href="../30-业务流程与产品流程图/系统自动计算与更新规则.md">系统自动计算与更新规则</a>。</p>
+<h2 id="10">10. 定时任务</h2>
 <p>定时周期：</p>
 <ul>
 <li>不重复。</li>
@@ -181,13 +186,13 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>新增工单时需增加订单筛选条件。</li>
 <li>更新数据时需增加记录范围设置，过滤符合条件的数据。</li>
 </ul>
-<h2 id="10">10. 待确认问题</h2>
+<h2 id="11">11. 待确认问题</h2>
 <ul>
 <li>部分成功目前为后续规划，当前状态是否只保留成功/失败需要与线上统一。</li>
 <li>失败通知中的短信规则仍依赖外部模板。</li>
 <li>自动化与资源库同步、API 同步同时更新同一字段时的优先级需要补规则。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (2)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【自动化】一期</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>自动化</td><td>2026-06-12</td></tr><tr><td>【贸易端】【自动化】二期：定时任务</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>自动化</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (2)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【自动化】一期</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>自动化</td><td>2026-07-03</td></tr><tr><td>【贸易端】【自动化】二期：定时任务</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>自动化</td><td>2026-05-26</td></tr></table></details>
   </article>
 </body>
 </html>
