@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowSpace数据互通 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="flowspace">FlowSpace 数据互通</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>FlowSpace 数据互通用于在同一团队内，将本团队创建或参与协作的不同 FlowSpace 建立数据引用关系。团队管理员或具备权限的成员可在团队设置中配置互通方案，定义来源 FlowSpace、目标 FlowSpace、可引用模块、目标写入位置、字段映射、子表写入规则和来源变化响应方式。</p>
+<p>首期只支持目标侧在创建、编辑或查看数据时发起引用，不支持来源侧主动推送；只支持当前团队参与或创建的 FlowSpace，不支持跨团队任意互通。</p>
+<h2 id="2">2. 核心对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互通方案</td>
+<td>团队内配置的两个 FlowSpace 之间的数据互通规则</td>
+</tr>
+<tr>
+<td>来源 FlowSpace</td>
+<td>提供被引用数据的 FlowSpace</td>
+</tr>
+<tr>
+<td>目标 FlowSpace</td>
+<td>当前创建或编辑数据、接收引用关系或写入字段的 FlowSpace</td>
+</tr>
+<tr>
+<td>来源数据</td>
+<td>引用弹窗中选中的来源数据，可来自订单主表单、工单、工单批复或里程碑批复</td>
+</tr>
+<tr>
+<td>目标数据</td>
+<td>当前正在创建、编辑或查看的目标 FlowSpace 数据</td>
+</tr>
+<tr>
+<td>仅关联</td>
+<td>只建立来源数据与目标数据关系，不写入字段</td>
+</tr>
+<tr>
+<td>关联并写入数据</td>
+<td>建立关系，并按字段映射把来源字段写入目标字段</td>
+</tr>
+<tr>
+<td>当前启用版本</td>
+<td>对新增引用执行生效的发布版本</td>
+</tr>
+<tr>
+<td>草稿版本</td>
+<td>未发布配置，不影响当前启用版本</td>
+</tr>
+<tr>
+<td>执行版本</td>
+<td>某次引用或后续更新实际使用的方案版本</td>
+</tr>
+<tr>
+<td>关联键</td>
+<td>识别来源数据与目标字段、目标子表行持续同步关系的标识</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 权限规则</h2>
+<table>
+<thead>
+<tr>
+<th>权限点</th>
+<th>控制范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace 互通配置</td>
+<td>团队设置 &gt; FlowSpace 互通菜单、方案创建、编辑、发布、停用和历史版本</td>
+</tr>
+<tr>
+<td>目标侧引用入口</td>
+<td>当前目标 FlowSpace 存在启用方案、目标模块和目标操作匹配、用户具备目标数据创建或编辑权限、目标数据状态允许写入</td>
+</tr>
+</tbody>
+</table>
+<p>配置人不要求拥有来源或目标 FlowSpace 的完整业务数据查看、编辑权限。配置时可选 FlowSpace、模块和字段范围由系统按团队身份、主团队开放范围、协作团队可见范围限制，保存草稿和发布时后端必须再次校验。</p>
+<p>引用入口不要求目标侧用户拥有来源 FlowSpace 的完整业务权限；引用弹窗只展示方案允许引用且当前用户可见的数据。来源字段展示需受主团队数据围栏和协作团队开放里程碑范围限制。</p>
+<h2 id="4">4. 入口与列表</h2>
+<p>在团队设置左侧菜单新增 <code>FlowSpace 互通</code>。有 <code>FlowSpace 互通配置</code> 权限的成员可见；无权限成员不可见，通过 URL 访问需提示无权限。</p>
+<p>互通方案列表支持按方案名称、方案编码、来源 FlowSpace、目标 FlowSpace 模糊搜索，并按状态筛选。列表展示方案名称、来源到目标、状态、当前启用版本、草稿版本和操作入口。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建</td>
+<td>打开创建 FlowSpace 互通方案弹窗</td>
+</tr>
+<tr>
+<td>查看</td>
+<td>展示当前启用版本；停用时展示最新版本；无发布版本且只有草稿时展示草稿</td>
+</tr>
+<tr>
+<td>编辑</td>
+<td>有草稿时打开草稿；无草稿时基于当前启用版本或最新发布版本编辑</td>
+</tr>
+<tr>
+<td>历史版本</td>
+<td>展示所有发布版本和当前草稿</td>
+</tr>
+</tbody>
+</table>
+<p>一个方案最多只存在一份草稿，草稿不是按成员分别保存。</p>
+<h2 id="5">5. 创建和编辑方案</h2>
+<p>创建或编辑方案分为四步：基础信息、FlowSpace 互通模块、字段映射、保存或发布。用户可随时保存草稿，保存草稿不影响当前启用版本。</p>
+<h3 id="51">5.1 基础信息</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方案名称</td>
+<td>必填，同团队内唯一</td>
+</tr>
+<tr>
+<td>方案编码</td>
+<td>系统生成，全系统唯一，用户不可手动修改</td>
+</tr>
+<tr>
+<td>方案说明</td>
+<td>非必填</td>
+</tr>
+</tbody>
+</table>
+<p>方案名称为空时不允许进入下一步。</p>
+<h3 id="52-flowspace">5.2 FlowSpace 互通模块</h3>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>来源 FlowSpace</td>
+<td>可选当前团队创建或参与协作的 FlowSpace，协作 FlowSpace 展示协作标识</td>
+</tr>
+<tr>
+<td>目标 FlowSpace</td>
+<td>可选当前团队创建或参与协作的 FlowSpace，不能与来源 FlowSpace 相同</td>
+</tr>
+<tr>
+<td>互通处理方式</td>
+<td><code>仅关联</code> 或 <code>关联并写入数据</code></td>
+</tr>
+<tr>
+<td>来源数据模块</td>
+<td>订单基本信息、各里程碑工单、各里程碑工单批复、各里程碑批复</td>
+</tr>
+<tr>
+<td>来源数据选择方式</td>
+<td>单选或多选；多选时需配置最多可选数量，最大 99</td>
+</tr>
+<tr>
+<td>是否允许跨订单选择</td>
+<td>控制一次引用是否可选择不同订单下的数据</td>
+</tr>
+<tr>
+<td>是否允许重复引用</td>
+<td>不允许时，同方案下已被其他目标数据引用的来源数据不再展示或置灰，提交时后端再次校验</td>
+</tr>
+<tr>
+<td>目标数据模块</td>
+<td>订单基本信息、各里程碑工单、各里程碑工单批复、各里程碑批复</td>
+</tr>
+<tr>
+<td>目标操作</td>
+<td>创建时引用、编辑时引用、创建和编辑时均可引用；仅关联时可配置查看时关联</td>
+</tr>
+</tbody>
+</table>
+<p>协作 FlowSpace 只允许配置主表单以及主团队开放给当前团队的里程碑范围。来源 FlowSpace 配置了数据围栏时，协作团队不可见字段不得作为来源字段展示或写入。</p>
+<h2 id="6">6. 字段映射</h2>
+<p>仅 <code>关联并写入数据</code> 需要配置字段映射，<code>仅关联</code> 跳过字段映射步骤。</p>
+<h3 id="61">6.1 非子表字段映射</h3>
+<p>目标为非子表字段时，最终只能写入一个目标字段值。若来源可能产生多个值，必须通过聚合规则得到一个值。来源字段可来自步骤二所选来源数据模块字段以及来源 FlowSpace 的订单基本信息字段；目标字段来自步骤二所选目标数据模块字段。</p>
+<p>目标字段不可选择公式字段、系统字段和关联引用。目标字段类型必须与来源字段兼容，不兼容时不可选或保存时报错。</p>
+<p>常见聚合规则：</p>
+<table>
+<thead>
+<tr>
+<th>目标字段类型</th>
+<th>聚合规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文本或富文本</td>
+<td>取第一、取最后、去重拼接、全部拼接</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>取第一、取最后、求和、平均值、最大值、最小值、计数、非空计数</td>
+</tr>
+<tr>
+<td>百分比、汇率、评分</td>
+<td>取第一、取最后、平均值、最大值、最小值</td>
+</tr>
+<tr>
+<td>日期时间</td>
+<td>取第一、取最后、最早日期、最晚日期</td>
+</tr>
+<tr>
+<td>单选、成员单选、协作单选</td>
+<td>取第一、取最后、出现次数最多、出现次数最少</td>
+</tr>
+<tr>
+<td>多选、成员多选、协作多选</td>
+<td>取第一、取最后、取并集、取交集</td>
+</tr>
+<tr>
+<td>图片、附件</td>
+<td>取第一、取最后、合并全部、合并去重</td>
+</tr>
+<tr>
+<td>定位、地址、签名</td>
+<td>取第一、取最后</td>
+</tr>
+</tbody>
+</table>
+<p>当来源为子表字段、目标为非子表字段时，聚合规则还需支持 <code>取首行</code> 和 <code>取尾行</code>。</p>
+<h3 id="62">6.2 子表字段映射</h3>
+<p>目标为子表字段时，必须先选择目标子表，再在该子表下添加字段映射。一个目标子表对应一套子表行写入规则，不同目标子表可配置不同规则。</p>
+<p>子表写入必须记录关联键，便于后续来源变化时识别应更新的目标行。设计和测试时需区分新增行、更新已有行、来源行删除、目标行被删除、关联键冲突等场景。</p>
+<h3 id="63">6.3 手动修改与后续更新</h3>
+<p>字段可配置关联后是否允许手动修改：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>允许</td>
+<td>引用后仍可通过手输方式修改</td>
+</tr>
+<tr>
+<td>不允许</td>
+<td>只有引用来源数据后字段才不可手动输入；未引用前按原字段状态</td>
+</tr>
+</tbody>
+</table>
+<p>字段可配置来源变化响应方式：</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不更新</td>
+<td>建立关系后不因来源变化自动回写目标字段</td>
+</tr>
+<tr>
+<td>每次变更都更新</td>
+<td>来源数据变更时，按执行版本和字段级策略同步更新目标数据</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 目标侧引用</h2>
+<p>在目标数据创建或编辑弹窗右上角展示 <code>从其他 FlowSpace 引用数据</code>。展示条件包括目标 FlowSpace 存在启用方案、目标模块匹配、目标操作匹配、当前数据状态允许操作、用户具备目标创建或编辑权限。</p>
+<p>点击入口后打开引用弹窗。若同一目标数据存在多个来源方案，顶部先选择互通方案；只有一个可用方案时默认选中。来源数据列表展示订单标识、工单名称和来源模块字段，子表字段可展开。</p>
+<p>确认引用后：</p>
+<ol>
+<li>按字段映射写入目标字段。</li>
+<li>目标侧被数据围栏限制不可见字段也可写入，只是当前用户不可见。</li>
+<li>保存目标数据时，后端重新校验方案状态、执行版本、来源数据、目标数据状态、权限和字段可写性。</li>
+<li>建立来源数据与目标数据关系。</li>
+<li>在目标模块展示 <code>FS 关联</code> 标识。</li>
+<li>来源侧至少保留后端关系和日志。</li>
+</ol>
+<p>引用不改变目标创建或编辑流程：原有必填、处理人、采集人、批复人、状态流转、字段格式和权限校验仍按目标模块原逻辑执行。</p>
+<h2 id="8">8. 关联关系展示</h2>
+<p>引用成功后，相关数据模块展示关联信息。</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>展示位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单基本信息</td>
+<td>订单详情顶部关联信息区展示 <code>FS 关联</code> 标识和来源摘要</td>
+</tr>
+<tr>
+<td>工单</td>
+<td>工单详情或工单卡片展示关联标识</td>
+</tr>
+<tr>
+<td>工单批复</td>
+<td>批复区域展示关联标识</td>
+</tr>
+<tr>
+<td>里程碑批复</td>
+<td>批复区域展示关联标识</td>
+</tr>
+</tbody>
+</table>
+<p>来源为主表单时，来源标识为订单标识；来源为里程碑批复时，来源标识为订单标识、里程碑名称和批复；来源为工单时，来源标识为订单标识、里程碑名称和工单名称。</p>
+<p>有权限查看来源数据时可点击跳转到来源数据详情；无权限时提示 <code>暂无权限</code>；来源数据被删除或失效时展示 <code>来源数据已失效</code>，并保留关系快照。</p>
+<h2 id="9">9. 来源变化后的更新</h2>
+<p>来源订单基本信息字段编辑、来源工单采集字段提交或编辑、工单批复字段提交或编辑、里程碑批复字段提交或编辑、来源子表行新增编辑删除，以及来源字段由资源库同步、自动化、外部 API 或公式触发变化时，都需要触发后续更新判断。</p>
+<p>更新规则：</p>
+<ol>
+<li>已建立关系的数据继续按执行时绑定的方案版本展示和后续更新。</li>
+<li>方案配置变更不会立即影响已建立关系；用户重新编辑目标数据并重新引用时，才按最新版本处理。</li>
+<li>目标对象已完成、已取消、已批复、字段锁定、只读、资源库持续同步、公式计算或无写入权限时，跳过更新并记录原因。</li>
+<li>多来源关系中任一来源变化时，重新读取关系组内所有有效来源数据，按执行版本聚合规则重新计算目标字段。</li>
+<li>来源数据失效不参与后续聚合，目标已写入值是否清空需按异常策略处理。</li>
+</ol>
+<h2 id="10">10. 日志与审计</h2>
+<p>FlowSpace 数据互通至少包含三类审计记录：</p>
+<table>
+<thead>
+<tr>
+<th>日志类型</th>
+<th>记录内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互通方案操作日志</td>
+<td>方案配置层面的创建、编辑、保存草稿、发布、启用、停用、删除草稿和快照</td>
+</tr>
+<tr>
+<td>互通执行日志</td>
+<td>某次引用、写入、后续同步、手动刷新、失败、跳过、取消关联等执行结果</td>
+</tr>
+<tr>
+<td>业务模块日志</td>
+<td>订单跟踪记录、工单动态、里程碑批复动态和对应历史记录中的业务数据变化</td>
+</tr>
+</tbody>
+</table>
+<p>互通方案操作日志只记录方案配置变化，不记录具体哪条订单引用了数据。引用执行成功或失败不写入方案操作日志，应写入互通执行日志。</p>
+<p>业务模块文案口径：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>文案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>建立仅关联</td>
+<td><code>$操作人 通过 FlowSpace 互通方案「$方案名称」建立与 $来源FlowSpace / $来源数据标识 的关联，使用版本 $版本号</code></td>
+</tr>
+<tr>
+<td>引用并写入</td>
+<td><code>$操作人 通过 FlowSpace 互通方案「$方案名称」引用 $来源FlowSpace / $来源数据标识，并写入 $字段数量 个字段，使用版本 $版本号</code></td>
+</tr>
+<tr>
+<td>来源变更自动更新目标</td>
+<td><code>系统根据 FlowSpace 互通方案「$方案名称」$版本号，自动更新来自 $来源数据标识 的关联字段</code></td>
+</tr>
+<tr>
+<td>手动刷新</td>
+<td><code>$操作人 手动刷新 FlowSpace 互通字段，来源 $来源数据标识，使用版本 $版本号</code></td>
+</tr>
+<tr>
+<td>跳过更新</td>
+<td><code>FlowSpace 互通更新跳过：$原因</code></td>
+</tr>
+</tbody>
+</table>
+<p>历史记录需写入前后值，标记操作来源为 <code>FlowSpace 互通</code>，并记录方案 ID、方案版本 ID、关系 ID、来源数据 ID 和目标数据 ID。子表需记录行级新增、编辑、删除或跳过。</p>
+<h2 id="11">11. 兼容与互斥</h2>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源库同步字段</td>
+<td>目标字段若处于资源库持续同步中，不允许作为目标写入字段</td>
+</tr>
+<tr>
+<td>公式字段</td>
+<td>目标公式字段不可直接写入，可作为来源字段读取计算结果</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>自动化和 FlowSpace 互通同时写入同一字段时，自动化执行同人工执行规则；不可手动写入字段执行失败</td>
+</tr>
+<tr>
+<td>手动编辑</td>
+<td>按字段的关联后是否允许手动修改和来源变化响应方式处理</td>
+</tr>
+<tr>
+<td>订单关联、翻单、工单互用</td>
+<td>展示上可同时存在多个关联标识，日志分别记录，不互相替代</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12">12. 待确认问题</h2>
+<ul>
+<li>资源库同步和 FlowSpace 互通同时作用于同一目标字段时，是否能支持最后一次引用覆盖以及后续更新的单字段关系。</li>
+<li>方案停用后，已建立关系是否继续响应来源数据变更；建议继续响应，除非关系被取消。</li>
+<li>来源子表行被删除时，目标子表行是删除、标记失效还是保留快照；建议首期保留快照并标记来源失效。</li>
+<li>数据围栏与敏感字段变化后，历史已写入值是否需要回溯遮蔽。</li>
+<li>是否支持取消 FS 关联，以及取消后目标字段保留、清空或转为普通值的规则。</li>
+<li>关联标识、来源摘要、方案版本是否需要支持导出。</li>
+<li>自动化、资源库同步、FlowSpace 互通同时写入同一字段时的全局优先级是否需要配置化。</li>
+</ul>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】FlowSpace 数据互通</td><td><span class="source-badge">v2.9</span></td><td>贸易端</td><td>贸易端</td><td>2026-07-28</td></tr></table></details>
+  </article>
+</body>
+</html>

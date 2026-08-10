@@ -66,6 +66,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>FlowSpace 自动化程序根据触发条件执行动作</td>
 </tr>
 <tr>
+<td>FlowSpace 互通</td>
+<td>目标侧引用来源 FlowSpace 数据、后续自动更新、手动刷新、跳过或失败</td>
+</tr>
+<tr>
 <td>关联资源库同步</td>
 <td>资源库数据或引用字段配置变化后，同步更新订单数据</td>
 </tr>
@@ -216,6 +220,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <p>列表按创建时间倒序。详情展示规则同贸易端。</p>
 <h2 id="_9">关联资源库同步</h2>
 <p>因关联的是资源库数据 ID，订单侧不增加记录。资源库自身数据历史记录仍需保留资源库数据被编辑、导入、分享编辑等操作来源。</p>
+<h2 id="flowspace">FlowSpace 互通日志</h2>
+<p>FlowSpace 数据互通需要同时记录方案配置日志、互通执行日志和业务模块日志。方案配置日志只记录互通方案的创建、编辑、保存草稿、发布、启用、停用、删除草稿和配置快照；具体订单、工单或批复被引用时，不写入方案配置日志，而是写入互通执行日志。</p>
+<p>互通执行日志需记录执行时间、执行类型、互通方案、使用版本、来源数据、目标数据、处理方式、执行状态和详情。引用或后续更新导致业务数据变化时，还需写入对应订单跟踪记录、工单动态、批复动态和历史记录，并标记操作来源为 <code>FlowSpace 互通</code>。</p>
+<p>互通日志详见 <a href="../10-功能模块详情/FlowSpace数据互通.md">FlowSpace 数据互通</a>。</p>
 <h2 id="api">外部API集成日志</h2>
 <p>外部 API 集成日志展示一定时间范围内的同步日志。</p>
 <table>
@@ -324,6 +332,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h2 id="_11">关联页面</h2>
 <ul>
 <li><a href="../10-功能模块详情/自动化配置.md">自动化配置</a></li>
+<li><a href="../10-功能模块详情/FlowSpace数据互通.md">FlowSpace 数据互通</a></li>
 <li><a href="../40-权限、安全与审计/自动化与系统执行日志.md">自动化与系统执行日志</a></li>
 <li><a href="../80-架构与技术方案/集成方案.md">第三方数据对接</a></li>
 <li><a href="./历史记录与快照.md">历史记录与快照</a></li>
@@ -332,13 +341,14 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h2 id="_12">来源</h2>
 <ul>
 <li><code>source:thoughts-v2-current/V2.4.x/贸易端/系统自动执行的相关操作日志.md</code></li>
+<li><code>source:thoughts-v2-current/v2.9/贸易端/【贸易端】FlowSpace 数据互通.md</code></li>
 <li><code>source:thoughts-v2-current/平台自动计算、更新规则说明.md</code></li>
 <li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【自动化】一期.md</code></li>
 <li><code>source:thoughts-v2-current/V2.4.x/运营端/【运营端】【SCCS管理】SCCS自动化记录.md</code></li>
 <li><code>source:thoughts-v2-current/V2.5.x/运营端/【运营端】【SCCS管理】SCCS列表增加外部api集成配置.md</code></li>
 <li><code>source:thoughts-v2-current/V2.4.x/运营端/【运营端】【设置-软件管理】软件相关信息与记录管理.md</code></li>
 </ul>
-<details class="source-section" open><summary>需求来源 (6)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>系统自动执行的相关操作日志</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr><tr><td>平台自动计算、更新规则说明</td><td><span class="source-badge">common</span></td><td>未识别</td><td></td><td>2026-07-03</td></tr><tr><td>【贸易端】【自动化】一期</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>自动化</td><td>2026-07-03</td></tr><tr><td>【运营端】【SCCS管理】SCCS自动化记录</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>【运营端】【SCCS管理】SCCS列表增加外部api集成配置</td><td><span class="source-badge">V2.5.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>【运营端】【设置-软件管理】软件相关信息与记录管理</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>设置-软件管理</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (7)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>系统自动执行的相关操作日志</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr><tr><td>平台自动计算、更新规则说明</td><td><span class="source-badge">common</span></td><td>未识别</td><td></td><td>2026-07-22</td></tr><tr><td>【贸易端】【自动化】一期</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>自动化</td><td>2026-07-03</td></tr><tr><td>【运营端】【SCCS管理】SCCS自动化记录</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>【运营端】【SCCS管理】SCCS列表增加外部api集成配置</td><td><span class="source-badge">V2.5.x</span></td><td>运营端</td><td>SCCS管理</td><td>2026-05-26</td></tr><tr><td>【运营端】【设置-软件管理】软件相关信息与记录管理</td><td><span class="source-badge">V2.4.x</span></td><td>运营端</td><td>设置-软件管理</td><td>2026-05-26</td></tr><tr><td>【贸易端】FlowSpace 数据互通</td><td><span class="source-badge">v2.9</span></td><td>贸易端</td><td>贸易端</td><td>2026-07-28</td></tr></table></details>
   </article>
 </body>
 </html>

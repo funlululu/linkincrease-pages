@@ -208,7 +208,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </table>
 <p>权限影响：</p>
 <ul>
-<li>订单负责人移交后，新订单负责人获得订单负责人相关数据权限。</li>
+<li>订单负责人移交后，新订单负责人不会默认获得订单可见或操作权限；是否获得订单数据权限，取决于自定义权限条件是否配置了订单负责人。</li>
 <li>里程碑负责人移交后，新里程碑负责人拥有对应订单下相关里程碑的所有操作权限。</li>
 <li>工单采集人、工单批复人、里程碑批复人移交后，新处理人获得对应任务处理权限。</li>
 <li>工单采集任务仅移交原处理人可编辑的表单，不移交整个工单。</li>
@@ -249,9 +249,9 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <p>本期自动化配置不参与移交。当原成员可能存在自动化配置相关负责人、执行人或通知人时，在执行结果页提示用户需要到自动化中单独检查并调整。该提示不阻断数据移交流程。</p>
 <h2 id="11">11. 待确认问题</h2>
 <ul>
-<li>订单负责人是否直接影响订单可见范围，以及移交后是否需要立即刷新订单可见授权。</li>
+<li>订单负责人默认不直接赋予订单权限，需通过自定义权限条件配置；移交后命中该条件的列表可见范围和权限缓存是否需要立即刷新，仍需结合权限服务实现确认。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】FlowSpace 数据移交</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-07-03</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】FlowSpace 数据移交</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-07-28</td></tr></table></details>
   </article>
 </body>
 </html>

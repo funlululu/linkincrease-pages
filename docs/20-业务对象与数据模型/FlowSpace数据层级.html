@@ -436,6 +436,11 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>由系统同步、批量操作或后续数据类能力写入</td>
 <td>必须记录来源、目标、操作人或系统程序、写入时间和日志</td>
 </tr>
+<tr>
+<td>FlowSpace 互通</td>
+<td>来源 FlowSpace 数据通过互通方案写入目标 FlowSpace 字段或子表</td>
+<td>必须记录方案版本、来源数据、目标数据、关联键、字段策略和后续更新结果</td>
+</tr>
 </tbody>
 </table>
 <h2 id="7">7. 数据层级对产品能力的影响</h2>
@@ -478,6 +483,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>已引用字段、同步策略、历史快照、系统执行日志</td>
 </tr>
 <tr>
+<td>FlowSpace 数据互通</td>
+<td>来源 FlowSpace、目标 FlowSpace、互通方案版本、字段映射、子表关联键、来源变化响应方式</td>
+</tr>
+<tr>
 <td>自动化</td>
 <td>触发数据源、目标数据源、执行动作、字段可写性、执行日志</td>
 </tr>
@@ -506,6 +515,42 @@ article pre code { padding:0; background:transparent; color:inherit; }
 | 工单批复子表行 | 工单审核明细 | 需记录行级历史和批复状态 |
 | 里程碑批复字段 | 当前里程碑阶段结论 | 每个里程碑最多一份，需要结合里程碑状态 |
 | 里程碑批复子表行 | 阶段结论明细 | 需记录行级历史和里程碑批复状态 |</p>
+<h3 id="73-flowspace">7.3 FlowSpace 数据互通写入边界</h3>
+<p>FlowSpace 数据互通同时涉及来源读取、目标写入和关联关系维护。新增或复核互通能力时，必须先明确来源数据和目标数据分别位于哪一层级，再判断字段映射、子表行写入、权限、数据围栏和日志。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>数据层级要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>仅关联</td>
+<td>建立来源数据与目标数据关系，不写入目标字段；仍需记录来源、目标、方案版本和关系快照</td>
+</tr>
+<tr>
+<td>关联并写入普通字段</td>
+<td>目标字段必须是目标模块可写字段，不能是公式字段、系统字段或不允许被互通写入的字段</td>
+</tr>
+<tr>
+<td>关联并写入子表</td>
+<td>必须记录目标子表、目标行、来源行和关联键，不得只记录父对象 ID</td>
+</tr>
+<tr>
+<td>来源变化后更新</td>
+<td>按执行版本和字段级策略判断是否更新，目标状态、字段锁定、资源库持续同步、公式和权限不允许时跳过并记录原因</td>
+</tr>
+<tr>
+<td>多来源聚合</td>
+<td>多条来源数据写入一个目标字段时，必须按目标字段类型选择聚合规则</td>
+</tr>
+<tr>
+<td>来源失效</td>
+<td>来源数据删除、归档或不可引用时保留关系快照，目标是否更新或失效标记按方案和异常规则处理</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>重要：写入工单、工单批复、里程碑批复时，不得绕过处理人、状态和权限校验；写入子表时，不得只记录父对象 ID，还应记录子表 ID 和行 ID。</p>
 </blockquote>
@@ -517,7 +562,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>当前用户是否具备来源查看权限和目标写入权限。</li>
 <li>数据围栏是否隐藏了来源字段或目标字段。</li>
 <li>字段是否来自资源库引用、资源库同步、公式、自动化、系统同步或人工录入。</li>
-<li>子表行是否需要记录行级来源和目标关系。</li>
+<li>子表行是否需要记录行级来源、目标关系和关联键。</li>
 <li>写入后是否需要历史记录、动态、跟踪记录、系统执行日志或同步日志。</li>
 <li>模板字段被删除、类型变化、必填变化时，历史数据如何保留。</li>
 <li>是否可能形成多源覆盖、重复写入或系统自动更新冲突。</li>
@@ -552,6 +597,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>子表行删除、来源数据删除时，目标子表行是否删除、失效标记还是保留快照</td>
 <td>影响追溯和历史展示</td>
 </tr>
+<tr>
+<td>FlowSpace 互通、资源库同步、自动化同时写入同一字段时的优先级是否配置化</td>
+<td>影响多系统写入一致性</td>
+</tr>
 </tbody>
 </table>
 <h2 id="10">10. 来源需求</h2>
@@ -562,8 +611,9 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】查看&amp;操作.md</code></li>
 <li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单详情】工单&amp;里程碑批复操作.md</code></li>
 <li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【资源库】第一阶段.md</code></li>
+<li><code>source:thoughts-v2-current/v2.9/贸易端/【贸易端】FlowSpace 数据互通.md</code></li>
 </ul>
-<details class="source-section" open><summary>需求来源 (5)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【运营端】【模板中心】业务模版管理</td><td><span class="source-badge">v2.0.x</span></td><td>运营端</td><td>模板中心</td><td>2026-05-26</td></tr><tr><td>【运营端】【业务模板】表单设计组件</td><td><span class="source-badge">v2.1.x</span></td><td>运营端</td><td>业务模板</td><td>2026-06-25</td></tr><tr><td>【贸易端】【订单详情】查看&操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-05-26</td></tr><tr><td>【贸易端】【订单详情】工单&里程碑批复操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-05-26</td></tr><tr><td>【贸易端】【资源库】第一阶段</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>资源库</td><td>2026-07-03</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (6)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【运营端】【模板中心】业务模版管理</td><td><span class="source-badge">v2.0.x</span></td><td>运营端</td><td>模板中心</td><td>2026-05-26</td></tr><tr><td>【运营端】【业务模板】表单设计组件</td><td><span class="source-badge">v2.1.x</span></td><td>运营端</td><td>业务模板</td><td>2026-06-25</td></tr><tr><td>【贸易端】【订单详情】查看&操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-05-26</td></tr><tr><td>【贸易端】【订单详情】工单&里程碑批复操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-05-26</td></tr><tr><td>【贸易端】【资源库】第一阶段</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>资源库</td><td>2026-07-03</td></tr><tr><td>【贸易端】FlowSpace 数据互通</td><td><span class="source-badge">v2.9</span></td><td>贸易端</td><td>贸易端</td><td>2026-07-28</td></tr></table></details>
   </article>
 </body>
 </html>

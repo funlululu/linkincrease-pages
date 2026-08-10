@@ -110,6 +110,11 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>工作台 FlowSpace 分组管理</td>
 </tr>
 <tr>
+<td>FlowSpace 管理</td>
+<td>FlowSpace 互通配置</td>
+<td>团队设置 &gt; FlowSpace 互通菜单；创建、编辑、发布、停用互通方案和查看历史版本</td>
+</tr>
+<tr>
 <td>资源库管理</td>
 <td>创建资源库</td>
 <td>在当前团队下创建资源库</td>
@@ -205,13 +210,51 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>协作团队管理新增、删除。</li>
 </ul>
 <p>在角色中修改成员，仅记录在角色操作中；在成员中修改权限，仅记录在成员操作中。</p>
-<h2 id="8">8. 待确认问题</h2>
+<h2 id="8">8. 运营端功能权限配置</h2>
+<p>运营端团队列表新增 <code>功能权限</code> 入口，用于配置团队级或 FlowSpace 维度功能入口权限。V1.0 团队权限配置区仅作为占位，不提供具体配置项；FlowSpace 维度权限区用于配置 <code>自动化配置入口</code> 的授权成员。</p>
+<p>自动化配置入口权限规则：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配置入口</td>
+<td>运营端 &gt; 团队管理 &gt; 团队列表 &gt; 功能权限</td>
+</tr>
+<tr>
+<td>配置粒度</td>
+<td>当前团队下的 FlowSpace</td>
+</tr>
+<tr>
+<td>授权对象</td>
+<td>仅当前 FlowSpace 内部成员，不展示协作方成员</td>
+</tr>
+<tr>
+<td>生效规则</td>
+<td>成员列表为空即无权限；成员列表非空时，对应成员可见贸易端 FlowSpace 内自动化配置入口</td>
+</tr>
+<tr>
+<td>保存规则</td>
+<td>配置成员弹窗保存后立即生效，并记录配置日志</td>
+</tr>
+<tr>
+<td>日志</td>
+<td>记录操作人、类型、权限、变更前后成员，成员需保留邮箱便于追溯</td>
+</tr>
+</tbody>
+</table>
+<p>贸易端不再提供 <code>自动化配置</code> 权限点的配置入口。FlowSpace 设置的业务角色权限不展示自动化配置勾选项，业务管理员默认角色也不可直接获得该权限；服务端也必须停止接受贸易端对该权限点的写入，旧接口提交该权限点时应忽略或返回不支持修改。</p>
+<h2 id="9">9. 待确认问题</h2>
 <ul>
 <li>团队角色完整权限矩阵仍依赖外部钉钉表格，建议导出为本地来源文件。</li>
 <li>删除团队成员后的任务批量交接仍为后期规划，需要补充正式规则。</li>
 <li>协作团队加入流程已发生优化，历史“接受/拒绝”流程是否仍在部分场景保留，需要与线上核对。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (3)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【团队设置】团队信息、角色、成员、协作团队管理</td><td><span class="source-badge">v2.0.x</span></td><td>贸易端</td><td>团队设置</td><td>2026-05-26</td></tr><tr><td>【贸易端】【团队设置】邀请成 员_协作团队流程变更</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>团队设置</td><td>2026-05-26</td></tr><tr><td>【贸易端】【操作日志】所有设置类功能</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>操作日志</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (5)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【团队设置】团队信息、角色、成员、协作团队管理</td><td><span class="source-badge">v2.0.x</span></td><td>贸易端</td><td>团队设置</td><td>2026-05-26</td></tr><tr><td>【贸易端】【团队设置】邀请成 员_协作团队流程变更</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>团队设置</td><td>2026-05-26</td></tr><tr><td>【贸易端】【操作日志】所有设置类功能</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>操作日志</td><td>2026-05-26</td></tr><tr><td>【运营端】【团队列表-功能权限】自动化权限移至运营端管理</td><td><span class="source-badge">v2.8</span></td><td>运营端</td><td>团队列表-功能权限</td><td>2026-07-22</td></tr><tr><td>【贸易端】FlowSpace 数据互通</td><td><span class="source-badge">v2.9</span></td><td>贸易端</td><td>贸易端</td><td>2026-07-28</td></tr></table></details>
   </article>
 </body>
 </html>

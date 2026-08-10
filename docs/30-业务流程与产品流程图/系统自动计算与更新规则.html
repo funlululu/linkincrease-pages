@@ -42,7 +42,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
   <article>
 <h1 id="_1">系统自动计算与更新规则</h1>
 <h2 id="1">1. 功能定位</h2>
-<p>系统自动计算与更新规则用于统一约束自动化、公式自动计算、TODAY 公式和定时任务等系统写入行为。系统自动能力不能绕过订单、里程碑、工单等业务对象的状态限制。</p>
+<p>系统自动计算与更新规则用于统一约束自动化、公式自动计算、TODAY 公式、定时任务等系统写入行为。系统自动能力不能绕过订单、里程碑、工单等业务对象的状态限制。</p>
 <h2 id="2">2. 自动化写入状态</h2>
 <table>
 <thead>
@@ -145,7 +145,15 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <p>当公式中直接包含 <code>TODAY</code>，或公式变量因子引用的其他公式中包含 <code>TODAY</code> 时，该公式视为 TODAY 公式。TODAY 公式默认进入系统自动计算范围，即使未开启普通公式自动计算，也会随日期变化自动重新计算。</p>
 <h2 id="5">5. 资源库公式</h2>
 <p>资源库表单公式变量只来自当前表单，没有跨表单变量，因此不存在变量变更后系统自动重算并回写的实际意义。资源库公式按普通表单编辑逻辑处理：用户编辑资源库记录时实时计算，提交后固化，不纳入公式自动计算状态限制表。</p>
-<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>平台自动计算、更新规则说明</td><td><span class="source-badge">common</span></td><td>未识别</td><td></td><td>2026-07-03</td></tr></table></details>
+<h2 id="6">6. 统一规则</h2>
+<ul>
+<li>自动化可写入的前提是目标业务对象仍处于可流转状态。</li>
+<li>订单结束、里程碑结束、工单采集结束后，自动化、公式自动计算、TODAY 公式和定时任务都不能绕过状态限制继续改写业务字段。</li>
+<li>通知类动作不改业务数据，但仍需记录自动化执行日志。</li>
+<li>设置时间不存在、对象状态不允许或记录范围未命中时，定时任务不执行，且不算执行失败。</li>
+<li>资源库公式只按普通表单编辑逻辑处理，不纳入跨表单自动计算状态限制表。</li>
+</ul>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>平台自动计算、更新规则说明</td><td><span class="source-badge">common</span></td><td>未识别</td><td></td><td>2026-07-22</td></tr></table></details>
   </article>
 </body>
 </html>
