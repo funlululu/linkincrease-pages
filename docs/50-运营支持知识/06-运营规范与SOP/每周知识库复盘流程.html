@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>每周知识库复盘流程 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">每周知识库复盘流程</h1>
+<h2 id="1">1. 目标</h2>
+<p>每周将新增需求、客户问题、配置经验、项目复盘和待确认事项转成可检索、可复用、可追溯的知识资产，避免知识停留在聊天记录、临时文档或个人经验中。</p>
+<h2 id="2">2. 复盘输入</h2>
+<ul>
+<li>本周新增或修改的需求文档</li>
+<li>客户问题、实施记录、售前方案和培训反馈</li>
+<li>新增或修改的知识库页面</li>
+<li>Git 提交记录和未提交变更</li>
+<li>待确认问题和来源台账</li>
+</ul>
+<h2 id="3">3. 复盘步骤</h2>
+<ol>
+<li>检查 Git 状态，确认没有临时目录、生成产物或无关文件进入提交。</li>
+<li>检查新增 Markdown 是否已登记到 <code>metadata/documents.csv</code>。</li>
+<li>从本周客户问题中提炼 FAQ、问题排查路径或 SOP。</li>
+<li>从本周跑通的方案中提炼 Skill 或更新现有 Skill。</li>
+<li>检查待确认问题是否有结论、责任人或状态变化。</li>
+<li>检查旧文档是否需要标记为 <code>deprecated</code>、<code>historical</code> 或移动到 archive。</li>
+<li>运行链接检查或静态站点生成，确认入口可访问。</li>
+</ol>
+<h2 id="4-ai">4. AI 复盘提示词</h2>
+<pre><code class="language-text">请帮我做 Linkincrease 知识库周复盘：
+1. 检查本周新增/修改内容哪些应该补 metadata。
+2. 找出可以沉淀成 FAQ、SOP、Skill 的客户问题或项目经验。
+3. 检查待确认问题是否可以关闭、更新状态或补充责任人。
+4. 找出可能过期、冲突或重复的知识页。
+5. 输出建议修改清单，按 P0/P1/P2 排序。
+</code></pre>
+<h2 id="5">5. 验收标准</h2>
+<ul>
+<li>Git 状态只包含本周需要提交的知识库变更。</li>
+<li>新增页面都有 metadata。</li>
+<li>至少沉淀一条 FAQ、SOP、Skill 或待确认问题处理记录。</li>
+<li>不确定内容没有写入权威规则页。</li>
+<li>入口索引和相关页面链接可正常访问。</li>
+</ul>
+<h2 id="6">6. 关联文档</h2>
+<ul>
+<li><a href="../../../00-知识库维护规范.md">知识库维护规范</a></li>
+<li><a href="../../90-版本历史与来源治理/待确认问题.md">待确认问题</a></li>
+<li><a href="../../90-版本历史与来源治理/版本变更记录.md">版本变更记录</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skill：权限与数据可见问题排查 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="skill">Skill：权限与数据可见问题排查</h1>
+<h2 id="_1">适用场景</h2>
+<p>用户无法登录、看不到数据、按钮灰化、无法提交、无法指派、协作团队看不到 FlowSpace 或工单时使用。</p>
+<h2 id="_2">输入</h2>
+<ul>
+<li>用户账号、团队、角色和协作团队身份</li>
+<li>操作路径和目标记录</li>
+<li>期望结果与实际结果</li>
+<li>截图、报错、时间点和环境</li>
+<li>最近是否调整模板、成员、权限、数据围栏或状态</li>
+</ul>
+<h2 id="_3">必读知识页</h2>
+<ul>
+<li><a href="../../40-权限、安全与审计/权限体系总表.md">权限体系总表</a></li>
+<li><a href="../../40-权限、安全与审计/团队权限.md">团队权限</a></li>
+<li><a href="../../40-权限、安全与审计/协作FlowSpace权限.md">协作 FlowSpace 权限</a></li>
+<li><a href="../../40-权限、安全与审计/数据围栏.md">数据围栏</a></li>
+<li><a href="../05-问题排查手册/问题排查总览.md">问题排查总览</a></li>
+</ul>
+<h2 id="_4">执行步骤</h2>
+<ol>
+<li>先确认用户是否能登录，以及所属团队和角色是否正确。</li>
+<li>确认目标记录是否存在，是否属于用户可见的数据范围。</li>
+<li>检查协作团队、FlowSpace 角色、工单指派和状态限制。</li>
+<li>检查模板字段、按钮条件、批复规则和自动化规则是否影响操作。</li>
+<li>查询动态、历史记录、操作日志或系统执行日志，区分配置问题和产品缺陷。</li>
+<li>输出临时处理、根因修复和是否需要沉淀 FAQ。</li>
+</ol>
+<h2 id="_5">输出格式</h2>
+<pre><code class="language-md">## 问题分类
+## 已知信息
+## 优先排查路径
+## 可能原因
+## 临时处理
+## 根因修复
+## 是否沉淀知识库
+</code></pre>
+<h2 id="_6">验收标准</h2>
+<ul>
+<li>能说明问题属于权限、数据围栏、状态、模板配置还是系统异常。</li>
+<li>有明确复现路径和验证账号。</li>
+<li>临时处理和永久修复分开。</li>
+<li>复发问题进入 FAQ 或排查手册。</li>
+</ul>
+<h2 id="_7">常见坑</h2>
+<ul>
+<li>只看团队角色，漏看协作团队角色。</li>
+<li>只看按钮权限，漏看订单、里程碑、工单状态。</li>
+<li>只问截图，不追踪目标记录的数据归属。</li>
+</ul>
+<h2 id="_8">关联文档</h2>
+<ul>
+<li><a href="../05-问题排查手册/权限与成员管理/协作团队看不到数据.md">协作团队看不到数据</a></li>
+<li><a href="../05-问题排查手册/权限与成员管理/工单按钮灰化.md">工单按钮灰化</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

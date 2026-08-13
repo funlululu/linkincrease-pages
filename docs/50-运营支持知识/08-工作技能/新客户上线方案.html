@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skill：新客户上线方案 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="skill">Skill：新客户上线方案</h1>
+<h2 id="_1">适用场景</h2>
+<p>为新客户设计 Linkincrease 上线计划、配置清单、数据准备、培训安排和 Go-live 验收时使用。</p>
+<h2 id="_2">输入</h2>
+<ul>
+<li>客户类型与上线范围</li>
+<li>参与角色和组织结构</li>
+<li>需要上线的业务场景</li>
+<li>现有主数据和历史数据</li>
+<li>权限边界和外部协作范围</li>
+<li>期望上线时间与试点范围</li>
+</ul>
+<h2 id="_3">必读知识页</h2>
+<ul>
+<li><a href="../06-运营规范与SOP/新客户上线标准流程.md">新客户上线标准流程</a></li>
+<li><a href="../02-日常运营任务/资源库运营/资源库模板设计思路.md">资源库模板设计思路</a></li>
+<li><a href="../02-日常运营任务/模板配置/模板设计通用原则.md">模板设计通用原则</a></li>
+<li><a href="../../40-权限、安全与审计/权限体系总表.md">权限体系总表</a></li>
+<li><a href="../04-监控与数据分析/Tower仪表盘配置指南.md">Tower 仪表盘配置指南</a></li>
+</ul>
+<h2 id="_4">执行步骤</h2>
+<ol>
+<li>确认上线目标和首批业务范围，避免一次性覆盖全部复杂场景。</li>
+<li>先设计团队、角色、协作团队和数据围栏。</li>
+<li>准备资源库模板和初始主数据。</li>
+<li>设计业务模板、里程碑、工单、批复和自动化通知。</li>
+<li>配置运营视图和管理仪表盘。</li>
+<li>安排角色测试、试点数据、培训和 Go-live 检查。</li>
+<li>上线后 30 天复盘使用率、异常、价值和待优化项。</li>
+</ol>
+<h2 id="_5">输出格式</h2>
+<pre><code class="language-md">## 客户背景假设
+## 上线范围
+## 配置清单
+## 数据准备
+## 权限验证
+## 培训安排
+## Go-live 检查
+## 30 天价值复盘
+## 风险与待确认
+</code></pre>
+<h2 id="_6">验收标准</h2>
+<ul>
+<li>上线范围清晰，试点边界明确。</li>
+<li>资源库、模板、权限、自动化、报表都有配置项。</li>
+<li>每类角色都有验证路径。</li>
+<li>Go-live 前有可执行检查清单。</li>
+</ul>
+<h2 id="_7">常见坑</h2>
+<ul>
+<li>先做流程，后补主数据，导致数据重复和权限混乱。</li>
+<li>外部供应商、工厂账号提前开放，但数据围栏未验证。</li>
+<li>仪表盘只做展示，没有对应运营动作。</li>
+</ul>
+<h2 id="_8">关联文档</h2>
+<ul>
+<li><a href="../04-监控与数据分析/业务健康度每日巡检checklist.md">业务健康度每日巡检 checklist</a></li>
+<li><a href="../06-运营规范与SOP/模板版本管理与灰度发布规范.md">模板版本管理与灰度发布规范</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

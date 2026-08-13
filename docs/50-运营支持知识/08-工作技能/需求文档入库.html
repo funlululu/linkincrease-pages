@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skill：需求文档入库 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="skill">Skill：需求文档入库</h1>
+<h2 id="_1">适用场景</h2>
+<p>将新需求、评审结论、客户反馈、历史文档或线上行为同步进知识库时使用。</p>
+<h2 id="_2">输入</h2>
+<ul>
+<li>来源文件或来源链接</li>
+<li>需求所属模块</li>
+<li>是否已确认</li>
+<li>影响对象：功能、业务对象、流程、权限、状态、字段、通知、日志或报表</li>
+<li>与旧规则的差异</li>
+</ul>
+<h2 id="_3">必读知识页</h2>
+<ul>
+<li><a href="../../../00-知识库维护规范.md">知识库维护规范</a></li>
+<li><a href="../../../05-需求文档来源台账.md">需求文档来源台账</a></li>
+<li><a href="../../00-产品总览与规划/迭代需求设计工作流.md">迭代需求设计工作流</a></li>
+<li><a href="../../90-版本历史与来源治理/来源入库状态.md">来源入库状态</a></li>
+<li><a href="../../90-版本历史与来源治理/待确认问题.md">待确认问题</a></li>
+</ul>
+<h2 id="_4">执行步骤</h2>
+<ol>
+<li>登记来源，确认来源权威性、版本和状态。</li>
+<li>判断需求影响范围，定位对应权威知识页。</li>
+<li>对比旧规则，识别新增、修改、废弃、冲突和待确认项。</li>
+<li>更新正文，不把来源原文直接复制成结论。</li>
+<li>更新 <code>metadata/documents.csv</code>、来源台账、版本记录和待确认问题。</li>
+<li>如影响 AI 使用入口或 Skill，更新 <code>AGENTS.md</code> 或相关 Skill。</li>
+</ol>
+<h2 id="_5">输出格式</h2>
+<pre><code class="language-md">## 来源信息
+## 影响范围
+## 需更新页面
+## 规则变更摘要
+## 冲突与待确认
+## Metadata 更新
+## 验证结果
+</code></pre>
+<h2 id="_6">验收标准</h2>
+<ul>
+<li>每个新增结论可追溯到来源。</li>
+<li>不确定内容进入待确认问题。</li>
+<li>权威规则页、入口索引和 metadata 保持一致。</li>
+<li>修改后没有 Markdown 断链。</li>
+</ul>
+<h2 id="_7">常见坑</h2>
+<ul>
+<li>把客户临时实践写成产品规则。</li>
+<li>只更新功能页，漏掉权限、状态、日志或报表影响。</li>
+<li>更新正文后忘记同步 metadata。</li>
+</ul>
+<h2 id="_8">关联文档</h2>
+<ul>
+<li><a href="../../90-版本历史与来源治理/版本变更记录.md">版本变更记录</a></li>
+<li><a href="../../90-版本历史与来源治理/历史产品文档评估.md">历史产品文档评估</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

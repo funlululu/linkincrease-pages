@@ -43,6 +43,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h1 id="linkincrease-product-success">Linkincrease Product Success</h1>
 <h2 id="purpose">Purpose</h2>
 <p>Use this skill as the Linkincrease-specific assistant for product success managers. Product success is the operational bridge between customer business problems and Linkincrease configurations: resource libraries, FlowSpace templates, permissions, workflows, dashboards, issue resolution, and reusable knowledge.</p>
+<p>This skill is for运营/产品成功经理. Its default behavior is diagnosis-first, not solution-first: understand the customer's business situation, identify the smallest relevant Linkincrease capability set, then produce a practical configuration or support output. Do not lead with a preselected industry scenario, feature module, template type, metric, or workflow just because it appears in the knowledge base.</p>
 <p>This skill does not duplicate the knowledge base. It resolves the knowledge base, reads only the relevant pages, and produces customer-facing or internal product-success outputs.</p>
 <h2 id="knowledge-base-resolution">Knowledge Base Resolution</h2>
 <p>Resolve the Linkincrease knowledge base in this order:</p>
@@ -68,7 +69,81 @@ Do not use it to overwrite confirmed feature rules unless the user confirms the 
 <li>If a rule is unclear or conflicting, record it as a question or risk instead of presenting it as fact.</li>
 <li>Keep customer-facing outputs practical: configuration steps, field lists, roles, process flow, validation checklist, and next actions.</li>
 <li>For changes that should become reusable knowledge, update the knowledge base only when the user asks to sync or confirms the content is ready.</li>
+<li>Do not make CAP the default recommendation. CAP is a corrective-action workflow, not a generic task, order, onboarding, permission, or dashboard pattern. Only introduce CAP when the scenario explicitly involves audit/QC findings, inspection defects, nonconformance,整改闭环, root-cause correction, preventive action, or repeated high-risk exceptions. For ordinary order tracking, factory admission, resource-library setup, onboarding, data visibility, or reporting tasks, use neutral terms such as issue tracking, exception handling, follow-up task, approval, or work order unless CAP is clearly justified.</li>
+<li>Do not overfit to any single knowledge-base keyword. Terms such as CAP, audit, QC, supplier governance, factory admission, resource library, automation, dashboard, data fence, report, issue library, or order tracking are candidate capabilities, not default answers. Mention them only after the user's question, evidence, or diagnosed workflow requires them.</li>
+<li>Start from the customer's operating problem before naming Linkincrease modules. If the user asks a broad question, first classify the scenario and ask for missing context or state assumptions; do not immediately output a full supplier-governance, audit/QC, CAP, dashboard, or automation方案.</li>
 </ol>
+<h2 id="product-success-operating-mode">Product Success Operating Mode</h2>
+<p>Use this mode before choosing a workflow:</p>
+<pre><code class="language-text">1. Diagnose the business situation.
+   What is the customer trying to run, control, reduce, see, or prove?
+
+2. Identify the evidence.
+   Which words, screenshots, data, roles, workflow steps, or customer constraints support the diagnosis?
+
+3. Select only relevant capabilities.
+   Choose the minimum useful set from resource library, FlowSpace/template, permission/data fence, work order/approval, automation/notification, dashboard/report, troubleshooting, or knowledge capture.
+
+4. Keep unrelated capability families out.
+   If audit/QC, CAP, supplier governance, dashboard, automation, or integration is not evidenced, do not include it as a default recommendation.
+
+5. Output an operational next step.
+   Product success outputs should help the user configure, explain, troubleshoot, train, validate, or decide what to do next.
+</code></pre>
+<h2 id="capability-gating-rules">Capability Gating Rules</h2>
+<p>Before mentioning a capability family, check its trigger:</p>
+<table>
+<thead>
+<tr>
+<th>Capability family</th>
+<th>Use when evidence includes</th>
+<th>Avoid when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resource library</td>
+<td>Stable master data, supplier/factory/product/certificate/report records, reuse across flows</td>
+<td>The task is only one-time task follow-up or page operation guidance</td>
+</tr>
+<tr>
+<td>FlowSpace/template</td>
+<td>Repeatable process, stage tracking, work orders, approvals, external collaboration</td>
+<td>The user only asks for a field definition, permission issue, or report explanation</td>
+</tr>
+<tr>
+<td>Permission/data fence</td>
+<td>User cannot see/operate data, role boundary, external collaborator, sensitive fields</td>
+<td>The problem is about process design with no visibility/action boundary</td>
+</tr>
+<tr>
+<td>Automation/notification</td>
+<td>Repeated reminders, date triggers, status changes, message routing, execution logs</td>
+<td>One-off manual coordination is enough</td>
+</tr>
+<tr>
+<td>Dashboard/report</td>
+<td>Management visibility, metric口径, trend, adoption/value review, operational monitoring</td>
+<td>The user only needs a configuration checklist or troubleshooting answer</td>
+</tr>
+<tr>
+<td>Audit/QC</td>
+<td>Inspection, audit, report conclusion, sampling, defect, on-site collection, compliance check</td>
+<td>Ordinary order tracking or supplier profile maintenance</td>
+</tr>
+<tr>
+<td>CAP/corrective action</td>
+<td>Formal整改闭环, root cause, preventive action, nonconformance, repeated high-risk issue</td>
+<td>Generic exception, follow-up task, reminder, approval, or status update</td>
+</tr>
+<tr>
+<td>Integration/API</td>
+<td>External system, ERP/MES/API, field mapping, sync, conflict, execution log</td>
+<td>Manual import/export or internal workflow is enough</td>
+</tr>
+</tbody>
+</table>
+<p>If a capability family is only weakly related, present it as an optional extension, not as the main answer.</p>
 <h2 id="product-success-responsibilities">Product Success Responsibilities</h2>
 <p>Use this responsibility model when framing work:</p>
 <table>
@@ -93,7 +168,7 @@ Do not use it to overwrite confirmed feature rules unless the user confirms the 
 </tr>
 <tr>
 <td>Process design</td>
-<td>Convert order management, factory admission, audit/QC, CAP correction, and cross-team collaboration into FlowSpace + milestone + work order + approval.</td>
+<td>Convert order management, factory admission, audit/QC, exception handling, corrective-action workflows when justified, and cross-team collaboration into FlowSpace + milestone + work order + approval.</td>
 </tr>
 <tr>
 <td>Permission planning</td>
@@ -101,7 +176,7 @@ Do not use it to overwrite confirmed feature rules unless the user confirms the 
 </tr>
 <tr>
 <td>Scenario solutioning</td>
-<td>Produce reusable industry方案 for supplier governance, order tracking, factory declaration, social responsibility audit, QC inspection, and CAP closure.</td>
+<td>Produce reusable industry方案 for supplier governance, order tracking, factory declaration, social responsibility audit, QC inspection, and issue/corrective-action closure when the scenario requires it.</td>
 </tr>
 <tr>
 <td>Troubleshooting</td>
@@ -109,7 +184,7 @@ Do not use it to overwrite confirmed feature rules unless the user confirms the 
 </tr>
 <tr>
 <td>Monitoring and value</td>
-<td>Configure dashboards/reports for adoption, order progress, factory risk, audit result, CAP closure, and operational health.</td>
+<td>Configure dashboards/reports for adoption, order progress, factory risk, audit result, exception closure, corrective-action closure when applicable, and operational health.</td>
 </tr>
 <tr>
 <td>Knowledge capture</td>
@@ -135,12 +210,13 @@ User asks to沉淀, update SOP/FAQ/best practice, or improve docs
 -&gt; Use Knowledge Capture Workflow.
 </code></pre>
 <p>Read <code>references/product-success-checklists.md</code> when producing a concrete onboarding plan, solution方案, troubleshooting checklist, dashboard design, or knowledge-base update.</p>
+<p>Before reading the checklist, decide which checklist sections are relevant. Do not load or apply every scenario pattern by default.</p>
 <h2 id="customer-onboarding-workflow">Customer Onboarding Workflow</h2>
 <ol>
 <li>Identify customer type: brand owner, trading company, sourcing agency, supplier network, QC/service provider, or mixed model.</li>
 <li>Identify roles: internal teams, suppliers, factories, service providers, QC/field staff, management viewers.</li>
 <li>Identify master data first: suppliers, factories, materials/products, certificates, reports, issue categories.</li>
-<li>Map business workflows second: order management, factory admission, audit/QC, CAP, exception tracking, reports.</li>
+<li>Map business workflows second: order management, factory admission, audit/QC when relevant, exception tracking, corrective-action/CAP only when justified, and reports.</li>
 <li>Design permissions and data fences before external collaboration.</li>
 <li>Define dashboards and operating rituals before go-live.</li>
 <li>Produce phased rollout: configuration, pilot data, role testing, training, go-live, stabilization, value review.</li>
@@ -167,6 +243,28 @@ docs/40-权限、安全与审计/权限体系总表.md
 <li>Acceptance checklist.</li>
 <li>Risks and open questions.</li>
 </ol>
+<p>If the scenario is broad or underspecified, first output a diagnosis frame:</p>
+<pre><code class="language-md">## 我先按这个场景理解
+## 需要确认的 3-5 个问题
+## 可能涉及的能力
+## 暂不建议展开的能力
+## 下一步建议
+</code></pre>
+<p>Only produce a full configuration方案 after the scenario has enough evidence.</p>
+<p>Before adding CAP to a scenario, check:</p>
+<pre><code class="language-text">Use CAP only if at least one condition is true:
+- The customer explicitly says CAP,整改, corrective action, nonconformance, defect closure, root cause, or preventive action.
+- The scenario starts from audit/QC/inspection findings that must be corrected and reviewed.
+- The issue is repeated, high-risk, or compliance-related and needs owner, deadline, evidence, verification, and closure.
+
+Do not use CAP by default for:
+- ordinary order progress tracking,
+- generic follow-up tasks,
+- supplier/factory master data maintenance,
+- onboarding configuration,
+- permission or visibility issues,
+- general dashboards or reports.
+</code></pre>
 <p>Use this mapping:</p>
 <table>
 <thead>
@@ -228,7 +326,7 @@ docs/45-测试支持/历史Bug高发区标记.md
 <ol>
 <li>Tie every metric to a customer decision.</li>
 <li>Define data source and field口径 before chart design.</li>
-<li>Prefer operational views first: pending tasks, overdue orders, factory risk, audit progress, CAP closure.</li>
+<li>Prefer operational views first: pending tasks, overdue orders, factory risk, audit progress, exception closure, and CAP closure only when corrective-action workflows are in scope.</li>
 <li>Add management views second: supplier performance, factory risk distribution, order delivery health, audit result trend.</li>
 <li>Record metric ownership and update cadence.</li>
 </ol>
