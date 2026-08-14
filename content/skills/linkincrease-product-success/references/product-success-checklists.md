@@ -15,6 +15,7 @@ Before using detailed checklists, classify the request:
 | Troubleshooting | Permission, FlowSpace Template, Knowledge Capture if recurring | New dashboards or supplier-governance方案 unless needed |
 | Dashboard/value review | Dashboard Checklist, metric definitions | CAP closure metrics unless corrective-action workflows are in scope |
 | Scenario solution | Only the matching Scenario Pattern | Other scenario patterns just because they appear nearby |
+| Professional operations方案 | Industry scenario page, matching customer方案, capability boundary | Pure feature list without industry reasoning |
 | Knowledge capture | Knowledge Capture Checklist | Product-rule updates unless confirmed |
 
 If evidence is weak, ask for context or state assumptions instead of expanding the方案.

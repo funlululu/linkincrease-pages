@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>供应商绩效与风险管理 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">供应商绩效与风险管理</h1>
+<h2 id="1">1. 业务定义</h2>
+<p>供应商绩效与风险管理是基于供应商、工厂在准入、订单履约、质量、交付、协同、合规和整改中的表现，形成评价、分级、预警、复审和业务调整的过程。</p>
+<p>本页关注绩效和风险的业务建模与平台承载方式，不替代完整 SRM、财务风控或专业 ESG 尽调系统。</p>
+<h2 id="2">2. 适用客户与前提</h2>
+<table>
+<thead>
+<tr>
+<th>客户类型</th>
+<th>适用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方/采购团队</td>
+<td>建立供应商分级、风险预警和业务分配依据</td>
+</tr>
+<tr>
+<td>贸易公司</td>
+<td>评估供应商协同、交付和质量表现</td>
+</tr>
+<tr>
+<td>Sourcing Agency</td>
+<td>为多客户、多品类供应商池做运营管理</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>查看自身协同问题和待改进事项</td>
+</tr>
+</tbody>
+</table>
+<p>前提是客户已经有稳定的订单、验货、审核或协同数据来源；没有数据来源时，只能先做资料完整性和流程执行看板。</p>
+<h2 id="3">3. 参与角色与责任</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要责任</th>
+<th>提供的数据</th>
+<th>做出的决策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>采购/供应商管理负责人</td>
+<td>定义评价维度和分级规则</td>
+<td>权重、等级、复审规则</td>
+<td>分级、暂停、扩大合作</td>
+</tr>
+<tr>
+<td>质量/合规负责人</td>
+<td>提供质量和合规结果</td>
+<td>验货、审核、CAP</td>
+<td>风险升级或限制</td>
+</tr>
+<tr>
+<td>跟单/运营</td>
+<td>提供交付和协同数据</td>
+<td>延期、任务响应、异常</td>
+<td>流程改进建议</td>
+</tr>
+<tr>
+<td>供应商/工厂</td>
+<td>提供整改和解释</td>
+<td>证据、原因、计划</td>
+<td>承诺改善</td>
+</tr>
+<tr>
+<td>产品成功/实施</td>
+<td>配置数据来源和仪表盘</td>
+<td>资源库、FlowSpace、指标</td>
+<td>判断可实现口径</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 核心业务对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>定义</th>
+<th>关键字段</th>
+<th>与其他对象的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商绩效档案</td>
+<td>某周期供应商表现汇总</td>
+<td>周期、交付、质量、协同、合规、等级</td>
+<td>关联供应商资源库</td>
+</tr>
+<tr>
+<td>风险记录</td>
+<td>某个风险事件或风险状态</td>
+<td>类型、等级、原因、影响、责任人</td>
+<td>可来自订单、验货、审核、CAP</td>
+</tr>
+<tr>
+<td>指标口径</td>
+<td>绩效计算规则</td>
+<td>分子、分母、时间范围、排除项</td>
+<td>支撑仪表盘</td>
+</tr>
+<tr>
+<td>改善计划</td>
+<td>针对低绩效或高风险的行动</td>
+<td>措施、责任人、期限、证据</td>
+<td>可形成工单或 CAP</td>
+</tr>
+<tr>
+<td>供应商等级</td>
+<td>业务分层结果</td>
+<td>A/B/C、观察、暂停、禁用</td>
+<td>影响准入、订单选择和复审</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 标准业务流程</h2>
+<pre><code class="language-mermaid">flowchart LR
+  A[&quot;收集订单/质量/合规/协同数据&quot;] --&gt; B[&quot;计算或人工评估指标&quot;]
+  B --&gt; C[&quot;形成供应商绩效和风险视图&quot;]
+  C --&gt; D{&quot;是否触发风险或低绩效?&quot;}
+  D -- &quot;否&quot; --&gt; E[&quot;维持等级和复审周期&quot;]
+  D -- &quot;是&quot; --&gt; F[&quot;发起改善计划或复审&quot;]
+  F --&gt; G[&quot;跟进措施和证据&quot;]
+  G --&gt; H[&quot;复核效果并调整等级&quot;]
+</code></pre>
+<h2 id="6">6. 状态与业务规则</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>状态或规则</th>
+<th>进入条件</th>
+<th>允许操作</th>
+<th>退出条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>绩效周期</td>
+<td>数据收集中</td>
+<td>周期开始</td>
+<td>补充数据、校验口径</td>
+<td>周期结束</td>
+</tr>
+<tr>
+<td>绩效周期</td>
+<td>待评审</td>
+<td>数据汇总完成</td>
+<td>评审、调整、确认</td>
+<td>等级发布</td>
+</tr>
+<tr>
+<td>风险记录</td>
+<td>待处理</td>
+<td>触发风险规则</td>
+<td>指派责任、提交措施</td>
+<td>进入验证</td>
+</tr>
+<tr>
+<td>改善计划</td>
+<td>进行中</td>
+<td>低绩效或高风险</td>
+<td>提交证据、延期、升级</td>
+<td>复核通过</td>
+</tr>
+<tr>
+<td>供应商等级</td>
+<td>已生效</td>
+<td>评审确认</td>
+<td>查看、引用、复审</td>
+<td>下周期调整</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 异常、风险与控制措施</h2>
+<table>
+<thead>
+<tr>
+<th>风险或异常</th>
+<th>业务影响</th>
+<th>识别方式</th>
+<th>控制措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指标口径不清</td>
+<td>排名和决策失真</td>
+<td>同一指标多种算法</td>
+<td>在 <code>docs/60</code> 固化口径</td>
+</tr>
+<tr>
+<td>数据来源不稳定</td>
+<td>看板不可信</td>
+<td>缺字段、缺状态、手工补录</td>
+<td>先做字段治理和必填规则</td>
+</tr>
+<tr>
+<td>将一次异常外推成长期风险</td>
+<td>误伤供应商关系</td>
+<td>单一事件影响等级</td>
+<td>设置周期和复核机制</td>
+</tr>
+<tr>
+<td>等级不影响业务动作</td>
+<td>看板变成展示</td>
+<td>等级发布后无后续措施</td>
+<td>绑定复审、限制、改善计划</td>
+</tr>
+<tr>
+<td>客户自定义权重差异大</td>
+<td>通用方案难复用</td>
+<td>各客户评分表不同</td>
+<td>沉淀维度，不固化统一权重</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 管理指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+<th>建议口径</th>
+<th>数据来源</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>准时交付率</td>
+<td>判断交付表现</td>
+<td>准时完成订单/应完成订单</td>
+<td>订单、里程碑</td>
+<td>调整供应分配</td>
+</tr>
+<tr>
+<td>验货通过率</td>
+<td>判断质量稳定性</td>
+<td>通过验货/完成验货</td>
+<td>验货工单</td>
+<td>质量改进</td>
+</tr>
+<tr>
+<td>CAP 按期关闭率</td>
+<td>判断整改执行力</td>
+<td>按期关闭 CAP/应关闭 CAP</td>
+<td>CAP 工单</td>
+<td>风险升级</td>
+</tr>
+<tr>
+<td>资料完整率</td>
+<td>判断协同基础</td>
+<td>完整关键资料主体/应维护主体</td>
+<td>资源库</td>
+<td>补齐主数据</td>
+</tr>
+<tr>
+<td>任务响应及时率</td>
+<td>判断协同效率</td>
+<td>按时完成任务/应完成任务</td>
+<td>工单</td>
+<td>培训或升级</td>
+</tr>
+<tr>
+<td>高风险事件数</td>
+<td>判断供应风险</td>
+<td>周期内高风险事件</td>
+<td>风险记录</td>
+<td>暂停、复审、备选</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-linkincrease">9. Linkincrease 能力映射</h2>
+<table>
+<thead>
+<tr>
+<th>行业需求或规则</th>
+<th>Linkincrease 对象或能力</th>
+<th>数据、状态或权限影响</th>
+<th>支持度</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>维护供应商/工厂基础档案</td>
+<td>资源库</td>
+<td>主体唯一标识、等级、风险状态</td>
+<td>L2</td>
+<td>供应商库/工厂库作为主数据</td>
+</tr>
+<tr>
+<td>汇总订单履约表现</td>
+<td>跨 FlowSpace 数据、仪表盘</td>
+<td>订单状态、计划/实际日期</td>
+<td>L2/LX</td>
+<td>先做可用字段看板，复杂 OTIF 待确认</td>
+</tr>
+<tr>
+<td>汇总质量和 CAP 表现</td>
+<td>验货工单、CAP FlowSpace</td>
+<td>验货结论、CAP 状态和周期</td>
+<td>L2</td>
+<td>质量和整改指标看板</td>
+</tr>
+<tr>
+<td>风险预警</td>
+<td>自动化、消息、仪表盘</td>
+<td>风险等级、逾期、证书到期</td>
+<td>L2</td>
+<td>设置到期和逾期提醒</td>
+</tr>
+<tr>
+<td>供应商分级</td>
+<td>资源库字段、人工评审</td>
+<td>等级、原因、有效期、审批记录</td>
+<td>L2/LX</td>
+<td>首版建议人工评审后维护等级</td>
+</tr>
+<tr>
+<td>改善计划</td>
+<td>工单或 FlowSpace</td>
+<td>措施、责任人、期限、证据</td>
+<td>L2</td>
+<td>低绩效触发改善工单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 测试关注点</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>需要验证的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主流程</td>
+<td>数据汇总、评审、等级发布、改善跟进</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>管理层、采购、供应商、服务商的指标可见边界</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>等级生效、暂停、观察、改善中、恢复</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>指标来源、去重、周期、历史快照</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>数据缺失、字段口径变化、人工调整</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>等级调整、风险变更、改善关闭记录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11">11. 产品差距与需求候选</h2>
+<table>
+<thead>
+<tr>
+<th>差距</th>
+<th>业务影响</th>
+<th>当前替代方案</th>
+<th>建议优先级</th>
+<th>去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商评分权重和综合得分模型未固化</td>
+<td>难以跨客户复用</td>
+<td>客户自定义字段 + 仪表盘</td>
+<td>P1</td>
+<td>产品维护区评估</td>
+</tr>
+<tr>
+<td>跨 FlowSpace 指标口径依赖配置质量</td>
+<td>看板可靠性受限</td>
+<td>先做核心字段规范</td>
+<td>P0</td>
+<td>数据分析支持</td>
+</tr>
+<tr>
+<td>风险等级自动更新规则待确认</td>
+<td>自动化可能误判</td>
+<td>人工评审后更新</td>
+<td>P1</td>
+<td>待确认问题</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12">12. 产品成功应用</h2>
+<h3 id="_2">客户识别信号</h3>
+<ul>
+<li>客户想知道哪些供应商表现好、哪些高风险。</li>
+<li>客户已有订单、验货、CAP 数据，但无法联动分析。</li>
+<li>客户想按供应商等级、风险、证书状态筛选订单或工厂。</li>
+</ul>
+<h3 id="_3">重点诊断问题</h3>
+<ul>
+<li>客户是否已有稳定数据来源？</li>
+<li>绩效用于什么决策：分配订单、复审、暂停、谈判还是培训？</li>
+<li>哪些指标必须精确计算，哪些可以先作为运营观察？</li>
+<li>是否允许人工评审调整等级？</li>
+</ul>
+<h3 id="_4">方案输出入口</h3>
+<ul>
+<li>对应运营方案：<a href="../../50-运营支持知识/03-业务场景案例库/供应商绩效与风险看板方案.md">供应商绩效与风险看板方案</a></li>
+<li>能力边界：平台可以汇总流程数据和资源库状态；复杂评分模型和外部财务/产能风险需确认数据来源。</li>
+</ul>
+<h2 id="13">13. 来源与可信度</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>类型</th>
+<th>证据等级</th>
+<th>支撑结论</th>
+<th>版本或日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跨 FlowSpace 数据整合实例</td>
+<td>内部配置实践</td>
+<td>E3</td>
+<td>跨流程指标和看板</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>供应链必备知识地图</td>
+<td>行业总纲</td>
+<td>E4</td>
+<td>供应商绩效维度</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>客户绩效评价样本</td>
+<td>待补充</td>
+<td>E3</td>
+<td>指标、权重和等级</td>
+<td>待收集</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14">14. 待确认问题</h2>
+<ul>
+<li>[ ] 收集至少 2 个客户供应商评分表或供应商月报样本。</li>
+<li>[ ] 数据分析确认首批可稳定落地的供应商绩效指标。</li>
+<li>[ ] 产品确认供应商等级是否应支持自动变更或仅人工评审。</li>
+</ul>
+<h2 id="15">15. 关联知识</h2>
+<ul>
+<li>数据分析：<a href="../../60-数据分析支持/核心指标口径.md">核心指标口径</a></li>
+<li>运营方案：<a href="../../50-运营支持知识/04-监控与数据分析/跨FlowSpace数据整合实例.md">跨 FlowSpace 数据整合实例</a></li>
+<li>产品对象：<a href="../../20-业务对象与数据模型/资源库.md">资源库</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

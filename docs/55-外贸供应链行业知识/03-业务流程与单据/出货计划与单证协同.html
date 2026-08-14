@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>出货计划与单证协同 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">出货计划与单证协同</h1>
+<h2 id="1">1. 业务定义</h2>
+<p>出货计划与单证协同是围绕订单或出货批次安排发货时间、装运方式、关键截止节点，并收集、审核和归档商业发票、装箱单、提单、原产地证、保险单、报关资料等单证的过程。</p>
+<p>本页关注协同、资料收集、审批和追踪；不替代专业货代系统、报关系统或贸易合规判断。</p>
+<h2 id="2">2. 适用客户与前提</h2>
+<table>
+<thead>
+<tr>
+<th>客户类型</th>
+<th>适用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>贸易公司</td>
+<td>跟踪出货计划、工厂资料和客户单证确认</td>
+</tr>
+<tr>
+<td>品牌方/进口商</td>
+<td>管理供应商出货资料、到港风险和单证完整性</td>
+</tr>
+<tr>
+<td>Sourcing Agency</td>
+<td>协调供应商、工厂、货代、客户和内部团队</td>
+</tr>
+<tr>
+<td>供应商/工厂</td>
+<td>提交出货信息、箱唛、装箱资料和附件</td>
+</tr>
+</tbody>
+</table>
+<p>前提是客户明确出货节点、单证清单、责任人、截止日期和审核规则。</p>
+<h2 id="3">3. 参与角色与责任</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要责任</th>
+<th>提供的数据</th>
+<th>做出的决策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跟单/物流协调</td>
+<td>维护出货计划和节点</td>
+<td>出货日期、方式、货代、状态</td>
+<td>是否推进单证审核</td>
+</tr>
+<tr>
+<td>供应商/工厂</td>
+<td>提交出货和包装资料</td>
+<td>箱数、重量、体积、装箱单、照片</td>
+<td>确认资料准确</td>
+</tr>
+<tr>
+<td>货代/服务商</td>
+<td>提供运输和单证信息</td>
+<td>订舱、提单、截单、船期</td>
+<td>运输安排建议</td>
+</tr>
+<tr>
+<td>客户/品牌方</td>
+<td>审核关键单证和放行</td>
+<td>审核意见、修改要求</td>
+<td>放行、退回修改</td>
+</tr>
+<tr>
+<td>产品成功/实施</td>
+<td>配置出货协同流程</td>
+<td>模板、字段、权限和提醒</td>
+<td>判断配置方案</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 核心业务对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>定义</th>
+<th>关键字段</th>
+<th>与其他对象的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出货计划</td>
+<td>一次发货安排</td>
+<td>订单、批次、预计出货日、运输方式</td>
+<td>关联订单和单证任务</td>
+</tr>
+<tr>
+<td>出货批次</td>
+<td>一笔订单的一次或多次发货</td>
+<td>批次数量、箱数、重量、体积</td>
+<td>可关联多个单证</td>
+</tr>
+<tr>
+<td>单证任务</td>
+<td>单证收集和审核任务</td>
+<td>单证类型、责任人、截止日、状态</td>
+<td>关联出货计划</td>
+</tr>
+<tr>
+<td>单证附件</td>
+<td>具体文件</td>
+<td>文件类型、版本、提交人、审核结果</td>
+<td>作为审计资料</td>
+</tr>
+<tr>
+<td>异常记录</td>
+<td>出货或单证问题</td>
+<td>原因、影响、责任人、处理状态</td>
+<td>可影响出货放行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 标准业务流程</h2>
+<pre><code class="language-mermaid">flowchart LR
+  A[&quot;订单进入出货准备&quot;] --&gt; B[&quot;创建出货计划/批次&quot;]
+  B --&gt; C[&quot;分派单证任务&quot;]
+  C --&gt; D[&quot;供应商/工厂/货代提交资料&quot;]
+  D --&gt; E[&quot;内部或客户审核&quot;]
+  E --&gt; F{&quot;资料是否通过?&quot;}
+  F -- &quot;否&quot; --&gt; G[&quot;退回修改&quot;]
+  G --&gt; D
+  F -- &quot;是&quot; --&gt; H[&quot;确认出货/放行&quot;]
+  H --&gt; I[&quot;归档单证并更新出货状态&quot;]
+</code></pre>
+<h2 id="6">6. 状态与业务规则</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>状态或规则</th>
+<th>进入条件</th>
+<th>允许操作</th>
+<th>退出条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出货计划</td>
+<td>待确认</td>
+<td>订单达到出货准备</td>
+<td>编辑计划、分派任务</td>
+<td>计划确认</td>
+</tr>
+<tr>
+<td>单证任务</td>
+<td>待提交</td>
+<td>单证清单生成</td>
+<td>提交附件、补充字段</td>
+<td>提交审核</td>
+</tr>
+<tr>
+<td>单证任务</td>
+<td>待审核</td>
+<td>附件已提交</td>
+<td>批复、退回、通过</td>
+<td>审核通过或退回</td>
+</tr>
+<tr>
+<td>出货计划</td>
+<td>待放行</td>
+<td>单证基本齐全</td>
+<td>放行、退回、标记异常</td>
+<td>放行或暂缓</td>
+</tr>
+<tr>
+<td>出货计划</td>
+<td>已出货</td>
+<td>确认发货</td>
+<td>查看、补充单证、归档</td>
+<td>到货或结案</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 异常、风险与控制措施</h2>
+<table>
+<thead>
+<tr>
+<th>风险或异常</th>
+<th>业务影响</th>
+<th>识别方式</th>
+<th>控制措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单证缺失或版本错误</td>
+<td>清关、收款或客户确认受阻</td>
+<td>单证状态未通过</td>
+<td>单证清单、必填附件、版本记录</td>
+</tr>
+<tr>
+<td>出货计划频繁变更</td>
+<td>客户承诺和物流安排失真</td>
+<td>日期变更历史</td>
+<td>变更原因和批复</td>
+</tr>
+<tr>
+<td>分批出货不清</td>
+<td>数量、箱数和订单完成状态错误</td>
+<td>出货批次缺少结构</td>
+<td>批次字段或独立出货 FlowSpace</td>
+</tr>
+<tr>
+<td>截单/截港节点遗漏</td>
+<td>运输延误</td>
+<td>关键日期无提醒</td>
+<td>自动化提醒</td>
+</tr>
+<tr>
+<td>单证涉及合规判断</td>
+<td>错误承诺风险</td>
+<td>客户要求专业判断</td>
+<td>标记平台边界，交由专业方确认</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 管理指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+<th>建议口径</th>
+<th>数据来源</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单证按时提交率</td>
+<td>判断资料准备效率</td>
+<td>按时提交单证/应提交单证</td>
+<td>单证任务</td>
+<td>催办责任方</td>
+</tr>
+<tr>
+<td>单证一次通过率</td>
+<td>判断资料质量</td>
+<td>首次审核通过单证/已审核单证</td>
+<td>批复记录</td>
+<td>培训供应商</td>
+</tr>
+<tr>
+<td>出货准时率</td>
+<td>判断交付执行</td>
+<td>准时出货批次/计划出货批次</td>
+<td>出货计划</td>
+<td>识别延期原因</td>
+</tr>
+<tr>
+<td>出货异常数</td>
+<td>管理风险</td>
+<td>按异常类型统计</td>
+<td>异常记录</td>
+<td>升级处理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-linkincrease">9. Linkincrease 能力映射</h2>
+<table>
+<thead>
+<tr>
+<th>行业需求或规则</th>
+<th>Linkincrease 对象或能力</th>
+<th>数据、状态或权限影响</th>
+<th>支持度</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出货计划管理</td>
+<td>订单、里程碑、工单</td>
+<td>计划日期、批次、责任人</td>
+<td>L2</td>
+<td>订单 FlowSpace 中设出货里程碑</td>
+</tr>
+<tr>
+<td>单证清单和提交</td>
+<td>工单、附件、表单组件</td>
+<td>单证类型、版本、状态</td>
+<td>L2</td>
+<td>每类单证作为工单或字段</td>
+</tr>
+<tr>
+<td>单证审核</td>
+<td>批复、状态、历史记录</td>
+<td>审核意见、退回原因</td>
+<td>L2</td>
+<td>用工单批复保留记录</td>
+</tr>
+<tr>
+<td>分批出货</td>
+<td>子表、工单、关联 FlowSpace</td>
+<td>批次数量、日期、单证关联</td>
+<td>L2/LX</td>
+<td>简单用子表/工单，复杂批次模型待确认</td>
+</tr>
+<tr>
+<td>截止提醒</td>
+<td>自动化、消息通知</td>
+<td>日期触发、通知对象</td>
+<td>L2</td>
+<td>单证截止和出货日期提醒</td>
+</tr>
+<tr>
+<td>出货看板</td>
+<td>仪表盘、报告</td>
+<td>出货状态、单证状态、逾期</td>
+<td>L2</td>
+<td>建出货进度和单证完整性看板</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 测试关注点</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>需要验证的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主流程</td>
+<td>计划、提交、审核、退回、放行、归档</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>供应商/工厂/货代只能提交自己负责的资料</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>退回修改、分批出货、计划变更、暂缓放行</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>附件版本、批次数量、订单状态和历史快照</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>附件失效、重复提交、计划延期、任务逾期</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>日期变更、批复和出货放行记录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11">11. 产品差距与需求候选</h2>
+<table>
+<thead>
+<tr>
+<th>差距</th>
+<th>业务影响</th>
+<th>当前替代方案</th>
+<th>建议优先级</th>
+<th>去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出货批次对象模型待确认</td>
+<td>分批出货统计和状态汇总复杂</td>
+<td>子表或工单记录批次</td>
+<td>P0 调研</td>
+<td>待确认问题</td>
+</tr>
+<tr>
+<td>单证版本比较和结构化校验能力有限</td>
+<td>需要人工审核文件内容</td>
+<td>附件版本 + 批复</td>
+<td>P2</td>
+<td>产品维护区评估</td>
+</tr>
+<tr>
+<td>物流节点和货代系统集成待评估</td>
+<td>运输信息依赖外部系统</td>
+<td>手工维护关键日期</td>
+<td>P1</td>
+<td>集成需求候选</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12">12. 产品成功应用</h2>
+<h3 id="_2">客户识别信号</h3>
+<ul>
+<li>客户说出货资料、装箱单、发票、提单等文件靠邮件催。</li>
+<li>客户不知道某个订单是否可以出货、单证是否齐全。</li>
+<li>客户存在分批出货、延期、退回修改和客户审核。</li>
+</ul>
+<h3 id="_3">重点诊断问题</h3>
+<ul>
+<li>出货是订单级还是批次级？</li>
+<li>需要收集哪些单证，谁提交，谁审核？</li>
+<li>哪些日期需要提醒？</li>
+<li>单证审核是否影响出货放行？</li>
+<li>是否需要和货代、ERP 或报关系统协同？</li>
+</ul>
+<h3 id="_4">方案输出入口</h3>
+<ul>
+<li>对应运营方案：<a href="../../50-运营支持知识/03-业务场景案例库/出货单证收集与审批方案.md">出货单证收集与审批方案</a></li>
+<li>能力边界：平台管理协同、附件、审批和提醒，不替代专业报关、清关或运输执行系统。</li>
+</ul>
+<h2 id="13">13. 来源与可信度</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>类型</th>
+<th>证据等级</th>
+<th>支撑结论</th>
+<th>版本或日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单管理类模板最佳实践</td>
+<td>内部配置实践</td>
+<td>E3</td>
+<td>出货节点、附件和批复配置</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>外贸供应链全景与端到端业务地图</td>
+<td>行业总纲</td>
+<td>E4</td>
+<td>出货与单证在链路中的位置</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>外贸单证协同行业实践</td>
+<td>待补充来源</td>
+<td>E4</td>
+<td>单证清单和出货流程</td>
+<td>待验证</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14">14. 待确认问题</h2>
+<ul>
+<li>[ ] 产品确认出货批次在订单、工单、子表或独立 FlowSpace 中的推荐模式。</li>
+<li>[ ] 产品成功补充客户常见单证清单和审核责任样本。</li>
+<li>[ ] 数据分析确认出货准时率和单证完整性的口径。</li>
+</ul>
+<h2 id="15">15. 关联知识</h2>
+<ul>
+<li>产品权威规则：<a href="../../10-功能模块详情/订单.md">订单</a>、<a href="../../10-功能模块详情/工单与批复.md">工单与批复</a>、<a href="../../10-功能模块详情/自动化.md">自动化</a></li>
+<li>业务流程：<a href="../../30-业务流程与产品流程图/订单生命周期.md">订单生命周期</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>供应链系统地图与边界 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">供应链系统地图与边界</h1>
+<h2 id="1">1. 目标</h2>
+<p>本页用于说明供应链常见系统的职责边界，帮助产品成功判断客户需求应该由 Linkincrease 承载，还是应由 ERP、PLM、MES、WMS、TMS、QMS、SRM 或外部系统承载。</p>
+<h2 id="2">2. 常见系统版图</h2>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>主要职责</th>
+<th>常见数据</th>
+<th>与 Linkincrease 的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ERP</td>
+<td>订单、采购、财务、库存、结算</td>
+<td>采购订单、供应商、物料、价格、发票</td>
+<td>Linkincrease 可协同订单履约和外部任务，ERP 保持交易和财务权威</td>
+</tr>
+<tr>
+<td>PLM</td>
+<td>产品开发、款式、规格、BOM</td>
+<td>款式、规格、样品、BOM、版本</td>
+<td>Linkincrease 可协同样品/资料收集，PLM 保持产品技术数据权威</td>
+</tr>
+<tr>
+<td>MES</td>
+<td>生产执行、工序、产量、设备</td>
+<td>生产计划、工序进度、产量、异常</td>
+<td>Linkincrease 可采集/协同进度，MES 保持车间执行明细</td>
+</tr>
+<tr>
+<td>WMS</td>
+<td>仓储、收发货、库存</td>
+<td>库位、库存、入库、出库</td>
+<td>Linkincrease 可协同出货资料，不替代库存管理</td>
+</tr>
+<tr>
+<td>TMS</td>
+<td>运输计划和物流执行</td>
+<td>运输单、路线、承运人、轨迹</td>
+<td>Linkincrease 可协同出货节点和单证，不替代运输执行</td>
+</tr>
+<tr>
+<td>QMS</td>
+<td>质量标准、检验、缺陷、质量改进</td>
+<td>检验标准、缺陷、质量事件</td>
+<td>Linkincrease 可承载验货协同和 CAP，不替代完整质量体系</td>
+</tr>
+<tr>
+<td>SRM</td>
+<td>供应商准入、绩效、合同、风险</td>
+<td>供应商档案、评价、合同</td>
+<td>Linkincrease 可承载准入/协同/绩效轻量场景</td>
+</tr>
+<tr>
+<td>协同平台</td>
+<td>跨组织流程、任务、证据、审批、看板</td>
+<td>工单、附件、状态、批复、日志</td>
+<td>Linkincrease 的核心定位</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 边界判断</h2>
+<table>
+<thead>
+<tr>
+<th>客户需求</th>
+<th>优先判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>要录入和协同供应商资料</td>
+<td>Linkincrease 资源库 + 权限</td>
+</tr>
+<tr>
+<td>要管理采购订单金额、发票、付款</td>
+<td>ERP/财务系统为主，Linkincrease 只做协同证据</td>
+</tr>
+<tr>
+<td>要跟踪生产现场每道工序产量</td>
+<td>MES 为主，Linkincrease 可做节点采集或异常协同</td>
+</tr>
+<tr>
+<td>要管理出货文件收集和审批</td>
+<td>Linkincrease 可承载</td>
+</tr>
+<tr>
+<td>要自动计算库存可用量</td>
+<td>WMS/ERP 为主</td>
+</tr>
+<tr>
+<td>要质量抽样标准和缺陷库</td>
+<td>QMS 或专业规则为主，Linkincrease 可做验货协同</td>
+</tr>
+<tr>
+<td>要供应商风险和绩效看板</td>
+<td>Linkincrease 可做轻量看板，复杂评分模型需确认</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 集成表达方式</h2>
+<p>不要直接承诺“我们可以替代 ERP/MES/WMS”。更稳妥的表达：</p>
+<pre><code class="language-text">Linkincrease 更适合承载跨组织协同、任务推进、资料收集、审批留痕和运营看板。
+如果客户已有 ERP/MES/WMS/TMS/QMS，可以把它们作为专业数据源或执行系统，
+Linkincrease 负责把外部协作和过程证据组织起来。
+</code></pre>
+<h2 id="5-linkincrease">5. Linkincrease 系统边界</h2>
+<table>
+<thead>
+<tr>
+<th>适合承载</th>
+<th>谨慎承诺</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外部供应商/工厂协作</td>
+<td>财务记账、付款、库存核算</td>
+</tr>
+<tr>
+<td>FlowSpace 流程跟踪</td>
+<td>生产排程和设备执行</td>
+</tr>
+<tr>
+<td>工单采集、附件和批复</td>
+<td>专业质量标准自动判定</td>
+</tr>
+<tr>
+<td>权限隔离和数据围栏</td>
+<td>运输轨迹实时追踪</td>
+</tr>
+<tr>
+<td>自动化提醒和审计</td>
+<td>法规合规自动判断</td>
+</tr>
+<tr>
+<td>运营仪表盘和报告</td>
+<td>复杂预测和优化算法</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 关联知识</h2>
+<ul>
+<li><a href="./供应链协同平台能力模型.md">供应链协同平台能力模型</a></li>
+<li><a href="./Linkincrease在数字供应链中的定位.md">Linkincrease 在数字供应链中的定位</a></li>
+<li><a href="../80-架构与技术方案/集成方案.md">集成方案</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>产品经理知识库工作台 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">产品经理知识库工作台</h1>
+<p>本页说明产品经理如何把知识库当成日常工作工具，而不是只在需要查资料时打开。</p>
+<h2 id="_2">工作台目标</h2>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求澄清更快</td>
+<td>用知识库快速定位业务对象、用户角色、权限边界和已有能力</td>
+</tr>
+<tr>
+<td>PRD 更完整</td>
+<td>在写需求前先检查对象、流程、权限、数据、日志、报表和测试影响</td>
+</tr>
+<tr>
+<td>决策可追溯</td>
+<td>把重要取舍记录到决策记录，避免未来重复讨论</td>
+</tr>
+<tr>
+<td>客户反馈可沉淀</td>
+<td>把反馈转成需求池、FAQ、SOP、Skill 或待确认问题</td>
+</tr>
+<tr>
+<td>AI 协作更稳定</td>
+<td>让 Agent 按任务读取正确知识资产，而不是按关键词过度联想</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">高频工作方式</h2>
+<table>
+<thead>
+<tr>
+<th>工作场景</th>
+<th>推荐入口</th>
+<th>产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模糊需求澄清</td>
+<td><code>skills/linkincrease-product-manager</code>、<code>docs/00</code>、<code>docs/70/需求池.md</code></td>
+<td>问题定义、待确认问题、初步范围</td>
+</tr>
+<tr>
+<td>PRD 初稿</td>
+<td><code>skills/linkincrease-product-manager</code> + <code>skills/linkincrease-requirement-design</code></td>
+<td>PRD 框架、功能清单、验收标准</td>
+</tr>
+<tr>
+<td>影响范围分析</td>
+<td><code>docs/20</code>、<code>docs/30</code>、<code>docs/40</code>、<code>docs/60</code></td>
+<td>影响矩阵、拆分建议、风险</td>
+</tr>
+<tr>
+<td>客户反馈整理</td>
+<td><code>docs/70/客户反馈.md</code>、<code>docs/50</code></td>
+<td>反馈分类、产品机会、SOP/FAQ 建议</td>
+</tr>
+<tr>
+<td>产品决策沉淀</td>
+<td><code>docs/70/决策记录.md</code></td>
+<td>决策背景、选项、结论、复盘条件</td>
+</tr>
+<tr>
+<td>周复盘</td>
+<td><code>docs/50/06-运营规范与SOP/每周知识库复盘流程.md</code>、本页</td>
+<td>本周入库清单、下周产品动作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">推荐提示词</h2>
+<h3 id="_5">需求澄清</h3>
+<pre><code class="language-text">使用 linkincrease-product-manager，基于知识库帮我分析这个需求：
+{粘贴客户描述或内部想法}
+
+请输出：
+1. 我们先怎么理解这个问题
+2. 需要确认的问题
+3. 可能影响的产品对象、流程、权限、数据和报表
+4. 哪些内容暂不进入范围
+5. 下一步应该写 PRD、转配置/SOP，还是进入待确认
+</code></pre>
+<h3 id="_6">影响范围分析</h3>
+<pre><code class="language-text">使用 linkincrease-product-manager，帮我做影响范围分析：
+{需求描述}
+
+请按产品端、业务对象、流程状态、权限数据围栏、通知自动化、报表指标、日志审计、导入导出、测试回归输出矩阵。
+</code></pre>
+<h3 id="prd">PRD 初稿</h3>
+<pre><code class="language-text">先使用 linkincrease-product-manager 做需求框架，再使用 linkincrease-requirement-design 补成可评审 PRD：
+{需求描述}
+</code></pre>
+<h3 id="_7">产品周复盘</h3>
+<pre><code class="language-text">使用 linkincrease-product-manager，基于以下本周客户反馈/会议纪要/需求讨论，帮我复盘：
+1. 哪些应进入需求池
+2. 哪些应沉淀成 FAQ/SOP/Skill
+3. 哪些需要决策记录
+4. 哪些旧文档需要更新或标记 deprecated
+5. 下周产品动作建议
+</code></pre>
+<h2 id="_8">工作闭环</h2>
+<pre><code class="language-mermaid">flowchart LR
+  A[&quot;客户反馈 / 内部需求&quot;] --&gt; B[&quot;需求澄清&quot;]
+  B --&gt; C[&quot;影响范围分析&quot;]
+  C --&gt; D{&quot;处理方式&quot;}
+  D -- &quot;产品需求&quot; --&gt; E[&quot;PRD / 需求池&quot;]
+  D -- &quot;配置或培训&quot; --&gt; F[&quot;SOP / FAQ / 产品成功 Skill&quot;]
+  D -- &quot;规则不清&quot; --&gt; G[&quot;待确认问题&quot;]
+  D -- &quot;重要取舍&quot; --&gt; H[&quot;决策记录&quot;]
+  E --&gt; I[&quot;版本复盘&quot;]
+  F --&gt; I
+  G --&gt; I
+  H --&gt; I
+  I --&gt; J[&quot;更新 metadata 与索引&quot;]
+</code></pre>
+<h2 id="_9">判断原则</h2>
+<ol>
+<li>能通过配置、SOP 或培训解决的，不直接升级为产品功能。</li>
+<li>会改变对象、权限、流程、数据、报表或日志的，必须做影响范围分析。</li>
+<li>来自单一客户的诉求，先记录证据和适用边界，再判断是否产品化。</li>
+<li>涉及历史取舍、范围砍掉、规则变化的，必须补决策记录。</li>
+<li>AI 输出不能直接当结论，必须回到权威知识页、来源和待确认问题做校验。</li>
+</ol>
+
+  </article>
+</body>
+</html>

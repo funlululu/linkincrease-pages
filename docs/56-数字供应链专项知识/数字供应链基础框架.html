@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>数字供应链基础框架 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">数字供应链基础框架</h1>
+<h2 id="1">1. 定义</h2>
+<p>数字供应链不是把线下表格搬到系统里，而是用数字化方式连接供应链中的组织、对象、流程、数据、风险和决策。它要解决的问题包括：数据分散、流程不可见、责任不清、异常滞后、外部协同困难、管理层缺少可信指标。</p>
+<p>对 Linkincrease 而言，数字供应链的重点不是替代所有专业系统，而是承载跨组织协同、流程跟踪、数据采集、权限隔离、审计追溯和运营可视化。</p>
+<h2 id="2">2. 数字供应链能力层</h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>目标</th>
+<th>典型能力</th>
+<th>Linkincrease 关注点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>连接层</td>
+<td>连接内外部组织和系统</td>
+<td>外部协作、账号、邮件、API</td>
+<td>协作团队、数据围栏、外部采集、集成</td>
+</tr>
+<tr>
+<td>数据层</td>
+<td>建立可复用对象和可信数据</td>
+<td>主数据、流程数据、附件、历史快照</td>
+<td>资源库、订单、工单、字段、附件、历史记录</td>
+</tr>
+<tr>
+<td>流程层</td>
+<td>将业务过程可执行化</td>
+<td>阶段、任务、审批、状态、异常</td>
+<td>FlowSpace、里程碑、工单、批复、自动化</td>
+</tr>
+<tr>
+<td>管控层</td>
+<td>管理权限、风险和合规</td>
+<td>角色权限、审计、预警、升级</td>
+<td>权限体系、日志、自动化提醒、风险看板</td>
+</tr>
+<tr>
+<td>分析层</td>
+<td>支持管理决策</td>
+<td>指标、仪表盘、报告、趋势</td>
+<td>Tower 仪表盘、跨 FlowSpace 数据、报告</td>
+</tr>
+<tr>
+<td>智能层</td>
+<td>辅助判断和优化</td>
+<td>预测、推荐、异常识别、Agent</td>
+<td>依赖稳定数据和业务规则，现阶段应谨慎承诺</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 常见客户问题归类</h2>
+<table>
+<thead>
+<tr>
+<th>客户原话</th>
+<th>本质问题</th>
+<th>优先建设</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“资料都在 Excel 和聊天里”</td>
+<td>主数据和附件治理</td>
+<td>资源库、字段标准、权限</td>
+</tr>
+<tr>
+<td>“进度要一个个问供应商”</td>
+<td>外部协同和流程可视化</td>
+<td>FlowSpace、工单、自动化提醒</td>
+</tr>
+<tr>
+<td>“不知道哪些订单有风险”</td>
+<td>状态、异常和预警缺失</td>
+<td>关键节点、异常工单、看板</td>
+</tr>
+<tr>
+<td>“管理层想看供应商表现”</td>
+<td>指标口径和数据来源不稳</td>
+<td>指标定义、跨流程数据、仪表盘</td>
+</tr>
+<tr>
+<td>“想自动判断风险”</td>
+<td>数据和规则还未沉淀</td>
+<td>先做数据治理和人工规则，再谈智能</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 建设顺序</h2>
+<pre><code class="language-mermaid">flowchart LR
+  A[&quot;业务场景识别&quot;] --&gt; B[&quot;主数据治理&quot;]
+  B --&gt; C[&quot;流程标准化&quot;]
+  C --&gt; D[&quot;权限和审计&quot;]
+  D --&gt; E[&quot;自动化提醒&quot;]
+  E --&gt; F[&quot;可视化看板&quot;]
+  F --&gt; G[&quot;复盘和优化&quot;]
+  G --&gt; H[&quot;智能分析/预测&quot;]
+</code></pre>
+<p>不要跳过前面的数据和流程治理，直接做“智能预警”或“管理大屏”。没有稳定对象、状态和字段口径，后续分析会失真。</p>
+<h2 id="5-linkincrease">5. Linkincrease 方案表达方式</h2>
+<p>对客户讲数字供应链时，应按这个顺序表达：</p>
+<ol>
+<li>先说明客户处在哪个业务场景和数字化阶段。</li>
+<li>说明当前问题属于数据、流程、协同、权限、预警还是分析。</li>
+<li>说明 Linkincrease 用哪些对象承载：资源库、FlowSpace、订单、里程碑、工单、批复、仪表盘。</li>
+<li>说明哪些能力标准支持，哪些需要配置，哪些要外部系统或人工规则。</li>
+<li>说明上线先做什么，后续如何扩展。</li>
+</ol>
+<h2 id="6">6. 关联知识</h2>
+<ul>
+<li><a href="./供应链数字化成熟度模型.md">供应链数字化成熟度模型</a></li>
+<li><a href="./供应链系统地图与边界.md">供应链系统地图与边界</a></li>
+<li><a href="./Linkincrease在数字供应链中的定位.md">Linkincrease 在数字供应链中的定位</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

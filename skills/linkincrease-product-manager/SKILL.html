@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linkincrease Product Manager - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="linkincrease-product-manager">Linkincrease Product Manager</h1>
+<h2 id="purpose">Purpose</h2>
+<p>Use this skill as the Linkincrease-specific product manager workbench. It turns customer feedback, business scenarios, stakeholder requests, and existing knowledge-base pages into clear product decisions, implementable requirement structures, impact analysis, and knowledge updates.</p>
+<p>This skill does not replace <code>linkincrease-requirement-design</code> or <code>linkincrease-product-success</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>linkincrease-product-manager</code></td>
+<td>Clarify product problem, decide scope, assess impact, plan PRD structure, record decisions, and review product knowledge health.</td>
+</tr>
+<tr>
+<td><code>linkincrease-requirement-design</code></td>
+<td>Produce or review implementation-ready PRDs after the requirement direction is clear.</td>
+</tr>
+<tr>
+<td><code>linkincrease-product-success</code></td>
+<td>Turn customer scenarios into onboarding/configuration/support outputs.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="knowledge-base-resolution">Knowledge Base Resolution</h2>
+<p>Resolve the Linkincrease knowledge base in this order:</p>
+<pre><code class="language-text">1. If LINKINCREASE_KB_PATH is set and exists, use it.
+2. Else if the current workspace contains metadata/source-roots.csv and docs/README.md, use the current workspace.
+3. Else search nearby workspace/repository roots for those marker files.
+4. Else ask the user for the knowledge base path or a read-only site/repository location.
+</code></pre>
+<p>Treat <code>docs/</code> and <code>metadata/documents.csv</code> as the knowledge authority. Treat customer chats, meeting notes, screenshots, and unconfirmed requests as evidence, not product rules, until they are reviewed and recorded.</p>
+<h2 id="core-rules">Core Rules</h2>
+<ol>
+<li>Start from the product problem, not from a module keyword.</li>
+<li>Search with <code>rg</code> before reading files; read only the pages needed for the current task.</li>
+<li>Separate product facts, customer-specific practices, assumptions, risks, and decisions.</li>
+<li>Never convert one customer's workaround directly into a general product rule.</li>
+<li>For every meaningful product change, check object, flow, permission, data, notification, log, analytics, import/export, compatibility, and test impact.</li>
+<li>Record unresolved items in <code>docs/90-版本历史与来源治理/待确认问题.md</code>.</li>
+<li>Record durable product tradeoffs in <code>docs/70-产品维护知识/决策记录.md</code>.</li>
+<li>When a request is ready for PRD-level detail, hand off to <code>linkincrease-requirement-design</code>.</li>
+<li>When the request is actually onboarding, configuration, or customer support, hand off to <code>linkincrease-product-success</code>.</li>
+</ol>
+<h2 id="workflow-decision-tree">Workflow Decision Tree</h2>
+<pre><code class="language-text">User gives a vague customer request
+-&gt; Use Requirement Clarification Workflow.
+
+User asks whether to do a feature or how big it is
+-&gt; Use Impact and Scope Workflow.
+
+User asks to write a PRD
+-&gt; Use PRD Framing Workflow, then hand off to requirement-design for full details.
+
+User asks why a product direction was chosen
+-&gt; Use Decision Record Workflow.
+
+User asks how to improve PM work with the knowledge base
+-&gt; Use Product Knowledge Loop Workflow.
+
+User shares many customer issues or weekly notes
+-&gt; Use Feedback Synthesis Workflow.
+</code></pre>
+<p>Read <code>references/product-manager-workflows.md</code> when producing a concrete PM deliverable, decision record, weekly review, or product knowledge update.</p>
+<h2 id="requirement-clarification-workflow">Requirement Clarification Workflow</h2>
+<p>Output:</p>
+<pre><code class="language-md">## 我先按这个需求理解
+## 业务目标
+## 目标用户与场景
+## 已知证据
+## 需要确认的问题
+## 可能影响的对象/流程/权限/数据
+## 暂不进入范围
+## 下一步建议
+</code></pre>
+<p>Prioritize questions that change scope, data model, permissions, workflow, or acceptance criteria.</p>
+<h2 id="impact-and-scope-workflow">Impact and Scope Workflow</h2>
+<p>Use this checklist before judging effort or feasibility:</p>
+<table>
+<thead>
+<tr>
+<th>Impact area</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product end</td>
+<td>运营端、贸易端、采集端、公共能力是否受影响</td>
+</tr>
+<tr>
+<td>Object model</td>
+<td>FlowSpace、订单、里程碑、工单、资源库、模板、字段、附件、报告是否受影响</td>
+</tr>
+<tr>
+<td>Process</td>
+<td>创建、编辑、提交、批复、采集、同步、归档、导入导出是否变化</td>
+</tr>
+<tr>
+<td>Permission</td>
+<td>角色、协作团队、数据围栏、按钮权限、字段可见性是否变化</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>写入来源、引用关系、历史数据、同步规则、口径是否变化</td>
+</tr>
+<tr>
+<td>Notification</td>
+<td>消息、邮件、自动化、定时任务、执行日志是否变化</td>
+</tr>
+<tr>
+<td>Analytics</td>
+<td>仪表盘、报表、统计口径、筛选维度是否变化</td>
+</tr>
+<tr>
+<td>Audit</td>
+<td>操作日志、动态、历史记录、系统执行记录是否变化</td>
+</tr>
+<tr>
+<td>Compatibility</td>
+<td>旧模板、旧数据、客户配置、移动端版本是否兼容</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>权限测试、异常边界、回归范围、验收标准是否明确</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prd-framing-workflow">PRD Framing Workflow</h2>
+<p>For early PRD framing, produce only the structure and open questions unless the user asks for the full PRD.</p>
+<pre><code class="language-md">## 背景与问题
+## 目标与非目标
+## 用户角色
+## 场景流程
+## 功能清单
+## 产品端设计范围
+## 对象与数据规则
+## 权限与审计
+## 通知与自动化
+## 报表与指标
+## 验收标准
+## 风险与待确认
+## 需要同步的知识库页面
+</code></pre>
+<p>If full implementation detail is needed, switch to <code>linkincrease-requirement-design</code>.</p>
+<h2 id="decision-record-workflow">Decision Record Workflow</h2>
+<p>Use this when a decision changes product behavior, product scope, implementation priority, object model, permission boundary, analytics口径, or customer-facing explanation.</p>
+<p>Write or propose entries using:</p>
+<pre><code class="language-md">## 决策：{标题}
+
+| 字段 | 内容 |
+| --- | --- |
+| 日期 | YYYY-MM-DD |
+| 状态 | proposed / approved / deprecated |
+| 背景 |  |
+| 选项 |  |
+| 最终结论 |  |
+| 决策原因 |  |
+| 影响范围 |  |
+| 关联文档 |  |
+| 后续复盘条件 |  |
+</code></pre>
+<h2 id="product-knowledge-loop-workflow">Product Knowledge Loop Workflow</h2>
+<p>Every product work item should end with one of these outcomes:</p>
+<table>
+<thead>
+<tr>
+<th>Work residue</th>
+<th>Knowledge destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confirmed product rule</td>
+<td><code>docs/10</code>, <code>docs/20</code>, <code>docs/30</code>, or <code>docs/40</code></td>
+</tr>
+<tr>
+<td>Reusable PM method</td>
+<td><code>docs/70-产品维护知识/产品经理知识库工作台.md</code> or a skill</td>
+</tr>
+<tr>
+<td>Customer support playbook</td>
+<td><code>docs/50-运营支持知识/08-工作技能</code></td>
+</tr>
+<tr>
+<td>Metric or dashboard口径</td>
+<td><code>docs/60-数据分析支持</code></td>
+</tr>
+<tr>
+<td>Product tradeoff</td>
+<td><code>docs/70-产品维护知识/决策记录.md</code></td>
+</tr>
+<tr>
+<td>Source conflict or uncertainty</td>
+<td><code>docs/90-版本历史与来源治理/待确认问题.md</code></td>
+</tr>
+<tr>
+<td>Repository/Agent usage rule</td>
+<td><code>AGENTS.md</code> or <code>docs/90-版本历史与来源治理/知识资产地图.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="output-style">Output Style</h2>
+<p>Keep product-manager outputs short, decisive, and traceable. Prefer tables for impact scope and decisions. Put the recommended next action near the top when the user is asking what to do.</p>
+
+  </article>
+</body>
+</html>

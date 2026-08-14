@@ -41,7 +41,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
   <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
   <article>
 <h1 id="_1">决策记录</h1>
-<p>本页用于记录重要产品决策、取舍和原因。</p>
+<p>本页用于记录重要产品决策、取舍和原因。凡是会影响产品范围、对象模型、权限边界、数据口径、客户承诺或长期维护成本的决定，都应该留下记录。</p>
 <h2 id="_2">记录模板</h2>
 <table>
 <thead>
@@ -65,8 +65,28 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </tr>
 </tbody>
 </table>
-<h2 id="_3">维护规则</h2>
-<p>影响业务对象、数据层级、权限或审计的决策，必须同步更新对应权威知识页。</p>
+<h2 id="_3">详细记录模板</h2>
+<pre><code class="language-md">## 决策：{标题}
+
+| 字段 | 内容 |
+| --- | --- |
+| 日期 | YYYY-MM-DD |
+| 状态 | proposed / approved / deprecated |
+| 背景 | 为什么现在需要做这个决定 |
+| 选项 | 至少列出 2 个方案或取舍方向 |
+| 最终结论 | 当前选择 |
+| 决策原因 | 为什么这样选，放弃了什么 |
+| 影响范围 | 产品端、对象、流程、权限、数据、报表、日志、测试 |
+| 关联文档 | 需求、客户反馈、权威知识页、待确认问题 |
+| 后续复盘条件 | 什么情况下需要重新评估 |
+</code></pre>
+<h2 id="_4">维护规则</h2>
+<ol>
+<li>影响业务对象、数据层级、权限或审计的决策，必须同步更新对应权威知识页。</li>
+<li>影响需求范围、版本排期或客户承诺的决策，必须同步更新需求池或客户反馈。</li>
+<li>决策尚未确认时，状态标记为 <code>proposed</code>，不要写入权威规则页。</li>
+<li>决策失效时，状态标记为 <code>deprecated</code>，保留原因和替代方案。</li>
+</ol>
 
   </article>
 </body>

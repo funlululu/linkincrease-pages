@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>客户访谈与方案评审 SOP - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="sop">客户访谈与方案评审 SOP</h1>
+<h2 id="_1">目标</h2>
+<p>帮助产品成功在输出客户方案前，先把客户行业场景、角色、对象、流程、权限、数据和能力边界问清楚，避免直接按功能清单堆方案。</p>
+<h2 id="_2">输入</h2>
+<ul>
+<li>客户原始诉求或会议纪要</li>
+<li>客户类型、业务范围、现有工具</li>
+<li>相关截图、表格、模板或历史方案</li>
+<li>对应行业场景页和客户方案页</li>
+</ul>
+<h2 id="_3">执行步骤</h2>
+<ol>
+<li>判断客户诉求属于哪个行业场景，例如准入、订单履约、验货、出货、绩效或异常结案。</li>
+<li>读取对应 <code>docs/55</code> 行业场景页，补齐专业诊断问题。</li>
+<li>区分主数据、流程数据、分析数据和客户私有规则。</li>
+<li>读取对应 <code>docs/50</code> 客户方案页，形成初步配置建议。</li>
+<li>校验产品权威页：对象、流程、权限、自动化、仪表盘和审计。</li>
+<li>标记支持度：L1 标准支持、L2 配置支持、L3 变通支持、L4 暂不支持、LX 待确认。</li>
+<li>形成方案评审稿，交由产品/实施/客户成功确认边界。</li>
+</ol>
+<h2 id="_4">访谈问题框架</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务目标</td>
+<td>客户想减少什么成本、控制什么风险、看见什么结果？</td>
+</tr>
+<tr>
+<td>角色</td>
+<td>谁发起、谁提交、谁审核、谁最终决策？</td>
+</tr>
+<tr>
+<td>对象</td>
+<td>哪些是长期复用主数据，哪些是每次流程产生的数据？</td>
+</tr>
+<tr>
+<td>流程</td>
+<td>从什么事件触发，到什么结果算完成？</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>有哪些状态、退回、重启、暂停、关闭规则？</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>外部供应商、工厂、服务商分别能看什么、填什么、改什么？</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>管理层用哪些指标做决策？</td>
+</tr>
+<tr>
+<td>边界</td>
+<td>哪些必须客户或外部专业系统确认？</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">输出格式</h2>
+<pre><code class="language-md">## 客户背景
+## 行业场景判断
+## 当前流程与痛点
+## 主数据与流程数据
+## Linkincrease 推荐方案
+## 权限边界
+## 自动化与看板
+## 能力边界
+## 待确认问题
+## 下一步试点建议
+</code></pre>
+<h2 id="_6">验收标准</h2>
+<ul>
+<li>方案引用了对应行业页和产品权威页。</li>
+<li>没有把单个客户做法写成行业标准。</li>
+<li>每个待确认能力都有责任人或确认方向。</li>
+<li>客户可以理解“为什么这样配”，而不是只看到功能列表。</li>
+</ul>
+
+  </article>
+</body>
+</html>

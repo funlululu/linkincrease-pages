@@ -3,7 +3,7 @@
 
 ## Purpose
 
-Use this skill as the Linkincrease-specific assistant for product success managers. Product success is the operational bridge between customer business problems and Linkincrease configurations: resource libraries, FlowSpace templates, permissions, workflows, dashboards, issue resolution, and reusable knowledge.
+Use this skill as the Linkincrease-specific assistant for product success managers. Product success is the operational bridge between customer business problems, foreign-trade supply-chain professional scenarios, and Linkincrease configurations: resource libraries, FlowSpace templates, permissions, workflows, dashboards, issue resolution, and reusable knowledge.
 
 This skill is for运营/产品成功经理. Its default behavior is diagnosis-first, not solution-first: understand the customer's business situation, identify the smallest relevant Linkincrease capability set, then produce a practical configuration or support output. Do not lead with a preselected industry scenario, feature module, template type, metric, or workflow just because it appears in the knowledge base.
 
@@ -43,6 +43,7 @@ Do not use it to overwrite confirmed feature rules unless the user confirms the 
 8. Do not make CAP the default recommendation. CAP is a corrective-action workflow, not a generic task, order, onboarding, permission, or dashboard pattern. Only introduce CAP when the scenario explicitly involves audit/QC findings, inspection defects, nonconformance,整改闭环, root-cause correction, preventive action, or repeated high-risk exceptions. For ordinary order tracking, factory admission, resource-library setup, onboarding, data visibility, or reporting tasks, use neutral terms such as issue tracking, exception handling, follow-up task, approval, or work order unless CAP is clearly justified.
 9. Do not overfit to any single knowledge-base keyword. Terms such as CAP, audit, QC, supplier governance, factory admission, resource library, automation, dashboard, data fence, report, issue library, or order tracking are candidate capabilities, not default answers. Mention them only after the user's question, evidence, or diagnosed workflow requires them.
 10. Start from the customer's operating problem before naming Linkincrease modules. If the user asks a broad question, first classify the scenario and ask for missing context or state assumptions; do not immediately output a full supplier-governance, audit/QC, CAP, dashboard, or automation方案.
+11. For professional operations方案, use the five-layer knowledge structure: industry scenario page in `docs/55`, digital-supply-chain framing and system boundary in `docs/56`, Linkincrease capability mapping, customer方案 page in `docs/50/03`, execution SOP/Skill in `docs/50/06` or `docs/50/08`, and customer sample/retrospective in `docs/50/09` after validation.
 
 ## Product Success Operating Mode
 
@@ -108,6 +109,9 @@ Customer wants to onboard or configure Linkincrease
 
 Customer describes a business scenario or asks for a solution
 -> Use Scenario-to-Configuration Workflow.
+
+Customer asks for a professional operations方案 or best-practice recommendation
+-> Use Professional Operations Solution Workflow.
 
 Customer reports a problem or asks why something does not work
 -> Use Troubleshooting Workflow.
@@ -200,6 +204,31 @@ Use this mapping:
 | External collaboration | Collaboration team, FlowSpace role, data fence |
 | Management visibility | Tower/dashboard/report |
 | Auditability | Dynamic records, history, operation logs |
+
+## Professional Operations Solution Workflow
+
+Use this workflow when the user expects a professional industry-aware answer, not only a feature configuration.
+
+1. Classify the customer scenario using `docs/55-外贸供应链行业知识/运营专业知识建设路线图.md`.
+2. Read the matching industry scenario page under `docs/55-外贸供应链行业知识/03-业务流程与单据/`.
+3. If the question involves maturity, system boundary, data governance, platform positioning, visualization, or warnings, read the relevant page under `docs/56-数字供应链专项知识/`.
+4. Read the matching customer方案 page under `docs/50-运营支持知识/03-业务场景案例库/`.
+5. Verify product capability boundaries in `docs/10`, `docs/20`, `docs/30`, `docs/40`, and `docs/60` as needed.
+6. Output both the industry reasoning, digital-supply-chain framing, and the Linkincrease landing plan.
+7. If the方案 has been piloted or validated, propose capturing an anonymized sample in `docs/50-运营支持知识/09-客户样本与方案复盘/`.
+
+Priority professional scenario pages:
+
+```text
+docs/55-外贸供应链行业知识/03-业务流程与单据/供应商与工厂准入.md
+docs/55-外贸供应链行业知识/03-业务流程与单据/采购订单履约与交期跟踪.md
+docs/55-外贸供应链行业知识/03-业务流程与单据/生产进度与异常协同.md
+docs/55-外贸供应链行业知识/03-业务流程与单据/QC验货与质量异常.md
+docs/55-外贸供应链行业知识/03-业务流程与单据/社会责任审核与CAP整改.md
+docs/55-外贸供应链行业知识/03-业务流程与单据/出货计划与单证协同.md
+docs/55-外贸供应链行业知识/03-业务流程与单据/供应商绩效与风险管理.md
+docs/55-外贸供应链行业知识/03-业务流程与单据/订单变更异常索赔与结案.md
+```
 
 ## Troubleshooting Workflow
 

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>供应链主数据与业务数据治理 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">供应链主数据与业务数据治理</h1>
+<h2 id="1">1. 目标</h2>
+<p>供应链数字化的基础是可信数据。客户如果主数据混乱、流程字段不稳定、权限边界不清，再复杂的自动化和仪表盘都会失真。</p>
+<p>本页用于说明产品成功如何判断供应链数据应该放在资源库、FlowSpace、订单、工单、子表、附件、日志还是仪表盘中。</p>
+<h2 id="2">2. 数据类型</h2>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>定义</th>
+<th>典型对象</th>
+<th>Linkincrease 承载</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主数据</td>
+<td>长期复用、跨流程引用的稳定对象</td>
+<td>供应商、工厂、产品、证书、服务商</td>
+<td>资源库</td>
+</tr>
+<tr>
+<td>交易/流程数据</td>
+<td>一次业务执行产生的数据</td>
+<td>订单、验货计划、出货计划、审核项目</td>
+<td>FlowSpace、订单、里程碑</td>
+</tr>
+<tr>
+<td>任务数据</td>
+<td>某个角色需要填写或处理的工作单元</td>
+<td>工单、批复、整改任务、单证任务</td>
+<td>工单、批复</td>
+</tr>
+<tr>
+<td>证据数据</td>
+<td>支撑判断的材料</td>
+<td>图片、附件、报告、签名</td>
+<td>附件字段、历史记录</td>
+</tr>
+<tr>
+<td>指标数据</td>
+<td>支撑管理决策的聚合结果</td>
+<td>准时率、通过率、逾期数</td>
+<td>仪表盘、报告</td>
+</tr>
+<tr>
+<td>审计数据</td>
+<td>记录谁在何时做了什么</td>
+<td>操作日志、动态、历史快照</td>
+<td>日志、历史记录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 主数据判断</h2>
+<p>一个对象适合进入资源库，通常满足：</p>
+<ol>
+<li>会被多个订单、流程或团队重复使用。</li>
+<li>有稳定唯一标识或需要去重。</li>
+<li>有状态、有效期、归属或维护责任。</li>
+<li>需要被引用、筛选、统计或做权限控制。</li>
+</ol>
+<p>不适合直接做资源库的内容：</p>
+<ul>
+<li>一次性任务说明。</li>
+<li>某次订单中的临时备注。</li>
+<li>只服务单个附件的描述。</li>
+<li>没有稳定字段和维护责任的数据。</li>
+</ul>
+<h2 id="4">4. 数据治理清单</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>检查问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>唯一性</td>
+<td>是否有编码、名称、证照号或组合唯一规则？</td>
+</tr>
+<tr>
+<td>归属</td>
+<td>谁负责维护，谁有权修改？</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>是否有生效、暂停、失效、退出等状态？</td>
+</tr>
+<tr>
+<td>有效期</td>
+<td>证书、报告、审核结果是否会过期？</td>
+</tr>
+<tr>
+<td>引用</td>
+<td>哪些 FlowSpace、订单或工单需要引用？</td>
+</tr>
+<tr>
+<td>快照</td>
+<td>历史订单是否需要保留当时的字段值？</td>
+</tr>
+<tr>
+<td>同步</td>
+<td>从流程写回资源库时是否覆盖已有值？</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>外部协作方能否看到或修改？</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>是否会进入仪表盘或供应商评价？</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 常见建模建议</h2>
+<table>
+<thead>
+<tr>
+<th>业务内容</th>
+<th>推荐承载</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商、工厂、产品、证书</td>
+<td>资源库</td>
+</tr>
+<tr>
+<td>一次订单履约</td>
+<td>订单 / FlowSpace</td>
+</tr>
+<tr>
+<td>一个阶段性任务</td>
+<td>里程碑下的工单</td>
+</tr>
+<tr>
+<td>一次验货或审核</td>
+<td>工单或独立 FlowSpace</td>
+</tr>
+<tr>
+<td>多个缺陷/单证明细</td>
+<td>子表、多个工单或独立对象，视统计需求决定</td>
+</tr>
+<tr>
+<td>批复意见</td>
+<td>工单批复或里程碑批复</td>
+</tr>
+<tr>
+<td>过程附件</td>
+<td>工单附件，必要时同步到资源库</td>
+</tr>
+<tr>
+<td>风险等级</td>
+<td>资源库字段，但需要来源和更新规则</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 数据质量指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主数据完整率</td>
+<td>判断资源库基础质量</td>
+</tr>
+<tr>
+<td>重复主体数量</td>
+<td>判断去重和唯一性问题</td>
+</tr>
+<tr>
+<td>字段缺失率</td>
+<td>判断模板配置和执行质量</td>
+</tr>
+<tr>
+<td>附件完整率</td>
+<td>判断证据是否充分</td>
+</tr>
+<tr>
+<td>状态异常数</td>
+<td>识别流程卡点或配置错误</td>
+</tr>
+<tr>
+<td>指标不可计算项</td>
+<td>判断看板数据源是否稳定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 关联知识</h2>
+<ul>
+<li><a href="../20-业务对象与数据模型/资源库数据模型.md">资源库数据模型</a></li>
+<li><a href="../20-业务对象与数据模型/字段、组件、子表、引用关系.md">字段、组件、子表、引用关系</a></li>
+<li><a href="../60-数据分析支持/核心指标口径.md">核心指标口径</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QC 验货与质量异常 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="qc">QC 验货与质量异常</h1>
+<h2 id="1">1. 业务定义</h2>
+<p>QC 验货与质量异常是品牌方、贸易公司、采购团队或第三方服务商在生产、出货前后对产品质量进行检查、记录、判定和跟进处理的过程。它关注“检查什么、谁检查、发现问题如何判定、是否放行、异常如何关闭”。</p>
+<p>本页重点覆盖成品检验、过程抽检、装运前验货、质量异常记录和复验协同；不直接替代专业 QMS、实验室测试或完整质量标准体系。</p>
+<h2 id="2">2. 适用客户与前提</h2>
+<table>
+<thead>
+<tr>
+<th>客户类型</th>
+<th>适用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方</td>
+<td>管理供应商/工厂验货计划、结果、放行和质量风险</td>
+</tr>
+<tr>
+<td>贸易公司</td>
+<td>跟踪订单验货进度、异常、复验和客户确认</td>
+</tr>
+<tr>
+<td>Sourcing Agency</td>
+<td>协调品牌方、工厂、QC 服务商和内部采购团队</td>
+</tr>
+<tr>
+<td>QC 服务商</td>
+<td>接收验货任务、现场采集记录、上传报告和证据</td>
+</tr>
+</tbody>
+</table>
+<p>前提是客户已经有基本验货节点、判定标准、责任人和放行规则；若客户没有明确质量标准，Linkincrease 只能承载协同和记录，不能自动判定专业质量结论。</p>
+<h2 id="3">3. 参与角色与责任</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要责任</th>
+<th>提供的数据</th>
+<th>做出的决策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方/客户质量负责人</td>
+<td>定义验货要求和放行规则</td>
+<td>检验标准、缺陷等级、放行要求</td>
+<td>放行、拒收、复验、让步接收</td>
+</tr>
+<tr>
+<td>供应商/工厂</td>
+<td>配合验货、提交整改和复验资料</td>
+<td>生产批次、现场照片、整改证据</td>
+<td>是否接受整改和复验安排</td>
+</tr>
+<tr>
+<td>QC/验货员</td>
+<td>执行现场检查并记录证据</td>
+<td>检查记录、图片、缺陷、报告</td>
+<td>给出检验结论或建议</td>
+</tr>
+<tr>
+<td>贸易/跟单人员</td>
+<td>协调订单、工厂和客户确认</td>
+<td>订单、交期、出货计划</td>
+<td>是否推进下一节点</td>
+</tr>
+<tr>
+<td>产品成功/实施</td>
+<td>将验货流程配置为平台模板</td>
+<td>字段、工单、权限、报表</td>
+<td>判断平台配置方案</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 核心业务对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>定义</th>
+<th>关键字段</th>
+<th>与其他对象的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验货计划</td>
+<td>一次验货安排</td>
+<td>订单、工厂、验货类型、计划日期、验货员</td>
+<td>关联订单、工厂和验货工单</td>
+</tr>
+<tr>
+<td>验货工单</td>
+<td>现场执行和结果记录单元</td>
+<td>检查项、缺陷、图片、结论、附件</td>
+<td>可由采集端提交</td>
+</tr>
+<tr>
+<td>缺陷/问题项</td>
+<td>验货发现的不符合事项</td>
+<td>缺陷等级、数量、位置、照片、责任方</td>
+<td>可触发复验或整改任务</td>
+</tr>
+<tr>
+<td>验货报告</td>
+<td>验货结果汇总</td>
+<td>报告编号、结论、附件、签名</td>
+<td>作为放行或整改依据</td>
+</tr>
+<tr>
+<td>质量异常</td>
+<td>需要后续跟进的质量问题</td>
+<td>等级、责任人、期限、处理状态</td>
+<td>严重或重复问题可升级为 CAP</td>
+</tr>
+<tr>
+<td>复验记录</td>
+<td>对整改后结果的再次验证</td>
+<td>复验日期、结果、证据</td>
+<td>关闭异常或继续处理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 标准业务流程</h2>
+<pre><code class="language-mermaid">flowchart LR
+  A[&quot;订单到达验货节点&quot;] --&gt; B[&quot;创建验货计划&quot;]
+  B --&gt; C[&quot;分派 QC/验货员&quot;]
+  C --&gt; D[&quot;现场采集检查记录&quot;]
+  D --&gt; E[&quot;上传照片、附件和报告&quot;]
+  E --&gt; F{&quot;是否发现质量异常?&quot;}
+  F -- &quot;否&quot; --&gt; G[&quot;放行或进入下一节点&quot;]
+  F -- &quot;是&quot; --&gt; H[&quot;记录缺陷和异常&quot;]
+  H --&gt; I{&quot;是否需要正式整改闭环?&quot;}
+  I -- &quot;普通异常&quot; --&gt; J[&quot;跟进处理/复验&quot;]
+  I -- &quot;重大或重复问题&quot; --&gt; K[&quot;创建 CAP/整改闭环&quot;]
+  J --&gt; L[&quot;复核并关闭&quot;]
+  K --&gt; L
+</code></pre>
+<h2 id="6">6. 状态与业务规则</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>状态或规则</th>
+<th>进入条件</th>
+<th>允许操作</th>
+<th>退出条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验货计划</td>
+<td>待安排</td>
+<td>订单进入验货节点</td>
+<td>指派验货员、调整日期</td>
+<td>确认验货安排</td>
+</tr>
+<tr>
+<td>验货计划</td>
+<td>执行中</td>
+<td>已分派人员</td>
+<td>现场填写、上传附件</td>
+<td>提交验货结果</td>
+</tr>
+<tr>
+<td>验货结果</td>
+<td>待确认</td>
+<td>报告已提交</td>
+<td>批复、退回补充、要求复验</td>
+<td>放行、拒收或整改</td>
+</tr>
+<tr>
+<td>质量异常</td>
+<td>待处理</td>
+<td>验货发现问题</td>
+<td>指派责任人、填写措施</td>
+<td>提交处理结果</td>
+</tr>
+<tr>
+<td>质量异常</td>
+<td>待复核</td>
+<td>责任方提交证据</td>
+<td>复核、退回、关闭</td>
+<td>复核通过或退回</td>
+</tr>
+<tr>
+<td>CAP</td>
+<td>整改中</td>
+<td>严重、重复或合规相关问题</td>
+<td>提交根因、纠正预防措施、证据</td>
+<td>复核关闭</td>
+</tr>
+</tbody>
+</table>
+<p>普通缺陷不等于 CAP。只有需要根因、纠正措施、预防措施、责任人、期限、证据和复核闭环时，才建议使用 CAP。</p>
+<h2 id="7">7. 异常、风险与控制措施</h2>
+<table>
+<thead>
+<tr>
+<th>风险或异常</th>
+<th>业务影响</th>
+<th>识别方式</th>
+<th>控制措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验货计划未及时安排</td>
+<td>出货延误或漏验</td>
+<td>订单节点临近但无验货任务</td>
+<td>自动化提醒、待办看板</td>
+</tr>
+<tr>
+<td>现场证据不完整</td>
+<td>质量结论难以复核</td>
+<td>图片、附件、签名缺失</td>
+<td>表单必填、附件校验、退回补充</td>
+</tr>
+<tr>
+<td>缺陷等级和结论混乱</td>
+<td>放行决策失真</td>
+<td>结论与缺陷严重度不一致</td>
+<td>标准化缺陷字段和批复规则</td>
+</tr>
+<tr>
+<td>异常未关闭即出货</td>
+<td>客户投诉或索赔</td>
+<td>未关闭异常关联出货节点</td>
+<td>出货前检查未关闭问题</td>
+</tr>
+<tr>
+<td>把所有异常都做 CAP</td>
+<td>流程过重，运营负担高</td>
+<td>CAP 数量异常膨胀</td>
+<td>设置 CAP 触发边界</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 管理指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+<th>建议口径</th>
+<th>数据来源</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验货准时完成率</td>
+<td>判断验货执行效率</td>
+<td>准时完成验货数/应完成验货数</td>
+<td>验货计划、工单</td>
+<td>调整排期和提醒</td>
+</tr>
+<tr>
+<td>验货通过率</td>
+<td>判断批次质量水平</td>
+<td>通过或放行验货数/已完成验货数</td>
+<td>验货结论</td>
+<td>识别高风险工厂/品类</td>
+</tr>
+<tr>
+<td>缺陷数量和等级分布</td>
+<td>判断质量问题类型</td>
+<td>按缺陷等级、品类、工厂统计</td>
+<td>缺陷字段/子表</td>
+<td>优先整改高频缺陷</td>
+</tr>
+<tr>
+<td>复验率</td>
+<td>判断一次通过能力</td>
+<td>需要复验批次数/已验货批次数</td>
+<td>验货结果</td>
+<td>优化生产前控制</td>
+</tr>
+<tr>
+<td>质量异常关闭周期</td>
+<td>判断处理效率</td>
+<td>关闭时间减发现时间</td>
+<td>异常/CAP 工单</td>
+<td>催办和升级</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-linkincrease">9. Linkincrease 能力映射</h2>
+<table>
+<thead>
+<tr>
+<th>行业需求或规则</th>
+<th>Linkincrease 对象或能力</th>
+<th>数据、状态或权限影响</th>
+<th>支持度</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建验货计划</td>
+<td>FlowSpace、里程碑、工单</td>
+<td>需要订单、工厂、计划日期、验货员</td>
+<td>L2</td>
+<td>在订单 FlowSpace 中设置验货里程碑和验货工单</td>
+</tr>
+<tr>
+<td>现场采集记录</td>
+<td>采集端、表单组件、附件、图片编辑</td>
+<td>需要移动端提交、附件权限和离线/上传规则</td>
+<td>L2</td>
+<td>将检查项、照片、签名配置为工单字段</td>
+</tr>
+<tr>
+<td>缺陷记录</td>
+<td>工单字段、子表、问题库</td>
+<td>需要缺陷等级、数量、照片和责任方</td>
+<td>L2/LX</td>
+<td>简单场景用工单字段，复杂缺陷库待产品确认</td>
+</tr>
+<tr>
+<td>验货结论</td>
+<td>批复、状态、报告附件</td>
+<td>需要放行/拒收/复验状态和审批记录</td>
+<td>L2</td>
+<td>用工单批复或里程碑批复承载结论</td>
+</tr>
+<tr>
+<td>质量异常跟进</td>
+<td>工单、异常字段、自动化</td>
+<td>需要责任人、期限、处理状态</td>
+<td>L2</td>
+<td>普通异常用跟进工单，不默认 CAP</td>
+</tr>
+<tr>
+<td>CAP 整改闭环</td>
+<td>独立 FlowSpace 或 CAP 工单</td>
+<td>需要根因、纠正预防、证据、复核</td>
+<td>L2</td>
+<td>仅严重、重复、合规相关问题使用 CAP</td>
+</tr>
+<tr>
+<td>管理看板</td>
+<td>仪表盘、报告</td>
+<td>需要统一指标口径和数据权限</td>
+<td>L2/LX</td>
+<td>先做验货进度和异常看板，复杂质量绩效待确认</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 测试关注点</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>需要验证的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主流程</td>
+<td>创建计划、分派、采集、提交、批复、关闭</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>QC 只能看分派任务，供应商/工厂只能看自己相关问题</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>退回补充、复验、拒收、让步接收、CAP 升级</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>图片附件、缺陷子表、报告附件、历史快照</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>网络中断、附件上传失败、人员变更、验货日期变更</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>提交、退回、批复、结论变更和系统提醒记录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11">11. 产品差距与需求候选</h2>
+<table>
+<thead>
+<tr>
+<th>差距</th>
+<th>业务影响</th>
+<th>当前替代方案</th>
+<th>建议优先级</th>
+<th>去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缺陷库和 AQL/抽样规则尚未形成通用产品模型</td>
+<td>难以做专业质量统计</td>
+<td>用工单字段或子表记录</td>
+<td>P1 调研</td>
+<td>产品维护区评估</td>
+</tr>
+<tr>
+<td>验货结论对出货节点的强校验规则待确认</td>
+<td>可能出现异常未关闭仍出货</td>
+<td>SOP 检查和仪表盘提醒</td>
+<td>P0 调研</td>
+<td>待确认问题</td>
+</tr>
+<tr>
+<td>跨订单质量绩效指标口径待验证</td>
+<td>难以形成可靠供应商质量评分</td>
+<td>导出分析或 Tower 自定义</td>
+<td>P1</td>
+<td>数据分析支持</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12">12. 产品成功应用</h2>
+<h3 id="_1">客户识别信号</h3>
+<ul>
+<li>客户说验货计划、现场照片、报告和批复都散在聊天和 Excel。</li>
+<li>客户无法追踪某批货是否验过、是否放行、是否有未关闭问题。</li>
+<li>客户希望 QC 服务商或工厂按权限提交资料。</li>
+<li>客户想看工厂/供应商质量表现，但指标口径不清。</li>
+</ul>
+<h3 id="_2">重点诊断问题</h3>
+<ul>
+<li>验货是订单级、批次级、出货级还是工厂级？</li>
+<li>谁安排验货，谁现场执行，谁确认结论？</li>
+<li>缺陷是否需要按等级、数量、图片和责任方记录？</li>
+<li>质量异常什么时候只是普通跟进，什么时候必须 CAP？</li>
+<li>验货结论是否影响出货、付款或订单结案？</li>
+</ul>
+<h3 id="_3">方案输出入口</h3>
+<ul>
+<li>对应运营方案：<a href="../../50-运营支持知识/03-业务场景案例库/品牌方QC验货协同方案.md">品牌方 QC 验货协同方案</a></li>
+<li>需要说明的平台边界：Linkincrease 可承载验货协同、证据、批复、提醒和看板；专业抽样规则、实验室测试和完整 QMS 需单独确认。</li>
+</ul>
+<h2 id="13">13. 来源与可信度</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>类型</th>
+<th>证据等级</th>
+<th>支撑结论</th>
+<th>版本或日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linkincrease 验货组件、采集端、工单和批复知识页</td>
+<td>内部产品知识</td>
+<td>不适用</td>
+<td>平台能力映射</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>订单管理类模板最佳实践</td>
+<td>内部配置实践</td>
+<td>E3</td>
+<td>验货节点与订单协同</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>行业常见 QC 实践</td>
+<td>待补充来源</td>
+<td>E4</td>
+<td>缺陷、复验、放行和异常处理</td>
+<td>待验证</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14">14. 待确认问题</h2>
+<ul>
+<li>[ ] 产品确认验货结论是否支持对出货/结案节点做强校验。</li>
+<li>[ ] 产品成功补充至少 2 个客户的验货字段、角色和报告样本。</li>
+<li>[ ] 数据分析确认验货通过率、复验率和缺陷统计的字段口径。</li>
+</ul>
+<h2 id="15">15. 关联知识</h2>
+<ul>
+<li>产品权威规则：<a href="../../10-功能模块详情/验货组件流程.md">验货组件流程</a>、<a href="../../10-功能模块详情/采集端.md">采集端</a>、<a href="../../10-功能模块详情/工单与批复.md">工单与批复</a></li>
+<li>权限审计：<a href="../../40-权限、安全与审计/权限体系总表.md">权限体系总表</a></li>
+<li>数据分析：<a href="../../60-数据分析支持/核心指标口径.md">核心指标口径</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

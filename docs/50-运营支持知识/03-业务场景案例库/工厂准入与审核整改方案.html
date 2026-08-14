@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>工厂准入与审核整改方案 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">工厂准入与审核整改方案</h1>
+<h2 id="_2">客户现状</h2>
+<p>适用于品牌方、贸易公司或采购团队需要管理工厂申报、资质审核、社会责任审核、整改闭环和准入状态的场景。典型问题是工厂资料散落、审核报告难追踪、CAP 逾期没人管、准入状态和订单使用脱节。</p>
+<h2 id="_3">业务目标</h2>
+<ol>
+<li>建立供应商、工厂、资质和审核报告的主数据。</li>
+<li>把工厂申报、审核、CAP 和复审拆成可追踪流程。</li>
+<li>让工厂风险状态可用于订单选择和管理看板。</li>
+<li>明确平台能力边界，避免把专业合规判断包装成系统自动结论。</li>
+</ol>
+<h2 id="_4">推荐配置</h2>
+<table>
+<thead>
+<tr>
+<th>业务内容</th>
+<th>Linkincrease 配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商/工厂档案</td>
+<td>供应商库、工厂库、证书/报告库</td>
+</tr>
+<tr>
+<td>工厂申报</td>
+<td>工厂准入 FlowSpace</td>
+</tr>
+<tr>
+<td>社会责任审核</td>
+<td>审核 FlowSpace 或审核里程碑</td>
+</tr>
+<tr>
+<td>CAP 整改</td>
+<td>CAP FlowSpace 或 CAP 工单</td>
+</tr>
+<tr>
+<td>风险状态</td>
+<td>工厂资源库字段 + 人工复核更新</td>
+</tr>
+<tr>
+<td>复审提醒</td>
+<td>自动化日期提醒</td>
+</tr>
+<tr>
+<td>管理看板</td>
+<td>工厂准入、审核、CAP、风险分布</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">资源库设计</h2>
+<table>
+<thead>
+<tr>
+<th>资源库</th>
+<th>建议字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应商库</td>
+<td>供应商编码、名称、等级、联系人、关联工厂、状态</td>
+</tr>
+<tr>
+<td>工厂库</td>
+<td>工厂编码、名称、地址、所属供应商、准入状态、审核状态、风险等级、可用于订单</td>
+</tr>
+<tr>
+<td>证书/报告库</td>
+<td>类型、编号、有效期、附件、关联工厂、审核结论</td>
+</tr>
+<tr>
+<td>CAP 问题库</td>
+<td>问题类型、等级、责任方、截止日、关闭状态</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flowspace">FlowSpace / 模板设计</h2>
+<table>
+<thead>
+<tr>
+<th>FlowSpace</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工厂申报与准入</td>
+<td>供应商提交工厂资料，品牌方审核并确认准入</td>
+</tr>
+<tr>
+<td>社会责任审核</td>
+<td>品牌方或服务商执行审核、上传报告、形成结论</td>
+</tr>
+<tr>
+<td>CAP 整改跟进</td>
+<td>问题项拆分、整改证据、复核关闭</td>
+</tr>
+<tr>
+<td>订单管理</td>
+<td>订单选择已准入或允许使用的工厂</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">权限边界</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>权限建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>品牌方管理员</td>
+<td>管理全部工厂、审核和 CAP</td>
+</tr>
+<tr>
+<td>品牌方审核人</td>
+<td>查看分配范围内的审核任务和报告</td>
+</tr>
+<tr>
+<td>供应商</td>
+<td>提交自己名下工厂资料和整改证据</td>
+</tr>
+<tr>
+<td>工厂联系人</td>
+<td>只补充本工厂资料，不看品牌方内部评审</td>
+</tr>
+<tr>
+<td>审核服务商</td>
+<td>只处理分派审核和复核任务</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">自动化提醒</h2>
+<ul>
+<li>工厂资料待补充提醒供应商。</li>
+<li>证书/报告到期前提醒品牌方和供应商。</li>
+<li>CAP 到期前提醒责任人，逾期提醒品牌方。</li>
+<li>高风险工厂被订单引用时提醒订单负责人。</li>
+</ul>
+<h2 id="_8">仪表盘指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>待准入工厂数</td>
+<td>管理审核积压</td>
+</tr>
+<tr>
+<td>审核到期工厂数</td>
+<td>安排复审</td>
+</tr>
+<tr>
+<td>CAP 逾期数</td>
+<td>升级整改</td>
+</tr>
+<tr>
+<td>高风险工厂关联订单数</td>
+<td>管控订单风险</td>
+</tr>
+<tr>
+<td>证书有效覆盖率</td>
+<td>管理资质健康度</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">上线步骤</h2>
+<ol>
+<li>先清理供应商和工厂清单，定义唯一编码。</li>
+<li>建供应商库、工厂库、证书/报告字段。</li>
+<li>配置工厂准入流程和审核/CAP 流程。</li>
+<li>先用 3-5 个工厂试跑申报、审核、整改。</li>
+<li>确认工厂状态如何影响订单使用。</li>
+<li>上线复审提醒和风险看板。</li>
+</ol>
+<h2 id="_10">验收标准</h2>
+<ul>
+<li>工厂申报、审核、CAP 和状态变化可追溯。</li>
+<li>供应商和工厂权限隔离。</li>
+<li>CAP 关闭有证据和复核记录。</li>
+<li>风险状态和可用于订单字段有明确维护责任。</li>
+</ul>
+<h2 id="_11">能力边界</h2>
+<p>Linkincrease 可以承载准入、审核、整改、证据、状态和提醒；审核结论、合规等级和是否允许合作由客户或专业审核方负责。</p>
+<h2 id="_12">关联知识</h2>
+<ul>
+<li><a href="../../55-外贸供应链行业知识/03-业务流程与单据/社会责任审核与CAP整改.md">社会责任审核与 CAP 整改</a></li>
+<li><a href="../../55-外贸供应链行业知识/03-业务流程与单据/供应商与工厂准入.md">供应商开发、准入与生命周期管理</a></li>
+<li><a href="./外贸供应商治理/品牌方供应商与工厂准入协同方案.md">品牌方供应商与工厂准入协同方案</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

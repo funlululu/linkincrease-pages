@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>订单变更、异常、索赔与结案 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">订单变更、异常、索赔与结案</h1>
+<h2 id="1">1. 业务定义</h2>
+<p>订单变更、异常、索赔与结案覆盖采购订单执行过程中发生的交期、数量、规格、工厂、价格、质量、出货和责任问题，以及这些问题如何记录、确认、处理、追责和关闭。</p>
+<p>本页关注协同和审计闭环，不替代法务索赔、财务结算或合同系统。</p>
+<h2 id="2">2. 适用客户与前提</h2>
+<table>
+<thead>
+<tr>
+<th>客户类型</th>
+<th>适用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>贸易公司</td>
+<td>处理订单执行中的延期、变更、客户投诉和结案</td>
+</tr>
+<tr>
+<td>品牌方/采购团队</td>
+<td>管理供应商责任、质量异常和结案条件</td>
+</tr>
+<tr>
+<td>Sourcing Agency</td>
+<td>协调供应商、工厂、客户和服务商处理异常</td>
+</tr>
+<tr>
+<td>供应商/工厂</td>
+<td>提交原因、措施、证据和结果确认</td>
+</tr>
+</tbody>
+</table>
+<p>前提是客户能够区分订单正常进度、普通异常、重大异常、索赔和结案条件。</p>
+<h2 id="3">3. 参与角色与责任</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>主要责任</th>
+<th>提供的数据</th>
+<th>做出的决策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跟单/订单负责人</td>
+<td>记录和推进变更异常</td>
+<td>变更原因、影响、处理结果</td>
+<td>是否升级或关闭</td>
+</tr>
+<tr>
+<td>采购/客户负责人</td>
+<td>确认商业影响</td>
+<td>客户要求、责任判断</td>
+<td>是否接受变更或索赔</td>
+</tr>
+<tr>
+<td>供应商/工厂</td>
+<td>说明原因和改善措施</td>
+<td>原因、计划、证据</td>
+<td>是否承担责任</td>
+</tr>
+<tr>
+<td>质量/物流/财务</td>
+<td>提供专业影响判断</td>
+<td>缺陷、出货、费用数据</td>
+<td>是否放行、扣款或补偿</td>
+</tr>
+<tr>
+<td>产品成功/实施</td>
+<td>配置异常闭环和结案规则</td>
+<td>模板、状态、权限、看板</td>
+<td>判断平台边界</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 核心业务对象</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>定义</th>
+<th>关键字段</th>
+<th>与其他对象的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单变更</td>
+<td>对订单关键字段的调整</td>
+<td>变更类型、原值、新值、原因、审批</td>
+<td>关联订单和历史记录</td>
+</tr>
+<tr>
+<td>异常记录</td>
+<td>执行过程中需跟进的问题</td>
+<td>类型、等级、责任方、影响、状态</td>
+<td>可关联工单、附件和 CAP</td>
+</tr>
+<tr>
+<td>索赔记录</td>
+<td>涉及费用、补偿或责任追溯的事项</td>
+<td>金额、币种、责任方、证据、结论</td>
+<td>关联订单和异常</td>
+</tr>
+<tr>
+<td>结案检查</td>
+<td>订单关闭前的核验</td>
+<td>未完成任务、未关闭异常、单证、验货</td>
+<td>决定是否结案</td>
+</tr>
+<tr>
+<td>处理措施</td>
+<td>对异常的行动</td>
+<td>措施、责任人、期限、证据</td>
+<td>可作为工单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 标准业务流程</h2>
+<pre><code class="language-mermaid">flowchart LR
+  A[&quot;订单执行中出现变化或问题&quot;] --&gt; B[&quot;记录变更/异常&quot;]
+  B --&gt; C[&quot;评估影响和责任&quot;]
+  C --&gt; D{&quot;是否需要审批或升级?&quot;}
+  D -- &quot;否&quot; --&gt; E[&quot;执行处理措施&quot;]
+  D -- &quot;是&quot; --&gt; F[&quot;发起批复/升级&quot;]
+  F --&gt; E
+  E --&gt; G{&quot;是否涉及索赔?&quot;}
+  G -- &quot;是&quot; --&gt; H[&quot;登记索赔和证据&quot;]
+  G -- &quot;否&quot; --&gt; I[&quot;复核处理结果&quot;]
+  H --&gt; I
+  I --&gt; J{&quot;是否满足结案条件?&quot;}
+  J -- &quot;否&quot; --&gt; E
+  J -- &quot;是&quot; --&gt; K[&quot;订单结案并归档&quot;]
+</code></pre>
+<h2 id="6">6. 状态与业务规则</h2>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>状态或规则</th>
+<th>进入条件</th>
+<th>允许操作</th>
+<th>退出条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变更</td>
+<td>待确认</td>
+<td>关键字段需要调整</td>
+<td>提交原因、附件、审批</td>
+<td>通过或驳回</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>待处理</td>
+<td>订单出现延期、质量、资料或责任问题</td>
+<td>指派、补充、处理</td>
+<td>提交复核</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>待复核</td>
+<td>处理措施完成</td>
+<td>通过、退回、升级</td>
+<td>关闭或继续处理</td>
+</tr>
+<tr>
+<td>索赔</td>
+<td>待协商</td>
+<td>涉及费用或责任</td>
+<td>补证、确认金额、审批</td>
+<td>确认或撤销</td>
+</tr>
+<tr>
+<td>订单</td>
+<td>待结案</td>
+<td>主要流程完成</td>
+<td>检查未完成事项</td>
+<td>结案或退回处理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 异常、风险与控制措施</h2>
+<table>
+<thead>
+<tr>
+<th>风险或异常</th>
+<th>业务影响</th>
+<th>识别方式</th>
+<th>控制措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单字段直接改掉无记录</td>
+<td>历史责任无法追溯</td>
+<td>缺少变更原因和审批</td>
+<td>使用历史记录、变更工单或批复</td>
+</tr>
+<tr>
+<td>异常无责任人和期限</td>
+<td>问题长期悬挂</td>
+<td>异常状态无推进</td>
+<td>必填责任人/期限，自动提醒</td>
+</tr>
+<tr>
+<td>索赔证据不完整</td>
+<td>商业谈判被动</td>
+<td>缺少照片、报告、邮件、费用</td>
+<td>附件和证据清单</td>
+</tr>
+<tr>
+<td>未关闭异常就结案</td>
+<td>风险遗漏</td>
+<td>结案前存在未关闭事项</td>
+<td>结案检查清单</td>
+</tr>
+<tr>
+<td>普通异常过度 CAP 化</td>
+<td>流程过重</td>
+<td>所有问题都要求根因预防</td>
+<td>设置 CAP 升级边界</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8">8. 管理指标</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>用途</th>
+<th>建议口径</th>
+<th>数据来源</th>
+<th>管理动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单变更次数</td>
+<td>判断订单稳定性</td>
+<td>周期内变更记录数</td>
+<td>历史记录/变更工单</td>
+<td>分析变更原因</td>
+</tr>
+<tr>
+<td>异常关闭率</td>
+<td>判断问题处理效率</td>
+<td>已关闭异常/总异常</td>
+<td>异常工单</td>
+<td>催办和复盘</td>
+</tr>
+<tr>
+<td>平均异常关闭周期</td>
+<td>判断协同效率</td>
+<td>关闭时间减创建时间</td>
+<td>异常状态</td>
+<td>优化责任分派</td>
+</tr>
+<tr>
+<td>索赔金额和件数</td>
+<td>判断商业风险</td>
+<td>按供应商/品类/原因统计</td>
+<td>索赔记录</td>
+<td>供应商谈判</td>
+</tr>
+<tr>
+<td>结案一次通过率</td>
+<td>判断流程质量</td>
+<td>首次检查通过订单/待结案订单</td>
+<td>结案检查</td>
+<td>补流程控制</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-linkincrease">9. Linkincrease 能力映射</h2>
+<table>
+<thead>
+<tr>
+<th>行业需求或规则</th>
+<th>Linkincrease 对象或能力</th>
+<th>数据、状态或权限影响</th>
+<th>支持度</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>记录订单变更</td>
+<td>历史记录、工单、批复</td>
+<td>原值、新值、原因、审批</td>
+<td>L2/LX</td>
+<td>重要变更建议用工单/批复保留原因</td>
+</tr>
+<tr>
+<td>异常处理闭环</td>
+<td>工单、状态、自动化</td>
+<td>类型、责任人、期限、证据</td>
+<td>L2</td>
+<td>建异常处理工单</td>
+</tr>
+<tr>
+<td>索赔资料归档</td>
+<td>附件、批复、字段</td>
+<td>金额、责任方、证据、结论</td>
+<td>L2/LX</td>
+<td>首版用附件和审批记录</td>
+</tr>
+<tr>
+<td>结案检查</td>
+<td>里程碑、工单、批复、视图</td>
+<td>未完成任务、未关闭异常</td>
+<td>L2/LX</td>
+<td>建结案工单或结案前检查视图</td>
+</tr>
+<tr>
+<td>异常升级 CAP</td>
+<td>CAP FlowSpace/工单</td>
+<td>根因、纠正预防、复核</td>
+<td>L2</td>
+<td>仅重大、重复或质量合规问题升级</td>
+</tr>
+<tr>
+<td>异常看板</td>
+<td>仪表盘、报告</td>
+<td>异常类型、状态、关闭周期</td>
+<td>L2</td>
+<td>建异常运营看板</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10">10. 测试关注点</h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>需要验证的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主流程</td>
+<td>变更、异常、索赔、复核、结案</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>供应商、工厂、内部团队、客户的可见和可操作边界</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>驳回、升级、撤销、关闭、重开</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>历史值、附件证据、金额、责任方</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>并发修改、人员离职、附件缺失、结案回退</td>
+</tr>
+<tr>
+<td>审计</td>
+<td>变更原因、审批、关闭和结案记录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11">11. 产品差距与需求候选</h2>
+<table>
+<thead>
+<tr>
+<th>差距</th>
+<th>业务影响</th>
+<th>当前替代方案</th>
+<th>建议优先级</th>
+<th>去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单关键字段变更审批模型待统一</td>
+<td>不同客户规则差异大</td>
+<td>工单/批复记录重要变更</td>
+<td>P1</td>
+<td>产品维护区评估</td>
+</tr>
+<tr>
+<td>结案前强校验规则待确认</td>
+<td>可能遗漏未关闭问题</td>
+<td>视图/SOP 检查</td>
+<td>P0 调研</td>
+<td>待确认问题</td>
+</tr>
+<tr>
+<td>索赔金额与财务系统边界待明确</td>
+<td>财务闭环不完整</td>
+<td>附件和字段记录</td>
+<td>P2</td>
+<td>集成或财务边界评估</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12">12. 产品成功应用</h2>
+<h3 id="_2">客户识别信号</h3>
+<ul>
+<li>客户说订单经常变更但追不清责任。</li>
+<li>客户说质量、交期、单证异常处理靠人工催。</li>
+<li>客户想知道订单能不能结案，但未完成事项散落多处。</li>
+</ul>
+<h3 id="_3">重点诊断问题</h3>
+<ul>
+<li>哪些变化必须审批，哪些只需记录？</li>
+<li>异常分几类，谁负责，如何关闭？</li>
+<li>什么情况下进入索赔或 CAP？</li>
+<li>订单结案前必须满足哪些条件？</li>
+</ul>
+<h3 id="_4">方案输出入口</h3>
+<ul>
+<li>对应运营方案：<a href="../../50-运营支持知识/03-业务场景案例库/订单异常与结案协同方案.md">订单异常与结案协同方案</a></li>
+<li>能力边界：平台承载协同、证据和审计；商业索赔金额确认、合同责任和财务处理需客户专业流程确认。</li>
+</ul>
+<h2 id="13">13. 来源与可信度</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>类型</th>
+<th>证据等级</th>
+<th>支撑结论</th>
+<th>版本或日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>订单生命周期</td>
+<td>内部产品知识</td>
+<td>不适用</td>
+<td>订单流程与状态基础</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>生产进度与异常协同</td>
+<td>行业场景</td>
+<td>E3</td>
+<td>异常处理和升级</td>
+<td>当前版本</td>
+</tr>
+<tr>
+<td>客户订单异常实践</td>
+<td>待补充</td>
+<td>E3/E4</td>
+<td>变更、索赔、结案规则</td>
+<td>待收集</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14">14. 待确认问题</h2>
+<ul>
+<li>[ ] 产品确认订单结案前是否支持配置未关闭任务/异常强校验。</li>
+<li>[ ] 产品成功补充客户常见异常分类和索赔字段样本。</li>
+<li>[ ] 数据分析确认异常关闭周期和结案一次通过率口径。</li>
+</ul>
+<h2 id="15">15. 关联知识</h2>
+<ul>
+<li>行业页：<a href="./采购订单履约与交期跟踪.md">采购订单履约与交期跟踪</a>、<a href="./生产进度与异常协同.md">生产进度与异常协同</a></li>
+<li>产品规则：<a href="../../30-业务流程与产品流程图/订单生命周期.md">订单生命周期</a>、<a href="../../10-功能模块详情/工单与批复.md">工单与批复</a></li>
+</ul>
+
+  </article>
+</body>
+</html>

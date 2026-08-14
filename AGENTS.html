@@ -49,16 +49,43 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><a href="./docs/20-业务对象与数据模型/FlowSpace数据层级.md">FlowSpace 数据层级</a></li>
 <li><a href="./docs/40-权限、安全与审计/权限体系总表.md">权限体系总表</a></li>
 <li><a href="./docs/50-运营支持知识/index.md">运营支持知识索引</a></li>
+<li><a href="./docs/70-产品维护知识/产品经理知识库工作台.md">产品经理知识库工作台</a></li>
+<li><a href="./docs/90-版本历史与来源治理/知识资产地图.md">知识资产地图</a></li>
 </ul>
 <h2 id="_2">使用规则</h2>
 <ol>
 <li>涉及产品规则，优先查 <code>docs/10-功能模块详情</code>、<code>docs/20-业务对象与数据模型</code>、<code>docs/30-业务流程与产品流程图</code>、<code>docs/40-权限、安全与审计</code>。</li>
 <li>涉及客户配置、SOP、问题排查、上线方案，优先查 <code>docs/50-运营支持知识</code>。</li>
-<li>涉及外贸供应链业务背景、行业对象、行业流程，优先查 <code>docs/55-外贸供应链行业知识</code>。</li>
+<li>涉及外贸供应链业务背景、行业对象、行业流程、运营专业方案，优先查 <code>docs/55-外贸供应链行业知识</code>，先读 <a href="./docs/55-外贸供应链行业知识/运营专业知识建设路线图.md">运营专业知识建设路线图</a>。</li>
+<li>涉及数字供应链成熟度、系统边界、主数据治理、可视化预警、Linkincrease 在供应链系统版图中的定位，优先查 <code>docs/56-数字供应链专项知识</code>。</li>
 <li>涉及指标、报表、仪表盘、统计口径，优先查 <code>docs/60-数据分析支持</code>。</li>
-<li>涉及需求来源、冲突、历史规则、待确认事项，查 <code>docs/90-版本历史与来源治理</code>。</li>
+<li>涉及需求澄清、影响范围、产品取舍、客户反馈、产品复盘，优先查 <code>docs/70-产品维护知识</code>，并使用 <code>skills/linkincrease-product-manager</code>。</li>
+<li>涉及需求来源、冲突、历史规则、待确认事项、知识资产治理，查 <code>docs/90-版本历史与来源治理</code>。</li>
 <li>不确定项必须进入 <a href="./docs/90-版本历史与来源治理/待确认问题.md">待确认问题</a>，不要把客户实践直接写成产品规则。</li>
 </ol>
+<h2 id="skill">Skill 使用建议</h2>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>适用任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skills/linkincrease-product-manager</code></td>
+<td>需求澄清、影响范围分析、产品取舍、决策记录、产品周复盘</td>
+</tr>
+<tr>
+<td><code>skills/linkincrease-requirement-design</code></td>
+<td>PRD 写作、需求评审、权限/状态/日志/验收标准设计</td>
+</tr>
+<tr>
+<td><code>skills/linkincrease-product-success</code></td>
+<td>客户场景诊断、上线方案、配置方案、运营支持和问题排查</td>
+</tr>
+</tbody>
+</table>
 <h2 id="_3">输出要求</h2>
 <p>面向产品、实施、客户成功或运营的输出，默认包含：</p>
 <ul>
@@ -80,6 +107,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>问题排查沉淀到 <code>docs/50-运营支持知识/05-问题排查手册</code>。</li>
 <li>产品规则变更同步到对应权威规则页，并更新 <code>metadata/documents.csv</code>、版本记录和待确认问题。</li>
 <li>新文档必须登记 <code>metadata/documents.csv</code>，至少包含 <code>id</code>、<code>title</code>、<code>type</code>、<code>domain</code>、<code>module</code>、<code>status</code>、<code>path</code>、<code>permission</code>、<code>tags</code>、<code>updated_at</code>。</li>
+<li>重要产品取舍必须进入 <a href="./docs/70-产品维护知识/决策记录.md">决策记录</a>，并写明背景、选项、结论、影响范围和复盘条件。</li>
 </ol>
 
   </article>

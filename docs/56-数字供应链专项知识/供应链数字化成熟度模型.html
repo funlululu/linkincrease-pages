@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>供应链数字化成熟度模型 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">供应链数字化成熟度模型</h1>
+<h2 id="1">1. 目标</h2>
+<p>本模型用于产品成功和产品经理判断客户当前处于什么数字化阶段，避免在基础数据和流程还没跑通时，过早承诺复杂自动化、预测分析或智能决策。</p>
+<h2 id="2">2. 成熟度分级</h2>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>状态</th>
+<th>典型表现</th>
+<th>Linkincrease 建设重点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0 人工分散</td>
+<td>Excel、邮件、聊天驱动</td>
+<td>数据重复、责任不清、进度靠问</td>
+<td>先梳理对象、角色、流程和字段</td>
+</tr>
+<tr>
+<td>L1 线上记录</td>
+<td>有系统记录，但结构不稳定</td>
+<td>数据能录入，但难复用和统计</td>
+<td>建资源库、模板和基本权限</td>
+</tr>
+<tr>
+<td>L2 流程协同</td>
+<td>业务流程在线跑通</td>
+<td>有工单、批复、提醒和外部协作</td>
+<td>标准化 FlowSpace、自动化和审计</td>
+</tr>
+<tr>
+<td>L3 管理可视</td>
+<td>管理层能看见进度、异常和风险</td>
+<td>有稳定指标和仪表盘</td>
+<td>建指标口径、看板和复盘机制</td>
+</tr>
+<tr>
+<td>L4 数据驱动</td>
+<td>用数据指导供应商、订单和风险管理</td>
+<td>有周期评价、预警和改善闭环</td>
+<td>建绩效、风险、改善计划和数据质量治理</td>
+</tr>
+<tr>
+<td>L5 智能优化</td>
+<td>规则和模型辅助预测、推荐和优化</td>
+<td>可预测延期、风险和资源瓶颈</td>
+<td>需要稳定历史数据和明确规则，谨慎承诺</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 快速诊断问题</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>诊断问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据</td>
+<td>是否有统一供应商、工厂、产品、订单、证书和报告主数据？</td>
+</tr>
+<tr>
+<td>流程</td>
+<td>是否知道每个业务从发起到关闭的节点和责任人？</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>外部供应商、工厂、服务商是否有清晰数据边界？</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>订单、工单、异常、审核和 CAP 是否有统一状态？</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>提醒和触发是否基于稳定字段，而不是人工记忆？</td>
+</tr>
+<tr>
+<td>指标</td>
+<td>管理层看的指标是否有分子、分母、时间范围和数据来源？</td>
+</tr>
+<tr>
+<td>复盘</td>
+<td>上线后是否沉淀客户样本、问题和改进动作？</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4">4. 阶段建议</h2>
+<table>
+<thead>
+<tr>
+<th>当前阶段</th>
+<th>不建议直接做</th>
+<th>推荐下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0</td>
+<td>智能分析、大屏、复杂自动化</td>
+<td>建资源库和最小流程模板</td>
+</tr>
+<tr>
+<td>L1</td>
+<td>跨场景绩效评分</td>
+<td>标准化字段、状态和权限</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>黑箱风险预测</td>
+<td>做运营看板和异常闭环</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>复杂算法</td>
+<td>固化指标口径和复盘机制</td>
+</tr>
+<tr>
+<td>L4</td>
+<td>无来源的自动决策</td>
+<td>建规则、样本和历史数据</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 输出模板</h2>
+<pre><code class="language-md">## 客户当前成熟度判断
+## 证据
+## 当前最主要短板
+## Linkincrease 推荐建设重点
+## 暂不建议承诺的能力
+## 30 天试点目标
+## 后续升级路径
+</code></pre>
+<h2 id="6">6. 关联知识</h2>
+<ul>
+<li><a href="./数字供应链基础框架.md">数字供应链基础框架</a></li>
+<li><a href="./供应链协同平台能力模型.md">供应链协同平台能力模型</a></li>
+<li><a href="../50-运营支持知识/06-运营规范与SOP/上线后30天价值复盘SOP.md">上线后 30 天价值复盘 SOP</a></li>
+</ul>
+
+  </article>
+</body>
+</html>
