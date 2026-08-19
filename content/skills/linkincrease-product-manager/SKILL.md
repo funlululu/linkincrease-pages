@@ -12,6 +12,7 @@ This skill does not replace `linkincrease-requirement-design` or `linkincrease-p
 | `linkincrease-product-manager` | Clarify product problem, decide scope, assess impact, plan PRD structure, record decisions, and review product knowledge health. |
 | `linkincrease-requirement-design` | Produce or review implementation-ready PRDs after the requirement direction is clear. |
 | `linkincrease-product-success` | Turn customer scenarios into onboarding/configuration/support outputs. |
+| `linkincrease-demo-prototype` | Generate consistent Linkincrease demos or page prototypes only when explicitly requested. |
 
 ## Knowledge Base Resolution
 
@@ -37,6 +38,7 @@ Treat `docs/` and `metadata/documents.csv` as the knowledge authority. Treat cus
 7. Record durable product tradeoffs in `docs/70-产品维护知识/决策记录.md`.
 8. When a request is ready for PRD-level detail, hand off to `linkincrease-requirement-design`.
 9. When the request is actually onboarding, configuration, or customer support, hand off to `linkincrease-product-success`.
+10. When the user explicitly asks for a demo, HTML prototype, page prototype, interaction sample, or UI mockup, hand off to `linkincrease-demo-prototype` after the product problem and impact scope are understood. Do not include detailed demo visual design in ordinary product analysis.
 
 ## Workflow Decision Tree
 

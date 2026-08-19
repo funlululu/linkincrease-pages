@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>需求 Demo 输出规范 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="demo">需求 Demo 输出规范</h1>
+<p>本页用于约束 Linkincrease 需求 Demo、HTML 原型、交互样例和页面说明的输出方式。目标是让 Demo 尽量贴近 Linkincrease 既有页面结构，而不是每个需求重新生成一套随机界面。</p>
+<h2 id="1">1. 适用范围</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>是否适用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户明确要求生成 Demo、HTML 原型、页面原型、交互样例</td>
+<td>是</td>
+<td>必须先选择页面模式和视觉规则</td>
+</tr>
+<tr>
+<td>PRD 中需要补充页面说明</td>
+<td>部分适用</td>
+<td>只写页面入口、状态和关键交互，不展开完整视觉稿</td>
+</tr>
+<tr>
+<td>普通需求澄清、影响范围分析、验收标准</td>
+<td>否</td>
+<td>不主动输出 Demo 设计内容</td>
+</tr>
+<tr>
+<td>客户方案、SOP、问题排查</td>
+<td>否</td>
+<td>除非用户明确要求生成可视化演示</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 生成前必须判断</h2>
+<table>
+<thead>
+<tr>
+<th>判断项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品端</td>
+<td>运营端、贸易端、采集端或公共能力</td>
+</tr>
+<tr>
+<td>页面类型</td>
+<td>列表页、详情页、配置页、设计器、采集页、仪表盘、弹窗或抽屉</td>
+</tr>
+<tr>
+<td>业务对象</td>
+<td>FlowSpace、订单、里程碑、工单、资源库、模板、字段、报表、权限等</td>
+</tr>
+<tr>
+<td>标准页面模式</td>
+<td>从 <code>metadata/ui-patterns.csv</code> 选择最接近的模式</td>
+</tr>
+<tr>
+<td>视觉约束</td>
+<td>从 <code>metadata/ui-style-tokens.csv</code> 和 <a href="./Demo视觉与页面规范.md">Demo 视觉与页面规范</a> 读取</td>
+</tr>
+<tr>
+<td>产品规则</td>
+<td>回到 <code>docs/10</code>、<code>docs/20</code>、<code>docs/30</code>、<code>docs/40</code> 校验</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 输出原则</h2>
+<ol>
+<li>Demo 先套标准页面模式，再替换业务内容。</li>
+<li>不从空白页面自由设计主布局。</li>
+<li>不在 PRD 正文中混入大段视觉规范；PRD 只标注是否需要 Demo、Demo 采用的页面模式和关键交互。</li>
+<li>不依赖维护者本地 prototype 文件夹、绝对路径或未同步资产。</li>
+<li>如果没有合适页面模式，先使用最接近的通用结构，并在 <a href="./页面母版沉淀规范.md">页面母版沉淀规范</a> 中登记待沉淀方向。</li>
+<li>Demo 里的字段、状态、权限、日志和数据口径必须回到权威知识页确认。</li>
+</ol>
+<h2 id="4-demo">4. Demo 输出流程</h2>
+<pre><code class="language-text">需求描述
+-&gt; 判断产品端、页面类型和业务对象
+-&gt; 查询 metadata/ui-patterns.csv
+-&gt; 读取对应知识页和 Demo 视觉与页面规范
+-&gt; 生成 Demo 文件或页面说明
+-&gt; 用 Demo 验收清单检查布局、状态、权限、文案和响应式
+-&gt; 如产生稳定新模式，沉淀到页面母版资产地图和 ui-patterns.csv
+</code></pre>
+<h2 id="5-prd-demo">5. PRD 中的 Demo 写法</h2>
+<p>需求文档不默认展开视觉设计。确实需要说明 Demo 时，使用轻量字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Demo 是否需要</td>
+<td>是 / 否</td>
+</tr>
+<tr>
+<td>页面模式</td>
+<td>例如 <code>TR-001 FlowSpace 订单列表</code></td>
+</tr>
+<tr>
+<td>关键变更</td>
+<td>只写本需求新增区域或交互</td>
+</tr>
+<tr>
+<td>必须沿用</td>
+<td>标准导航、筛选、表格、详情区、状态反馈等</td>
+</tr>
+<tr>
+<td>待确认</td>
+<td>未有页面模式、交互冲突或视觉边界</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-demo">6. Demo 验收清单</h2>
+<ul>
+<li>页面结构符合 <code>metadata/ui-patterns.csv</code> 中的标准模式。</li>
+<li>视觉 token 符合 <code>metadata/ui-style-tokens.csv</code>。</li>
+<li>页面顶部能看出当前产品端、团队或 FlowSpace 上下文。</li>
+<li>主要操作按钮、筛选、表格、详情、右侧面板和弹窗位置稳定。</li>
+<li>状态、权限、错误、空态、加载和保存反馈至少覆盖一轮。</li>
+<li>没有把本地 prototype 路径、个人目录或未同步图片写入共享知识库。</li>
+<li>如需新增模式，已记录到页面母版沉淀流程。</li>
+</ul>
+
+  </article>
+</body>
+</html>

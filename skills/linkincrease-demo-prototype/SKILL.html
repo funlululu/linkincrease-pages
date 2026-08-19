@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linkincrease Demo Prototype - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="linkincrease-demo-prototype">Linkincrease Demo Prototype</h1>
+<h2 id="purpose">Purpose</h2>
+<p>Use this skill only for demo/prototype work. It helps generate consistent Linkincrease page demos by reading the shared knowledge-base rules, style tokens, and page-pattern metadata.</p>
+<p>Do not use this skill for ordinary PRD writing, requirement clarification, customer方案, SOP, or product impact analysis unless the user explicitly asks for a demo, prototype, UI mockup, HTML page, or interaction sample.</p>
+<h2 id="knowledge-base-resolution">Knowledge Base Resolution</h2>
+<p>Resolve the Linkincrease knowledge base in this order:</p>
+<pre><code class="language-text">1. If LINKINCREASE_KB_PATH is set and exists, use it.
+2. Else if the current workspace contains metadata/documents.csv and docs/README.md, use the current workspace.
+3. Else search nearby workspace roots for those marker files.
+4. Else ask the user for the knowledge base path.
+</code></pre>
+<p>Never require a maintainer's local prototype folder or any other local absolute path. Local prototypes can inspire future maintenance, but generated demo rules must come from the shared knowledge base.</p>
+<h2 id="required-reads">Required Reads</h2>
+<p>Before generating a demo, read:</p>
+<ol>
+<li><code>docs/70-产品维护知识/需求Demo输出规范.md</code></li>
+<li><code>docs/70-产品维护知识/Demo视觉与页面规范.md</code></li>
+<li><code>metadata/ui-style-tokens.csv</code></li>
+<li><code>metadata/ui-patterns.csv</code></li>
+<li>The relevant product rule pages from <code>docs/10</code>, <code>docs/20</code>, <code>docs/30</code>, <code>docs/40</code>, or <code>docs/60</code></li>
+</ol>
+<h2 id="workflow">Workflow</h2>
+<ol>
+<li>Identify product end: 运营端、贸易端、采集端 or 公共能力.</li>
+<li>Identify page type: 列表、详情、配置、设计器、采集、仪表盘、弹窗 or 抽屉.</li>
+<li>Select the closest pattern from <code>metadata/ui-patterns.csv</code>.</li>
+<li>Apply visual constraints from <code>metadata/ui-style-tokens.csv</code>.</li>
+<li>Preserve required page areas from the selected pattern.</li>
+<li>Replace only business content, sample data, fields, states, and local interactions needed by the requirement.</li>
+<li>Validate against the Demo checklist in <code>需求Demo输出规范.md</code>.</li>
+</ol>
+<h2 id="output-rules">Output Rules</h2>
+<ul>
+<li>State which UI pattern was used.</li>
+<li>Keep demo copy consistent with Linkincrease terminology, especially FlowSpace.</li>
+<li>Do not include local absolute paths as dependencies.</li>
+<li>Do not invent product rules that are not supported by knowledge pages.</li>
+<li>If no matching pattern exists, use the closest pattern and add a note recommending a new page-pattern entry.</li>
+<li>If producing a PRD and the user did not ask for a demo, do not output visual design sections; only mention demo needs as a lightweight note.</li>
+</ul>
+<h2 id="handoff">Handoff</h2>
+<p>Use with:</p>
+<table>
+<thead>
+<tr>
+<th>Related skill</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>linkincrease-product-manager</code></td>
+<td>Clarify the product problem or impact before making a demo</td>
+</tr>
+<tr>
+<td><code>linkincrease-requirement-design</code></td>
+<td>Write implementation-ready PRD after demo direction is confirmed</td>
+</tr>
+<tr>
+<td><code>linkincrease-product-success</code></td>
+<td>Turn a customer scenario demo into onboarding or configuration方案</td>
+</tr>
+</tbody>
+</table>
+
+  </article>
+</body>
+</html>

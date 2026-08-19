@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>页面母版沉淀规范 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">页面母版沉淀规范</h1>
+<p>本页定义如何把本地或项目中的可运行原型沉淀为共享知识库中的页面标准。知识库只记录稳定规则，不依赖维护者本地 prototype 文件夹。</p>
+<h2 id="1">1. 分工边界</h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>存放内容</th>
+<th>不存放</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本地 prototype</td>
+<td>可运行 HTML、CSS、JS、实验交互、截图验证记录</td>
+<td>不能作为团队共享知识库的必需依赖</td>
+</tr>
+<tr>
+<td>知识库 docs</td>
+<td>页面结构规则、视觉规范、母版选择标准、验收清单</td>
+<td>不存完整前端实现和本地绝对路径</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>页面模式、样式 token、状态、适用场景、关联知识页</td>
+<td>不存个人路径和临时 demo 文件</td>
+</tr>
+<tr>
+<td>skills</td>
+<td>可执行工作流程，告诉 AI 何时读取规则并生成 Demo</td>
+<td>不把普通 PRD 输出强制变成视觉设计</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 沉淀准入</h2>
+<p>一个页面母版进入知识库前，需要满足：</p>
+<ol>
+<li>页面结构在至少一个需求或方案中被验证有效。</li>
+<li>能说清楚适用产品端、页面类型和业务对象。</li>
+<li>能列出必须保留的布局区块和可替换的业务内容。</li>
+<li>视觉规则能抽象成 token 或组件规则。</li>
+<li>不依赖本地图片、绝对路径、个人脚本或未同步资源。</li>
+<li>有对应权威产品规则页支撑，不把 demo 表现误写成产品规则。</li>
+</ol>
+<h2 id="3">3. 沉淀步骤</h2>
+<pre><code class="language-text">本地 prototype 稳定
+-&gt; 提炼页面结构和交互规则
+-&gt; 更新 Demo 视觉与页面规范
+-&gt; 新增或更新 metadata/ui-patterns.csv
+-&gt; 必要时更新 metadata/ui-style-tokens.csv
+-&gt; 更新需求 Demo 输出规范或对应 Skill
+-&gt; 更新 documents.csv、search-index.json、版本变更记录
+</code></pre>
+<h2 id="4">4. 页面模式登记字段</h2>
+<p><code>metadata/ui-patterns.csv</code> 使用以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern_id</td>
+<td>稳定编号，例如 <code>OP-001</code>、<code>TR-001</code>、<code>CO-001</code></td>
+</tr>
+<tr>
+<td>product_end</td>
+<td>运营端、贸易端、采集端、公共能力</td>
+</tr>
+<tr>
+<td>page_type</td>
+<td>列表、详情、配置、设计器、采集、仪表盘、弹窗等</td>
+</tr>
+<tr>
+<td>pattern_name</td>
+<td>页面模式名称</td>
+</tr>
+<tr>
+<td>layout_rule</td>
+<td>页面骨架摘要</td>
+</tr>
+<tr>
+<td>when_to_use</td>
+<td>适用需求</td>
+</tr>
+<tr>
+<td>must_keep</td>
+<td>Demo 生成时必须保留的结构和行为</td>
+</tr>
+<tr>
+<td>can_customize</td>
+<td>可按需求替换的内容</td>
+</tr>
+<tr>
+<td>related_docs</td>
+<td>关联知识页，用分号分隔</td>
+</tr>
+<tr>
+<td>status</td>
+<td>stable、draft、deprecated</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>最近沉淀日期</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 更新原则</h2>
+<ul>
+<li>页面母版变更影响多个 Demo 时，优先更新 metadata 和规范页，再更新具体 demo。</li>
+<li>只适用于单次需求的视觉处理，不进入 stable 页面模式。</li>
+<li>如果页面模式与权威产品规则冲突，先更新待确认问题或决策记录。</li>
+<li>Demo 输出 skill 只能在明确需要 Demo 时使用，不参与普通 PRD 文字产出。</li>
+</ul>
+
+  </article>
+</body>
+</html>

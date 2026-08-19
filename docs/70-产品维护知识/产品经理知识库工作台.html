@@ -94,6 +94,11 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>PRD 框架、功能清单、验收标准</td>
 </tr>
 <tr>
+<td>需求 Demo / 原型</td>
+<td><code>skills/linkincrease-demo-prototype</code>、<code>docs/70/需求Demo输出规范.md</code></td>
+<td>符合 Linkincrease 页面模式的 Demo、HTML 原型或交互样例</td>
+</tr>
+<tr>
 <td>影响范围分析</td>
 <td><code>docs/20</code>、<code>docs/30</code>、<code>docs/40</code>、<code>docs/60</code></td>
 <td>影响矩阵、拆分建议、风险</td>
@@ -137,6 +142,12 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <pre><code class="language-text">先使用 linkincrease-product-manager 做需求框架，再使用 linkincrease-requirement-design 补成可评审 PRD：
 {需求描述}
 </code></pre>
+<h3 id="demo">需求 Demo</h3>
+<pre><code class="language-text">使用 linkincrease-demo-prototype，基于知识库页面模式和视觉 token 生成 Demo：
+{需求描述}
+
+请先判断产品端、页面类型和业务对象，选择最接近的 UI pattern；Demo 不依赖本地 prototype 路径。
+</code></pre>
 <h3 id="_7">产品周复盘</h3>
 <pre><code class="language-text">使用 linkincrease-product-manager，基于以下本周客户反馈/会议纪要/需求讨论，帮我复盘：
 1. 哪些应进入需求池
@@ -166,6 +177,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>会改变对象、权限、流程、数据、报表或日志的，必须做影响范围分析。</li>
 <li>来自单一客户的诉求，先记录证据和适用边界，再判断是否产品化。</li>
 <li>涉及历史取舍、范围砍掉、规则变化的，必须补决策记录。</li>
+<li>只有明确要求 Demo、HTML 原型或交互样例时，才调用 demo prototype workflow；普通 PRD 不展开视觉细节。</li>
 <li>AI 输出不能直接当结论，必须回到权威知识页、来源和待确认问题做校验。</li>
 </ol>
 

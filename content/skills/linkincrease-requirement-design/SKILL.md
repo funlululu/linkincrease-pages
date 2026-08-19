@@ -43,6 +43,7 @@ Use this only for product strategy, user roles, metrics, roadmap, or historical 
 8. Keep the same product end or module together. Do not split 贸易端, 运营端, or 采集端 design details across distant headings unless the later section is a shared rule or appendix.
 9. Put the implementable design before long analysis. Use a concise context section, then a feature list and product-end-specific design.
 10. If a rule is unclear or conflicting, record it as a question instead of turning it into a final conclusion.
+11. Do not output detailed demo visuals, HTML prototypes, or UI mockups during ordinary PRD work unless the user explicitly asks for a demo. If a demo is requested, hand off to `linkincrease-demo-prototype` after the product rules and impact scope are clear.
 
 ## When Starting a Requirement
 
@@ -75,6 +76,7 @@ references/requirement-output-patterns.md
 5. End with acceptance criteria, test focus, release scope, risks, and questions.
 6. Prefer tables, rule lists, and page-level interaction specs over broad prose. Use diagrams only when they reduce ambiguity.
 7. If the user asks for a full file update, edit the referenced document instead of only proposing content.
+8. If a demo is needed, include only a lightweight `Demo 依据` note in the PRD: selected page pattern, key changed areas, and open visual questions. Keep visual tokens and prototype implementation in the demo workflow.
 
 Read the detailed knowledge map only when needed:
 

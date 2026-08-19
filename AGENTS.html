@@ -60,8 +60,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>涉及数字供应链成熟度、系统边界、主数据治理、可视化预警、Linkincrease 在供应链系统版图中的定位，优先查 <code>docs/56-数字供应链专项知识</code>。</li>
 <li>涉及指标、报表、仪表盘、统计口径，优先查 <code>docs/60-数据分析支持</code>。</li>
 <li>涉及需求澄清、影响范围、产品取舍、客户反馈、产品复盘，优先查 <code>docs/70-产品维护知识</code>，并使用 <code>skills/linkincrease-product-manager</code>。</li>
+<li>涉及需求 Demo、HTML 原型、页面原型、交互样例、UI mockup，使用 <code>skills/linkincrease-demo-prototype</code>，并读取 <code>docs/70-产品维护知识/需求Demo输出规范.md</code>、<code>docs/70-产品维护知识/Demo视觉与页面规范.md</code>、<code>metadata/ui-patterns.csv</code>、<code>metadata/ui-style-tokens.csv</code>。</li>
 <li>涉及需求来源、冲突、历史规则、待确认事项、知识资产治理，查 <code>docs/90-版本历史与来源治理</code>。</li>
 <li>不确定项必须进入 <a href="./docs/90-版本历史与来源治理/待确认问题.md">待确认问题</a>，不要把客户实践直接写成产品规则。</li>
+<li>知识库不得依赖维护者本地 prototype 目录或个人绝对路径；本地原型稳定后，只沉淀页面模式、视觉 token、规则和验收清单。</li>
 </ol>
 <h2 id="skill">Skill 使用建议</h2>
 <table>
@@ -83,6 +85,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <tr>
 <td><code>skills/linkincrease-product-success</code></td>
 <td>客户场景诊断、上线方案、配置方案、运营支持和问题排查</td>
+</tr>
+<tr>
+<td><code>skills/linkincrease-demo-prototype</code></td>
+<td>仅在明确输出 Demo、HTML 原型、页面原型或交互样例时使用</td>
 </tr>
 </tbody>
 </table>
@@ -108,6 +114,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>产品规则变更同步到对应权威规则页，并更新 <code>metadata/documents.csv</code>、版本记录和待确认问题。</li>
 <li>新文档必须登记 <code>metadata/documents.csv</code>，至少包含 <code>id</code>、<code>title</code>、<code>type</code>、<code>domain</code>、<code>module</code>、<code>status</code>、<code>path</code>、<code>permission</code>、<code>tags</code>、<code>updated_at</code>。</li>
 <li>重要产品取舍必须进入 <a href="./docs/70-产品维护知识/决策记录.md">决策记录</a>，并写明背景、选项、结论、影响范围和复盘条件。</li>
+<li>页面母版和视觉样式沉淀到 <code>docs/70-产品维护知识</code>、<code>metadata/ui-patterns.csv</code>、<code>metadata/ui-style-tokens.csv</code>；不要把完整 HTML/CSS/JS 或本地 prototype 路径写入共享知识库。</li>
 </ol>
 
   </article>
