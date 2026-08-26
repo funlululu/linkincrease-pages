@@ -66,6 +66,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>知识库不得依赖维护者本地 prototype 目录或个人绝对路径；本地原型稳定后，只沉淀页面模式、视觉 token、规则和验收清单。</li>
 </ol>
 <h2 id="skill">Skill 使用建议</h2>
+<p>先按 <a href="./skills/README.md">skills/README.md</a> 判断任务类型。默认只使用一个主 Skill；只有当用户明确从需求进入 Demo、从客户方案进入 Demo，或从需求澄清进入完整 PRD 时，才组合使用多个 Skill。</p>
 <table>
 <thead>
 <tr>
@@ -115,6 +116,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>新文档必须登记 <code>metadata/documents.csv</code>，至少包含 <code>id</code>、<code>title</code>、<code>type</code>、<code>domain</code>、<code>module</code>、<code>status</code>、<code>path</code>、<code>permission</code>、<code>tags</code>、<code>updated_at</code>。</li>
 <li>重要产品取舍必须进入 <a href="./docs/70-产品维护知识/决策记录.md">决策记录</a>，并写明背景、选项、结论、影响范围和复盘条件。</li>
 <li>页面母版和视觉样式沉淀到 <code>docs/70-产品维护知识</code>、<code>metadata/ui-patterns.csv</code>、<code>metadata/ui-style-tokens.csv</code>；不要把完整 HTML/CSS/JS 或本地 prototype 路径写入共享知识库。</li>
+<li>Skill 属于 Agent 调用入口，登记到 <code>metadata/skills.csv</code>；不要把 Skill 当成普通业务知识页混入公共知识检索。</li>
 </ol>
 
   </article>

@@ -27,6 +27,8 @@
 
 ## Skill 使用建议
 
+先按 [skills/README.md](./skills/README.md) 判断任务类型。默认只使用一个主 Skill；只有当用户明确从需求进入 Demo、从客户方案进入 Demo，或从需求澄清进入完整 PRD 时，才组合使用多个 Skill。
+
 | Skill | 适用任务 |
 | --- | --- |
 | `skills/linkincrease-product-manager` | 需求澄清、影响范围分析、产品取舍、决策记录、产品周复盘 |
@@ -58,3 +60,4 @@
 5. 新文档必须登记 `metadata/documents.csv`，至少包含 `id`、`title`、`type`、`domain`、`module`、`status`、`path`、`permission`、`tags`、`updated_at`。
 6. 重要产品取舍必须进入 [决策记录](./docs/70-产品维护知识/决策记录.md)，并写明背景、选项、结论、影响范围和复盘条件。
 7. 页面母版和视觉样式沉淀到 `docs/70-产品维护知识`、`metadata/ui-patterns.csv`、`metadata/ui-style-tokens.csv`；不要把完整 HTML/CSS/JS 或本地 prototype 路径写入共享知识库。
+8. Skill 属于 Agent 调用入口，登记到 `metadata/skills.csv`；不要把 Skill 当成普通业务知识页混入公共知识检索。

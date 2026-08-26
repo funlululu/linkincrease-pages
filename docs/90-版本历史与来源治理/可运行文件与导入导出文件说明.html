@@ -76,8 +76,8 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td><code>&lt;知识库仓库本地目录&gt;\scripts\build_static_site.py</code></td>
 <td><code>&lt;知识库仓库本地目录&gt;</code></td>
 <td><code>python scripts\build_static_site.py</code></td>
-<td>将 Markdown 知识库打包成只读静态站点，供产品团队查看</td>
-<td>会重建 <code>exports/site</code></td>
+<td>将公开 Markdown 知识库打包成只读静态站点，供产品团队查看</td>
+<td>会重建 <code>exports/site</code>；默认不展示 <code>skills/</code> 和本地临时目录</td>
 </tr>
 <tr>
 <td><code>thoughts_sync.py</code></td>
@@ -127,11 +127,37 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h3 id="32-build_static_sitepy">3.2 <code>build_static_site.py</code></h3>
 <p>用途：</p>
 <ul>
-<li>扫描知识库中的 Markdown 文档。</li>
+<li>扫描知识库中的公开 Markdown 文档。</li>
 <li>将文档复制到 <code>exports/site/content</code>。</li>
 <li>生成 <code>exports/site/index.html</code>，提供左侧目录、搜索框和 Markdown 阅读界面。</li>
 <li>用于给产品团队发布只读知识库站点。</li>
 </ul>
+<p>默认发布范围：</p>
+<ul>
+<li>根目录 Markdown。</li>
+<li><code>docs/</code>、<code>sources/</code>、<code>templates/</code>。</li>
+<li>不发布隐藏目录、本地临时目录、<code>exports/</code>、<code>backups/</code>、<code>archive/</code>。</li>
+<li>默认不把 <code>skills/</code> 作为页面文档展示，也不展示 Skill 下载入口。</li>
+</ul>
+<p>可选环境变量：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INCLUDE_SKILLS_IN_SITE=1</code></td>
+<td>将 <code>skills/</code> 文档加入静态站导航、搜索和站点地图</td>
+</tr>
+<tr>
+<td><code>INCLUDE_SKILL_DOWNLOADS=1</code></td>
+<td>生成并展示 Skill zip 下载入口</td>
+</tr>
+</tbody>
+</table>
 <p>运行后输出示例：</p>
 <pre><code class="language-text">site=知识库私有 Git 仓库本地工作区\exports\site
 documents=78

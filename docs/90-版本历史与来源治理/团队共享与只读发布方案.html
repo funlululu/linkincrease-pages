@@ -121,6 +121,11 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <p>生成目录：</p>
 <pre><code class="language-text">exports\site
 </code></pre>
+<p>默认静态站只展示公开知识页，不展示 <code>skills/</code> 文档和本地临时目录。需要给 Agent 使用者临时发布 Skill 文档或下载包时，可显式设置：</p>
+<pre><code class="language-powershell">$env:INCLUDE_SKILLS_IN_SITE=&quot;1&quot;
+$env:INCLUDE_SKILL_DOWNLOADS=&quot;1&quot;
+python scripts\build_static_site.py
+</code></pre>
 <p>发布方式可以按团队条件选择：</p>
 <table>
 <thead>
@@ -191,7 +196,7 @@ python -m http.server 8010
 <h2 id="6">6. 注意事项</h2>
 <ol>
 <li>静态站点是阅读入口，不是编辑入口。</li>
-<li>Skill 是工作方法和路径索引，不是知识库副本。</li>
+<li>Skill 是工作方法和路径索引，不是面向所有阅读者的知识库正文；默认不在静态站导航中展示。</li>
 <li>知识库正文统一使用 FlowSpace；历史 <code>source:</code> 引用中的 SCCS 保留原始文件名。</li>
 <li>产品成员可以提交需求建议，但最终入库应由维护人审核。</li>
 <li>每次入库后需要重新生成并发布静态站点。</li>
