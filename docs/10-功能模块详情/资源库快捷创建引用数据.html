@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>资源库快捷创建引用数据 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">资源库快捷创建引用数据</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>资源库快捷创建引用数据用于在订单创建或编辑过程中，直接从资源库引用弹窗创建当前资源表的数据，并回到引用弹窗完成选择，缩短“发现资源库数据缺失 -&gt; 创建资源数据 -&gt; 完成订单引用”的路径。</p>
+<p>快捷创建写入的是正式资源库数据，不是订单临时数据。即使后续取消订单，已创建的资源库数据仍保留。</p>
+<h2 id="2">2. 使用入口</h2>
+<p>用户在订单表单中打开资源库引用弹窗时，如果当前选中的资源表有效，且当前用户拥有该表“创建数据”权限，则展示“添加资源数据”按钮。</p>
+<p>按钮只作用于当前选中的资源表；切换资源表后立即重新计算权限。前端隐藏只用于交互，打开创建页和提交创建时服务端必须再次校验。</p>
+<h2 id="3">3. 创建数据抽屉</h2>
+<p>点击“添加资源数据”后，在引用弹窗之上打开当前资源表的创建数据抽屉：</p>
+<ol>
+<li>复用当前资源表的创建表单、字段、组件和校验规则。</li>
+<li>保留订单草稿，以及引用弹窗中的资源表、搜索词、筛选、滚动位置和已选数据。</li>
+<li>抽屉底部提示：“保存后数据将直接写入资源库；即使取消订单，该数据仍会保留。”</li>
+<li>取消或关闭时不创建数据，并返回引用弹窗原状态。</li>
+</ol>
+<h2 id="4">4. 创建成功后的引用规则</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建成功且可引用</td>
+<td>刷新当前资源表列表，定位并自动选中新数据；存在二级引用页面时，自动选中并跳转到二级页面；提示“资源数据已创建，并已为你选中”</td>
+</tr>
+<tr>
+<td>创建成功但不可引用</td>
+<td>数据保留在资源库，不回滚；引用弹窗不选中该数据；提示检查数据范围</td>
+</tr>
+<tr>
+<td>用户确认引用</td>
+<td>按既有单选、多选、字段回填、空值处理、成员/协作方过滤和二级引用规则回填订单字段</td>
+</tr>
+<tr>
+<td>订单取消或保存失败</td>
+<td>不删除已快捷创建的资源库数据</td>
+</tr>
+</tbody>
+</table>
+<p>创建资源数据本身不代表订单已引用；必须由用户在引用弹窗确认后，才按既有映射回填订单字段。</p>
+<h2 id="5">5. 权限、数据范围与对象边界</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>写入对象</td>
+<td>当前资源库 &gt; 当前资源表 &gt; 单条资源库数据</td>
+</tr>
+<tr>
+<td>可引用范围</td>
+<td>已关联资源表、表有效性、表查看权限、用户数据范围、FlowSpace 应用范围及协作授权范围的交集</td>
+</tr>
+<tr>
+<td>资源库/资源表</td>
+<td>复用现有对象，不新增结构；创建目标由引用弹窗当前资源表决定</td>
+</tr>
+<tr>
+<td>资源库模板</td>
+<td>复用现有表单结构、组件和校验，无新增配置项</td>
+</tr>
+</tbody>
+</table>
+<p>创建成功后按普通“创建资源库数据”写入历史，记录创建人、创建时间，并触发与普通资源库新增一致的既有事件。</p>
+<h2 id="6">6. 空态与异常</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>页面处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无可引用数据且有创建权限</td>
+<td>显示“暂无可引用数据”和“添加资源数据”入口</td>
+</tr>
+<tr>
+<td>无可引用数据且无创建权限</td>
+<td>仅显示“暂无可引用数据”，不展示创建入口</td>
+</tr>
+<tr>
+<td>搜索无结果</td>
+<td>显示“未找到匹配数据”；有权限时仍可创建，但不自动带入搜索词</td>
+</tr>
+<tr>
+<td>点击创建前权限被移除</td>
+<td>提示“暂无权限，请联系管理员”</td>
+</tr>
+<tr>
+<td>填写中权限被移除</td>
+<td>提交失败，保留已填内容并提示无权限</td>
+</tr>
+<tr>
+<td>资源表被删除或失效</td>
+<td>提交失败，关闭创建页并刷新可选资源表，提示重新选择</td>
+</tr>
+<tr>
+<td>协作授权被移除</td>
+<td>提交失败，刷新资源表可选数据范围</td>
+</tr>
+<tr>
+<td>必填或格式错误</td>
+<td>在对应字段就近提示，不提交</td>
+</tr>
+<tr>
+<td>网络或服务异常</td>
+<td>保留表单内容，提示“创建失败，请稍后重试”</td>
+</tr>
+<tr>
+<td>重复提交</td>
+<td>首次提交后按钮进入加载态，不产生重复数据</td>
+</tr>
+<tr>
+<td>创建成功但列表刷新失败</td>
+<td>提示“数据已创建，请刷新列表后选择”，允许手动刷新</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 验收重点</h2>
+<ol>
+<li>有当前表创建权限时展示“添加资源数据”；无权限时不展示，接口也拒绝。</li>
+<li>切换不同资源表时，按钮按当前表权限实时显示或隐藏。</li>
+<li>创建抽屉复用当前资源表表单，表单校验失败时不提交。</li>
+<li>创建成功且可引用时，返回引用弹窗、刷新并自动选中新数据，但不直接写入订单。</li>
+<li>权限或资源表状态中途变化时，服务端拒绝提交并明确提示。</li>
+<li>创建成功但不可引用时，资源库数据不回滚、不选中，并提示检查数据范围。</li>
+<li>取消订单后，快捷创建成功的资源库数据仍保留。</li>
+<li>原引用能力回归：清除关联、手动修改、二级引用和同步策略不受影响。</li>
+</ol>
+<h2 id="8">8. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】订单引用资源库页面快捷创建资源库数据.md</code></li>
+</ul>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】订单引用资源库页面快捷创建资源库数据</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-08-27</td></tr></table></details>
+  </article>
+</body>
+</html>

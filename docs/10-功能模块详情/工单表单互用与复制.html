@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>工单表单互用与复制 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">工单表单互用与复制</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>工单表单互用与复制用于在同一 FlowSpace 内复用不同工单的采集表单数据，减少重复录入，并让复用来源、覆盖快照、同步状态和异常原因可追溯。</p>
+<p>两种模式的边界不同：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>结果</th>
+<th>目标侧编辑</th>
+<th>源数据变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互用</td>
+<td>建立源表单与目标表单的持续同步关系</td>
+<td>目标表单只读</td>
+<td>源表单保存后持续同步目标</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>将源表单当前已保存数据覆盖到目标</td>
+<td>目标表单可继续按普通表单编辑</td>
+<td>后续互不影响</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">2. 适用范围</h2>
+<table>
+<thead>
+<tr>
+<th>范围</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlowSpace</td>
+<td>仅限同一 FlowSpace，支持同订单和跨订单</td>
+</tr>
+<tr>
+<td>模板匹配</td>
+<td>源、目标必须属于同一里程碑模板 ID，并使用同一工单采集表单模板 ID</td>
+</tr>
+<tr>
+<td>表单范围</td>
+<td>首期仅支持整张工单采集表单覆盖</td>
+</tr>
+<tr>
+<td>不支持</td>
+<td>不支持选择字段、合并数据、仅填充空字段、工单批复表单、里程碑批复表单</td>
+</tr>
+<tr>
+<td>不复用内容</td>
+<td>不复制或互用工单名称、处理人、状态、批复、动态、评论、邮件协作等工单级数据</td>
+</tr>
+<tr>
+<td>关系限制</td>
+<td>一个目标表单只能有一个互用来源；一个源表单可互用至多个目标；不得形成循环或多级互用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 权限与状态</h2>
+<p>创建互用或执行复制时，执行人必须同时满足：</p>
+<ol>
+<li>具备源、目标订单及工单查看权限。</li>
+<li>具备源表单完整数据查看权限。</li>
+<li>具备目标表单采集权限。</li>
+<li>目标对象当前状态允许采集或编辑。</li>
+</ol>
+<p>以下状态不得新建互用或复制：目标工单已批复、已终止、已删除，或所属订单/里程碑已完成、取消。</p>
+<p>来源不要求可编辑；已提交、已批复、已终止，或所属订单/里程碑已完成、取消的历史工单可以作为来源，但删除对象不可作为来源。</p>
+<h2 id="4">4. 创建互用</h2>
+<p>创建互用使用源表单最后一次服务端已保存版本，不读取页面未保存修改。确认后：</p>
+<ol>
+<li>按稳定字段 ID 使用源表单已保存数据整表覆盖目标。</li>
+<li>公式结果不直接互用，在目标工单重新计算。</li>
+<li>保存目标覆盖前后快照并建立唯一互用关系。</li>
+<li>目标表单立即转为只读，其他表单不受影响。</li>
+<li>目标当前显示的必填字段如果无法从来源或目标公式获得有效值，阻止创建。</li>
+</ol>
+<p>来源确认后先形成“待提交互用”状态，需提交工单才正式建立互用关系。提交工单时由服务端重新校验；多个待提交互用表单中任一失败时，整次工单不落库。</p>
+<h2 id="5">5. 复制数据</h2>
+<p>复制数据同样使用源表单当前已保存数据并整表覆盖目标。复制后：</p>
+<ul>
+<li>不建立持续关系。</li>
+<li>不复制工单级信息、批复、动态、历史或互用关系。</li>
+<li>目标按普通表单处理，可在权限和状态允许时继续编辑。</li>
+<li>源侧不展示被复制去向，也不增加源工单动态。</li>
+<li>目标工单动态/历史保留复制来源和覆盖快照。</li>
+</ul>
+<h2 id="6">6. 取消与修改互用</h2>
+<p>取消互用可从目标表单编辑态或源表单编辑态发起，操作者需具备目标表单采集权限或源表单采集权限。</p>
+<p>取消时必须选择处理方式：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>保留目标数据</td>
+<td>保留最后一次同步后的业务有效值，并转为目标本地数据</td>
+</tr>
+<tr>
+<td>清空目标数据</td>
+<td>清空该表单；需强提示可能造成必填字段为空</td>
+</tr>
+</tbody>
+</table>
+<p>取消后源变化不再同步目标，不允许恢复互用建立前的数据。源、目标工单均记录取消动态；目标历史保存取消方式及取消前后快照；关系审计永久保留。</p>
+<p>修改互用来源按“取消原关系 + 创建新关系”处理，需保存切换前后快照以及原、新关系信息。</p>
+<h2 id="7">7. 同步、只读与业务有效值</h2>
+<p>源表单在贸易端、采集端、自动化、外部 API 或资源库同步中产生已保存数据变化时，同步至全部有效目标。同步范围包括普通字段、子表行、图片、附件、签名，以及同一表单 ID 下模板新增字段。</p>
+<p>同步要求：</p>
+<ol>
+<li>使用源数据版本同步，记录目标最近同步版本、时间、状态及失败原因。</li>
+<li>同一“关系 ID + 源版本 + 目标 ID”只执行一次。</li>
+<li>失败任务按系统机制重试；部分目标失败不回滚其他成功目标。</li>
+<li>目标互用表单禁止用户导入、批量编辑、API 和自动化直接写入，只允许互用同步及目标公式计算写入。</li>
+<li>同步期间展示“同步中”；失败时保留最后成功版本并展示失败状态。</li>
+</ol>
+<p>业务有效值的处理顺序为：同步源普通字段值 -&gt; 计算目标公式 -&gt; 判断目标显隐 -&gt; 计算业务有效值和必填完整度 -&gt; 记录动态/历史/执行日志 -&gt; 触发目标自动化。</p>
+<h2 id="8">8. 特殊组件与显隐</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>同订单</th>
+<th>跨订单</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通字段、子表、图片、附件、签名</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>订单内关联引用</td>
+<td>支持</td>
+<td>需按待确认策略处理</td>
+</tr>
+<tr>
+<td>公式</td>
+<td>使用目标工单实际因子计算</td>
+<td>使用目标订单、目标工单实际因子计算</td>
+</tr>
+<tr>
+<td>资源库关联</td>
+<td>支持</td>
+<td>支持，保留资源数据 ID</td>
+</tr>
+</tbody>
+</table>
+<p>字段显隐按各目标工单的数据上下文单独判断：</p>
+<table>
+<thead>
+<tr>
+<th>源字段</th>
+<th>目标字段</th>
+<th>目标业务有效值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显示且有值</td>
+<td>显示</td>
+<td>同步源值，只读</td>
+</tr>
+<tr>
+<td>显示且有值</td>
+<td>隐藏</td>
+<td>空，不展示、不校验</td>
+</tr>
+<tr>
+<td>隐藏</td>
+<td>显示</td>
+<td>空且只读，不恢复源历史值</td>
+</tr>
+<tr>
+<td>隐藏</td>
+<td>隐藏</td>
+<td>空，不展示、不校验</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9">9. 批复、自动化与数据出口</h2>
+<ul>
+<li>目标工单包含互用表单时，批复确认区域需展示风险提示，说明批复后源数据或目标公式因子变化仍可能改变字段值、公式结果和字段显隐。</li>
+<li>批复人必须确认已知晓风险后才能批复。</li>
+<li>批复后已有关系继续同步，目标公式和显隐继续重新计算，作为现有批复锁定规则的特例。</li>
+<li>互用同步及目标公式/显隐变化合并为一次目标订单数据变更，按最终业务有效值触发自动化。</li>
+<li>自动化不得写入目标互用表单。</li>
+<li>仪表盘与报告按目标订单、目标工单统计，不按来源去重。</li>
+<li>互用目标可导出当前最新值；导入、批量编辑、API 不得覆盖有效互用表单。</li>
+</ul>
+<h2 id="10">10. 日志、动态与审计</h2>
+<p>需要记录的事件包括：创建互用、数据同步、修改来源、取消互用、源工单删除导致解除关系、目标工单删除解除关系、复制覆盖。</p>
+<p>源工单和目标工单动态应分别说明来源、去向、执行人、目标订单/工单、保留或清空方式。目标历史记录需保存覆盖前后快照、字段差异、源/目标版本和关系信息。</p>
+<h2 id="11">11. 异常与测试重点</h2>
+<p>重点异常包括：无权限、不可见、当前工单自身、来源为互用目标、目标已有来源或去向、来源无保存版本、模板不匹配、条件并发变化、直接写入互用表单、同步失败、取消并清空。</p>
+<p>测试重点覆盖同订单/跨订单、权限建立后丢失、无保存版本、未保存修改、已提交、已批复、已终止、空值、必填、子表、附件、签名、订单内关联引用、资源库、公式、显隐组合、一个源多个目标、部分失败、重试、并发、循环自动化、修改来源、取消保留/清空、删除源/目标，以及导入、批量编辑、API、自动化直接写入。</p>
+<h2 id="12">12. 待确认问题</h2>
+<ul>
+<li>跨订单存在订单内关联引用时，首期是阻止整表互用，还是复制时跳过关联引用并复制其余字段，需要产品和研发确认。</li>
+<li>“有效来源数据”是否可完全按存在服务端已保存版本判断，需要研发确认现有表单版本能力。</li>
+</ul>
+<h2 id="13">13. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】【工单】表单互用、表单复制.md</code></li>
+</ul>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【工单】表单互用、表单复制</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>工单</td><td>2026-08-27</td></tr></table></details>
+  </article>
+</body>
+</html>

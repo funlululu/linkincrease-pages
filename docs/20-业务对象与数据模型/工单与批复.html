@@ -212,6 +212,9 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>当前采集人可编辑自己负责的表单，其余表单只读。</li>
 <li>多人并发时，如其他人已提交，需要提示刷新后再提交。</li>
 <li>提交后更新头像提交标识、动态、历史记录和完成度。</li>
+<li>工单采集表单支持“互用”和“复制”两种整表复用。互用建立持续同步关系，目标表单只读；复制只覆盖源表单当前已保存数据，目标后续按普通表单继续编辑。</li>
+<li>表单互用/复制仅限同一 FlowSpace，源、目标需属于同一里程碑模板 ID 和同一工单采集表单模板 ID；首期不支持工单批复表单和里程碑批复表单。</li>
+<li>互用目标表单禁止导入、批量编辑、API 和自动化直接写入；同步后按目标工单公式和字段显隐重新计算业务有效值。</li>
 </ul>
 <h2 id="8">8. 通知、日志与审计</h2>
 <p>需要记录和通知的事件包括：</p>
@@ -226,6 +229,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>删除工单。</li>
 <li>自动化创建或更新工单。</li>
 <li>工单采集人、工单批复人、里程碑批复人移交。</li>
+<li>工单表单互用关系创建、同步、修改、取消、源工单删除解除关系、目标工单删除解除关系和复制覆盖。</li>
 </ul>
 <p>通知渠道包括站内消息、邮件，部分资料中也提到短信模板，需要补充来源。</p>
 <h2 id="9">9. 异常与提示</h2>
@@ -250,14 +254,16 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务详情页】工单、工单批复、里程碑批复详情页.md</code></li>
 <li><code>source:thoughts-v2-current/v2.3.x/采集端/【采集端】【任务列表】工单、工单批复、里程碑批复任务列表.md</code></li>
 <li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】FlowSpace 数据移交.md</code></li>
+<li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】【工单】表单互用、表单复制.md</code></li>
 </ul>
 <h2 id="11">11. 待确认问题</h2>
 <ul>
 <li>工单批复后是否允许部分字段继续被自动化或资源库同步更新。</li>
+<li>跨订单工单表单互用遇到订单内关联引用时，首期阻止整表互用还是复制时跳过关联引用仍需确认。</li>
 <li>终止采集后是否允许重启采集。</li>
 <li>采集端与贸易端在所有状态限制上的提示是否完全一致。</li>
 </ul>
-
+<details class="source-section" open><summary>需求来源 (5)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【订单详情】工单&里程碑批复操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-05-26</td></tr><tr><td>【贸易端】【订单详情】查看&操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-05-26</td></tr><tr><td>【采集端】【任务详情页】工单、工单批复、里程碑批复详情页</td><td><span class="source-badge">v2.3.x</span></td><td>采集端</td><td>任务详情页</td><td>2026-05-26</td></tr><tr><td>【贸易端】FlowSpace 数据移交</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-08-27</td></tr><tr><td>【贸易端】【工单】表单互用、表单复制</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>工单</td><td>2026-08-27</td></tr></table></details>
   </article>
 </body>
 </html>

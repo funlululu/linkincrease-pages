@@ -284,14 +284,24 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><a href="../40-权限、安全与审计/数据围栏.md">数据围栏</a></li>
 <li><a href="../20-业务对象与数据模型/资源库.md">资源库</a></li>
 </ul>
-<h2 id="_13">来源</h2>
+<h2 id="_13">子表查看模式</h2>
+<p>订单列表支持子表查看模式，用于对比查看多条订单下同一子表的数据。切换到子表模式时：</p>
+<ul>
+<li>下拉选择当前列表模板配置中的一个子表，默认选中模板顺序中的第一个子表。</li>
+<li>主表单或工单无子表时，对应视图隐藏“子表”切换标签；模板未配置子表时提示没有可展开的子表。</li>
+<li>展开的子表列仅展示子表字段，并通过列底色区分当前展开区域。</li>
+<li>字段显隐和位置沿用详情模式字段配置；切换查看模式不影响当前排序和查询规则。</li>
+<li>列统计按当前展开数据计算，并在查看模式切换过程中记住各模式的列统计规则。</li>
+<li>子表模式不支持排序和翻页。</li>
+</ul>
+<h2 id="_14">来源</h2>
 <ul>
 <li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【工作台】订单日程、任务中心、常用视图.md</code></li>
 <li><code>source:thoughts-v2-current/v2.2.x/贸易端/【贸易端】【订单列表】视图设置.md</code></li>
 <li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单列表】视图模式：子表.md</code></li>
 <li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【资源库】视图管理.md</code></li>
 </ul>
-<details class="source-section" open><summary>需求来源 (4)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【工作台】订单日程、任务中心、常用视图</td><td><span class="source-badge">v2.3.x</span></td><td>贸易端</td><td>工作台</td><td>2026-05-26</td></tr><tr><td>【贸易端】【订单列表】视图设置</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单列表</td><td>2026-05-26</td></tr><tr><td>【贸易端】【订单列表】视图模式：子表</td><td><span class="source-badge">v2.3.x</span></td><td>贸易端</td><td>订单列表</td><td>2026-07-28</td></tr><tr><td>【贸易端】【资源库】视图管理</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (4)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【工作台】订单日程、任务中心、常用视图</td><td><span class="source-badge">v2.3.x</span></td><td>贸易端</td><td>工作台</td><td>2026-05-26</td></tr><tr><td>【贸易端】【订单列表】视图设置</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单列表</td><td>2026-05-26</td></tr><tr><td>【贸易端】【订单列表】视图模式：子表</td><td><span class="source-badge">v2.3.x</span></td><td>贸易端</td><td>订单列表</td><td>2026-08-27</td></tr><tr><td>【贸易端】【资源库】视图管理</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr></table></details>
   </article>
 </body>
 </html>

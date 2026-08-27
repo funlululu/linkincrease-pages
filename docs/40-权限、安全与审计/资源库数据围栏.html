@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>资源库数据围栏 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">资源库数据围栏</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>资源库数据围栏是在资源库表级操作权限和行级数据范围基础上增加的列级可见权限，用于限制成员、协作团队查看资源表中的敏感列，并统一作用于资源库页面、数据出口、外部分享和 FlowSpace 引用。</p>
+<p>本期不包含单元格级权限、字段脱敏、FlowSpace 现有数据围栏改造、权限变更通知。隐藏列不展示字段名及字段值。</p>
+<h2 id="2">2. 管理权限</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>权限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队层面资源库管理员</td>
+<td>管理全部资源库的数据围栏</td>
+</tr>
+<tr>
+<td>拥有当前资源库设置权限的成员角色</td>
+<td>管理当前资源库的数据围栏</td>
+</tr>
+<tr>
+<td>协作方角色、协作资源库普通成员、其他成员</td>
+<td>不展示入口；地址访问提示“暂无权限，请联系管理员”</td>
+</tr>
+</tbody>
+</table>
+<p>管理包括查看、新增、编辑、删除数据围栏。服务端必须再次校验权限。</p>
+<h2 id="3">3. 围栏配置</h2>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>围栏名称</td>
+<td>必填，最多 100 字符</td>
+</tr>
+<tr>
+<td>资源表</td>
+<td>必填，单选当前资源库内正常资源表</td>
+</tr>
+<tr>
+<td>限制成员</td>
+<td>选填，多选本团队成员，可包含未注册成员</td>
+</tr>
+<tr>
+<td>限制协作团队</td>
+<td>选填，多选与本团队仍有效的协作团队，包括邀请我的和我邀请的团队；限制字段作用于该团队全部成员</td>
+</tr>
+<tr>
+<td>不可查看列</td>
+<td>必填，新增时默认不选；至少 1 列；仅展示所选资源表当前有效业务列，支持按模块分组全选</td>
+</tr>
+</tbody>
+</table>
+<p>保存时校验管理权限、资源表、成员、团队及字段有效性。资源表失效、成员移出团队、协作关系解除、字段删除等场景需阻止保存或自动移除失效字段。</p>
+<h2 id="4">4. 权限计算</h2>
+<pre><code class="language-text">用户可访问数据 = 表级操作权限 ∩ 行级数据范围 ∩ 列级数据围栏
+有效可见列 = 当前有效列 - 用户命中的全部不可查看列
+</code></pre>
+<p>规则：</p>
+<ol>
+<li>数据围栏只收窄列范围，不授予表、行或操作权限。</li>
+<li>同一用户命中多个围栏时，不可查看列取并集。</li>
+<li>协作团队围栏作用于该团队全部成员。</li>
+<li>资源库管理员本人也可被限制；但有围栏管理权限的用户在围栏配置页可看到全部字段名，以便完成配置。</li>
+<li>有资源表查看权限但有效可见列为空时，保留资源表入口和记录数，内容区展示“暂无可查看字段”。</li>
+</ol>
+<h2 id="5">5. 页面与数据出口影响</h2>
+<p>列权限必须由服务端统一过滤，不能只在前端隐藏。</p>
+<table>
+<thead>
+<tr>
+<th>功能面</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>列表、详情</td>
+<td>不返回隐藏列名、列值及空占位；关联引用控件来源被围栏限制的字段也不显示</td>
+</tr>
+<tr>
+<td>新增、编辑、批量编辑</td>
+<td>不展示隐藏列；提交其他列时不得覆盖隐藏列原值</td>
+</tr>
+<tr>
+<td>模糊查询、筛选、排序、列设置</td>
+<td>不提供隐藏列；已保存视图中的相关条件失效，且不暴露字段名和值</td>
+</tr>
+<tr>
+<td>统计</td>
+<td>不返回隐藏列统计结果</td>
+</tr>
+<tr>
+<td>附件、历史记录</td>
+<td>附件列隐藏时不可查看/下载或批量下载；历史记录不展示隐藏列新旧值及差异</td>
+</tr>
+<tr>
+<td>导出</td>
+<td>字段选择和文件内容均排除隐藏列</td>
+</tr>
+<tr>
+<td>导入</td>
+<td>字段匹配、预览不展示隐藏列；导入其他列时不校验、不修改隐藏列</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6">6. 外部分享列权限</h2>
+<p>单条数据分享、整表分享均增加“分享列权限”。</p>
+<pre><code class="language-text">外部实际可见列 = 本次分享可见列 ∩ 分享者实时有效可见列 ∩ 当前有效列
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可选范围</td>
+<td>仅返回分享者当前有效可见列，不返回被围栏隐藏的字段名</td>
+</tr>
+<tr>
+<td>首次创建</td>
+<td>默认所有可分享字段都勾选为“分享可见”</td>
+</tr>
+<tr>
+<td>保存校验</td>
+<td>至少保留 1 个可见字段</td>
+</tr>
+<tr>
+<td>搜索/全选</td>
+<td>仅作用于当前可选列，不得命中隐藏列</td>
+</tr>
+<tr>
+<td>编辑分享</td>
+<td>返回当前仍有效且当前用户可见的列；删除或暂不可见的列不返回，也不可重新选择</td>
+</tr>
+<tr>
+<td>实际访问</td>
+<td>分享创建、预览、外部访问、搜索、筛选、排序、统计、详情、导出、下载、编辑提交时均按最新权限计算</td>
+</tr>
+</tbody>
+</table>
+<p>分享方式由编辑时实时同步改为需点击保存才生效。分享链接管理列表允许编辑本人创建的链接；关闭分享仍按删除处理，只允许在列表中操作。</p>
+<h2 id="7">7. 默认、变更与兼容</h2>
+<ol>
+<li>未配置围栏的存量资源库默认全部列可见。</li>
+<li>新增资源表字段在平台内默认可见，但不自动加入已有外部分享。</li>
+<li>新成员加入受限协作团队后自动命中团队围栏；本团队成员级围栏需单独配置。</li>
+<li>权限变更服务端立即生效；已打开页面在刷新、翻页、导出、提交时按最新权限重新校验。</li>
+<li>资源库数据编辑、删除及外部分享编辑触发的订单同步，继续遵循既有同步范围和失效规则。</li>
+</ol>
+<h2 id="8">8. 验收重点</h2>
+<ol>
+<li>数据围栏可按资源表配置成员、协作团队和不可查看列。</li>
+<li>多围栏命中时隐藏列按并集生效，且不改变表级、行级和操作权限。</li>
+<li>列表、详情、编辑、视图、搜索、统计、附件、历史、导入、导出和用户身份接口结果一致，响应及文件不包含隐藏值。</li>
+<li>编辑、导入或外部提交可见列时，不覆盖隐藏列原值。</li>
+<li>单条和整表分享均可单独选择分享列；隐藏字段名不出现在可选项、搜索结果或提示中。</li>
+<li>外部实际可见列符合三项交集；权限变化、字段新增/重命名/删除和空列状态符合规则。</li>
+<li>存量分享的初始分享列等于上线时分享者当前有效可见列，不突破新围栏。</li>
+</ol>
+<h2 id="9">9. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】资源库数据围栏.md</code></li>
+</ul>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】资源库数据围栏</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-08-27</td></tr></table></details>
+  </article>
+</body>
+</html>

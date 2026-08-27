@@ -119,6 +119,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>自定义</td>
 <td>必须配置字段条件；字段范围包括模板字段、创建人、创建时间、更新人、更新时间等</td>
 </tr>
+<tr>
+<td>数据围栏</td>
+<td>在表级操作权限和行级数据范围基础上，进一步按成员或协作团队收窄资源表列级可见范围</td>
+</tr>
 </tbody>
 </table>
 <p>成员控件、创建人、更新人可选择“当前用户”；协作方控件可选择“当前团队”。</p>
@@ -158,6 +162,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <tr>
 <td>批量下载文件</td>
 <td>所有可进入当前资源表的成员可见</td>
+</tr>
+<tr>
+<td>快捷创建引用数据</td>
+<td>在订单资源库引用弹窗中，需拥有当前资源表“创建数据”权限；打开创建页和提交时均由服务端校验</td>
 </tr>
 </tbody>
 </table>
@@ -212,11 +220,16 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>分享链接管理</td>
 <td>管理员可查看权限范围内所有分享链接；成员个人只可查看本人分享链接</td>
 </tr>
+<tr>
+<td>分享列权限</td>
+<td>单条数据分享和整表分享均需叠加分享列权限，实际可见列为“本次分享可见列、分享者实时有效可见列、当前有效列”的交集</td>
+</tr>
 </tbody>
 </table>
 <p>分享链接删除后失效。预览、删除、编辑提交时均需校验权限。</p>
 <h2 id="8-flowspace">8. 与 FlowSpace 引用的关系</h2>
 <p>资源库被 FlowSpace 引用后，数据权限和同步规则会影响订单数据。若资源库协作授权导致数据不可见，当前需求暂按“资源库数据被删除”逻辑同步清空 FlowSpace 订单字段处理，但该方案仍需作为重点确认项保留。</p>
+<p>资源库数据围栏只收窄列范围，不授予表、行或操作权限。FlowSpace 引用、列表详情、编辑、导入导出、历史、统计和外部分享均需由服务端按最新列权限过滤。</p>
 <h2 id="9">9. 审计要求</h2>
 <p>资源库设置操作日志需要记录：</p>
 <ul>
@@ -230,7 +243,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>外部分享只读开关、分享者编辑权限、被分享者编辑权限之间的最终优先级需补充矩阵。</li>
 <li>导出是否严格按数据范围过滤字段和记录，需要后续用线上验证。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (4)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【资源库】第一阶段</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>资源库</td><td>2026-07-03</td></tr><tr><td>【贸易端】【资源库】资源库分享</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr><tr><td>【贸易端】【资源库】SCCS应用数据范围、数据编辑历史记录</td><td><span class="source-badge">v2.7</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr><tr><td>【贸易端】【操作日志】所有设置类功能</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>操作日志</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (6)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【资源库】第一阶段</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>资源库</td><td>2026-07-03</td></tr><tr><td>【贸易端】【资源库】资源库分享</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr><tr><td>【贸易端】【资源库】SCCS应用数据范围、数据编辑历史记录</td><td><span class="source-badge">v2.7</span></td><td>贸易端</td><td>资源库</td><td>2026-06-12</td></tr><tr><td>【贸易端】【操作日志】所有设置类功能</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>操作日志</td><td>2026-05-26</td></tr><tr><td>【贸易端】订单引用资源库页面快捷创建资源库数据</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-08-27</td></tr><tr><td>【贸易端】资源库数据围栏</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-08-27</td></tr></table></details>
   </article>
 </body>
 </html>
