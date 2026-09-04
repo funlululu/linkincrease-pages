@@ -90,6 +90,77 @@
     nav .folder { display:block; color:#8a9bb0; font-size:11px; margin-top:0; }
     nav a.active .folder { color:#5685b0; }
     .meta { position:sticky; top:0; z-index:2; grid-column:2; height:48px; display:flex; align-items:center; padding:0 52px; color:var(--muted); font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; background:rgba(248,250,255,.88); border-bottom:1px solid rgba(207,222,240,.78); backdrop-filter:blur(14px); }
+    .kb-banner {
+      position:relative;
+      isolation:isolate;
+      grid-column:2;
+      width:min(calc(100% - 104px), 1120px);
+      margin:28px auto 0;
+      padding:24px;
+      display:grid;
+      grid-template-columns:minmax(280px,1fr) auto minmax(230px,280px);
+      align-items:center;
+      gap:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:20px;
+      color:#fff;
+      background:
+        radial-gradient(circle at 12% 0%,rgba(82,190,255,.34),transparent 34%),
+        linear-gradient(118deg,#086fc9 0%,#0757a7 48%,#103660 100%);
+      box-shadow:0 22px 56px rgba(8,73,134,.22),inset 0 1px 0 rgba(255,255,255,.16);
+    }
+    .kb-banner::after {
+      content:"";
+      position:absolute;
+      z-index:-1;
+      width:220px;
+      height:220px;
+      right:-90px;
+      bottom:-135px;
+      border:36px solid rgba(255,255,255,.07);
+      border-radius:50%;
+    }
+    .kb-copy { min-width:0; }
+    .kb-copy h2 { margin:0 0 8px; color:#fff; font-size:24px; line-height:1.2; font-weight:760; letter-spacing:-.02em; }
+    .kb-copy p { max-width:560px; margin:0; color:rgba(236,247,255,.82); font-size:14px; line-height:1.65; }
+    .kb-meta {
+      min-width:128px;
+      padding:12px 16px;
+      display:grid;
+      gap:5px;
+      border-left:1px solid rgba(255,255,255,.22);
+    }
+    .kb-meta span { display:flex; align-items:center; gap:7px; color:rgba(225,242,255,.7); font-size:11px; font-weight:650; letter-spacing:.08em; }
+    .kb-meta span::before { content:""; width:7px; height:7px; border-radius:50%; background:#70f0b5; box-shadow:0 0 0 4px rgba(112,240,181,.13); }
+    .kb-meta strong { color:#fff; font-size:16px; line-height:1.25; font-weight:720; white-space:nowrap; }
+    .kb-code {
+      min-width:0;
+      padding:11px 12px 12px;
+      display:grid;
+      gap:7px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:12px;
+      background:rgba(5,23,42,.52);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .kb-code span { color:rgba(225,242,255,.68); font-size:11px; line-height:1.2; }
+    .kb-code code {
+      display:block;
+      padding:8px 10px;
+      overflow:auto;
+      border:1px solid rgba(147,207,255,.22);
+      border-radius:8px;
+      color:#f5fbff;
+      background:#071b30;
+      font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+      font-size:13px;
+      font-weight:650;
+      line-height:1.25;
+      white-space:nowrap;
+      text-shadow:0 1px 0 rgba(0,0,0,.24);
+    }
+    .kb-code code::before { content:"$ "; color:#71d8ff; }
     article { grid-column:2; width:min(100%, 940px); margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
     article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; scroll-margin-top:72px; }
     article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
@@ -197,6 +268,9 @@
       main { display:block; min-height:auto; }
       nav { max-height:36vh; padding:8px 14px 12px; background:var(--soft); }
       .meta { height:auto; padding:10px 20px; }
+      .kb-banner { width:auto; margin:18px 16px 0; padding:20px; grid-template-columns:1fr; gap:18px; border-radius:16px; }
+      .kb-meta { padding:12px 0 0; border-left:0; border-top:1px solid rgba(255,255,255,.2); }
+      .kb-code { width:100%; }
       article { padding:30px 20px 72px; }
       article h1 { font-size:31px; }
       article h2 { font-size:21px; }
@@ -225,6 +299,20 @@
       </div>
     </aside>
     <div class="meta" id="currentPath"></div>
+    <section class="kb-banner" aria-label="知识库同步状态">
+      <div class="kb-copy">
+        <h2>Linkincrease 知识库</h2>
+        <p>产品规则、业务流程、权限边界、需求治理和原型规范沉淀。</p>
+      </div>
+      <div class="kb-meta">
+        <span>最新更新时间</span>
+        <strong>今天 06:02</strong>
+      </div>
+      <div class="kb-code">
+        <span>在知识库目录运行</span>
+        <code>git pull --ff-only</code>
+      </div>
+    </section>
     <article>
       <div id="content">加载中...</div>
     </article>
