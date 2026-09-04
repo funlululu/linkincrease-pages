@@ -84,7 +84,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <tr>
 <td>FlowSpace 业务权限</td>
 <td>订单、里程碑、工单、批复、自动化、仪表盘</td>
-<td>查看、创建、编辑、删除、状态修改、指派、采集、批复、互用、导入导出</td>
+<td>查看、创建、编辑、删除、状态修改、指派、采集、批复、互用、终止采集、还原采集、导入导出</td>
 <td>FlowSpace 设置、订单详情需求</td>
 </tr>
 <tr>
@@ -195,6 +195,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>订单已完成或已取消时，订单编辑、工单采集、批复、指派等动作受限。</li>
 <li>里程碑已完成或已取消时，创建工单、采集、批复、互用等动作受限。</li>
 <li>工单已终止采集或已批复时，采集动作受限。</li>
+<li>工单已终止采集但订单和里程碑仍进行中、工单未批复/未删除时，可由具备“还原采集”权限的成员解除终止锁；还原后仍需按当前权限、数据围栏和表单显隐重新计算可编辑范围。</li>
 <li>资源库或资源库数据删除后，新业务不可继续引用。</li>
 </ul>
 <h2 id="8">8. 通知、日志与审计</h2>
@@ -229,6 +230,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><code>source:thoughts-v2-current/V2.4.x/贸易端/【贸易端】【资源库】第一阶段.md</code></li>
 <li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】【仪表盘】权限管理.md</code></li>
 <li><code>source:thoughts-v2-current/V2.5.x/贸易端/【贸易端】报告权限.md</code></li>
+<li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】工单终止还原为采集状态.md</code></li>
 </ul>
 <h2 id="11">11. 待确认问题</h2>
 <ul>
@@ -236,7 +238,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>数据围栏是否影响历史记录、动态、跟踪记录中的字段展示。</li>
 <li>协作团队负责人、对接人、有指派权限成员的边界是否完全一致。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (6)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【团队设置】团队信息、角色、成员、协作团队管理</td><td><span class="source-badge">v2.0.x</span></td><td>贸易端</td><td>团队设置</td><td>2026-05-26</td></tr><tr><td>【贸易端】【SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>SCCS设置</td><td>2026-05-26</td></tr><tr><td>【贸易端】【协作SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>协作SCCS设置</td><td>2026-05-26</td></tr><tr><td>【贸易端】【资源库】第一阶段</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>资源库</td><td>2026-07-03</td></tr><tr><td>【贸易端】【仪表盘】权限管理</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>仪表盘</td><td>2026-05-26</td></tr><tr><td>【贸易端】报告权限</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-05-26</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (7)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【团队设置】团队信息、角色、成员、协作团队管理</td><td><span class="source-badge">v2.0.x</span></td><td>贸易端</td><td>团队设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>SCCS设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【协作SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>协作SCCS设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【资源库】第一阶段</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>资源库</td><td>2026-09-04</td></tr><tr><td>【贸易端】【仪表盘】权限管理</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>仪表盘</td><td>2026-09-04</td></tr><tr><td>【贸易端】报告权限</td><td><span class="source-badge">V2.5.x</span></td><td>贸易端</td><td>贸易端</td><td>2026-09-04</td></tr><tr><td>【贸易端】工单终止还原为采集状态</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-09-04</td></tr></table></details>
   </article>
 </body>
 </html>
