@@ -367,10 +367,16 @@ python scripts\scan_source_manifest.py
 <li>若业务口径仍有效，知识页保留，但来源状态改为待确认或历史来源。</li>
 <li>若确认废弃，更新知识页、来源台账和版本变更记录。</li>
 </ol>
+<h3 id="55-git">5.5 Git 同步后刷新需求索引页</h3>
+<p>知识库完成 commit 并 push 后，需要回到最新需求源目录重新运行 <code>thoughts_sync.py</code>。该脚本会刷新 <code>需求文档同步索引.html</code> 底部的 Linkincrease 知识库信息，包括最新更新时间、最新提交和同事同步命令。</p>
+<pre><code class="language-powershell">cd &lt;最新需求源本地目录&gt;
+python thoughts_sync.py
+</code></pre>
+<p>如果只更新知识库、没有新的所思文档变更，也仍需执行一次，让需求索引页里的知识库同步状态与 Git 最新提交保持一致。</p>
 <h2 id="6">6. 当前已知注意事项</h2>
 <ol>
 <li>旧 <code>需求文档/</code> 已删除，不再维护双来源。</li>
-<li>当前最新源 <code>最新需求源（source:thoughts-v2-current）</code> 中有 63 份 <code>.md</code> 文档。</li>
+<li>当前最新源 <code>最新需求源（source:thoughts-v2-current）</code> 的文档数量以 <code>metadata/source-manifest.csv</code> 和 <code>scripts/scan_source_manifest.py</code> 输出为准。</li>
 <li>旧来源中有 3 份文件未在最新源中出现，已标记为待确认：</li>
 <li><code>公式函数.md</code></li>
 <li><code>【运营端】【资源库模版】表单设计组件.md</code></li>
