@@ -380,15 +380,14 @@ python thoughts_sync.py
 </code></pre>
 <p>如果只更新知识库、没有新的所思文档变更，也仍需执行一次，让需求索引页里的知识库同步状态与 Git 最新提交保持一致。</p>
 <h3 id="56-html-demo">5.6 自动展示摹客原型与分散 HTML Demo</h3>
-<p>需求索引页按需求路径中的产品端自动添加 <code>metadata/prototype-assets.json</code> 中对应的摹客入口：运营端、贸易端、采集端分别进入各自的在线原型；通用需求同时展示三个入口。</p>
-<p>HTML Demo 不需要搬入知识库或需求文档目录。在 Demo 项目根目录增加 <code>.linkincrease-prototype.json</code>，同步脚本会从工作根目录下的 <code>2024</code>、<code>2025</code>、<code>2026</code>、<code>prototype</code> 目录自动发现清单，将可运行 Web 文件发布到需求索引目录，并按需求路径或文档 ID 自动关联。</p>
+<p>需求索引页按需求路径中的产品端自动添加 <code>metadata/prototype-assets.json</code> 中对应的摹客入口：运营端、贸易端、采集端分别只显示一个“摹客”入口。通用、三端和跨端需求不自动展示摹客入口，避免同时堆叠三个产品端链接。</p>
+<p>HTML Demo 不需要搬入知识库或需求文档目录。只有方案已被选中时，才在所选 Demo 项目根目录增加 <code>.linkincrease-prototype.json</code> 并设置 <code>selected: true</code>。同步脚本会自动扫描工作根目录下所有 <code>20xx</code> 年份目录和 <code>prototype</code> 目录，将选中的可运行 Web 文件发布到需求索引目录，并按需求路径或文档 ID 自动关联。</p>
 <pre><code class="language-json">{
   &quot;schema_version&quot;: 1,
   &quot;id&quot;: &quot;demo-stable-id&quot;,
   &quot;title&quot;: &quot;Demo 名称&quot;,
   &quot;entry&quot;: &quot;index.html&quot;,
-  &quot;status&quot;: &quot;reviewing&quot;,
-  &quot;endpoints&quot;: [&quot;ops&quot;, &quot;trade&quot;, &quot;collect&quot;],
+  &quot;selected&quot;: true,
   &quot;requirement_doc_ids&quot;: [&quot;所思文档 ID&quot;],
   &quot;requirement_paths&quot;: [&quot;v2.8/运营端/需求文档路径&quot;],
   &quot;exclude&quot;: [&quot;audit&quot;]
@@ -396,10 +395,13 @@ python thoughts_sync.py
 </code></pre>
 <p>规则：</p>
 <ol>
-<li>一个 Demo 目录只维护一份清单；页面本身不再手工维护链接。</li>
-<li>有 <code>index.html</code> 时默认使用它；没有时必须通过 <code>entry</code> 指定入口。</li>
-<li><code>requirement_doc_ids</code> 优先用于稳定关联，<code>requirement_paths</code> 用于可读校验和路径兼容。</li>
-<li>同一 Demo 可关联多个需求；同一需求也可展示多个 Demo。</li>
+<li>没有生成 Demo：不创建清单，需求卡只展示需求文档及对应端的摹客入口。</li>
+<li>生成了多个候选方案：候选目录不设置 <code>selected: true</code>；最终只给采用方案设置，索引页只展示一个 Demo。</li>
+<li>生成了 Demo 但未采用：不设置或删除 <code>selected</code>，扫描器会忽略，不发布也不展示。</li>
+<li>已选择 Demo 但没有对应所思需求：扫描器记录提醒但暂不发布；所思需求建立后补充 <code>requirement_doc_ids</code> 再自动出现。</li>
+<li>一个 Demo 目录只维护一份清单；有 <code>index.html</code> 时默认使用它，没有时通过 <code>entry</code> 指定所选入口。</li>
+<li><code>requirement_doc_ids</code> 是稳定关联主键，<code>requirement_paths</code> 用于人工阅读和路径兼容；同一需求最多保留一个已选 Demo。</li>
+<li>页面不展示 Demo 状态；“存在当前所思需求 + 找到 selected Demo”即代表它是已确定入口。</li>
 <li>发布过程只复制 HTML、CSS、JavaScript、JSON、图片、字体和音视频等 Web 运行文件，不复制需求说明、评审记录等 Markdown 内部资料。</li>
 <li>如 Demo 根目录不在默认扫描范围，可用 <code>LINKINCREASE_DEMO_ROOTS</code> 指定多个目录；Windows 下使用分号分隔。</li>
 </ol>
