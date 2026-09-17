@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>通知规则与模板 - Linkincrease 知识库</title>
+  <base href="/linkincrease-pages/">
+  <style>
+:root {
+  --bg:#f8faff; --text:#172033; --muted:#64748b; --faint:#94a3b8;
+  --line:#dfe8f5; --line-strong:#c8d8ed; --accent:#0878dc;
+  --accent-soft:#e5f2ff; --code:#edf4fc; --panel:#fff; --soft:#f3f7fd;
+}
+* { box-sizing:border-box; }
+html { min-height:100%; }
+body { margin:0; color:var(--text); background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.78; }
+.back-link { display:block; padding:12px 16px; color:#0566c2; text-decoration:none; font-size:14px; border-bottom:1px solid var(--line); }
+.back-link:hover { background:var(--soft); }
+article { max-width:940px; margin:0 auto; padding:44px 52px 88px; background:var(--bg); }
+article h1, article h2, article h3, article h4 { color:var(--text); line-height:1.25; letter-spacing:0; }
+article h1 { margin:0 0 22px; font-family:Georgia,"Times New Roman","Songti SC",serif; font-size:40px; font-weight:700; }
+article h2 { margin:38px 0 14px; padding-top:6px; border-top:1px solid var(--line); font-size:23px; font-weight:680; }
+article h3 { margin:26px 0 10px; font-size:18px; font-weight:680; }
+article h4 { margin:22px 0 8px; font-size:16px; font-weight:650; }
+article p, article li { color:var(--text); font-size:15px; line-height:1.78; }
+article p { margin:10px 0; }
+article ul, article ol { padding-left:1.45em; margin:10px 0 16px; }
+article li + li { margin-top:4px; }
+article a { color:#0566c2; text-decoration:underline; text-decoration-color:#9bc9f1; text-underline-offset:3px; }
+article blockquote { margin:18px 0; padding:2px 0 2px 16px; color:var(--muted); border-left:3px solid var(--line-strong); }
+article table { display:block; width:100%; margin:18px 0 24px; overflow:auto; border-collapse:collapse; font-size:14px; }
+article th, article td { min-width:120px; border:1px solid var(--line); padding:8px 10px; vertical-align:top; line-height:1.55; background:var(--panel); }
+article th { color:#344761; background:var(--soft); font-weight:650; }
+article code { padding:2px 5px; border-radius:4px; background:var(--code); color:#075fad; font-size:.92em; }
+article pre { margin:18px 0; padding:16px; overflow:auto; border:1px solid #203b5b; border-radius:8px; background:#10243e; color:#edf6ff; }
+article pre code { padding:0; background:transparent; color:inherit; }
+@media (max-width:900px) { article { padding:30px 20px 72px; } article h1 { font-size:31px; } article h2 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <a class="back-link" href="/linkincrease-pages/index.html">← 返回 Linkincrease 知识库</a>
+  <article>
+<h1 id="_1">通知规则与模板</h1>
+<h2 id="1">1. 功能定位</h2>
+<p>通知规则与模板用于统一维护 Linkincrease 邮件、短信、站内通知和实时消息的触发事件、接收人、模板 code、跳转目标和展示文案。它是消息中心、任务待办、邮件协作、自动化失败提醒、团队协作邀请和账号安全邮件的共同来源。</p>
+<p>本页只沉淀产品规则和模板分类，不沉淀邮箱账号、密码、服务商密钥或其他运行配置。账号凭据、发送通道配置和图片资源由系统配置或运维密钥体系管理。</p>
+<h2 id="2">2. 维护原则</h2>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模板 code 稳定</td>
+<td>模板 code 被前后端、消息队列、邮件服务和测试用例引用，不应随意改名</td>
+</tr>
+<tr>
+<td>新增模板追加</td>
+<td>新模板接在对应消息分类最后，不重排历史序号；中间断层可能来自流程变更或废弃模板</td>
+</tr>
+<tr>
+<td>文案可追溯</td>
+<td>邮件、短信、站内通知文案调整需保留触发事件、接收人和跳转目标</td>
+</tr>
+<tr>
+<td>变量显式</td>
+<td>模板中使用订单码、工单名、团队名、成员名、链接等变量时，应明确变量来源和空值处理</td>
+</tr>
+<tr>
+<td>同人抑制</td>
+<td>发送人和接收人相同、或执行人不应收到自己触发的通知时，需要在规则中说明</td>
+</tr>
+<tr>
+<td>权限优先</td>
+<td>消息跳转前仍需校验当前用户权限；对象被删除、协作关系取消或成员被移除时，跳转提示无权限或对象不存在</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. 模板分类</h2>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>典型场景</th>
+<th>主要渠道</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>账号安全</td>
+<td>注册验证码、登录验证、忘记密码、查看全部邮件协作验证</td>
+<td>邮件</td>
+</tr>
+<tr>
+<td>团队邀请</td>
+<td>加入团队、加入协作团队、邮件协作外部邀请</td>
+<td>邮件、站内通知</td>
+</tr>
+<tr>
+<td>工单任务</td>
+<td>创建工单、指派采集、工单批复、里程碑批复、任务取消</td>
+<td>站内通知、邮件</td>
+</tr>
+<tr>
+<td>动态评论</td>
+<td>工单动态、里程碑批复动态、评论和 @ 提醒</td>
+<td>站内通知、邮件</td>
+</tr>
+<tr>
+<td>邮件协作</td>
+<td>邮件协作发送、外部协作者处理、批量邮件协作</td>
+<td>邮件、站内通知</td>
+</tr>
+<tr>
+<td>自动化</td>
+<td>自动化通知、自动化执行失败、系统自动执行结果</td>
+<td>站内通知、邮件、短信</td>
+</tr>
+<tr>
+<td>数据移交</td>
+<td>FlowSpace 数据移交、任务调整、历史处理人权限变化</td>
+<td>站内通知</td>
+</tr>
+<tr>
+<td>团队管理</td>
+<td>协作团队加入/移除 FlowSpace、协作方角色变更、成员加入/移除</td>
+<td>站内通知</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-code">4. 重点模板 code</h2>
+<table>
+<thead>
+<tr>
+<th>code</th>
+<th>场景</th>
+<th>规则要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>trade_register</code></td>
+<td>贸易端注册验证码</td>
+<td>邮件验证码类模板，不在知识库保存验证码生成规则</td>
+</tr>
+<tr>
+<td><code>trade_login</code></td>
+<td>贸易端登录验证</td>
+<td>需结合账号安全策略判断触发频率</td>
+</tr>
+<tr>
+<td><code>trade_forget</code></td>
+<td>贸易端忘记密码</td>
+<td>跳转链接需有有效期和一次性校验</td>
+</tr>
+<tr>
+<td><code>trade_team_invitation</code></td>
+<td>团队邀请</td>
+<td>需展示团队、邀请人、接受入口和过期处理</td>
+</tr>
+<tr>
+<td><code>trade_collaborative_team_invitation</code></td>
+<td>协作团队邀请</td>
+<td>需区分主团队邀请协作团队与普通成员邀请</td>
+</tr>
+<tr>
+<td><code>trade_mail_collaboration</code></td>
+<td>邮件协作</td>
+<td>外部填写链接需校验权限、有效期和对象状态</td>
+</tr>
+<tr>
+<td><code>trade_work_order</code></td>
+<td>工单任务相关邮件</td>
+<td>需关联订单、里程碑、工单和任务类型</td>
+</tr>
+<tr>
+<td><code>trade_work_order_dynamics</code></td>
+<td>工单动态邮件</td>
+<td>用于工单动态、评论或 @ 提醒</td>
+</tr>
+<tr>
+<td><code>trade_milestone_review_dynamics</code></td>
+<td>里程碑批复动态邮件</td>
+<td>用于批复动态与 @ 提醒</td>
+</tr>
+<tr>
+<td><code>trade_view_email_collaboration_list</code></td>
+<td>查看全部邮件协作验证</td>
+<td>需与账号安全验证逻辑保持一致</td>
+</tr>
+<tr>
+<td><code>work_order_collection</code></td>
+<td>工单采集站内通知</td>
+<td>创建、指派、改派、待处理状态变更均可能触发</td>
+</tr>
+<tr>
+<td><code>work_order_reviewed</code></td>
+<td>工单批复站内通知</td>
+<td>需要区分待批复、已批复、退回或取消</td>
+</tr>
+<tr>
+<td><code>milestone_reviewed</code></td>
+<td>里程碑批复站内通知</td>
+<td>需要关联里程碑和订单状态</td>
+</tr>
+<tr>
+<td><code>work_order_dynamic</code></td>
+<td>工单动态站内通知</td>
+<td>评论、@、系统动态需区分触发人和接收人</td>
+</tr>
+<tr>
+<td><code>email_collaboration_processed</code></td>
+<td>邮件协作处理结果</td>
+<td>外部协作者处理完成后通知相关内部成员</td>
+</tr>
+<tr>
+<td><code>FSData_handover</code></td>
+<td>FlowSpace 数据移交通知</td>
+<td>数据移交后通知新处理人，并保证原处理人历史权限边界</td>
+</tr>
+<tr>
+<td><code>automated_notification</code></td>
+<td>自动化通知</td>
+<td>由自动化规则触发，文案变量来自自动化配置</td>
+</tr>
+<tr>
+<td><code>automated_notification_failed</code></td>
+<td>自动化失败通知</td>
+<td>应包含失败对象、失败原因和可排查入口</td>
+</tr>
+<tr>
+<td><code>invite_co_join_team</code></td>
+<td>邀请协作团队加入团队</td>
+<td>需明确发起团队、目标团队和接受入口</td>
+</tr>
+<tr>
+<td><code>members_join_team</code></td>
+<td>成员加入团队</td>
+<td>通知团队管理员或相关成员</td>
+</tr>
+<tr>
+<td><code>assign_work_order</code></td>
+<td>工单指派</td>
+<td>需和工单采集/批复任务状态保持一致</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">5. 跳转与权限</h2>
+<ul>
+<li>站内通知和邮件链接进入业务对象前，必须重新校验用户身份、团队、FlowSpace、订单、工单和表单权限。</li>
+<li>被删除、终止、取消协作、移除成员或移交后的旧链接，不应展示敏感数据；可提示暂无权限、对象不存在或任务已调整。</li>
+<li>协作团队成员只看到本团队授权范围内的订单、工单、表单和动态。</li>
+<li>邮件协作外部用户只通过授权链接访问指定表单，不获得团队或 FlowSpace 的通用权限。</li>
+</ul>
+<h2 id="6">6. 与业务模块的关系</h2>
+<table>
+<thead>
+<tr>
+<th>业务模块</th>
+<th>通知规则关注点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工单与批复</td>
+<td>创建、指派、改派、提交、批复、退回、终止、还原、取消任务</td>
+</tr>
+<tr>
+<td>表单共享与复制</td>
+<td>共享组成员变化、锁定、解散、同步失败和复制覆盖</td>
+</tr>
+<tr>
+<td>FlowSpace 数据移交</td>
+<td>新处理人接收任务，原处理人旧消息跳转权限变化</td>
+</tr>
+<tr>
+<td>自动化配置</td>
+<td>通知动作、执行失败、系统重试和执行日志</td>
+</tr>
+<tr>
+<td>动态与评论</td>
+<td>评论、@、系统动态和对象状态变化</td>
+</tr>
+<tr>
+<td>团队与协作团队</td>
+<td>邀请、加入、移除、角色变更和协作关系变化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7">7. 待确认问题</h2>
+<ul>
+<li>已废弃或中断序号的历史模板是否需要单独建立“停用模板清单”。</li>
+<li>邮件、短信、站内通知的多语言文案版本是否需要建立独立版本号。</li>
+<li>自动化失败短信的触发阈值、频控和接收人范围需要与自动化执行日志进一步对齐。</li>
+</ul>
+<h2 id="8">8. 来源需求</h2>
+<ul>
+<li><code>source:thoughts-v2-current/邮件、短信、通知规则及模板.md</code></li>
+</ul>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>邮件、短信、通知规则及模板</td><td><span class="source-badge">common</span></td><td>未识别</td><td></td><td>2026-09-17</td></tr></table></details>
+  </article>
+</body>
+</html>

@@ -116,7 +116,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <tr>
 <td>里程碑权限</td>
 <td>工单采集/指派</td>
-<td>指派或修改本团队工单采集成员，也可处理相关采集任务</td>
+<td>指派或修改本团队工单采集成员，可按工单采集表单拆分处理人，也可处理相关采集任务</td>
 </tr>
 <tr>
 <td>里程碑权限</td>
@@ -160,6 +160,13 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </ul>
 <h2 id="7">7. 消息通知设置</h2>
 <p>协作团队自建角色中，里程碑任务指派权限旁可设置“对接人不再接收此类消息通知”。打开时，如果当前里程碑对应权限尚无其他角色勾选，需要提醒：暂未设置其他成员接收该类消息，打开后可能无法及时通知。</p>
+<p>工单采集按表单指派时，通知规则如下：</p>
+<ul>
+<li>创建工单时已直接指派到成员的，通知对应成员处理。</li>
+<li>存在未指派表单时，通知协作团队对接人或具备对应指派权限的成员。</li>
+<li>改派后通知新处理人；被移除成员收到任务调整消息。</li>
+<li>若协作关系取消、成员被移除或工单不可处理，旧消息跳转需提示无权限或任务已调整。</li>
+</ul>
 <h2 id="8">8. 成员管理规则</h2>
 <ul>
 <li>协作 FlowSpace 成员来自已成功加入本团队的成员。</li>
@@ -167,6 +174,10 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>删除最后一名对接人时不可删除，提示至少保留一名对接人。</li>
 <li>删除成员后，该成员当前 FlowSpace 相关业务数据不可查看；任务中心相关工单隐藏；相关邮件、消息跳转提示暂无权限。</li>
 <li>删除成员后，如该成员仍持有可移交数据，拥有数据移交权限的成员进入 FlowSpace 时需要看到待移交提醒。</li>
+<li>工单采集按表单指派时，处理人只能从当前协作团队且已加入当前 FlowSpace 的成员中选择。</li>
+<li>同一张采集表单不能同时选择协作团队负责人和具体成员。</li>
+<li>协作团队只能调整本团队负责的表单处理人；同一表单上其他团队成员或主团队处理人不可被本团队修改。</li>
+<li>清空本团队某表单处理人后，该表单回到待指派状态；保存时需整体校验成员有效性、指派权限、订单范围、工单状态和表单范围。</li>
 </ul>
 <h2 id="9">9. 审计要求</h2>
 <p>协作 FlowSpace 设置操作日志需要记录：</p>
@@ -174,6 +185,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>自建角色新增、编辑、删除。</li>
 <li>主团队角色编辑，仅记录成员编辑。</li>
 <li>成员管理新增、删除、设置权限。</li>
+<li>工单采集表单级指派、改派、清空处理人、待指派状态变化和并发保存失败。</li>
 </ul>
 <p>主团队修改或删除协作方角色，不记录在协作方 FlowSpace 的操作日志中。</p>
 <h2 id="10">10. 待确认问题</h2>
@@ -181,7 +193,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>“对接人”“有指派权限成员”“任务实际处理人”在所有通知和任务列表中的边界需要继续校验。</li>
 <li>链主方删除协作里程碑权限时，协作团队历史任务和历史记录是否保留完整可见，需要补规则。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (4)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>SCCS设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【协作SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>协作SCCS设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【操作日志】所有设置类功能</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>操作日志</td><td>2026-09-04</td></tr><tr><td>【贸易端】FS 数据移交</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-09-04</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (5)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>SCCS设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【协作SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>协作SCCS设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【操作日志】所有设置类功能</td><td><span class="source-badge">V2.4.x</span></td><td>贸易端</td><td>操作日志</td><td>2026-09-04</td></tr><tr><td>【贸易端】FS 数据移交</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-09-04</td></tr><tr><td>【贸易端】【工单】协作团队可分表单设置不同处理人</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>工单</td><td>2026-09-17</td></tr></table></details>
   </article>
 </body>
 </html>
