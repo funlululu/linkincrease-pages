@@ -291,6 +291,12 @@ documents=78
 <td>人工维护为主</td>
 <td>JSON 格式必须有效；新增重要知识页后要补索引</td>
 </tr>
+<tr>
+<td><code>metadata/prototype-assets.json</code></td>
+<td>需求索引页使用的摹客产品端入口和 Demo 扫描规则</td>
+<td>少量人工维护</td>
+<td>只保存共享线上链接和相对扫描规则，不写个人绝对路径</td>
+</tr>
 </tbody>
 </table>
 <h3 id="44">4.4 文档和模板</h3>
@@ -373,6 +379,30 @@ python scripts\scan_source_manifest.py
 python thoughts_sync.py
 </code></pre>
 <p>如果只更新知识库、没有新的所思文档变更，也仍需执行一次，让需求索引页里的知识库同步状态与 Git 最新提交保持一致。</p>
+<h3 id="56-html-demo">5.6 自动展示摹客原型与分散 HTML Demo</h3>
+<p>需求索引页按需求路径中的产品端自动添加 <code>metadata/prototype-assets.json</code> 中对应的摹客入口：运营端、贸易端、采集端分别进入各自的在线原型；通用需求同时展示三个入口。</p>
+<p>HTML Demo 不需要搬入知识库或需求文档目录。在 Demo 项目根目录增加 <code>.linkincrease-prototype.json</code>，同步脚本会从工作根目录下的 <code>2024</code>、<code>2025</code>、<code>2026</code>、<code>prototype</code> 目录自动发现清单，将可运行 Web 文件发布到需求索引目录，并按需求路径或文档 ID 自动关联。</p>
+<pre><code class="language-json">{
+  &quot;schema_version&quot;: 1,
+  &quot;id&quot;: &quot;demo-stable-id&quot;,
+  &quot;title&quot;: &quot;Demo 名称&quot;,
+  &quot;entry&quot;: &quot;index.html&quot;,
+  &quot;status&quot;: &quot;reviewing&quot;,
+  &quot;endpoints&quot;: [&quot;ops&quot;, &quot;trade&quot;, &quot;collect&quot;],
+  &quot;requirement_doc_ids&quot;: [&quot;所思文档 ID&quot;],
+  &quot;requirement_paths&quot;: [&quot;v2.8/运营端/需求文档路径&quot;],
+  &quot;exclude&quot;: [&quot;audit&quot;]
+}
+</code></pre>
+<p>规则：</p>
+<ol>
+<li>一个 Demo 目录只维护一份清单；页面本身不再手工维护链接。</li>
+<li>有 <code>index.html</code> 时默认使用它；没有时必须通过 <code>entry</code> 指定入口。</li>
+<li><code>requirement_doc_ids</code> 优先用于稳定关联，<code>requirement_paths</code> 用于可读校验和路径兼容。</li>
+<li>同一 Demo 可关联多个需求；同一需求也可展示多个 Demo。</li>
+<li>发布过程只复制 HTML、CSS、JavaScript、JSON、图片、字体和音视频等 Web 运行文件，不复制需求说明、评审记录等 Markdown 内部资料。</li>
+<li>如 Demo 根目录不在默认扫描范围，可用 <code>LINKINCREASE_DEMO_ROOTS</code> 指定多个目录；Windows 下使用分号分隔。</li>
+</ol>
 <h2 id="6">6. 当前已知注意事项</h2>
 <ol>
 <li>旧 <code>需求文档/</code> 已删除，不再维护双来源。</li>
@@ -427,6 +457,14 @@ python thoughts_sync.py
 <tr>
 <td>看单源接入说明</td>
 <td><code>sources/external/thoughts-current.md</code></td>
+</tr>
+<tr>
+<td>配置各产品端摹客入口</td>
+<td><code>metadata/prototype-assets.json</code></td>
+</tr>
+<tr>
+<td>让分散 HTML Demo 自动出现在需求卡片</td>
+<td>在 Demo 根目录增加 <code>.linkincrease-prototype.json</code> 后运行 <code>thoughts_sync.py</code></td>
 </tr>
 </tbody>
 </table>
