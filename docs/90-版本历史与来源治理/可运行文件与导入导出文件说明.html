@@ -402,7 +402,7 @@ python thoughts_sync.py
 <li>一个 Demo 目录只维护一份清单；有 <code>index.html</code> 时默认使用它，没有时通过 <code>entry</code> 指定所选入口。</li>
 <li><code>requirement_doc_ids</code> 是稳定关联主键，<code>requirement_paths</code> 用于人工阅读和路径兼容；同一需求最多保留一个已选 Demo。</li>
 <li>页面不展示 Demo 状态；“存在当前所思需求 + 找到 selected Demo”即代表它是已确定入口。</li>
-<li>发布过程只复制 HTML、CSS、JavaScript、JSON、图片、字体和音视频等 Web 运行文件，不复制需求说明、评审记录等 Markdown 内部资料。</li>
+<li>发布过程只复制 HTML、CSS、JavaScript、JSON、图片、字体和音视频等 Web 运行文件，不复制需求说明、评审记录等 Markdown 内部资料；同时自动生成同内容 ZIP，供需求卡片“下载”使用。</li>
 <li>如 Demo 根目录不在默认扫描范围，可用 <code>LINKINCREASE_DEMO_ROOTS</code> 指定多个目录；Windows 下使用分号分隔。</li>
 </ol>
 <h2 id="6">6. 当前已知注意事项</h2>
@@ -467,6 +467,10 @@ python thoughts_sync.py
 <tr>
 <td>让分散 HTML Demo 自动出现在需求卡片</td>
 <td>在 Demo 根目录增加 <code>.linkincrease-prototype.json</code> 后运行 <code>thoughts_sync.py</code></td>
+</tr>
+<tr>
+<td>在线查看或下载已采用 Demo</td>
+<td>在需求卡片使用“查看 Demo”或“下载”；两者均由同步脚本自动生成</td>
 </tr>
 </tbody>
 </table>
