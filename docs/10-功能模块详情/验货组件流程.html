@@ -239,6 +239,8 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </table>
 <p>1D 切换为 2D 时显示维度二列；2D 切换为 1D 时固定保留维度一。1D、2D 均允许维度值相同的组合行重复存在。表格支持从 Excel 直接粘贴多行多列，超出当前行数时自动追加行。</p>
 <p>样本量自动分配采用确定性整数算法，使自动分配总量尽可能等于有效计划样本量。计划值为空时不自动分配，各行样本量由用户填写。</p>
+<p>组合明细及尺寸检验的长度单位支持 <code>cm</code>、<code>mm</code>、<code>in</code>，新旧数据默认使用 <code>cm</code>。<code>cm</code>、<code>mm</code> 最多保留 1 位小数，<code>in</code> 最多保留 3 位小数。贸易端可修改独立组合明细的单位；尺寸检验组件关联组合明细后继承来源单位，不允许在当前组件单独修改，采集端仅展示继承后的单位。</p>
+<p>修改单位时必须让用户选择“换算数值”或“仅修改单位”：换算使用 <code>1 cm = 10 mm</code>、<code>1 in = 25.4 mm</code>、<code>1 in = 2.54 cm</code>，并按目标单位精度四舍五入；仅修改单位时保留原数值。两种方式都需重新计算允许范围、偏差、判定和统计，保留既有测量记录，不重新生成记录。若换算后的精度处理会影响边界判定，确认弹窗需明确提示。来源组合明细变更单位时，所有关联尺寸检验组件同步更新并提示影响范围。</p>
 <h3 id="42">4.2 关联模式</h3>
 <p>组合明细关联其他组件时，来源、维度模式和名称、组合行、抽样基数、样本形态、套件设置均只读。当前尺寸组件可独立维护样本量和检验规格。进入可编辑状态时加载来源最新版本。</p>
 <h3 id="43">4.3 套装设置</h3>
@@ -478,7 +480,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>尺寸检验组件字段进入公式、条件、报表和仪表盘时，字段级权限、子表展开方式和统计口径需要形成矩阵。</li>
 <li>补充测量是否需要在报告导出、仪表盘和异常筛选中作为可选数据源，需要后续确认。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (2)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【运营端】【表单设计】尺寸检验组件流程梳理</td><td><span class="source-badge">v2.8</span></td><td>运营端</td><td>表单设计</td><td>2026-09-17</td></tr><tr><td>【运营端】【业务模板】表单设计组件</td><td><span class="source-badge">v2.1.x</span></td><td>运营端</td><td>业务模板</td><td>2026-09-17</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (3)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【运营端】【表单设计】尺寸检验组件流程梳理</td><td><span class="source-badge">v2.8</span></td><td>运营端</td><td>表单设计</td><td>2026-09-17</td></tr><tr><td>【贸易端】【采集端】组合明细（尺寸检验-组合明细）增加单位设置</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>运营端</td><td>2026-10-19</td></tr><tr><td>【运营端】【业务模板】表单设计组件</td><td><span class="source-badge">v2.1.x</span></td><td>运营端</td><td>业务模板</td><td>2026-09-17</td></tr></table></details>
   </article>
 </body>
 </html>

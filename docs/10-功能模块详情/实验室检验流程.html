@@ -424,6 +424,15 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>特殊情况可记录样品条件不满足、检测过程异常/结果无效、其他原因无法检测等，并将检测判定保存为无法判定。</li>
 </ul>
 <p>临时判定条件可在检测执行中调整。调整后需展示临时状态标签，并清除当前生效的临时调整时恢复原判定规则。</p>
+<h3 id="74">7.4 汇总字段口径</h3>
+<p>每个“检测内容选择”组件形成一个独立的“检测预定内容（组件名称）”字段分组。该阶段尚未关联实际样品，因此各币种套餐金额和加项金额表示所选检测内容的单样品价格，即价格/样品，不乘以样品数量。</p>
+<p>检测执行表的汇总字段必须结合实际样品与项目适用范围计算，包含检测判定、合格数、不合格数、无法判定数，以及 CNY、EUR、USD 各币种的套餐金额和加项金额。其中：</p>
+<ul>
+<li>套餐金额（币种）= Σ（套餐在该币种下的单样品价格 × 套餐适用样品数）。</li>
+<li>加项金额（币种）= Σ（加项检测项目在该币种下的单样品价格 × 项目适用样品数）。</li>
+<li>同一样品只有在样品与检测范围中实际关联到对应套餐或加项项目时才计费；未进入执行范围的样品不计入。</li>
+<li>判定和数量按当前有效检测执行结果汇总，历史失效结果不重复计数。</li>
+</ul>
 <h2 id="8">8. 工单批复与采集端</h2>
 <p>实验室检测工单批复用于对已提交的检测工单进行复核，包括查看检测内容、样品范围、检测结果汇总、逐条检测结果、检测报告信息和附件，并给出整体批复结论。</p>
 <table>
@@ -456,7 +465,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 </ul>
 <h2 id="10">10. 待确认问题</h2>
 <ul>
-<li>实验室检验最终结算规则、报价口径和多币种金额是否进入首期闭环，仍需业务确认。</li>
+<li>实验室检验汇总金额已明确为“单样品价格 × 实际适用样品数”；该金额是否直接作为最终结算价，以及折扣、税费等结算规则，仍需业务确认。</li>
 <li>检测报告签发、实验室内部排程、设备、试剂和第三方 LIMS 对接是否独立成后续需求。</li>
 <li>检测内容明细、检测项目明细、样品明细和检测结果明细进入 BI、报表和仪表盘时的字段级权限矩阵需要补齐。</li>
 </ul>
@@ -464,7 +473,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <ul>
 <li><code>source:thoughts-v2-current/v2.8/运营端/【运营端】【表单设计】实验室检验流程.md</code></li>
 </ul>
-<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【运营端】【表单设计】实验室检验流程</td><td><span class="source-badge">v2.8</span></td><td>运营端</td><td>表单设计</td><td>2026-09-17</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【运营端】【表单设计】实验室检验流程</td><td><span class="source-badge">v2.8</span></td><td>运营端</td><td>表单设计</td><td>2026-10-19</td></tr></table></details>
   </article>
 </body>
 </html>

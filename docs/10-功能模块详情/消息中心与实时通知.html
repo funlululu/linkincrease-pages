@@ -159,13 +159,19 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>手机未开启 APP 通知时，底部展示通知条；点击开启跳转手机通知设置页。</li>
 <li>点击全部已读后，所有分类消息已读。</li>
 </ul>
-<h2 id="7">7. 待确认问题</h2>
+<h2 id="7">7. 消息合并规则</h2>
+<p>业务通知合并只改变投递和展示方式，不合并或修改任务、订单、工单及其动态。合并键由接收人、团队、渠道、FlowSpace 和消息类别共同组成；普通事件使用固定 5 分钟窗口，批量操作按业务批次立即发送。</p>
+<p>可合并类别包括待办、已更新、任务取消、评论提醒和协作完成。自动化创建或更新标准业务对象时归入对应业务类别；自动化“发送通知”且使用自定义标题的消息保持独立，不参与合并。合并消息必须保留逐条事件明细，不同任务类型不得折叠为同一条明细。</p>
+<p>同一窗口内发生状态连续变化时按最终有效状态折叠：待办只发送给最终处理人；取消事件应抑制尚未发出的待办，并通知此前已经收到待办的接收人。部分批量操作失败时，只允许成功记录进入消息。</p>
+<p>消息点击和邮件链接打开时重新校验当前权限；接收后失去权限的用户不得看到受限明细。技术幂等键与业务明细去重键分离，避免重试造成重复投递。邮件继续附带平台固定支持说明。</p>
+<h2 id="8">8. 待确认问题</h2>
 <ul>
 <li>自动化消息分类当前资料标注“暂无”，但自动化执行支持站内通知，需要统一口径。</li>
 <li>消息模板来源仍在外部链接中，建议导出为本地来源文件。</li>
 <li>消息跳转时如果用户已失去权限，需统一提示“暂无权限”并保留已读状态。</li>
+<li>合并邮件是否需要支持逐条展开明细，需结合邮件模板与移动端阅读体验确认。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (2)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【消息中心】消息中心、实时消息</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>消息中心</td><td>2026-09-04</td></tr><tr><td>【采集端】【消息中心】消息通知列表</td><td><span class="source-badge">v2.3.x</span></td><td>采集端</td><td>消息中心</td><td>2026-09-04</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (3)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【消息中心】消息中心、实时消息</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>消息中心</td><td>2026-09-04</td></tr><tr><td>【采集端】【消息中心】消息通知列表</td><td><span class="source-badge">v2.3.x</span></td><td>采集端</td><td>消息中心</td><td>2026-09-04</td></tr><tr><td>【贸易端】消息合并通知</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-09-21</td></tr></table></details>
   </article>
 </body>
 </html>

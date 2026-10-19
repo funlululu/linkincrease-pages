@@ -177,7 +177,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>使用本次保存的数据版本同步，记录各成员最近同步版本、时间、状态及失败原因。</li>
 <li>同一“共享组 ID + 来源版本 + 成员工单 ID”只执行一次。</li>
 <li>共享保存与整组同步需要原子化处理；失败时回滚本次保存，避免组内数据不一致。</li>
-<li>共享表单禁止导入、批量编辑、外部 API、移动端离线导入和自动化直接写入，只允许共享同步及目标公式计算写入。</li>
+<li>共享组进行中时，贸易端、采集端、批量采集、导入、API 和自动化对共享表单的写入必须统一进入共享版本与整组原子同步链路；共享组锁定后，这些入口均拒绝写入共享字段，非共享表单仍按原规则处理。</li>
 <li>同步期间展示“同步中”；失败时保留最后成功版本并展示失败状态。</li>
 </ol>
 <p>业务有效值的处理顺序为：同步来源普通字段值 -&gt; 按成员工单重新计算公式 -&gt; 判断成员工单显隐 -&gt; 计算业务有效值和必填完整度 -&gt; 记录动态/历史/执行日志 -&gt; 触发目标自动化。</p>
@@ -257,9 +257,9 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>批复人必须确认已知晓风险后才能批复。</li>
 <li>任一成员工单进入不可采集状态时，共享组锁定，不再允许成员写入，但可展示最后一次共享快照。</li>
 <li>共享同步及目标公式/显隐变化合并为一次目标订单数据变更，按最终业务有效值触发自动化。</li>
-<li>自动化不得写入共享表单。</li>
+<li>自动化按各成员订单分别判断和顺序执行；写入进行中共享表单后同步整组，并以同步后的最终值继续判断后续自动化。尝试写入已锁定共享组时拒绝并记录失败原因。</li>
 <li>仪表盘、报告、查询和导出仍按成员订单、成员工单分别统计，不按共享组去重。</li>
-<li>共享表单可导出当前最新值；导入、批量编辑、API 不得覆盖有效共享表单。</li>
+<li>共享表单可导出当前最新值。导入或批量采集同时命中同一共享组多条工单时，用户必须指定其中一条作为本次共享表单数据源；未完整配置不得执行。已锁定共享表单跳过并在结果中说明，其他独立表单仍可处理。</li>
 </ul>
 <h2 id="12">12. 日志、动态与审计</h2>
 <p>需要记录的事件包括：创建共享组、添加成员、成员退出、数据同步、共享组锁定、共享组解锁、共享组解散、模板关闭共享配置导致解散、工单删除导致解除关系和复制覆盖。</p>
@@ -277,7 +277,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】【工单】表单互用、表单复制.md</code></li>
 <li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】表单数据共享、表单复制.md</code></li>
 </ul>
-<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】表单数据共享、表单复制</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-09-17</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】表单数据共享、表单复制</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-10-19</td></tr></table></details>
   </article>
 </body>
 </html>

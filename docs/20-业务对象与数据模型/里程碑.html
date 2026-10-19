@@ -168,9 +168,16 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <td>有里程碑互用权限</td>
 <td>已完成/已取消等状态下受限</td>
 </tr>
+<tr>
+<td>管理里程碑计划</td>
+<td>有当前里程碑的“管理里程碑计划”权限，且订单命中角色数据范围</td>
+<td>订单、里程碑均处于允许编辑计划的状态</td>
+</tr>
 </tbody>
 </table>
 <p>里程碑负责人选择协作成员后，该成员拥有该订单对应里程碑下的所有操作权限。里程碑负责人也可在 FlowSpace 数据移交中作为单一负责人类角色移交，仅可配置一名接收成员。</p>
+<p>“管理里程碑计划”按里程碑分别配置，控制计划开始、计划结束、计划耗时和负责人是否展示及能否人工编辑。业务管理员拥有全部里程碑计划权限；里程碑负责人天然拥有本人负责里程碑的计划权限；订单创建人和订单负责人不因此自动获得权限。同一成员多个角色权限取并集。勾选任一里程碑计划权限时自动勾选“查看订单基本信息”；取消查看订单基本信息时同步取消全部里程碑计划权限。</p>
+<p>订单创建/编辑页只展示用户有计划权限的里程碑；没有任何授权时隐藏整个计划区。订单详情中每个里程碑独立展示“编辑计划”入口，该入口不依赖“编辑订单”权限，但仍需同时满足 FlowSpace、订单范围、里程碑、字段和状态校验。批量或接口提交混合授权数据时，只处理有权限部分并明确提示未处理项。</p>
 <h2 id="6">6. 状态与限制</h2>
 <table>
 <thead>
@@ -236,6 +243,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>里程碑互用和取消互用。</li>
 <li>里程碑计划配置变更。</li>
 <li>自动化更新里程碑相关数据。</li>
+<li>人工修改计划与系统因规则变化重算计划需分别记录审计来源；系统重算可更新用户无人工编辑权限的里程碑，但不得向其泄露隐藏计划。</li>
 <li>里程碑负责人数据移交成功后，需要写入订单跟踪记录。</li>
 </ul>
 <h2 id="9">9. 异常与提示</h2>
@@ -255,6 +263,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li><code>source:thoughts-v2-current/v2.3.x/贸易端/【贸易端】【订单管理】里程碑互用功能.md</code></li>
 <li><code>source:thoughts-v2-current/v2.0.x/运营端/【运营端】【模板中心】业务模版管理.md</code></li>
 <li><code>source:thoughts-v2-current/v2.8/贸易端/【贸易端】FS 数据移交.md</code></li>
+<li><code>source:thoughts-v2-current/v2.9/贸易端/【贸易端】里程碑计划权限.md</code></li>
 </ul>
 <h2 id="11">11. 待确认问题</h2>
 <ul>
@@ -262,7 +271,7 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <li>订单完成时，未开始和已取消里程碑是否保持原状态的完整规则。</li>
 <li>里程碑互用状态限制需要从互用需求继续细化。</li>
 </ul>
-<details class="source-section" open><summary>需求来源 (5)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>SCCS设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【订单详情】查看&操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-09-04</td></tr><tr><td>【贸易端】【订单详情】工单&里程碑批复操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-09-04</td></tr><tr><td>【贸易端】【订单管理】里程碑互用功能</td><td><span class="source-badge">v2.3.x</span></td><td>贸易端</td><td>订单管理</td><td>2026-09-04</td></tr><tr><td>【贸易端】FS 数据移交</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-09-04</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (6)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>【贸易端】【SCCS设置】</td><td><span class="source-badge">v2.1.x</span></td><td>贸易端</td><td>SCCS设置</td><td>2026-09-04</td></tr><tr><td>【贸易端】【订单详情】查看&操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-09-04</td></tr><tr><td>【贸易端】【订单详情】工单&里程碑批复操作</td><td><span class="source-badge">v2.2.x</span></td><td>贸易端</td><td>订单详情</td><td>2026-09-04</td></tr><tr><td>【贸易端】【订单管理】里程碑互用功能</td><td><span class="source-badge">v2.3.x</span></td><td>贸易端</td><td>订单管理</td><td>2026-09-04</td></tr><tr><td>【贸易端】FS 数据移交</td><td><span class="source-badge">v2.8</span></td><td>贸易端</td><td>贸易端</td><td>2026-09-04</td></tr><tr><td>【贸易端】里程碑计划权限</td><td><span class="source-badge">v2.9</span></td><td>贸易端</td><td>贸易端</td><td>2026-10-19</td></tr></table></details>
   </article>
 </body>
 </html>
