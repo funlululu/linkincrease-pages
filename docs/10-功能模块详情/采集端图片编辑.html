@@ -68,11 +68,12 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h3 id="31">3.1 拍照</h3>
 <ol>
 <li>用户点击图片上传区域并选择拍照。</li>
-<li>拍照完成后进入单图预览。</li>
-<li>用户可直接使用、编辑图片或重新拍摄。</li>
-<li>编辑完成后返回预览页，确认使用后加入图片组件并进入上传流程。</li>
+<li>普通图片组件沿用单图拍摄与预览流程；启用照片分组的图片组件可进入分组连续拍摄界面。</li>
+<li>分组连续拍摄时，相机保持开启，用户可在拍摄界面内切换当前图片组件的分组并继续拍照，无需退出相机后重新进入。</li>
+<li>单图流程中，拍照完成后进入预览，用户可直接使用、编辑图片或重新拍摄；编辑完成后确认使用并进入上传流程。</li>
 <li>返回且放弃当前照片时，需要提示用户确认。</li>
 </ol>
+<p>连续拍摄的照片预览、编辑、删除、上传状态和最终提交继续遵循本页既有规则。新来源尚未补齐分组切换后的照片归属、离线恢复、子表行隔离及权限变化处理；这些内容不得仅依据 Demo 视为正式规则。</p>
 <h3 id="32">3.2 相册多选</h3>
 <ul>
 <li>最大可选数量为“图片组件最大数量减去当前已有图片数量”。</li>
@@ -171,8 +172,9 @@ article pre code { padding:0; background:transparent; color:inherit; }
 <h2 id="9">9. 来源</h2>
 <ul>
 <li><code>source:thoughts-v2-current/v2.7/采集端/采集端图片编辑功能.md</code></li>
+<li><code>source:thoughts-v2-current/v2.9/采集端/【采集端】图片有分组时，拍摄界面可切换分组进行连续拍照.md</code></li>
 </ul>
-<details class="source-section" open><summary>需求来源 (1)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>采集端图片编辑功能</td><td><span class="source-badge">v2.7</span></td><td>采集端</td><td>采集端</td><td>2026-09-04</td></tr></table></details>
+<details class="source-section" open><summary>需求来源 (2)</summary><table class="source-table"><tr><th>需求文档</th><th>版本</th><th>产品端</th><th>模块</th><th>更新时间</th></tr><tr><td>采集端图片编辑功能</td><td><span class="source-badge">v2.7</span></td><td>采集端</td><td>采集端</td><td>2026-09-04</td></tr><tr><td>【采集端】图片有分组时，拍摄界面可切换分组进行连续拍照</td><td><span class="source-badge">v2.9</span></td><td>采集端</td><td>采集端</td><td>2026-11-10</td></tr></table></details>
   </article>
 </body>
 </html>
